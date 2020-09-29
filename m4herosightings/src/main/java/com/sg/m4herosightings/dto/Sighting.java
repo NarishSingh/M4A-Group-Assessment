@@ -6,22 +6,22 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 public class Sighting {
-    
+
     /*fields*/
     private int sightingId;
-    
+
     @NotBlank(message = "Sighting date cannot be blank")
     @Past(message = "Future sightings cannot be confirmed")
     private LocalDate date;
-    
+
     @NotBlank(message = "Please describe your hero/villian encounter or sighting")
     @Size(max = 255, message = "Please describe your sighting in 255 chars or less")
     private String description;
-    
+
     private Hero hero;
-    
+
     private Location location; //TODO incomplete as of now
-    
+
     /*ctors*/
     public Sighting() {
     }
@@ -32,7 +32,7 @@ public class Sighting {
         this.hero = hero;
         this.location = location;
     }
-    
+
     public Sighting(int sightingId, LocalDate date, String description, Hero hero, Location location) {
         this.sightingId = sightingId;
         this.date = date;
@@ -40,7 +40,7 @@ public class Sighting {
         this.hero = hero;
         this.location = location;
     }
-    
+
     /*g/s*/
     public int getSightingId() {
         return sightingId;
@@ -81,8 +81,7 @@ public class Sighting {
     public void setLocation(Location location) {
         this.location = location;
     }
-    
+
     /*testing*/
     //TODO make testing methods after fixing the location DTO issues
-    
 }

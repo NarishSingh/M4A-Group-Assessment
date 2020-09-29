@@ -5,18 +5,18 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class Superpower {
-    
+
     /*fields*/
     private int superpowerId;
-    
+
     @NotBlank(message = "Superpower name cannot be blank")
     @Size(max = 50, message = "Superpower name must be fewer than 50 chars")
     private String name;
-    
+
     @NotBlank(message = "Please describe this superpower")
     @Size(max = 255, message = "Superpower descrption must be fewer than 255 chars")
     private String description;
-    
+
     /*ctors*/
     public Superpower() {
     }
@@ -31,7 +31,7 @@ public class Superpower {
         this.name = name;
         this.description = description;
     }
-    
+
     /*get/set*/
     public int getSuperpowerId() {
         return superpowerId;
@@ -56,7 +56,7 @@ public class Superpower {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
     /*testing*/
     @Override
     public int hashCode() {
@@ -93,8 +93,8 @@ public class Superpower {
 
     @Override
     public String toString() {
-        return "Superpower{" + "superpowerId=" + superpowerId + ", name=" + name 
+        return "Superpower{" + "superpowerId=" + superpowerId + ", name=" + name
                 + ", description=" + description + '}';
     }
-    
+
 }

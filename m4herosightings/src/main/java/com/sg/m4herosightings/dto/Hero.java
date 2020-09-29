@@ -14,7 +14,7 @@ public class Hero {
     private String name;
 
     @NotBlank(message = "Please describe this hero or villian")
-    @Size(max = 50, message = "Hero/Villian description cannot be longer than 255 chars")
+    @Size(max = 255, message = "Hero/Villian description cannot be longer than 255 chars")
     private String description;
 
     private Superpower superpower;
