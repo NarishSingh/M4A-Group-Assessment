@@ -1,4 +1,6 @@
 DROP DATABASE IF EXISTS heroSightingTest;
 CREATE DATABASE heroSightingTest;
 
-USE heroSightingsTest;
+USE heroSightingTest;
+
+-- TODO make after 
