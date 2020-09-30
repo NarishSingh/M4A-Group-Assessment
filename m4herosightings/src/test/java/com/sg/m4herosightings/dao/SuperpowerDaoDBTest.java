@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sg.m4herosightings.dao;
 
 import com.sg.m4herosightings.dto.Superpower;
@@ -21,10 +16,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-/**
- *
- * @author irabob
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SuperpowerDaoDBTest {
@@ -48,7 +39,7 @@ public class SuperpowerDaoDBTest {
     
     @BeforeEach
     public void setUp() {
-        List<Superpower> superpowers = superpowerDao.getAllSuperpowers();
+        List<Superpower> superpowers = superpowerDao.readAllSuperpowers();
         for(Superpower superpower: superpowers){
             superpowerDao.deleteSuperpower(superpower.getSuperpowerId());
         }
@@ -66,18 +57,18 @@ public class SuperpowerDaoDBTest {
         Superpower superpower1 = new Superpower();
         superpower1.setName("drink");
         superpower1.setDescription("drink a gallon of whisky in a second and still stay sober");
-        superpower1 = superpowerDao.addSuperpower(superpower1);
+        superpower1 = superpowerDao.createSuperpower(superpower1);
         
         Superpower superpower2 = new Superpower();
         superpower2.setName("drinkk");
         superpower2.setDescription("drink a two gallon of whisky in a second and still stay sober");
-        superpower2 = superpowerDao.addSuperpower(superpower2);
+        superpower2 = superpowerDao.createSuperpower(superpower2);
         
         Superpower superpower3 = new Superpower();
         superpower3.setName("drinkkk");
         superpower3.setDescription("drink a three gallon of whisky in a second and still stay sober");
         
-        List<Superpower> superpowers = superpowerDao.getAllSuperpowers();
+        List<Superpower> superpowers = superpowerDao.readAllSuperpowers();
         
         assertEquals(2, superpowers.size());
         assertTrue(superpowers.contains(superpower1));
@@ -93,9 +84,9 @@ public class SuperpowerDaoDBTest {
         Superpower superpower = new Superpower();
         superpower.setName("drink");
         superpower.setDescription("drink a gallon of whisky in a second and still stay sober");
-        superpower = superpowerDao.addSuperpower(superpower);
+        superpower = superpowerDao.createSuperpower(superpower);
         
-        Superpower fromDao = superpowerDao.getSuperpowerById(superpower.getSuperpowerId());
+        Superpower fromDao = superpowerDao.readSuperpowerById(superpower.getSuperpowerId());
         
         assertEquals(superpower, fromDao);
     }
@@ -108,9 +99,9 @@ public class SuperpowerDaoDBTest {
         Superpower superpower = new Superpower();
         superpower.setName("drink");
         superpower.setDescription("drink a gallon of whisky in a second and still stay sober");
-        superpower = superpowerDao.addSuperpower(superpower);
+        superpower = superpowerDao.createSuperpower(superpower);
         
-        Superpower fromDao = superpowerDao.getSuperpowerById(superpower.getSuperpowerId());
+        Superpower fromDao = superpowerDao.readSuperpowerById(superpower.getSuperpowerId());
         
         assertEquals(superpower, fromDao);
         
@@ -119,7 +110,7 @@ public class SuperpowerDaoDBTest {
         
         assertNotEquals(fromDao, superpower);
         
-        fromDao = superpowerDao.getSuperpowerById(superpower.getSuperpowerId());
+        fromDao = superpowerDao.readSuperpowerById(superpower.getSuperpowerId());
         
         assertEquals(fromDao, superpower);
         

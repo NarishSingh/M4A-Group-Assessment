@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.sg.m4herosightings.dao;
 
 import com.sg.m4herosightings.dto.Hero;
@@ -22,10 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-/**
- *
- * @author irabob
- */
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class HeroDaoDBTest {
@@ -49,7 +40,7 @@ public class HeroDaoDBTest {
     
     @BeforeEach
     public void setUp() {
-        List<Superpower> superpowers = superpowerDao.getAllSuperpowers();
+        List<Superpower> superpowers = superpowerDao.readAllSuperpowers();
         for(Superpower superpower: superpowers){
             superpowerDao.deleteSuperpower(superpower.getSuperpowerId());
         }
@@ -72,7 +63,7 @@ public class HeroDaoDBTest {
         Superpower superpower1 = new Superpower();
         superpower1.setName("drink");
         superpower1.setDescription("drink a gallon of whisky in a second and still stay sober");
-        superpower1 = superpowerDao.addSuperpower(superpower1);
+        superpower1 = superpowerDao.createSuperpower(superpower1);
         
         Hero hero1 = new Hero();
         hero1.setName("UncleAlkash");
@@ -83,7 +74,7 @@ public class HeroDaoDBTest {
         Superpower superpower2 = new Superpower();
         superpower2.setName("drink");
         superpower2.setDescription("drink a gallon of whisky in a second and still stay sober");
-        superpower2 = superpowerDao.addSuperpower(superpower2);
+        superpower2 = superpowerDao.createSuperpower(superpower2);
         
         Hero hero2 = new Hero();
         hero2.setName("UncleAlkash");
@@ -106,7 +97,7 @@ public class HeroDaoDBTest {
         Superpower superpower = new Superpower();
         superpower.setName("drink");
         superpower.setDescription("drink a gallon of whisky in a second and still stay sober");
-        superpower = superpowerDao.addSuperpower(superpower);
+        superpower = superpowerDao.createSuperpower(superpower);
         
         Hero hero = new Hero();
         hero.setName("UncleAlkash");
@@ -127,7 +118,7 @@ public class HeroDaoDBTest {
         Superpower superpower = new Superpower();
         superpower.setName("drink");
         superpower.setDescription("drink a gallon of whisky in a second and still stay sober");
-        superpower = superpowerDao.addSuperpower(superpower);
+        superpower = superpowerDao.createSuperpower(superpower);
         
         Hero hero = new Hero();
         hero.setName("UncleAlkash");
@@ -148,7 +139,7 @@ public class HeroDaoDBTest {
         Superpower superpower1 = new Superpower();
         superpower1.setName("Good eyes");
         superpower1.setDescription("Always can find you");
-        superpower1 = superpowerDao.addSuperpower(superpower1);
+        superpower1 = superpowerDao.createSuperpower(superpower1);
         hero.setSuperpower(superpower1);
         heroDao.updateHero(hero);
         
