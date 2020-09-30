@@ -41,7 +41,7 @@ public class SuperpowerDaoDBTest {
     public void setUp() {
         List<Superpower> superpowers = superpowerDao.readAllSuperpowers();
         for(Superpower superpower: superpowers){
-            superpowerDao.deleteSuperpower(superpower.getSuperpowerId());
+            superpowerDao.deleteSuperpowerById(superpower.getSuperpowerId());
         }
     }
     
@@ -117,7 +117,7 @@ public class SuperpowerDaoDBTest {
     }
 
     /**
-     * Test of deleteSuperpower method, of class SuperpowerDaoDB.
+     * Test of deleteSuperpowerById method, of class SuperpowerDaoDB.
      */
     @Test
     public void testDeleteSuperpower() {

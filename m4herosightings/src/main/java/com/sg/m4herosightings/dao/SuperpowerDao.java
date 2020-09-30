@@ -11,8 +11,8 @@ public interface SuperpowerDao {
 
     List<Superpower> readAllSuperpowers();
 
-    void updateSuperpower(Superpower superpower);
+    Superpower updateSuperpower(Superpower superpower);
 
-    void deleteSuperpower(int id);
+    boolean deleteSuperpowerById(int id);
 
 }

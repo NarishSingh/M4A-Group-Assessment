@@ -26,17 +26,20 @@ public class SuperpowerDaoDb implements SuperpowerDao {
     @Override
     @Transactional
     public Superpower createSuperpower(Superpower superpower) {
-        final String ADD_SUPERPOWER = "INSERT INTO superpower(name, description) VALUES(?,?)";
+        final String ADD_SUPERPOWER = "INSERT INTO superpower(name, description) "
+                + "VALUES(?,?);";
         jdbc.update(ADD_SUPERPOWER, superpower.getName(), superpower.getDescription());
         int id = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         superpower.setSuperpowerId(id);
+        
         return superpower;
     }
 
     @Override
     public Superpower readSuperpowerById(int id) {
         try{
-            final String GET_SUPERPOWER = "SELECT * FROM superpower WHERE superpowerId = ?";
+            final String GET_SUPERPOWER = "SELECT * FROM superpower "
+                    + "WHERE superpowerId = ?";
             return jdbc.queryForObject(GET_SUPERPOWER, new SuperpowerMapper(), id);
         }catch(DataAccessException ex){
             return null;
@@ -45,14 +48,27 @@ public class SuperpowerDaoDb implements SuperpowerDao {
 
     @Override
     @Transactional
-    public void updateSuperpower(Superpower superpower) {
-        final String UPDATE_SUPERPOWER = "UPDATE superpower SET name=?, description = ? WHERE superpowerId = ?";
-        jdbc.update(UPDATE_SUPERPOWER, superpower.getName(), superpower.getDescription(), superpower.getSuperpowerId());
+    public Superpower updateSuperpower(Superpower superpower) {
+        final String UPDATE_SUPERPOWER = "UPDATE superpower "
+                + "SET "
+                + "name=?, "
+                + "description = ? "
+                + "WHERE superpowerId = ?;";
+        int updated = jdbc.update(UPDATE_SUPERPOWER, 
+                superpower.getName(), 
+                superpower.getDescription(), 
+                superpower.getSuperpowerId());
+        
+        if (updated ==1) {
+            return superpower;
+        } else {
+            return null;
+        }
     }
 
     @Override
     @Transactional
-    public void deleteSuperpower(int id) {
+    public boolean deleteSuperpowerById(int id) {
         final String DELETE_SUPERPOWER_HERO = "DELETE FROM hero WHERE superpowerId = ?";
         jdbc.update(DELETE_SUPERPOWER_HERO, id);
         
