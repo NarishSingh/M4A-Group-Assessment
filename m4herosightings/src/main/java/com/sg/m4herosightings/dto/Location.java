@@ -44,7 +44,8 @@ public class Location {
     public Location() {
     }
 
-    public Location(double latitude, double longitude, String name, String description, String street, String city, String state, String zipcode) {
+    public Location(double latitude, double longitude, String name, String description, 
+            String street, String city, String state, String zipcode) {
         this.latitude = latitude;
         this.longitude = longitude;
         this.name = name;
@@ -55,7 +56,8 @@ public class Location {
         this.zipcode = zipcode;
     }
 
-    public Location(int locationId, double latitude, double longitude, String name, String description, String street, String city, String state, String zipcode) {
+    public Location(int locationId, double latitude, double longitude, String name, 
+            String description, String street, String city, String state, String zipcode) {
         this.locationId = locationId;
         this.latitude = latitude;
         this.longitude = longitude;
