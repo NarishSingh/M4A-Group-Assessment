@@ -28,7 +28,8 @@ public interface SightingDao {
      * Update a Sighting in db
      *
      * @param updated {Sighting} the new Sighting obj
-     * @return {Sighting} a successfully updated Sighting Obj from table
+     * @return {Sighting} a successfully updated Sighting Obj from table, null
+     *         if update fails
      */
     Sighting updateSighting(Sighting updated);
 
@@ -36,9 +37,9 @@ public interface SightingDao {
      * Delete a Sighting in db
      *
      * @param id {int} the id for an existing sighting
-     * @return {Sighting} the obj from table
+     * @return {boolean} true if deleted, false if not
      */
-    Sighting deleteSightingById(int id);
+    boolean deleteSightingById(int id);
 
     /**
      * Get all Heroes/Villians sighted at a particular Location
@@ -46,7 +47,7 @@ public interface SightingDao {
      * @param location {Location} a well formed Location obj
      * @return {List} a list of all Hero obj's for this location
      */
-    List<Hero> readSightingsByLocation(Location location);
+    List<Hero> readHeroSightingsByLocation(Location location);
 
     /**
      * Get all sighting Locations for a particular Hero/Villians
@@ -54,7 +55,7 @@ public interface SightingDao {
      * @param hero {Hero} a well formed Hero obj
      * @return {List} all Locations where this Hero was sighted
      */
-    List<Location> readSightingByHero(Hero hero);
+    List<Location> readLocationSightingsByHero(Hero hero);
 
     /**
      * Get all sightings for a particular date
@@ -63,7 +64,5 @@ public interface SightingDao {
      * @return {List} all sightings for this date
      */
     List<Sighting> readSightingsByDate(LocalDate date);
-//    Map<Hero, Location> readSightingsByDate(LocalDate date);
-//    Map<Hero, List<Location>> readSightingsByDate(LocalDate date); //if a hero can be sighted at multiple locations
 
 }

@@ -9,7 +9,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -43,9 +42,12 @@ public class SightingDaoDb implements SightingDao {
     @Override
     public Sighting readSightingById(int id) {
         try {
+            //query sighting
             String selectQuery = "SELECT * FROM sighting "
                     + "WHERE sightingId = ?;";
             Sighting s = jdbc.queryForObject(selectQuery, new SightingMapper(), id);
+
+            //associate hero and location obj's
             s.setHero(readHeroForSighting(id));
             s.setLocation(readLocationForSighting(id));
 
@@ -64,38 +66,51 @@ public class SightingDaoDb implements SightingDao {
                 + "heroId = ?, "
                 + "locationId = ?, "
                 + "WHERE sightingId = ?;";
-        int updateSuccess = jdbc.update(updateQuery, 
-                updated.getDate(), 
-                updated.getDescription(), 
-                updated.getHero().getHeroId(), 
+        int updateSuccess = jdbc.update(updateQuery,
+                updated.getDate(),
+                updated.getDescription(),
+                updated.getHero().getHeroId(),
                 updated.getLocation().getLocationId(),
                 updated.getSightingId());
-        
+
         if (updateSuccess == 1) {
-            return updated;
+            return updated; //1 row effected = success
         } else {
             return null;
         }
     }
 
     @Override
-    public Sighting deleteSightingById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean deleteSightingById(int id) {
+        String deleteQuery = "DELETE FROM sighting "
+                + "WHERE sightingId = ?;";
+
+        return jdbc.update(deleteQuery, id) > 0;
     }
 
     @Override
-    public List<Hero> readSightingsByLocation(Location location) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Hero> readHeroSightingsByLocation(Location location) {
+        String heroSightingsQuery = "SELECT * FROM hero h "
+                + "JOIN sighting s ON s.heroId = h.heroId "
+                + "JOIN location l ON l.locationId = s.locationId "
+                + "WHERE l.locationId = ?;";
+        return jdbc.query(heroSightingsQuery, new HeroMapper(), location.getLocationId());
     }
 
     @Override
-    public List<Location> readSightingByHero(Hero hero) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Location> readLocationSightingsByHero(Hero hero) {
+        String locationSightingsQuery = "SELECT * FROM location l "
+                + "JOIN sighting s ON s.locationId = l.locationId "
+                + "JOIN hero h ON h.heroId = s.heroId "
+                + "WHERE h.heroId = ?;";
+        return jdbc.query(locationSightingsQuery, new LocationMapper(), hero.getHeroId());
     }
-    
+
     @Override
     public List<Sighting> readSightingsByDate(LocalDate date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sightingsOnDateQuery = "SELECT * FROM sighting s "
+                + "WHERE s.date = ?;";
+        return jdbc.query(sightingsOnDateQuery, new SightingMapper(), date);
     }
 
     /*Helpers*/
@@ -138,6 +153,7 @@ public class SightingDaoDb implements SightingDao {
 
             return s;
         }
+        
     }
 
 }
