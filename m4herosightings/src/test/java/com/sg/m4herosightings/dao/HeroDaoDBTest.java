@@ -54,7 +54,7 @@ public class HeroDaoDBTest {
             superpowerDao.deleteSuperpower(superpower.getSuperpowerId());
         }
         
-        List<Hero> heroes = heroDao.getAllHeroes();
+        List<Hero> heroes = heroDao.readAllHeroes();
         for(Hero hero: heroes){
             heroDao.deleteHero(hero.getHeroId());
         }
@@ -78,7 +78,7 @@ public class HeroDaoDBTest {
         hero1.setName("UncleAlkash");
         hero1.setDescription("Number one sober-alcoholic");
         hero1.setSuperpower(superpower1);
-        hero1 = heroDao.addHero(hero1);
+        hero1 = heroDao.createHero(hero1);
         
         Superpower superpower2 = new Superpower();
         superpower2.setName("drink");
@@ -89,9 +89,9 @@ public class HeroDaoDBTest {
         hero2.setName("UncleAlkash");
         hero2.setDescription("Number one sober-alcoholic");
         hero2.setSuperpower(superpower2);
-        hero2 = heroDao.addHero(hero2);
+        hero2 = heroDao.createHero(hero2);
         
-        List<Hero> heroes = heroDao.getAllHeroes();
+        List<Hero> heroes = heroDao.readAllHeroes();
         
         assertEquals(2, heroes.size());
         assertTrue(heroes.contains(hero1));
@@ -112,9 +112,9 @@ public class HeroDaoDBTest {
         hero.setName("UncleAlkash");
         hero.setDescription("Number one sober-alcoholic");
         hero.setSuperpower(superpower);
-        hero = heroDao.addHero(hero);
+        hero = heroDao.createHero(hero);
         
-        Hero fromDao = heroDao.getHeroById(hero.getHeroId());
+        Hero fromDao = heroDao.readHeroById(hero.getHeroId());
         
         assertEquals(fromDao, hero);
     }
@@ -133,16 +133,16 @@ public class HeroDaoDBTest {
         hero.setName("UncleAlkash");
         hero.setDescription("Number one sober-alcoholic");
         hero.setSuperpower(superpower);
-        hero = heroDao.addHero(hero);
+        hero = heroDao.createHero(hero);
         
-        Hero fromDao = heroDao.getHeroById(hero.getHeroId());
+        Hero fromDao = heroDao.readHeroById(hero.getHeroId());
         assertEquals(fromDao, hero);
         
         hero.setName("UncleBob");
         heroDao.updateHero(hero);
         assertNotEquals(fromDao, hero);
         
-        fromDao = heroDao.getHeroById(hero.getHeroId());
+        fromDao = heroDao.readHeroById(hero.getHeroId());
         assertEquals(fromDao, hero);
         
         Superpower superpower1 = new Superpower();
@@ -154,7 +154,7 @@ public class HeroDaoDBTest {
         
         assertNotEquals(fromDao, hero);
         
-        fromDao = heroDao.getHeroById(hero.getHeroId());
+        fromDao = heroDao.readHeroById(hero.getHeroId());
         
         assertEquals(fromDao, hero);
     }

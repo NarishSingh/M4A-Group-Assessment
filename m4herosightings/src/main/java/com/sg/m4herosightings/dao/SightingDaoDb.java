@@ -1,6 +1,3 @@
-/*
-comment
-*/
 package com.sg.m4herosightings.dao;
 
 import com.sg.m4herosightings.dao.HeroDaoDb.HeroMapper;

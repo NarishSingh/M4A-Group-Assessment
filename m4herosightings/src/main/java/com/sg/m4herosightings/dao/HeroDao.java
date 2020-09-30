@@ -5,11 +5,11 @@ import java.util.List;
 
 public interface HeroDao {
   
-    List<Hero> getAllHeroes();
-  
-    Hero addHero(Hero hero);
-  
-    Hero getHeroById(int id);
+    Hero createHero(Hero hero);
+    
+    Hero readHeroById(int id);
+    
+    List<Hero> readAllHeroes();
   
     void updateHero(Hero hero);
   
