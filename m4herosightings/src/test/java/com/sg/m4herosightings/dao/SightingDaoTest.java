@@ -11,8 +11,28 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.junit4.SpringRunner;
+
+@RunWith(SpringRunner.class)
 
 public class SightingDaoTest {
+    
+    @Autowired
+    HeroDao hDao;
+    
+    @Autowired
+    SuperpowerDao spDao;
+    
+    @Autowired
+    LocationDao locDao;
+    
+    @Autowired
+    OrganizationDao orgDao;
+    
+    @Autowired
+    SightingDao sightDao;
     
     public SightingDaoTest() {
     }
@@ -27,6 +47,7 @@ public class SightingDaoTest {
     
     @BeforeEach
     public void setUp() {
+        
     }
     
     @AfterEach

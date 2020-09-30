@@ -58,6 +58,15 @@ public class SightingDaoDb implements SightingDao {
     }
 
     @Override
+    public List<Sighting> readAllSightings() {
+        String selectAllQuery = "SELECT * FROM sighting;";
+        List<Sighting> sightings = jdbc.query(selectAllQuery, new SightingMapper());
+        associateHeroesLocationsWithSightings(sightings);
+
+        return sightings;
+    }
+
+    @Override
     public Sighting updateSighting(Sighting updated) {
         String updateQuery = "UPDATE sighting "
                 + "SET "
@@ -140,6 +149,18 @@ public class SightingDaoDb implements SightingDao {
         return jdbc.queryForObject(selectLocQuery, new LocationMapper(), id);
     }
 
+    /**
+     * Associate Heroes and Locations with their respective Sightings in memory
+     *
+     * @param sightings {List} sighting obj's to be associated
+     */
+    private void associateHeroesLocationsWithSightings(List<Sighting> sightings) {
+        for (Sighting s : sightings) {
+            s.setHero(readHeroForSighting(s.getSightingId()));
+            s.setLocation(readLocationForSighting(s.getSightingId()));
+        }
+    }
+
     /*Mapper*/
     public static final class SightingMapper implements RowMapper<Sighting> {
 
@@ -153,7 +174,7 @@ public class SightingDaoDb implements SightingDao {
 
             return s;
         }
-        
+
     }
 
 }

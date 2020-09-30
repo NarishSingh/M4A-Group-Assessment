@@ -23,6 +23,12 @@ public interface SightingDao {
      * @return {Sighting} the obj from table, null if read fails
      */
     Sighting readSightingById(int id);
+    
+    /**
+     * Get all Sightings from db
+     * @return {List} all obj's from table
+     */
+    List<Sighting> readAllSightings();
 
     /**
      * Update a Sighting in db
