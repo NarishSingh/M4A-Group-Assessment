@@ -16,7 +16,7 @@ public class SuperpowerDaoDb implements SuperpowerDao {
 
     @Autowired
     JdbcTemplate jdbc;
-    
+
     @Override
     public List<Superpower> readAllSuperpowers() {
         final String GET_ALL_SUPERPOWER = "SELECT * FROM superpower";
@@ -31,17 +31,17 @@ public class SuperpowerDaoDb implements SuperpowerDao {
         jdbc.update(ADD_SUPERPOWER, superpower.getName(), superpower.getDescription());
         int id = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         superpower.setSuperpowerId(id);
-        
+
         return superpower;
     }
 
     @Override
     public Superpower readSuperpowerById(int id) {
-        try{
+        try {
             final String GET_SUPERPOWER = "SELECT * FROM superpower "
                     + "WHERE superpowerId = ?";
             return jdbc.queryForObject(GET_SUPERPOWER, new SuperpowerMapper(), id);
-        }catch(DataAccessException ex){
+        } catch (DataAccessException ex) {
             return null;
         }
     }
@@ -54,12 +54,12 @@ public class SuperpowerDaoDb implements SuperpowerDao {
                 + "name=?, "
                 + "description = ? "
                 + "WHERE superpowerId = ?;";
-        int updated = jdbc.update(UPDATE_SUPERPOWER, 
-                superpower.getName(), 
-                superpower.getDescription(), 
+        int updated = jdbc.update(UPDATE_SUPERPOWER,
+                superpower.getName(),
+                superpower.getDescription(),
                 superpower.getSuperpowerId());
-        
-        if (updated ==1) {
+
+        if (updated == 1) {
             return superpower;
         } else {
             return null;
@@ -71,18 +71,18 @@ public class SuperpowerDaoDb implements SuperpowerDao {
     public boolean deleteSuperpowerById(int id) {
         final String DELETE_SUPERPOWER_HERO = "DELETE FROM hero WHERE superpowerId = ?";
         jdbc.update(DELETE_SUPERPOWER_HERO, id);
-        
+
         final String DELETE_SUPERPOWER = "DELETE FROM superpower WHERE superpowerId = ?";
         jdbc.update(DELETE_SUPERPOWER, id);
-        
+
         /*
             before delete hero we may gonna need delete query for organization_hero bridge and sightings
             or we just need to call delete function from thoes dao methods. I'm not sure
-        */
+         */
     }
-    
+
     /*mapper*/
-    public static final class SuperpowerMapper implements RowMapper<Superpower>{
+    public static final class SuperpowerMapper implements RowMapper<Superpower> {
 
         @Override
         public Superpower mapRow(ResultSet rs, int i) throws SQLException {
@@ -92,7 +92,7 @@ public class SuperpowerDaoDb implements SuperpowerDao {
             superpower.setDescription(rs.getString("description"));
             return superpower;
         }
-        
+
     }
-    
+
 }

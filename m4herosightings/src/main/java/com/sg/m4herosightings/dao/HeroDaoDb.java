@@ -80,6 +80,8 @@ public class HeroDaoDb implements HeroDao {
     @Override
     @Transactional
     public boolean deleteHeroById(int id) {
+        //FIXME be mindful this will effect multiple rows
+        
         /*
             first delete from organization_heros bride table
             second delete from sightings table
