@@ -19,7 +19,6 @@ CREATE TABLE organization (
     organizationId INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(50) NOT NULL,
     description VARCHAR(255),
-    contactId INT NOT NULL,
     phone CHAR(12),
     email VARCHAR(50),
     locationId INT NOT NULL,
@@ -42,6 +41,7 @@ CREATE TABLE hero (
         REFERENCES superpower (superpowerId)
 );
 
+-- bridge table
 CREATE TABLE heroOrganization (
     heroId INT NOT NULL,
     organizationId INT NOT NULL,

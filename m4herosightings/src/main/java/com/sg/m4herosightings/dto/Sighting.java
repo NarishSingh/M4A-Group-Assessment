@@ -1,6 +1,7 @@
 package com.sg.m4herosightings.dto;
 
 import java.time.LocalDate;
+import java.util.Objects;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -19,8 +20,7 @@ public class Sighting {
     private String description;
 
     private Hero hero;
-
-    private Location location; //TODO incomplete as of now
+    private Location location;
 
     /*ctors*/
     public Sighting() {
@@ -83,5 +83,52 @@ public class Sighting {
     }
 
     /*testing*/
-    //TODO make testing methods after fixing the location DTO issues
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + this.sightingId;
+        hash = 47 * hash + Objects.hashCode(this.date);
+        hash = 47 * hash + Objects.hashCode(this.description);
+        hash = 47 * hash + Objects.hashCode(this.hero);
+        hash = 47 * hash + Objects.hashCode(this.location);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Sighting other = (Sighting) obj;
+        if (this.sightingId != other.sightingId) {
+            return false;
+        }
+        if (!Objects.equals(this.description, other.description)) {
+            return false;
+        }
+        if (!Objects.equals(this.date, other.date)) {
+            return false;
+        }
+        if (!Objects.equals(this.hero, other.hero)) {
+            return false;
+        }
+        if (!Objects.equals(this.location, other.location)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Sighting{" + "sightingId=" + sightingId + ", date=" + date
+                + ", description=" + description + ", hero=" + hero + ", location="
+                + location + '}';
+    }
+
 }
