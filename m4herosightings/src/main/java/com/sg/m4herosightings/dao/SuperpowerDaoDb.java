@@ -18,12 +18,6 @@ public class SuperpowerDaoDb implements SuperpowerDao {
     JdbcTemplate jdbc;
 
     @Override
-    public List<Superpower> readAllSuperpowers() {
-        final String GET_ALL_SUPERPOWER = "SELECT * FROM superpower";
-        return jdbc.query(GET_ALL_SUPERPOWER, new SuperpowerMapper());
-    }
-
-    @Override
     @Transactional
     public Superpower createSuperpower(Superpower superpower) {
         final String ADD_SUPERPOWER = "INSERT INTO superpower(name, description) "
@@ -44,6 +38,12 @@ public class SuperpowerDaoDb implements SuperpowerDao {
         } catch (DataAccessException ex) {
             return null;
         }
+    }
+
+    @Override
+    public List<Superpower> readAllSuperpowers() {
+        final String GET_ALL_SUPERPOWER = "SELECT * FROM superpower";
+        return jdbc.query(GET_ALL_SUPERPOWER, new SuperpowerMapper());
     }
 
     @Override
@@ -69,16 +69,23 @@ public class SuperpowerDaoDb implements SuperpowerDao {
     @Override
     @Transactional
     public boolean deleteSuperpowerById(int id) {
-        final String DELETE_SUPERPOWER_HERO = "DELETE FROM hero WHERE superpowerId = ?";
-        jdbc.update(DELETE_SUPERPOWER_HERO, id);
+        //delete from bridge table
+        String deleteBridgeQuery = "DELETE ho.* FROM heroOrganization ho "
+                + "JOIN superpower s ON s.superpowerId = ho.superpowerId "
+                + "WHERE s.superpowerId = ?;";
+        jdbc.update(deleteBridgeQuery, id);
 
-        final String DELETE_SUPERPOWER = "DELETE FROM superpower WHERE superpowerId = ?";
-        jdbc.update(DELETE_SUPERPOWER, id);
+        //delete from hero and sighting since hero is deleted
+        String deleteHeroAndSightingQuery = "DELETE * FROM hero h, sighting si "
+                + "JOIN superhero sh ON sh.superpowerId = si.superpowerId "
+                + "JOIN ON h.superpowerId = sh.superpowerId "
+                + "WHERE superpowerId = ?";
+        jdbc.update(deleteHeroAndSightingQuery, id);
 
-        /*
-            before delete hero we may gonna need delete query for organization_hero bridge and sightings
-            or we just need to call delete function from thoes dao methods. I'm not sure
-         */
+        //delete from superpower
+        final String DELETE_SUPERPOWER = "DELETE * FROM superpower "
+                + "WHERE superpowerId = ?";
+        return jdbc.update(DELETE_SUPERPOWER, id) > 0;
     }
 
     /*mapper*/

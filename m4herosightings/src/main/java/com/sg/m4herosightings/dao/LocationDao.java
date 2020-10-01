@@ -29,9 +29,9 @@ public interface LocationDao {
     List<Location> readAllLocations();
 
     /**
-     * Update a Location in db
+     * Update a Location row in db
      *
-     * @param update {Location} the update obj with a valid id
+     * @param update {Location} the update obj with corresponding id
      * @return {Location} the successfully updated obj from db, null otherwise
      */
     Location updateLocation(Location update);
