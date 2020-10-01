@@ -78,9 +78,9 @@ public class SightingDaoTest {
             locDao.deleteLocationById(l.getLocationId());
         }
 
-        List<Organization> orgs = orgDao.readAllOrganization();
+        List<Organization> orgs = orgDao.readAllOrganizations();
         for (Organization o : orgs) {
-            orgDao.deleteOrganization(o.getOrganizationId());
+            orgDao.deleteOrganizationById(o.getOrganizationId());
         }
 
         List<Sighting> sightings = sightDao.readAllSightings();

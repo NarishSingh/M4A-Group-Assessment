@@ -56,9 +56,9 @@ public class OrganizationDaoDbTest {
             sightingDao.deleteSightingById(s.getSightingId());
         }
         
-        List<Organization> orgs = organizationDao.readAllOrganization();
+        List<Organization> orgs = organizationDao.readAllOrganizations();
         for (Organization o : orgs) {
-            organizationDao.deleteOrganization(o.getOrganizationId());
+            organizationDao.deleteOrganizationById(o.getOrganizationId());
         }
         
         List<Location> locations = locationDao.readAllLocations();
@@ -68,12 +68,12 @@ public class OrganizationDaoDbTest {
         
         List<Hero> heroes = heroDao.readAllHeroes();
         for (Hero h : heroes) {
-            heroDao.deleteHero(h.getHeroId());
+            heroDao.deleteHeroById(h.getHeroId());
         }
         
         List<Superpower> superpowers = superpowerDao.readAllSuperpowers();
         for (Superpower sp : superpowers) {
-            superpowerDao.deleteSuperpower(sp.getSuperpowerId());
+            superpowerDao.deleteSuperpowerById(sp.getSuperpowerId());
         }
     }
     

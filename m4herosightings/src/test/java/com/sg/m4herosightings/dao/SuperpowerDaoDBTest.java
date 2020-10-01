@@ -57,9 +57,9 @@ public class SuperpowerDaoDBTest {
             sightingDao.deleteSightingById(s.getSightingId());
         }
         
-        List<Organization> orgs = organizationDao.readAllOrganization();
+        List<Organization> orgs = organizationDao.readAllOrganizations();
         for (Organization o : orgs) {
-            organizationDao.deleteOrganization(o.getOrganizationId());
+            organizationDao.deleteOrganizationById(o.getOrganizationId());
         }
         
         List<Location> locations = locationDao.readAllLocations();
@@ -69,7 +69,7 @@ public class SuperpowerDaoDBTest {
         
         List<Hero> heroes = heroDao.readAllHeroes();
         for (Hero h : heroes) {
-            heroDao.deleteHero(h.getHeroId());
+            heroDao.deleteHeroById(h.getHeroId());
         }
         
         List<Superpower> superpowers = superpowerDao.readAllSuperpowers();
@@ -154,6 +154,7 @@ public class SuperpowerDaoDBTest {
      */
     @Test
     public void testDeleteSuperpower() {
+        //TODO implement
     }
     
 }
