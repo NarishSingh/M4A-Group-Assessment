@@ -212,12 +212,13 @@ public class SightingDaoTest {
         sightDao.createSighting(s1);
         Sighting original = sightDao.readSightingById(s1.getSightingId());
 
-        sightDao.deleteSightingById(s1.getSightingId());
-        Sighting deleted = sightDao.readSightingById(original.getSightingId());
+        boolean deleted = sightDao.deleteSightingById(s1.getSightingId());
+        Sighting afterDel = sightDao.readSightingById(original.getSightingId());
 
         //assert
         assertNotNull(original);
-        assertNull(deleted);
+        assertTrue(deleted);
+        assertNull(afterDel);
     }
 
     /**
