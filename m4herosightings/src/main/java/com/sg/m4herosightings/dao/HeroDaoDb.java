@@ -24,10 +24,14 @@ public class HeroDaoDb implements HeroDao {
     public Hero createHero(Hero hero) {
         final String ADD_HERO = "INSERT INTO hero(name, description, superpowerId) "
                 + "VALUES(?,?,?);";
-        jdbc.update(ADD_HERO, hero.getName(), hero.getDescription(), hero.getSuperpower().getSuperpowerId());
+        jdbc.update(ADD_HERO, 
+                hero.getName(), 
+                hero.getDescription(), 
+                hero.getSuperpower().getSuperpowerId());
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         hero.setHeroId(newId);
+        hero.setSuperpower(readSuperpowerForHero(newId));
 
         return hero;
     }
@@ -39,10 +43,7 @@ public class HeroDaoDb implements HeroDao {
                     + "WHERE heroId = ?";
             Hero hero = jdbc.queryForObject(GET_HERO, new HeroMapper(), id);
             hero.setSuperpower(readSuperpowerForHero(id));
-<<<<<<< HEAD
-=======
-
->>>>>>> b2c979cafac6e241131e3015f9500cfe04c4ff2b
+          
             return hero;
         } catch (DataAccessException ex) {
             return null;
@@ -83,43 +84,20 @@ public class HeroDaoDb implements HeroDao {
     @Override
     @Transactional
     public boolean deleteHeroById(int id) {
-<<<<<<< HEAD
         //delete from bridge
-=======
-  /*
-            first delete from organization_heros bride table
-            second delete from sightings table
-            third delete from hero table
-        */
->>>>>>> b2c979cafac6e241131e3015f9500cfe04c4ff2b
-        final String DELETE_HERO_HEROORGANIZATION = "DELETE FROM heroOrganization WHERE heroId =?";
-        jdbc.update(DELETE_HERO_HEROORGANIZATION, id);
-        final String DELETE_HERO_SIGHTING = "DELETE FROM sighting WHERE heroId = ?";
-        jdbc.update(DELETE_HERO_SIGHTING, id);
-        final String DELETE_HERO = "DELETE FROM hero WHERE heroId=?";
-<<<<<<< HEAD
-        return jdbc.update(DELETE_HERO, id)>0;
-=======
-        jdbc.update(DELETE_HERO, id);
-  /*
-        //delete from bridge
-        String deleteBridgeQuery = "DELETE ho.* FROM heroOrganization ho "
-                + "JOIN hero h ON h.heroId = ho.heroId "
-                + "WHERE h.heroId = ?;";
-        jdbc.update(deleteBridgeQuery, id);
-
-        //delete from sighting
-        String deleteSightingQuery = "DELETE * FROM sighting s "
-                + "JOIN hero h ON h.heroId = s.heroId "
-                + "WHERE h.heroId = ?;";
-        jdbc.update(deleteSightingQuery, id);
-
-        //delete from hero
-        String deleteHeroQuery = "DELETE * FROM hero "
+        final String DELETE_HERO_HEROORGANIZATION = "DELETE FROM heroOrganization "
                 + "WHERE heroId = ?;";
-        return jdbc.update(deleteHeroQuery, id) > 0;
-        */
->>>>>>> b2c979cafac6e241131e3015f9500cfe04c4ff2b
+        jdbc.update(DELETE_HERO_HEROORGANIZATION, id);
+        
+        //delete from sightings
+        final String DELETE_HERO_SIGHTING = "DELETE FROM sighting "
+                + "WHERE heroId = ?;";
+        jdbc.update(DELETE_HERO_SIGHTING, id);
+        
+        //delete hero
+        final String DELETE_HERO = "DELETE FROM hero "
+                + "WHERE heroId = ?;";
+        return jdbc.update(DELETE_HERO, id) > 0;
     }
 
     /*Helpers*/

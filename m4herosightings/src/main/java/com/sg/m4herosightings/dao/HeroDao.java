@@ -40,8 +40,4 @@ public interface HeroDao {
      */
     boolean deleteHeroById(int id);
 
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> b2c979cafac6e241131e3015f9500cfe04c4ff2b

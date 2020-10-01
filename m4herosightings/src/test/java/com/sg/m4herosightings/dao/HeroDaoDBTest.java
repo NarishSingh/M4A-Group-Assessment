@@ -8,14 +8,7 @@ import com.sg.m4herosightings.dto.Superpower;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
-<<<<<<< HEAD
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-=======
 import static org.junit.jupiter.api.Assertions.*;
->>>>>>> b2c979cafac6e241131e3015f9500cfe04c4ff2b
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -33,7 +26,7 @@ public class HeroDaoDBTest {
 
     @Autowired
     HeroDao heroDao;
-<<<<<<< HEAD
+
     
     @Autowired
     OrganizationDao organizationDao;
@@ -44,9 +37,6 @@ public class HeroDaoDBTest {
     @Autowired
     SightingDao sightingDao;
     
-=======
-
->>>>>>> b2c979cafac6e241131e3015f9500cfe04c4ff2b
     public HeroDaoDBTest() {
     }
 
@@ -60,7 +50,6 @@ public class HeroDaoDBTest {
 
     @BeforeEach
     public void setUp() {
-<<<<<<< HEAD
         List<Sighting> sightings = sightingDao.readAllSightings();
         for (Sighting s : sightings) {
             sightingDao.deleteSightingById(s.getSightingId());
@@ -74,15 +63,9 @@ public class HeroDaoDBTest {
         List<Location> locations = locationDao.readAllLocations();
         for (Location l : locations) {
             locationDao.deleteLocationById(l.getLocationId());
-=======
-        List<Superpower> superpowers = superpowerDao.readAllSuperpowers();
-        for (Superpower superpower : superpowers) {
-            superpowerDao.deleteSuperpowerById(superpower.getSuperpowerId());
->>>>>>> b2c979cafac6e241131e3015f9500cfe04c4ff2b
         }
 
         List<Hero> heroes = heroDao.readAllHeroes();
-<<<<<<< HEAD
         for (Hero h : heroes) {
             heroDao.deleteHeroById(h.getHeroId());
         }
@@ -90,10 +73,7 @@ public class HeroDaoDBTest {
         List<Superpower> superpowers = superpowerDao.readAllSuperpowers();
         for (Superpower sp : superpowers) {
             superpowerDao.deleteSuperpowerById(sp.getSuperpowerId());
-=======
-        for (Hero hero : heroes) {
-            heroDao.deleteHeroById(hero.getHeroId());
->>>>>>> b2c979cafac6e241131e3015f9500cfe04c4ff2b
+
         }
     }
 
@@ -201,25 +181,16 @@ public class HeroDaoDBTest {
      */
     @Test
     public void testDeleteHero() {
-<<<<<<< HEAD
-=======
-        //arrange
->>>>>>> b2c979cafac6e241131e3015f9500cfe04c4ff2b
         Superpower superpower = new Superpower();
         superpower.setName("drink");
         superpower.setDescription("drink a gallon of whisky in a second and still stay sober");
         superpower = superpowerDao.createSuperpower(superpower);
-<<<<<<< HEAD
-        
-=======
 
->>>>>>> b2c979cafac6e241131e3015f9500cfe04c4ff2b
         Hero hero = new Hero();
         hero.setName("UncleAlkash");
         hero.setDescription("Number one sober-alcoholic");
         hero.setSuperpower(superpower);
         hero = heroDao.createHero(hero);
-<<<<<<< HEAD
         
         Hero fromDao = heroDao.readHeroById(hero.getHeroId());
         
@@ -232,7 +203,7 @@ public class HeroDaoDBTest {
         fromDao = heroDao.readHeroById(hero.getHeroId());
         
         assertNull(fromDao);
-=======
+
 
         //act
         Hero original = heroDao.readHeroById(hero.getHeroId());
@@ -245,7 +216,6 @@ public class HeroDaoDBTest {
         assertNotNull(original);
         assertTrue(deleted);
         assertNull(afterDel);
->>>>>>> b2c979cafac6e241131e3015f9500cfe04c4ff2b
     }
 
 }

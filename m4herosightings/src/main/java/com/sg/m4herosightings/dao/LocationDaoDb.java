@@ -59,7 +59,7 @@ public class LocationDaoDb implements LocationDao {
     @Override
     public Location updateLocation(Location update) {
         String updateQuery = "UPDATE location "
-                + "SET"
+                + "SET "
                 + "latitude = ?, "
                 + "longitude = ?, "
                 + "name = ?, "
@@ -98,12 +98,12 @@ public class LocationDaoDb implements LocationDao {
         //delete from sighting
         String deleteSightingQuery = "DELETE FROM sighting "
                 + "WHERE locationId = ?;";
-        jdbc.update(deleteOrgQuery, id);
+        jdbc.update(deleteSightingQuery, id);
 
         //delete from location
         String deleteLocationQuery = "DELETE from location "
                 + "WHERE locationId = ?;";
-        return jdbc.update(deleteOrgQuery, id) > 0;
+        return jdbc.update(deleteLocationQuery, id) > 0;
     }
 
     /*Mapper*/

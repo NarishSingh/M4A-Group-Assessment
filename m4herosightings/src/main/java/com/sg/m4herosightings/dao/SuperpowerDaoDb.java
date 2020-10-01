@@ -76,8 +76,8 @@ public class SuperpowerDaoDb implements SuperpowerDao {
 //                + "WHERE s.superpowerId = ?;";
 //        jdbc.update(deleteBridgeQuery, id);
 
-          String deleteBridgeQuery = "DELETE FROM heroOrganization WHERE heroId IN (SELECT heroId FROM hero WHERE superpowerId = ?)";
-          jdbc.update(deleteBridgeQuery, id);
+        String deleteBridgeQuery = "DELETE FROM heroOrganization WHERE heroId IN (SELECT heroId FROM hero WHERE superpowerId = ?)";
+        jdbc.update(deleteBridgeQuery, id);
 
         //delete from hero and sighting since hero is deleted
 //        String deleteHeroAndSightingQuery = "DELETE * FROM hero h, sighting si "
@@ -85,13 +85,13 @@ public class SuperpowerDaoDb implements SuperpowerDao {
 //                + "JOIN si ON si.heroId = h.heroId "
 //                + "WHERE superpowerId = ?;";
 //        jdbc.update(deleteHeroAndSightingQuery, id);
-          String deleteHeroAndSightingQuery = "DELETE FROM sighting WHERE heroId IN (SELECT heroId FROM hero WHERE superpowerId = ?)";  
-          jdbc.update(deleteHeroAndSightingQuery, id);
+        String deleteHeroAndSightingQuery = "DELETE FROM sighting WHERE heroId IN (SELECT heroId FROM hero WHERE superpowerId = ?)";
+        jdbc.update(deleteHeroAndSightingQuery, id);
         //delete from superpower
-        
-          String deleteHeroQuery = "DELETE FROM hero WHERE superpowerId = ?";
-          jdbc.update(deleteHeroQuery, id);
-          
+
+        String deleteHeroQuery = "DELETE FROM hero WHERE superpowerId = ?";
+        jdbc.update(deleteHeroQuery, id);
+
         final String DELETE_SUPERPOWER = "DELETE FROM superpower "
                 + "WHERE superpowerId = ?;";
         return jdbc.update(DELETE_SUPERPOWER, id) > 0;
@@ -106,7 +106,7 @@ public class SuperpowerDaoDb implements SuperpowerDao {
             superpower.setSuperpowerId(rs.getInt("superpowerId"));
             superpower.setName(rs.getString("name"));
             superpower.setDescription(rs.getString("description"));
-            
+
             return superpower;
         }
 

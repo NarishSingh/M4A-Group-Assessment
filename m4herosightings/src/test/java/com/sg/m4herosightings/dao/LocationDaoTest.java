@@ -6,12 +6,12 @@ import com.sg.m4herosightings.dto.Organization;
 import com.sg.m4herosightings.dto.Sighting;
 import com.sg.m4herosightings.dto.Superpower;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,15 +43,16 @@ public class LocationDaoTest {
     public LocationDaoTest() {
     }
     
-    @BeforeClass
+
+    @BeforeAll
     public static void setUpClass() {
     }
     
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
     }
     
-    @Before
+    @BeforeEach
     public void setUp() {
         /*clean db*/
         List<Superpower> superpowers = spDao.readAllSuperpowers();
@@ -80,6 +81,7 @@ public class LocationDaoTest {
         }
         
         /*locations*/
+        l1 = new Location();
         l1.setName("test Empire State Building");
         l1.setDescription("testing");
         l1.setStreet("20 W 34th St");
@@ -89,6 +91,7 @@ public class LocationDaoTest {
         l1.setLatitude(40.748817);
         l1.setLongitude(-73.985428);
 
+        l2 = new Location();
         l2.setName("test Grand Central Terminal");
         l2.setDescription("testing2");
         l2.setStreet("89 E 42nd St");
@@ -98,6 +101,7 @@ public class LocationDaoTest {
         l2.setLatitude(40.752655);
         l2.setLongitude(-73.977295);
         
+        l3 = new Location();
         l3.setName("test Lincoln Memorial");
         l3.setDescription("testing3");
         l3.setStreet("2 Lincoln Memorial Cir NW");
@@ -108,7 +112,8 @@ public class LocationDaoTest {
         l3.setLongitude(-77.050636);
     }
     
-    @After
+
+    @AfterEach
     public void tearDown() {
     }
 
@@ -168,7 +173,6 @@ public class LocationDaoTest {
         //assert
         assertNotNull(original);
         assertNotNull(edit);
-        assertNotEquals(loc1, loc1u);
         assertNotEquals(original, edit);
     }
 
@@ -181,8 +185,6 @@ public class LocationDaoTest {
         Location loc1 = locDao.createLocation(l1);
         
         //act
-        Location original = locDao.readLocationById(loc1.getLocationId());
-        
         boolean deleted = locDao.deleteLocationById(loc1.getLocationId());
         Location afterDel = locDao.readLocationById(loc1.getLocationId());
         

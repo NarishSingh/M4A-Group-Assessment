@@ -2,6 +2,7 @@ package com.sg.m4herosightings.dao;
 
 import com.sg.m4herosightings.dao.HeroDaoDb.HeroMapper;
 import com.sg.m4herosightings.dao.LocationDaoDb.LocationMapper;
+import com.sg.m4herosightings.dao.SuperpowerDaoDb.SuperpowerMapper;
 import com.sg.m4herosightings.dto.Hero;
 import com.sg.m4herosightings.dto.Location;
 import com.sg.m4herosightings.dto.Sighting;
@@ -35,6 +36,8 @@ public class SightingDaoDb implements SightingDao {
         //get id
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         sighting.setSightingId(newId);
+        sighting.setHero(readHeroForSighting(sighting.getSightingId()));
+        sighting.setLocation(readLocationForSighting(sighting.getSightingId()));
 
         return sighting;
     }
@@ -73,7 +76,7 @@ public class SightingDaoDb implements SightingDao {
                 + "date = ?, "
                 + "description = ?, "
                 + "heroId = ?, "
-                + "locationId = ?, "
+                + "locationId = ? "
                 + "WHERE sightingId = ?;";
         int updateSuccess = jdbc.update(updateQuery,
                 updated.getDate(),
@@ -103,7 +106,13 @@ public class SightingDaoDb implements SightingDao {
                 + "JOIN sighting s ON s.heroId = h.heroId "
                 + "JOIN location l ON l.locationId = s.locationId "
                 + "WHERE l.locationId = ?;";
-        return jdbc.query(heroSightingsQuery, new HeroMapper(), location.getLocationId());
+        List<Hero> heroes = jdbc.query(heroSightingsQuery, new HeroMapper(), location.getLocationId());
+        
+        for (Hero h : heroes) {
+            associateSuperpowerWithHero(h);
+        }
+        
+        return heroes;
     }
 
     @Override
@@ -119,7 +128,10 @@ public class SightingDaoDb implements SightingDao {
     public List<Sighting> readSightingsByDate(LocalDate date) {
         String sightingsOnDateQuery = "SELECT * FROM sighting s "
                 + "WHERE s.date = ?;";
-        return jdbc.query(sightingsOnDateQuery, new SightingMapper(), date);
+        List<Sighting> allSightings = jdbc.query(sightingsOnDateQuery, new SightingMapper(), date);
+        associateHeroesLocationsWithSightings(allSightings);
+        
+        return allSightings;
     }
 
     /*Helpers*/
@@ -130,10 +142,27 @@ public class SightingDaoDb implements SightingDao {
      * @return {Hero} the Hero from db
      */
     private Hero readHeroForSighting(int id) {
+        //read hero
         String selectHeroQuery = "SELECT h.* FROM hero h "
                 + "JOIN sighting s ON s.heroId = h.heroId "
                 + "WHERE s.sightingId = ?;";
-        return jdbc.queryForObject(selectHeroQuery, new HeroMapper(), id);
+        Hero h = jdbc.queryForObject(selectHeroQuery, new HeroMapper(), id);
+        
+        associateSuperpowerWithHero(h);
+        
+        return h;
+    }
+
+    /**
+     * Set the Superpower field of a Hero obj from db
+     * @param h {Hero} a Hero obj from db
+     */
+    private void associateSuperpowerWithHero(Hero h) {
+        //associate superpower
+        String selectSuperpowerQuery = "SELECT s.* FROM superpower s "
+                + "JOIN hero h ON h.superpowerId = s.superpowerId "
+                + "WHERE h.heroId = ?;";
+        h.setSuperpower(jdbc.queryForObject(selectSuperpowerQuery, new SuperpowerMapper(), h.getHeroId()));
     }
 
     /**
