@@ -118,31 +118,29 @@ public class OrganizationDaoDb implements OrganizationDao {
                 + "JOIN heroOrganization ho ON h.heroId = ho.heroId "
                 + "JOIN organization o ON ho.organizationId = o.organizationId "
                 + "WHERE organizationId = ?";
-        List<Hero> heroes =  jdbc.query(GET_HEROES_ORGANIZATION, new HeroMapper(), organization.getOrganizationId());
-        for(Hero hero: heroes){
+        List<Hero> heroes = jdbc.query(GET_HEROES_ORGANIZATION, new HeroMapper(), organization.getOrganizationId());
+        for (Hero hero : heroes) {
             hero.setSuperpower(getPowerForHeroes(hero.getHeroId()));
         }
         return heroes;
     }
-    
-    
+
     @Override
     public List<Organization> displayOrganizationForHero(Hero hero) {
         final String GET_ORGNIZATIONS_FOR_HERO = "SELECT * organization o "
                 + "JOIN heroOrganization ho ON o.organizationId = ho.organization Id "
                 + "WHERE ho.heroId = ?";
-        List<Organization> organizations = jdbc.query(GET_ORGNIZATIONS_FOR_HERO, new OrganizationMapper(),  
+        List<Organization> organizations = jdbc.query(GET_ORGNIZATIONS_FOR_HERO, new OrganizationMapper(),
                 hero.getHeroId());
         getLocationsAndHeroesForOrganization(organizations);
-        
+
         return organizations;
     }
 
-       
     private void getLocationsAndHeroesForOrganization(List<Organization> organizations) {
-        for(Organization org: organizations){
-            org.setLocation(getLocationForOrganization(org.getOrganizationId()));
-            org.setMembers(getMembersForOrganization(org.getOrganizationId()));
+        for (Organization org : organizations) {
+            org.setLocation(readLocationForOrganization(org.getOrganizationId()));
+            org.setMembers(readMembersForOrganization(org.getOrganizationId()));
         }
     }
 
@@ -167,20 +165,18 @@ public class OrganizationDaoDb implements OrganizationDao {
      * @param id {int} the organization id
      * @return {List} all Hero objs for this organization
      */
-    private List<Hero> getMembersForOrganization(int id) {
+    private List<Hero> readMembersForOrganization(int id) {
         final String GET_HERO_ORGANIZATION = "SELECT h.* FROM hero h "
                 + "JOIN heroOrganization ho ON h.heroId=ho.heroId "
                 + "WHERE organizationId = ?";
-        List<Hero> heroes =  jdbc.query(GET_HERO_ORGANIZATION, new HeroMapper(),id);
+        List<Hero> heroes = jdbc.query(GET_HERO_ORGANIZATION, new HeroMapper(), id);
 
-        for(Hero hero: heroes){
+        for (Hero hero : heroes) {
             hero.setSuperpower(getPowerForHeroes(hero.getHeroId()));
-          }
-        
+        }
+
         return heroes;
     }
-
-=======
 
     /**
      * Set the Members and Location fields of the Organization obj's in memory
@@ -193,22 +189,24 @@ public class OrganizationDaoDb implements OrganizationDao {
             org.setMembers(readMembersForOrganization(org.getOrganizationId()));
         }
     }
-        
+
     /**
-     *This method gets a superpower for hero. used inside the getMembersForOrganization and readHeroesForOrganization methods 
-     * return-{}
+     * This method gets a superpower for hero. used inside the
+     * getMembersForOrganization and readHeroesForOrganization methods return-{}
      */
-    private Superpower getPowerForHeroes(int id){
+    private Superpower getPowerForHeroes(int id) {
         String getPowerForHero = "SELECT * FROM superpower s "
                 + "JOIN hero h ON s.superpowerId = h.superpowerId "
                 + "WHERE h.heroId = ?";
         return jdbc.queryForObject(getPowerForHero, new SuperpowerMapper(), id);
     }
- 
+
     /**
-     * This helper method inserts heroId and organizationId into bridge table, used inside the create method
-     * @param organization - organization object
-     * Update heroOrganization bridge table in db
+     * This helper method inserts heroId and organizationId into bridge table,
+     * used inside the create method
+     *
+     * @param organization - organization object Update heroOrganization bridge
+     *                     table in db
      *
      * @param organization {obj} a well formed obj
      */
@@ -216,8 +214,8 @@ public class OrganizationDaoDb implements OrganizationDao {
         final String ADD_HERO_ORGANIZATION = "INSERT into heroOrganization(heroId, organizationId) "
                 + "VALUES(?,?);";
         for (Hero hero : organization.getMembers()) {
-            jdbc.update(ADD_HERO_ORGANIZATION, 
-                    hero.getHeroId(), 
+            jdbc.update(ADD_HERO_ORGANIZATION,
+                    hero.getHeroId(),
                     organization.getOrganizationId());
         }
     }

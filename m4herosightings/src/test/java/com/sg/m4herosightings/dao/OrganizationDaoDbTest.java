@@ -255,7 +255,7 @@ public class OrganizationDaoDbTest {
         Organization fromDao = organizationDao.readOrganizationById(org.getOrganizationId());
         assertEquals(fromDao, org);
         
-        boolean deleted = organizationDao.deleteOrganization(org.getOrganizationId());
+        boolean deleted = organizationDao.deleteOrganizationById(org.getOrganizationId());
         assertTrue(deleted);
         
         fromDao = organizationDao.readOrganizationById(org.getOrganizationId());

@@ -55,9 +55,9 @@ public class HeroDaoDBTest {
             sightingDao.deleteSightingById(s.getSightingId());
         }
         
-        List<Organization> orgs = organizationDao.readAllOrganization();
+        List<Organization> orgs = organizationDao.readAllOrganizations();
         for (Organization o : orgs) {
-            organizationDao.deleteOrganization(o.getOrganizationId());
+            organizationDao.deleteOrganizationById(o.getOrganizationId());
         }
         
         List<Location> locations = locationDao.readAllLocations();
@@ -203,19 +203,6 @@ public class HeroDaoDBTest {
         fromDao = heroDao.readHeroById(hero.getHeroId());
         
         assertNull(fromDao);
-
-
-        //act
-        Hero original = heroDao.readHeroById(hero.getHeroId());
-
-        boolean deleted = heroDao.deleteHeroById(hero.getHeroId());
-
-        Hero afterDel = heroDao.readHeroById(original.getHeroId());
-
-        //assert
-        assertNotNull(original);
-        assertTrue(deleted);
-        assertNull(afterDel);
     }
 
 }
