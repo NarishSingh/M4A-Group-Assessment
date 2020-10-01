@@ -135,11 +135,17 @@ public class LocationDaoTest {
     @Test
     public void testReadAllLocations() {
         //arrange
+        Location loc1 = locDao.createLocation(l1);
+        Location loc2 = locDao.createLocation(l2);
         
         //act
+        List<Location> allLocations = locDao.readAllLocations();
         
         //assert
-        
+        assertEquals(allLocations.size(), 2);
+        assertTrue(allLocations.contains(loc1));
+        assertTrue(allLocations.contains(loc1));
+        assertFalse(allLocations.contains(l3));
     }
 
     /**
@@ -148,11 +154,22 @@ public class LocationDaoTest {
     @Test
     public void testUpdateLocation() {
         //arrange
+        Location loc1 = locDao.createLocation(l1);
         
         //act
+        Location original = locDao.readLocationById(loc1.getLocationId());
+        
+        loc1.setName("Edit Name");
+        loc1.setDescription("Edit description");
+        
+        Location loc1u = locDao.updateLocation(loc1);
+        Location edit = locDao.readLocationById(loc1.getLocationId());
         
         //assert
-        
+        assertNotNull(original);
+        assertNotNull(edit);
+        assertNotEquals(loc1, loc1u);
+        assertNotEquals(original, edit);
     }
 
     /**
@@ -161,11 +178,17 @@ public class LocationDaoTest {
     @Test
     public void testDeleteLocationById() {
         //arrange
+        Location loc1 = locDao.createLocation(l1);
         
         //act
+        Location original = locDao.readLocationById(loc1.getLocationId());
+        
+        boolean deleted = locDao.deleteLocationById(loc1.getLocationId());
+        Location afterDel = locDao.readLocationById(loc1.getLocationId());
         
         //assert
-        
+        assertTrue(deleted);
+        assertNull(afterDel);
     }
     
 }
