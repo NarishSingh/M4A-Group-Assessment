@@ -1,4 +1,6 @@
-
+.all {
+    background-color: rgba(8, 8, 8, 0.8);
+}
 .title {
     /* border: 5px solid pink; */
     height: 30%;
@@ -218,6 +220,7 @@ body {
 
 
 
+
 /* HEROES */
 /* .search {
     height: 2%;
@@ -246,7 +249,7 @@ input {
     float: left;
     padding-left: 180px;
     padding-right: 180px;
-    color: green;
+    color: limegreen;
     font-size: 20px;
     list-style: none;
     width: 50%;
