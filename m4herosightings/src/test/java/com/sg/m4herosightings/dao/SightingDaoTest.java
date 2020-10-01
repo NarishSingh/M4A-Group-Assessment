@@ -45,7 +45,6 @@ public class SightingDaoTest {
 
     static Location l1;
     static Location l2;
-    static Location l3;
 
     static Sighting s1;
     static Sighting s2;
@@ -150,7 +149,6 @@ public class SightingDaoTest {
         s4.setDescription("Encounter3");
         s4.setHero(h3);
         s4.setLocation(l2);
-
     }
 
     @AfterEach
