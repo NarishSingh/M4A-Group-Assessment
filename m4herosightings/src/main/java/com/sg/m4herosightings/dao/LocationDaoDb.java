@@ -29,8 +29,7 @@ public class LocationDaoDb implements LocationDao {
                 location.getStreet(),
                 location.getCity(),
                 location.getState(),
-                location.getZipcode(),
-                location.getLocationId());
+                location.getZipcode());
 
         //get id
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);

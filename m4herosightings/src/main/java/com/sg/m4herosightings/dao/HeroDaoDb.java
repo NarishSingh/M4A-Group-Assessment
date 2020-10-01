@@ -24,10 +24,14 @@ public class HeroDaoDb implements HeroDao {
     public Hero createHero(Hero hero) {
         final String ADD_HERO = "INSERT INTO hero(name, description, superpowerId) "
                 + "VALUES(?,?,?);";
-        jdbc.update(ADD_HERO, hero.getName(), hero.getDescription(), hero.getSuperpower().getSuperpowerId());
+        jdbc.update(ADD_HERO, 
+                hero.getName(), 
+                hero.getDescription(), 
+                hero.getSuperpower().getSuperpowerId());
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         hero.setHeroId(newId);
+        hero.setSuperpower(readSuperpowerForHero(newId));
 
         return hero;
     }
@@ -138,7 +142,7 @@ public class HeroDaoDb implements HeroDao {
             hero.setSuperpower(readSuperpowerForHero(hero.getHeroId()));
         }
     }
-
+    
     /*Mapper*/
     public static final class HeroMapper implements RowMapper<Hero> {
 
