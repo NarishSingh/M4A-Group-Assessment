@@ -37,7 +37,7 @@ public class OrganizationDaoDb implements OrganizationDao {
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         organization.setOrganizationId(newId);
-        insertIntoHeroOrganization(organization); //FIXME review this
+        insertIntoHeroOrganization(organization);
 
         return organization;
     }
@@ -117,31 +117,27 @@ public class OrganizationDaoDb implements OrganizationDao {
         final String GET_HEROES_ORGANIZATION = "SELECT * FROM hero h "
                 + "JOIN heroOrganization ho ON h.heroId = ho.heroId "
                 + "JOIN organization o ON ho.organizationId = o.organizationId "
-                + "WHERE organizationId = ?";
+                + "WHERE o.organizationId = ?";
         List<Hero> heroes = jdbc.query(GET_HEROES_ORGANIZATION, new HeroMapper(), organization.getOrganizationId());
+
         for (Hero hero : heroes) {
-            hero.setSuperpower(getPowerForHeroes(hero.getHeroId()));
+            hero.setSuperpower(readPowerForHeroes(hero.getHeroId()));
         }
+
         return heroes;
     }
 
     @Override
     public List<Organization> displayOrganizationForHero(Hero hero) {
-        final String GET_ORGNIZATIONS_FOR_HERO = "SELECT * organization o "
-                + "JOIN heroOrganization ho ON o.organizationId = ho.organization Id "
+        final String GET_ORGNIZATIONS_FOR_HERO = "SELECT * FROM organization o "
+                + "JOIN heroOrganization ho ON o.organizationId = ho.organizationId "
                 + "WHERE ho.heroId = ?";
-        List<Organization> organizations = jdbc.query(GET_ORGNIZATIONS_FOR_HERO, new OrganizationMapper(),
-                hero.getHeroId());
-        getLocationsAndHeroesForOrganization(organizations);
+        List<Organization> organizations = jdbc.query(GET_ORGNIZATIONS_FOR_HERO,
+                new OrganizationMapper(), hero.getHeroId());
+
+        associateLocationsAndHeroesWithOrganization(organizations);
 
         return organizations;
-    }
-
-    private void getLocationsAndHeroesForOrganization(List<Organization> organizations) {
-        for (Organization org : organizations) {
-            org.setLocation(readLocationForOrganization(org.getOrganizationId()));
-            org.setMembers(readMembersForOrganization(org.getOrganizationId()));
-        }
     }
 
     /*helpers*/
@@ -172,7 +168,7 @@ public class OrganizationDaoDb implements OrganizationDao {
         List<Hero> heroes = jdbc.query(GET_HERO_ORGANIZATION, new HeroMapper(), id);
 
         for (Hero hero : heroes) {
-            hero.setSuperpower(getPowerForHeroes(hero.getHeroId()));
+            hero.setSuperpower(readPowerForHeroes(hero.getHeroId()));
         }
 
         return heroes;
@@ -192,9 +188,11 @@ public class OrganizationDaoDb implements OrganizationDao {
 
     /**
      * This method gets a superpower for hero. used inside the
-     * getMembersForOrganization and readHeroesForOrganization methods return-{}
+     * getMembersForOrganization and readHeroesForOrganization methods
+     *
+     * @return {Superpower} the obj from the given hero
      */
-    private Superpower getPowerForHeroes(int id) {
+    private Superpower readPowerForHeroes(int id) {
         String getPowerForHero = "SELECT * FROM superpower s "
                 + "JOIN hero h ON s.superpowerId = h.superpowerId "
                 + "WHERE h.heroId = ?";
@@ -202,13 +200,11 @@ public class OrganizationDaoDb implements OrganizationDao {
     }
 
     /**
-     * This helper method inserts heroId and organizationId into bridge table,
-     * used inside the create method
+     * Update heroOrganization bridge table in db. This helper method inserts
+     * heroId and organizationId into bridge table, used inside the create
+     * method
      *
-     * @param organization - organization object Update heroOrganization bridge
-     *                     table in db
-     *
-     * @param organization {obj} a well formed obj
+     * @param organization {Organization} well formed obj
      */
     private void insertIntoHeroOrganization(Organization organization) {
         final String ADD_HERO_ORGANIZATION = "INSERT into heroOrganization(heroId, organizationId) "
