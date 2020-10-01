@@ -80,6 +80,18 @@ public class HeroDaoDb implements HeroDao {
     @Override
     @Transactional
     public boolean deleteHeroById(int id) {
+  /*
+            first delete from organization_heros bride table
+            second delete from sightings table
+            third delete from hero table
+        */
+        final String DELETE_HERO_HEROORGANIZATION = "DELETE FROM heroOrganization WHERE heroId =?";
+        jdbc.update(DELETE_HERO_HEROORGANIZATION, id);
+        final String DELETE_HERO_SIGHTING = "DELETE FROM sighting WHERE heroId = ?";
+        jdbc.update(DELETE_HERO_SIGHTING, id);
+        final String DELETE_HERO = "DELETE FROM hero WHERE heroId=?";
+        jdbc.update(DELETE_HERO, id);
+  /*
         //delete from bridge
         String deleteBridgeQuery = "DELETE ho.* FROM heroOrganization ho "
                 + "JOIN hero h ON h.heroId = ho.heroId "
@@ -96,6 +108,7 @@ public class HeroDaoDb implements HeroDao {
         String deleteHeroQuery = "DELETE * FROM hero "
                 + "WHERE heroId = ?;";
         return jdbc.update(deleteHeroQuery, id) > 0;
+        */
     }
 
     /*Helpers*/

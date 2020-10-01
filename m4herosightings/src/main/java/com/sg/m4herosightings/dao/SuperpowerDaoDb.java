@@ -70,20 +70,29 @@ public class SuperpowerDaoDb implements SuperpowerDao {
     @Transactional
     public boolean deleteSuperpowerById(int id) {
         //delete from bridge table
-        String deleteBridgeQuery = "DELETE ho.* FROM heroOrganization ho "
-                + "JOIN superpower s ON s.superpowerId = ho.superpowerId "
-                + "WHERE s.superpowerId = ?;";
-        jdbc.update(deleteBridgeQuery, id);
+//        String deleteBridgeQuery = "DELETE FROM heroOrganization ho "
+//                + "JOIN hero h ON h.heroId = ho.heroId "
+//                + "JOIN superpower s ON h.superpowerId = s.superpowerId"
+//                + "WHERE s.superpowerId = ?;";
+//        jdbc.update(deleteBridgeQuery, id);
+
+          String deleteBridgeQuery = "DELETE FROM heroOrganization WHERE heroId IN (SELECT heroId FROM hero WHERE superpowerId = ?)";
+          jdbc.update(deleteBridgeQuery, id);
 
         //delete from hero and sighting since hero is deleted
-        String deleteHeroAndSightingQuery = "DELETE * FROM hero h, sighting si "
-                + "JOIN superpower sp ON sp.superpowerId = h.superpowerId "
-                + "JOIN si ON si.heroId = h.heroId "
-                + "WHERE superpowerId = ?;";
-        jdbc.update(deleteHeroAndSightingQuery, id);
-
+//        String deleteHeroAndSightingQuery = "DELETE * FROM hero h, sighting si "
+//                + "JOIN superpower sp ON sp.superpowerId = h.superpowerId "
+//                + "JOIN si ON si.heroId = h.heroId "
+//                + "WHERE superpowerId = ?;";
+//        jdbc.update(deleteHeroAndSightingQuery, id);
+          String deleteHeroAndSightingQuery = "DELETE FROM sighting WHERE heroId IN (SELECT heroId FROM hero WHERE superpowerId = ?)";  
+          jdbc.update(deleteHeroAndSightingQuery, id);
         //delete from superpower
-        final String DELETE_SUPERPOWER = "DELETE * FROM superpower "
+        
+          String deleteHeroQuery = "DELETE FROM hero WHERE superpowerId = ?";
+          jdbc.update(deleteHeroQuery, id);
+          
+        final String DELETE_SUPERPOWER = "DELETE FROM superpower "
                 + "WHERE superpowerId = ?;";
         return jdbc.update(DELETE_SUPERPOWER, id) > 0;
     }

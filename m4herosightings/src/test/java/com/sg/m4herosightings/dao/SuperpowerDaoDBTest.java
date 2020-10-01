@@ -1,5 +1,9 @@
 package com.sg.m4herosightings.dao;
 
+import com.sg.m4herosightings.dto.Hero;
+import com.sg.m4herosightings.dto.Location;
+import com.sg.m4herosightings.dto.Organization;
+import com.sg.m4herosightings.dto.Sighting;
 import com.sg.m4herosightings.dto.Superpower;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
@@ -26,6 +30,15 @@ public class SuperpowerDaoDBTest {
     @Autowired
     HeroDao heroDao;
     
+    @Autowired
+    OrganizationDao organizationDao;
+    
+    @Autowired
+    LocationDao locationDao;
+    
+    @Autowired
+    SightingDao sightingDao;
+    
     public SuperpowerDaoDBTest() {
     }
     
@@ -39,9 +52,29 @@ public class SuperpowerDaoDBTest {
     
     @BeforeEach
     public void setUp() {
+        List<Sighting> sightings = sightingDao.readAllSightings();
+        for (Sighting s : sightings) {
+            sightingDao.deleteSightingById(s.getSightingId());
+        }
+        
+        List<Organization> orgs = organizationDao.readAllOrganization();
+        for (Organization o : orgs) {
+            organizationDao.deleteOrganization(o.getOrganizationId());
+        }
+        
+        List<Location> locations = locationDao.readAllLocations();
+        for (Location l : locations) {
+            locationDao.deleteLocationById(l.getLocationId());
+        }
+        
+        List<Hero> heroes = heroDao.readAllHeroes();
+        for (Hero h : heroes) {
+            heroDao.deleteHero(h.getHeroId());
+        }
+        
         List<Superpower> superpowers = superpowerDao.readAllSuperpowers();
-        for(Superpower superpower: superpowers){
-            superpowerDao.deleteSuperpowerById(superpower.getSuperpowerId());
+        for (Superpower sp : superpowers) {
+            superpowerDao.deleteSuperpowerById(sp.getSuperpowerId());
         }
     }
     

@@ -91,17 +91,17 @@ public class LocationDaoDb implements LocationDao {
     @Transactional
     public boolean deleteLocationById(int id) {
         //delete from organization
-        String deleteOrgQuery = "DELETE * FROM organization "
+        String deleteOrgQuery = "DELETE FROM organization "
                 + "WHERE locationId = ?;";
         jdbc.update(deleteOrgQuery, id);
 
         //delete from sighting
-        String deleteSightingQuery = "DELETE * FROM sighting "
+        String deleteSightingQuery = "DELETE FROM sighting "
                 + "WHERE locationId = ?;";
         jdbc.update(deleteOrgQuery, id);
 
         //delete from location
-        String deleteLocationQuery = "DELETE * from location "
+        String deleteLocationQuery = "DELETE from location "
                 + "WHERE locationId = ?;";
         return jdbc.update(deleteOrgQuery, id) > 0;
     }
