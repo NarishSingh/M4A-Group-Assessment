@@ -142,8 +142,8 @@ public class OrganizationDaoDb implements OrganizationDao {
      */
     private List<Hero> readMembersForOrganization(int id) {
         final String GET_HERO_ORGANIZATION = "SELECT h.* FROM hero h "
-                + "JOIN heroOrganization ho ON h.heroId=ho.heroId "
-                + "WHERE organizationId = ?";
+                + "JOIN heroOrganization ho ON h.heroId = ho.heroId "
+                + "WHERE organizationId = ?;";
 
         return jdbc.query(GET_HERO_ORGANIZATION, new HeroMapper(), id);
     }
@@ -169,7 +169,9 @@ public class OrganizationDaoDb implements OrganizationDao {
         final String ADD_HERO_ORGANIZATION = "INSERT into heroOrganization(heroId, organizationId) "
                 + "VALUES(?,?);";
         for (Hero hero : organization.getMembers()) {
-            jdbc.update(ADD_HERO_ORGANIZATION, hero.getHeroId(), organization.getOrganizationId());
+            jdbc.update(ADD_HERO_ORGANIZATION, 
+                    hero.getHeroId(), 
+                    organization.getOrganizationId());
         }
     }
 
