@@ -36,6 +36,7 @@ CREATE TABLE hero (
     heroId INT PRIMARY KEY AUTO_INCREMENT,
     `name` VARCHAR(50) NOT NULL,
     description VARCHAR(255) NOT NULL,
+    photoFilename VARCHAR(255),
     superpowerId INT NOT NULL,
     CONSTRAINT `fk_hero_superpower` FOREIGN KEY (superpowerId)
         REFERENCES superpower (superpowerId)
