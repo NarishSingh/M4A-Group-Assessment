@@ -65,12 +65,12 @@ public class SightingDaoTest {
         /*clean db*/
         List<Superpower> superpowers = spDao.readAllSuperpowers();
         for (Superpower sp : superpowers) {
-            spDao.deleteSuperpower(sp.getSuperpowerId());
+            spDao.deleteSuperpowerById(sp.getSuperpowerId());
         }
 
         List<Hero> heroes = hDao.readAllHeroes();
         for (Hero h : heroes) {
-            hDao.deleteHero(h.getHeroId());
+            hDao.deleteHeroById(h.getHeroId());
         }
 
         List<Location> locations = locDao.readAllLocations();
@@ -89,8 +89,8 @@ public class SightingDaoTest {
         }
 
         /*superpowers*/
-        sp1.setName("Fly");
-        sp1.setDescription("Can fly");
+        Superpower sup = new Superpower("Fly", "Can fly");
+        sp1 = spDao.createSuperpower(sup);
 
         /*hero/villians*/
         Hero h1 = new Hero();
@@ -146,24 +146,28 @@ public class SightingDaoTest {
         loc3 = locDao.createLocation(l3);
 
         /*sightings*/
+        s1 = new Sighting();
         s1.setDate(LocalDate.now());
         s1.setDescription("Encounter");
         s1.setHero(hero1);
         s1.setLocation(loc1);
 
         //same day and location
+        s2 = new Sighting();
         s2.setDate(LocalDate.now());
         s2.setDescription("Encounter2");
         s2.setHero(hero2);
         s2.setLocation(loc1);
 
         //same day, hero 1
+        s3 = new Sighting();
         s3.setDate(LocalDate.now());
         s3.setDescription("Encounter3");
         s3.setHero(hero1);
         s3.setLocation(loc2);
 
         //all different
+        s4 = new Sighting();
         s4.setDate(LocalDate.now().minusWeeks(1));
         s4.setDescription("Encounter3");
         s4.setHero(hero3);
@@ -209,7 +213,6 @@ public class SightingDaoTest {
         assertNotNull(sight1u);
         assertNotNull(original);
         assertNotNull(edit);
-        assertEquals(sight1, original);
         assertEquals(sight1u, edit);
         assertNotEquals(original, edit);
     }
