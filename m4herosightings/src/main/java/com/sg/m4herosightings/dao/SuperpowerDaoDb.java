@@ -77,8 +77,8 @@ public class SuperpowerDaoDb implements SuperpowerDao {
 
         //delete from hero and sighting since hero is deleted
         String deleteHeroAndSightingQuery = "DELETE * FROM hero h, sighting si "
-                + "JOIN superhero sh ON sh.superpowerId = si.superpowerId "
-                + "JOIN ON h.superpowerId = sh.superpowerId "
+                + "JOIN superpower sp ON sp.superpowerId = h.superpowerId "
+                + "JOIN si ON si.heroId = h.heroId "
                 + "WHERE superpowerId = ?";
         jdbc.update(deleteHeroAndSightingQuery, id);
 
