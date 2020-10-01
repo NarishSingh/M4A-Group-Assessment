@@ -80,6 +80,7 @@ public class LocationDaoTest {
         }
         
         /*locations*/
+        l1 = new Location();
         l1.setName("test Empire State Building");
         l1.setDescription("testing");
         l1.setStreet("20 W 34th St");
@@ -89,6 +90,7 @@ public class LocationDaoTest {
         l1.setLatitude(40.748817);
         l1.setLongitude(-73.985428);
 
+        l2 = new Location();
         l2.setName("test Grand Central Terminal");
         l2.setDescription("testing2");
         l2.setStreet("89 E 42nd St");
@@ -98,6 +100,7 @@ public class LocationDaoTest {
         l2.setLatitude(40.752655);
         l2.setLongitude(-73.977295);
         
+        l3 = new Location();
         l3.setName("test Lincoln Memorial");
         l3.setDescription("testing3");
         l3.setStreet("2 Lincoln Memorial Cir NW");
@@ -181,8 +184,6 @@ public class LocationDaoTest {
         Location loc1 = locDao.createLocation(l1);
         
         //act
-        Location original = locDao.readLocationById(loc1.getLocationId());
-        
         boolean deleted = locDao.deleteLocationById(loc1.getLocationId());
         Location afterDel = locDao.readLocationById(loc1.getLocationId());
         
