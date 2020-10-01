@@ -20,24 +20,15 @@ public class HeroDaoDb implements HeroDao {
     JdbcTemplate jdbc;
 
     @Override
-    public List<Hero> readAllHeroes() {
-        final String GET_ALL_HEROES = "SELECT * FROM hero;";
-        List<Hero> heroes = jdbc.query(GET_ALL_HEROES, new HeroMapper());
-        associatePowersForHeroes(heroes);
-        
-        return heroes;
-    }
-
-    @Override
     @Transactional
     public Hero createHero(Hero hero) {
         final String ADD_HERO = "INSERT INTO hero(name, description, superpowerId) "
                 + "VALUES(?,?,?);";
         jdbc.update(ADD_HERO, hero.getName(), hero.getDescription(), hero.getSuperpower().getSuperpowerId());
-        
+
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         hero.setHeroId(newId);
-        
+
         return hero;
     }
 
@@ -47,12 +38,21 @@ public class HeroDaoDb implements HeroDao {
             final String GET_HERO = "SELECT * FROM hero "
                     + "WHERE heroId = ?";
             Hero hero = jdbc.queryForObject(GET_HERO, new HeroMapper(), id);
-            hero.setSuperpower(getSuperPowerForHero(id));
-            
+            hero.setSuperpower(readSuperpowerForHero(id));
+
             return hero;
         } catch (DataAccessException ex) {
             return null;
         }
+    }
+
+    @Override
+    public List<Hero> readAllHeroes() {
+        final String GET_ALL_HEROES = "SELECT * FROM hero;";
+        List<Hero> heroes = jdbc.query(GET_ALL_HEROES, new HeroMapper());
+        associatePowersForHeroes(heroes);
+
+        return heroes;
     }
 
     @Override
@@ -64,12 +64,12 @@ public class HeroDaoDb implements HeroDao {
                 + "description = ?, "
                 + "superpowerId = ? "
                 + "WHERE heroId = ?;";
-        int updated = jdbc.update(UPDATE_HERO, 
-                hero.getName(), 
-                hero.getDescription(), 
-                hero.getSuperpower().getSuperpowerId(), 
+        int updated = jdbc.update(UPDATE_HERO,
+                hero.getName(),
+                hero.getDescription(),
+                hero.getSuperpower().getSuperpowerId(),
                 hero.getHeroId());
-        
+
         if (updated == 1) {
             return hero;
         } else {
@@ -85,13 +85,13 @@ public class HeroDaoDb implements HeroDao {
                 + "JOIN hero h ON h.heroId = ho.heroId "
                 + "WHERE h.heroId = ?;";
         jdbc.update(deleteBridgeQuery, id);
-        
+
         //delete from sighting
         String deleteSightingQuery = "DELETE * FROM sighting s "
                 + "JOIN hero h ON h.heroId = s.heroId "
                 + "WHERE h.heroId = ?;";
         jdbc.update(deleteSightingQuery, id);
-        
+
         //delete from hero
         String deleteHeroQuery = "DELETE * FROM hero "
                 + "WHERE heroId = ?;";
@@ -105,7 +105,7 @@ public class HeroDaoDb implements HeroDao {
      * @param id {int} id for a superhero
      * @return {Superpower} the obj from fb
      */
-    private Superpower getSuperPowerForHero(int id) {
+    private Superpower readSuperpowerForHero(int id) {
         final String GET_POWER_FOR_HERO = "SELECT sp.* FROM superpower sp "
                 + "JOIN hero h ON h.superpowerId = sp.superpowerId "
                 + "WHERE h.heroId = ?;";
@@ -119,7 +119,7 @@ public class HeroDaoDb implements HeroDao {
      */
     private void associatePowersForHeroes(List<Hero> heroes) {
         for (Hero hero : heroes) {
-            hero.setSuperpower(getSuperPowerForHero(hero.getHeroId()));
+            hero.setSuperpower(readSuperpowerForHero(hero.getHeroId()));
         }
     }
 
@@ -132,6 +132,7 @@ public class HeroDaoDb implements HeroDao {
             hero.setHeroId(rs.getInt("heroId"));
             hero.setName(rs.getString("name"));
             hero.setDescription(rs.getString("description"));
+
             return hero;
         }
 
