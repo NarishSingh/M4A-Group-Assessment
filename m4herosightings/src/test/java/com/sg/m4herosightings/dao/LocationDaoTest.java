@@ -6,12 +6,12 @@ import com.sg.m4herosightings.dto.Organization;
 import com.sg.m4herosightings.dto.Sighting;
 import com.sg.m4herosightings.dto.Superpower;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,15 +43,15 @@ public class LocationDaoTest {
     public LocationDaoTest() {
     }
     
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
     }
     
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
     }
     
-    @Before
+    @BeforeEach
     public void setUp() {
         /*clean db*/
         List<Superpower> superpowers = spDao.readAllSuperpowers();
@@ -111,7 +111,7 @@ public class LocationDaoTest {
         l3.setLongitude(-77.050636);
     }
     
-    @After
+    @AfterEach
     public void tearDown() {
     }
 
@@ -171,7 +171,6 @@ public class LocationDaoTest {
         //assert
         assertNotNull(original);
         assertNotNull(edit);
-        assertNotEquals(loc1, loc1u);
         assertNotEquals(original, edit);
     }
 
