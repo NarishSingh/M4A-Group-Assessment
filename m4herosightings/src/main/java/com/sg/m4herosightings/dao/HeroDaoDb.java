@@ -80,6 +80,7 @@ public class HeroDaoDb implements HeroDao {
     @Override
     @Transactional
     public boolean deleteHeroById(int id) {
+        //FIXME review
   /*
             first delete from organization_heros bride table
             second delete from sightings table
@@ -90,7 +91,7 @@ public class HeroDaoDb implements HeroDao {
         final String DELETE_HERO_SIGHTING = "DELETE FROM sighting WHERE heroId = ?";
         jdbc.update(DELETE_HERO_SIGHTING, id);
         final String DELETE_HERO = "DELETE FROM hero WHERE heroId=?";
-        jdbc.update(DELETE_HERO, id);
+        return jdbc.update(DELETE_HERO, id) > 0;
   /*
         //delete from bridge
         String deleteBridgeQuery = "DELETE ho.* FROM heroOrganization ho "
