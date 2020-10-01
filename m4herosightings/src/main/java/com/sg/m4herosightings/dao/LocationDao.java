@@ -45,3 +45,4 @@ public interface LocationDao {
     boolean deleteLocationById(int id);
 
 }
+
