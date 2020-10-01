@@ -33,7 +33,7 @@ public class SuperpowerDaoDb implements SuperpowerDao {
     public Superpower readSuperpowerById(int id) {
         try {
             final String GET_SUPERPOWER = "SELECT * FROM superpower "
-                    + "WHERE superpowerId = ?";
+                    + "WHERE superpowerId = ?;";
             return jdbc.queryForObject(GET_SUPERPOWER, new SuperpowerMapper(), id);
         } catch (DataAccessException ex) {
             return null;
@@ -42,7 +42,7 @@ public class SuperpowerDaoDb implements SuperpowerDao {
 
     @Override
     public List<Superpower> readAllSuperpowers() {
-        final String GET_ALL_SUPERPOWER = "SELECT * FROM superpower";
+        final String GET_ALL_SUPERPOWER = "SELECT * FROM superpower;";
         return jdbc.query(GET_ALL_SUPERPOWER, new SuperpowerMapper());
     }
 
@@ -79,12 +79,12 @@ public class SuperpowerDaoDb implements SuperpowerDao {
         String deleteHeroAndSightingQuery = "DELETE * FROM hero h, sighting si "
                 + "JOIN superpower sp ON sp.superpowerId = h.superpowerId "
                 + "JOIN si ON si.heroId = h.heroId "
-                + "WHERE superpowerId = ?";
+                + "WHERE superpowerId = ?;";
         jdbc.update(deleteHeroAndSightingQuery, id);
 
         //delete from superpower
         final String DELETE_SUPERPOWER = "DELETE * FROM superpower "
-                + "WHERE superpowerId = ?";
+                + "WHERE superpowerId = ?;";
         return jdbc.update(DELETE_SUPERPOWER, id) > 0;
     }
 
@@ -97,6 +97,7 @@ public class SuperpowerDaoDb implements SuperpowerDao {
             superpower.setSuperpowerId(rs.getInt("superpowerId"));
             superpower.setName(rs.getString("name"));
             superpower.setDescription(rs.getString("description"));
+            
             return superpower;
         }
 
