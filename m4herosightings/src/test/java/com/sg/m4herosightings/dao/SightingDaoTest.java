@@ -68,12 +68,12 @@ public class SightingDaoTest {
         /*clean db*/
         List<Superpower> superpowers = spDao.readAllSuperpowers();
         for (Superpower sp : superpowers) {
-            spDao.deleteSuperpowerById(sp.getSuperpowerId());
+            spDao.deleteSuperpower(sp.getSuperpowerId());
         }
 
         List<Hero> heroes = hDao.readAllHeroes();
         for (Hero h : heroes) {
-            hDao.deleteHeroById(h.getHeroId());
+            hDao.deleteHero(h.getHeroId());
         }
 
         List<Location> locations = locDao.readAllLocations();
@@ -81,9 +81,9 @@ public class SightingDaoTest {
             locDao.deleteLocationById(l.getLocationId());
         }
 
-        List<Organization> orgs = orgDao.readAllOrganizations();
+        List<Organization> orgs = orgDao.readAllOrganization();
         for (Organization o : orgs) {
-            orgDao.deleteOrganizationById(o.getOrganizationId());
+            orgDao.deleteOrganization(o.getOrganizationId());
         }
 
         List<Sighting> sightings = sightDao.readAllSightings();

@@ -66,7 +66,12 @@ public class HeroDaoDb implements HeroDao {
             second delete from sightings table
             third delete from hero table
         */
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        final String DELETE_HERO_HEROORGANIZATION = "DELETE FROM heroOrganization WHERE heroId =?";
+        jdbc.update(DELETE_HERO_HEROORGANIZATION, id);
+        final String DELETE_HERO_SIGHTING = "DELETE FROM sighting WHERE heroId = ?";
+        jdbc.update(DELETE_HERO_SIGHTING, id);
+        final String DELETE_HERO = "DELETE FROM hero WHERE heroId=?";
+        jdbc.update(DELETE_HERO, id);
     }
 
     private Superpower getSuperPowerForHero(int id) {
