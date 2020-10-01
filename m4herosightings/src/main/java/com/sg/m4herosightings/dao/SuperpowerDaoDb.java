@@ -51,7 +51,7 @@ public class SuperpowerDaoDb implements SuperpowerDao {
     public Superpower updateSuperpower(Superpower superpower) {
         final String UPDATE_SUPERPOWER = "UPDATE superpower "
                 + "SET "
-                + "name=?, "
+                + "name = ?, "
                 + "description = ? "
                 + "WHERE superpowerId = ?;";
         int updated = jdbc.update(UPDATE_SUPERPOWER,

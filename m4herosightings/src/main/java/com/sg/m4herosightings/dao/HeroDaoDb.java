@@ -35,8 +35,8 @@ public class HeroDaoDb implements HeroDao {
                 + "VALUES(?,?,?);";
         jdbc.update(ADD_HERO, hero.getName(), hero.getDescription(), hero.getSuperpower().getSuperpowerId());
         
-        int id = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
-        hero.setHeroId(id);
+        int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+        hero.setHeroId(newId);
         
         return hero;
     }
@@ -60,9 +60,9 @@ public class HeroDaoDb implements HeroDao {
     public Hero updateHero(Hero hero) {
         final String UPDATE_HERO = "UPDATE hero "
                 + "SET "
-                + "name=?, "
-                + "description=?, "
-                + "superpowerId=? "
+                + "name = ?, "
+                + "description = ?, "
+                + "superpowerId = ? "
                 + "WHERE heroId = ?;";
         int updated = jdbc.update(UPDATE_HERO, 
                 hero.getName(), 
@@ -80,16 +80,25 @@ public class HeroDaoDb implements HeroDao {
     @Override
     @Transactional
     public boolean deleteHeroById(int id) {
-        //FIXME be mindful this will effect multiple rows
+        //delete from bridge
+        String deleteBridgeQuery = "DELETE ho.* FROM heroOrganization ho "
+                + "JOIN hero h ON h.heroId = ho.heroId "
+                + "WHERE h.heroId = ?;";
+        jdbc.update(deleteBridgeQuery, id);
         
-        /*
-            first delete from organization_heros bride table
-            second delete from sightings table
-            third delete from hero table
-         */
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //delete from sighting
+        String deleteSightingQuery = "DELETE * FROM sighting s "
+                + "JOIN hero h ON h.heroId = s.heroId "
+                + "WHERE h.heroId = ?;";
+        jdbc.update(deleteSightingQuery, id);
+        
+        //delete from hero
+        String deleteHeroQuery = "DELETE * FROM hero "
+                + "WHERE heroId = ?;";
+        return jdbc.update(deleteHeroQuery, id) > 0;
     }
 
+    /*Helpers*/
     /**
      * Query the superpower for a hero
      *
@@ -114,7 +123,7 @@ public class HeroDaoDb implements HeroDao {
         }
     }
 
-    /*mapper*/
+    /*Mapper*/
     public static final class HeroMapper implements RowMapper<Hero> {
 
         @Override
