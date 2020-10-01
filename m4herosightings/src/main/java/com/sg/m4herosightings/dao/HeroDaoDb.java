@@ -98,24 +98,6 @@ public class HeroDaoDb implements HeroDao {
         final String DELETE_HERO = "DELETE FROM hero "
                 + "WHERE heroId = ?;";
         return jdbc.update(DELETE_HERO, id) > 0;
-  /*
-        //delete from bridge
-        String deleteBridgeQuery = "DELETE ho.* FROM heroOrganization ho "
-                + "JOIN hero h ON h.heroId = ho.heroId "
-                + "WHERE h.heroId = ?;";
-        jdbc.update(deleteBridgeQuery, id);
-
-        //delete from sighting
-        String deleteSightingQuery = "DELETE * FROM sighting s "
-                + "JOIN hero h ON h.heroId = s.heroId "
-                + "WHERE h.heroId = ?;";
-        jdbc.update(deleteSightingQuery, id);
-
-        //delete from hero
-        String deleteHeroQuery = "DELETE * FROM hero "
-                + "WHERE heroId = ?;";
-        return jdbc.update(deleteHeroQuery, id) > 0;
-        */
     }
 
     /*Helpers*/
