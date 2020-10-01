@@ -43,7 +43,7 @@ public class HeroDaoDb implements HeroDao {
                     + "WHERE heroId = ?";
             Hero hero = jdbc.queryForObject(GET_HERO, new HeroMapper(), id);
             hero.setSuperpower(readSuperpowerForHero(id));
-
+          
             return hero;
         } catch (DataAccessException ex) {
             return null;
@@ -124,7 +124,7 @@ public class HeroDaoDb implements HeroDao {
             hero.setSuperpower(readSuperpowerForHero(hero.getHeroId()));
         }
     }
-    
+
     /*Mapper*/
     public static final class HeroMapper implements RowMapper<Hero> {
 

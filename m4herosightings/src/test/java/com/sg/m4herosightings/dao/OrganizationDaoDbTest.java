@@ -10,6 +10,8 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -167,39 +169,45 @@ public class OrganizationDaoDbTest {
      */
     @Test
     public void testUpdateOrganization() {
-//        Superpower superpower = new Superpower();
-//        superpower.setName("drink");
-//        superpower.setDescription("drink a gallon of whisky in a second and still stay sober");
-//        superpower = superpowerDao.createSuperpower(superpower);
-//        
-//        Hero hero = new Hero();
-//        hero.setName("UncleAlkash");
-//        hero.setDescription("Number one sober-alcoholic");
-//        hero.setSuperpower(superpower);
-//        hero = heroDao.createHero(hero);
-//        
-//        Hero fromDao = heroDao.readHeroById(hero.getHeroId());
-//        assertEquals(fromDao, hero);
-//        
-//        hero.setName("UncleBob");
-//        heroDao.updateHero(hero);
-//        assertNotEquals(fromDao, hero);
-//        
-//        fromDao = heroDao.readHeroById(hero.getHeroId());
-//        assertEquals(fromDao, hero);
-//        
-//        Superpower superpower1 = new Superpower();
-//        superpower1.setName("Good eyes");
-//        superpower1.setDescription("Always can find you");
-//        superpower1 = superpowerDao.createSuperpower(superpower1);
-//        hero.setSuperpower(superpower1);
-//        heroDao.updateHero(hero);
-//        
-//        assertNotEquals(fromDao, hero);
-//        
-//        fromDao = heroDao.readHeroById(hero.getHeroId());
-//        
-//        assertEquals(fromDao, hero);
+        Superpower superpower = new Superpower();
+        superpower.setName("drink");
+        superpower.setDescription("drink a gallon of whisky in a second and still stay sober");
+        superpower = superpowerDao.createSuperpower(superpower);
+        
+        Hero hero = new Hero();
+        hero.setName("UncleAlkash");
+        hero.setDescription("Number one sober-alcoholic");
+        hero.setSuperpower(superpower);
+        hero = heroDao.createHero(hero);
+        
+        
+        
+        List<Hero> heroes = new ArrayList<>();
+        heroes.add(hero);
+        
+        Location location = new Location();
+        location.setCity("Staten Island");
+        location.setStreet("hyland bldv");
+        location.setState("NY");
+        location.setZipcode("10303");
+        location.setDescription("By the ferry");
+        location.setLongitude(40.61191);
+        location.setLatitude(-74.06392);
+        location.setName("Rose Bank Pizza");
+        
+        location = locationDao.createLocation(location);
+        
+        Organization org = new Organization();
+        org.setName("Anonymous Organization");
+        org.setDescription("No one knows");
+        org.setPhone("xxx-xxx-xxxx");
+        org.setEmail("idk@leaveme.com");
+        org.setMembers(heroes);
+        org.setLocation(location);
+        org = organizationDao.createOrganization(org);
+        
+        Organization fromDao = organizationDao.readOrganizationById(org.getOrganizationId());
+        
     }
 
     /**
@@ -207,9 +215,52 @@ public class OrganizationDaoDbTest {
      */
     @Test
     public void testDeleteOrganization() {
-        /*
-            I'll write testing after dao implementation complete
-        */
+        Superpower superpower = new Superpower();
+        superpower.setName("drink");
+        superpower.setDescription("drink a gallon of whisky in a second and still stay sober");
+        superpower = superpowerDao.createSuperpower(superpower);
+        
+        Hero hero = new Hero();
+        hero.setName("UncleAlkash");
+        hero.setDescription("Number one sober-alcoholic");
+        hero.setSuperpower(superpower);
+        hero = heroDao.createHero(hero);
+        
+        
+        
+        List<Hero> heroes = new ArrayList<>();
+        heroes.add(hero);
+        
+        Location location = new Location();
+        location.setCity("Staten Island");
+        location.setStreet("hyland bldv");
+        location.setState("NY");
+        location.setZipcode("10303");
+        location.setDescription("By the ferry");
+        location.setLongitude(40.61191);
+        location.setLatitude(-74.06392);
+        location.setName("Rose Bank Pizza");
+        
+        location = locationDao.createLocation(location);
+        
+        Organization org = new Organization();
+        org.setName("Anonymous Organization");
+        org.setDescription("No one knows");
+        org.setPhone("xxx-xxx-xxxx");
+        org.setEmail("idk@leaveme.com");
+        org.setMembers(heroes);
+        org.setLocation(location);
+        org = organizationDao.createOrganization(org);
+        
+        Organization fromDao = organizationDao.readOrganizationById(org.getOrganizationId());
+        assertEquals(fromDao, org);
+        
+        boolean deleted = organizationDao.deleteOrganization(org.getOrganizationId());
+        assertTrue(deleted);
+        
+        fromDao = organizationDao.readOrganizationById(org.getOrganizationId());
+        
+        assertNull(fromDao);
     }
     
     /**
@@ -220,4 +271,15 @@ public class OrganizationDaoDbTest {
         
     }
     
+    /** 
+     * Test of displayOrganizationForHero method. of class OrganizationDaoDb
+     */
+    @Test
+    public void testDisplayOrganizationForHero(){
+        
+    }
+    
 }
+
+//Organization{organizationId=2, name=Anonymous Organization, description=No one knows, phone=xxx-xxx-xxxx, email=idk@leaveme.com, location=Location{locationId=2, latitude=-74.06392, longitude=40.61191, name=Rose Bank Pizza, description=By the ferry, street=hyland bldv, city=Staten Island, state=NY, zipcode=10303}, members=[Hero{heroId=35, name=UncleAlkash, description=Number one sober-alcoholic, superpower=null}]}>
+//Organization{organizationId=2, name=Anonymous Organization, description=No one knows, phone=xxx-xxx-xxxx, email=idk@leaveme.com, location=Location{locationId=2, latitude=-74.06392, longitude=40.61191, name=Rose Bank Pizza, description=By the ferry, street=hyland bldv, city=Staten Island, state=NY, zipcode=10303}, members=[Hero{heroId=35, name=UncleAlkash, description=Number one sober-alcoholic, superpower=Superpower{superpowerId=46, name=drink, description=drink a gallon of whisky in a second and still stay sober}}]}>

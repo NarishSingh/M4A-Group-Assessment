@@ -43,6 +43,7 @@ public class LocationDaoTest {
     public LocationDaoTest() {
     }
     
+
     @BeforeAll
     public static void setUpClass() {
     }
@@ -111,6 +112,7 @@ public class LocationDaoTest {
         l3.setLongitude(-77.050636);
     }
     
+
     @AfterEach
     public void tearDown() {
     }

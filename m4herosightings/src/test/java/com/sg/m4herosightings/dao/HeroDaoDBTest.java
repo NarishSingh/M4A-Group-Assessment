@@ -1,6 +1,9 @@
 package com.sg.m4herosightings.dao;
 
 import com.sg.m4herosightings.dto.Hero;
+import com.sg.m4herosightings.dto.Location;
+import com.sg.m4herosightings.dto.Organization;
+import com.sg.m4herosightings.dto.Sighting;
 import com.sg.m4herosightings.dto.Superpower;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
@@ -24,6 +27,16 @@ public class HeroDaoDBTest {
     @Autowired
     HeroDao heroDao;
 
+    
+    @Autowired
+    OrganizationDao organizationDao;
+    
+    @Autowired
+    LocationDao locationDao;
+    
+    @Autowired
+    SightingDao sightingDao;
+    
     public HeroDaoDBTest() {
     }
 
@@ -37,14 +50,30 @@ public class HeroDaoDBTest {
 
     @BeforeEach
     public void setUp() {
-        List<Superpower> superpowers = superpowerDao.readAllSuperpowers();
-        for (Superpower superpower : superpowers) {
-            superpowerDao.deleteSuperpowerById(superpower.getSuperpowerId());
+        List<Sighting> sightings = sightingDao.readAllSightings();
+        for (Sighting s : sightings) {
+            sightingDao.deleteSightingById(s.getSightingId());
+        }
+        
+        List<Organization> orgs = organizationDao.readAllOrganization();
+        for (Organization o : orgs) {
+            organizationDao.deleteOrganization(o.getOrganizationId());
+        }
+        
+        List<Location> locations = locationDao.readAllLocations();
+        for (Location l : locations) {
+            locationDao.deleteLocationById(l.getLocationId());
         }
 
         List<Hero> heroes = heroDao.readAllHeroes();
-        for (Hero hero : heroes) {
-            heroDao.deleteHeroById(hero.getHeroId());
+        for (Hero h : heroes) {
+            heroDao.deleteHeroById(h.getHeroId());
+        }
+        
+        List<Superpower> superpowers = superpowerDao.readAllSuperpowers();
+        for (Superpower sp : superpowers) {
+            superpowerDao.deleteSuperpowerById(sp.getSuperpowerId());
+
         }
     }
 
@@ -152,7 +181,6 @@ public class HeroDaoDBTest {
      */
     @Test
     public void testDeleteHero() {
-        //arrange
         Superpower superpower = new Superpower();
         superpower.setName("drink");
         superpower.setDescription("drink a gallon of whisky in a second and still stay sober");
@@ -163,6 +191,19 @@ public class HeroDaoDBTest {
         hero.setDescription("Number one sober-alcoholic");
         hero.setSuperpower(superpower);
         hero = heroDao.createHero(hero);
+        
+        Hero fromDao = heroDao.readHeroById(hero.getHeroId());
+        
+        assertEquals(fromDao, hero);
+        
+        boolean deleted = heroDao.deleteHeroById(hero.getHeroId());
+        
+        assertTrue(deleted);
+        
+        fromDao = heroDao.readHeroById(hero.getHeroId());
+        
+        assertNull(fromDao);
+
 
         //act
         Hero original = heroDao.readHeroById(hero.getHeroId());

@@ -53,4 +53,12 @@ public interface OrganizationDao {
      */
     List<Hero> readHeroesForOrganization(Organization organization);
 
+    /**
+     * Get all organizations for a given hero
+     *
+     * @param hero {Hero} a well formed Hero obj
+     * @return {List} all Organizations where the Hero is a member
+     */
+    List<Organization> displayOrganizationForHero(Hero hero);
+  
 }
