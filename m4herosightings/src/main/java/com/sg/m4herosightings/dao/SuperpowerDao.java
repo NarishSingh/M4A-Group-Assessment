@@ -45,3 +45,4 @@ public interface SuperpowerDao {
     boolean deleteSuperpowerById(int id);
 
 }
+

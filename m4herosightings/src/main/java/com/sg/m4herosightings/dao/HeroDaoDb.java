@@ -15,78 +15,140 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class HeroDaoDb implements HeroDao {
-    
+
     @Autowired
     JdbcTemplate jdbc;
-    
-    @Override
-    public List<Hero> readAllHeroes() {
-        final String GET_ALL_HEROES = "SELECT * FROM hero";
-        List<Hero> heroes =  jdbc.query(GET_ALL_HEROES, new HeroMapper());
-        getPowersForHeroes(heroes);
-        return heroes;
-    }
 
-    
     @Override
     @Transactional
     public Hero createHero(Hero hero) {
-        final String ADD_HERO = "INSERT INTO hero(name, description, superpowerId) VALUES(?,?,?)";
+        final String ADD_HERO = "INSERT INTO hero(name, description, superpowerId) "
+                + "VALUES(?,?,?);";
         jdbc.update(ADD_HERO, hero.getName(), hero.getDescription(), hero.getSuperpower().getSuperpowerId());
-        int id = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
-        hero.setHeroId(id);
+
+        int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+        hero.setHeroId(newId);
+
         return hero;
     }
 
     @Override
     public Hero readHeroById(int id) {
-        try{
-            final String GET_HERO = "SELECT * FROM hero WHERE heroId = ?";
+        try {
+            final String GET_HERO = "SELECT * FROM hero "
+                    + "WHERE heroId = ?";
             Hero hero = jdbc.queryForObject(GET_HERO, new HeroMapper(), id);
-            hero.setSuperpower(getSuperPowerForHero(id));
+            hero.setSuperpower(readSuperpowerForHero(id));
+<<<<<<< HEAD
+=======
+
+>>>>>>> b2c979cafac6e241131e3015f9500cfe04c4ff2b
             return hero;
-        }catch(DataAccessException ex){
+        } catch (DataAccessException ex) {
+            return null;
+        }
+    }
+
+    @Override
+    public List<Hero> readAllHeroes() {
+        final String GET_ALL_HEROES = "SELECT * FROM hero;";
+        List<Hero> heroes = jdbc.query(GET_ALL_HEROES, new HeroMapper());
+        associatePowersForHeroes(heroes);
+
+        return heroes;
+    }
+
+    @Override
+    @Transactional
+    public Hero updateHero(Hero hero) {
+        final String UPDATE_HERO = "UPDATE hero "
+                + "SET "
+                + "name = ?, "
+                + "description = ?, "
+                + "superpowerId = ? "
+                + "WHERE heroId = ?;";
+        int updated = jdbc.update(UPDATE_HERO,
+                hero.getName(),
+                hero.getDescription(),
+                hero.getSuperpower().getSuperpowerId(),
+                hero.getHeroId());
+
+        if (updated == 1) {
+            return hero;
+        } else {
             return null;
         }
     }
 
     @Override
     @Transactional
-    public void updateHero(Hero hero) {
-        final String UPDATE_HERO = "UPDATE hero SET name=?, description=?, superpowerId=? WHERE heroId = ?";
-        jdbc.update(UPDATE_HERO, hero.getName(), hero.getDescription(), hero.getSuperpower().getSuperpowerId(), hero.getHeroId());
-    }
-    
-    
-    @Override
-    @Transactional
-    public void deleteHero(int id) {
-        /*
+    public boolean deleteHeroById(int id) {
+<<<<<<< HEAD
+        //delete from bridge
+=======
+  /*
             first delete from organization_heros bride table
             second delete from sightings table
             third delete from hero table
         */
+>>>>>>> b2c979cafac6e241131e3015f9500cfe04c4ff2b
         final String DELETE_HERO_HEROORGANIZATION = "DELETE FROM heroOrganization WHERE heroId =?";
         jdbc.update(DELETE_HERO_HEROORGANIZATION, id);
         final String DELETE_HERO_SIGHTING = "DELETE FROM sighting WHERE heroId = ?";
         jdbc.update(DELETE_HERO_SIGHTING, id);
         final String DELETE_HERO = "DELETE FROM hero WHERE heroId=?";
+<<<<<<< HEAD
+        return jdbc.update(DELETE_HERO, id)>0;
+=======
         jdbc.update(DELETE_HERO, id);
+  /*
+        //delete from bridge
+        String deleteBridgeQuery = "DELETE ho.* FROM heroOrganization ho "
+                + "JOIN hero h ON h.heroId = ho.heroId "
+                + "WHERE h.heroId = ?;";
+        jdbc.update(deleteBridgeQuery, id);
+
+        //delete from sighting
+        String deleteSightingQuery = "DELETE * FROM sighting s "
+                + "JOIN hero h ON h.heroId = s.heroId "
+                + "WHERE h.heroId = ?;";
+        jdbc.update(deleteSightingQuery, id);
+
+        //delete from hero
+        String deleteHeroQuery = "DELETE * FROM hero "
+                + "WHERE heroId = ?;";
+        return jdbc.update(deleteHeroQuery, id) > 0;
+        */
+>>>>>>> b2c979cafac6e241131e3015f9500cfe04c4ff2b
     }
 
-    private Superpower getSuperPowerForHero(int id) {
-        final String GET_POWER_FOR_HERO = "SELECT sp.* FROM superpower sp JOIN hero h ON h.superpowerId = sp.superpowerId WHERE h.heroId = ?";
+    /*Helpers*/
+    /**
+     * Query the superpower for a hero
+     *
+     * @param id {int} id for a superhero
+     * @return {Superpower} the obj from fb
+     */
+    private Superpower readSuperpowerForHero(int id) {
+        final String GET_POWER_FOR_HERO = "SELECT sp.* FROM superpower sp "
+                + "JOIN hero h ON h.superpowerId = sp.superpowerId "
+                + "WHERE h.heroId = ?;";
         return jdbc.queryForObject(GET_POWER_FOR_HERO, new SuperpowerMapper(), id);
     }
 
-    private void getPowersForHeroes(List<Hero> heroes) {
-        for(Hero hero: heroes){
-            hero.setSuperpower(getSuperPowerForHero(hero.getHeroId()));
+    /**
+     * Set Superpower objs to their respective heroes
+     *
+     * @param heroes {List} heroes to be associated with superpowers
+     */
+    private void associatePowersForHeroes(List<Hero> heroes) {
+        for (Hero hero : heroes) {
+            hero.setSuperpower(readSuperpowerForHero(hero.getHeroId()));
         }
     }
-    
-    /*mapper*/
-    public static final class HeroMapper implements RowMapper<Hero>{
+
+    /*Mapper*/
+    public static final class HeroMapper implements RowMapper<Hero> {
 
         @Override
         public Hero mapRow(ResultSet rs, int i) throws SQLException {
@@ -94,8 +156,9 @@ public class HeroDaoDb implements HeroDao {
             hero.setHeroId(rs.getInt("heroId"));
             hero.setName(rs.getString("name"));
             hero.setDescription(rs.getString("description"));
+
             return hero;
         }
-        
+
     }
 }

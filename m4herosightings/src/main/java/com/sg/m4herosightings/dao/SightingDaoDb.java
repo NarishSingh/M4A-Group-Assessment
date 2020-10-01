@@ -24,7 +24,7 @@ public class SightingDaoDb implements SightingDao {
     @Override
     public Sighting createSighting(Sighting sighting) {
         //insert
-        String insertQuery = "INSERT INTO sighting(date, description, heroId, locationId) "
+        String insertQuery = "INSERT INTO sighting (date, description, heroId, locationId) "
                 + "VALUES(?,?,?,?);";
         jdbc.update(insertQuery,
                 sighting.getDate(),

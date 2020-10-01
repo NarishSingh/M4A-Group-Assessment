@@ -38,15 +38,12 @@ public class SightingDaoTest {
     SightingDao sightDao;
 
     static Superpower sp1;
-
-    static Hero h1;
-    static Hero h2;
-    static Hero h3;
-
-    static Location l1;
-    static Location l2;
-    static Location l3;
-
+    static Hero hero1;
+    static Hero hero2;
+    static Hero hero3;
+    static Location loc1;
+    static Location loc2;
+    static Location loc3;
     static Sighting s1;
     static Sighting s2;
     static Sighting s3;
@@ -91,25 +88,31 @@ public class SightingDaoTest {
             sightDao.deleteSightingById(s.getSightingId());
         }
 
-        /*objs*/
- /*superpowers*/
+        /*superpowers*/
         sp1.setName("Fly");
         sp1.setDescription("Can fly");
 
         /*hero/villians*/
+        Hero h1 = new Hero();
         h1.setName("Hero1");
         h1.setDescription("test");
         h1.setSuperpower(sp1);
+        hero1 = hDao.createHero(h1);
 
+        Hero h2 = new Hero();
         h2.setName("Hero2");
         h2.setDescription("test2");
         h2.setSuperpower(sp1);
-        
+        hero2 = hDao.createHero(h2);
+
+        Hero h3 = new Hero();
         h3.setName("Hero3");
         h3.setDescription("test3");
         h3.setSuperpower(sp1);
-        
+        hero3 = hDao.createHero(h3);
+
         /*locations*/
+        Location l1 = new Location();
         l1.setName("test Empire State Building");
         l1.setDescription("testing");
         l1.setStreet("20 W 34th St");
@@ -118,7 +121,9 @@ public class SightingDaoTest {
         l1.setZipcode("10001");
         l1.setLatitude(40.748817);
         l1.setLongitude(-73.985428);
-        
+        loc1 = locDao.createLocation(l1);
+
+        Location l2 = new Location();
         l2.setName("test Grand Central Terminal");
         l2.setDescription("testing2");
         l2.setStreet("89 E 42nd St");
@@ -127,31 +132,42 @@ public class SightingDaoTest {
         l2.setZipcode("10017");
         l2.setLatitude(40.752655);
         l2.setLongitude(-73.977295);
+        loc2 = locDao.createLocation(l2);
+
+        Location l3 = new Location();
+        l3.setName("test Lincoln Memorial");
+        l3.setDescription("testing3");
+        l3.setStreet("2 Lincoln Memorial Cir NW");
+        l3.setCity("Washington");
+        l3.setState("DC");
+        l3.setZipcode("20002");
+        l3.setLatitude(38.889248);
+        l3.setLongitude(-77.050636);
+        loc3 = locDao.createLocation(l3);
 
         /*sightings*/
         s1.setDate(LocalDate.now());
         s1.setDescription("Encounter");
-        s1.setHero(h1);
-        s1.setLocation(l1);
+        s1.setHero(hero1);
+        s1.setLocation(loc1);
 
         //same day and location
         s2.setDate(LocalDate.now());
         s2.setDescription("Encounter2");
-        s2.setHero(h2);
-        s2.setLocation(l1);
-        
+        s2.setHero(hero2);
+        s2.setLocation(loc1);
+
         //same day, hero 1
         s3.setDate(LocalDate.now());
         s3.setDescription("Encounter3");
-        s3.setHero(h1);
-        s3.setLocation(l2);
-        
+        s3.setHero(hero1);
+        s3.setLocation(loc2);
+
         //all different
         s4.setDate(LocalDate.now().minusWeeks(1));
         s4.setDescription("Encounter3");
-        s4.setHero(h3);
-        s4.setLocation(l2);
-        
+        s4.setHero(hero3);
+        s4.setLocation(loc3);
     }
 
     @AfterEach
@@ -164,17 +180,15 @@ public class SightingDaoTest {
     @Test
     public void testCreateReadSighting() {
         //arrange
-        spDao.createSuperpower(sp1);
-        hDao.createHero(h1);
-        locDao.createLocation(l1);
-
         //act
-        sightDao.createSighting(s1);
+        Sighting sight1 = sightDao.createSighting(s1);
 
-        Sighting fromDao = sightDao.readSightingById(s1.getSightingId());
+        Sighting fromDao = sightDao.readSightingById(sight1.getSightingId());
 
         //assert
+        assertNotNull(sight1);
         assertNotNull(fromDao);
+        assertEquals(sight1, fromDao);
     }
 
     /**
@@ -183,22 +197,21 @@ public class SightingDaoTest {
     @Test
     public void testUpdateSighting() {
         //arrange
-        spDao.createSuperpower(sp1);
-        hDao.createHero(h1);
-        hDao.createHero(h2);
-        locDao.createLocation(l1);
-
         //act
-        sightDao.createSighting(s1);
-        Sighting original = sightDao.readSightingById(s1.getSightingId());
+        Sighting sight1 = sightDao.createSighting(s1);
+        Sighting original = sightDao.readSightingById(sight1.getSightingId());
 
-        s1.setHero(h2);
-        sightDao.updateSighting(s1);
-        Sighting updated = sightDao.readSightingById(s1.getSightingId());
+        s1.setHero(hero2);
+        Sighting sight1u = sightDao.updateSighting(s1);
+        Sighting edit = sightDao.readSightingById(sight1.getSightingId());
 
         //assert
-        assertNotNull(s1);
-        assertNotEquals(original, updated);
+        assertNotNull(sight1u);
+        assertNotNull(original);
+        assertNotNull(edit);
+        assertEquals(sight1, original);
+        assertEquals(sight1u, edit);
+        assertNotEquals(original, edit);
     }
 
     /**
@@ -207,20 +220,18 @@ public class SightingDaoTest {
     @Test
     public void testDeleteSightingById() {
         //arrange
-        spDao.createSuperpower(sp1);
-        hDao.createHero(h1);
-        locDao.createLocation(l1);
-
         //act
-        sightDao.createSighting(s1);
-        Sighting original = sightDao.readSightingById(s1.getSightingId());
+        Sighting sight1 = sightDao.createSighting(s1);
+        Sighting original = sightDao.readSightingById(sight1.getSightingId());
 
-        sightDao.deleteSightingById(s1.getSightingId());
-        Sighting deleted = sightDao.readSightingById(original.getSightingId());
+        boolean deleted = sightDao.deleteSightingById(sight1.getSightingId());
+        Sighting afterDel = sightDao.readSightingById(original.getSightingId());
 
         //assert
         assertNotNull(original);
-        assertNull(deleted);
+        assertEquals(sight1, original);
+        assertTrue(deleted);
+        assertNull(afterDel);
     }
 
     /**
@@ -229,21 +240,20 @@ public class SightingDaoTest {
     @Test
     public void testReadAllSightings() {
         //arrange
-        spDao.createSuperpower(sp1);
-        hDao.createHero(h1);
-        hDao.createHero(h2);
-        locDao.createLocation(l1);
-
         //act
-        sightDao.createSighting(s1);
-        sightDao.createSighting(s2);
+        Sighting sight1 = sightDao.createSighting(s1);
+        Sighting sight2 = sightDao.createSighting(s2);
+        Sighting sight3 = sightDao.createSighting(s3);
+        Sighting sight4 = sightDao.createSighting(s4);
 
         List<Sighting> allSightings = sightDao.readAllSightings();
 
         //assert
-        assertTrue(allSightings.contains(s1));
-        assertTrue(allSightings.contains(s2));
-        assertEquals(allSightings.size(), 2);
+        assertTrue(allSightings.contains(sight1));
+        assertTrue(allSightings.contains(sight2));
+        assertTrue(allSightings.contains(sight3));
+        assertTrue(allSightings.contains(sight4));
+        assertEquals(allSightings.size(), 4);
     }
 
     /**
@@ -252,24 +262,19 @@ public class SightingDaoTest {
     @Test
     public void testReadHeroSightingsByLocation() {
         //arrange
-        spDao.createSuperpower(sp1);
-        hDao.createHero(h1);
-        hDao.createHero(h2);
-        hDao.createHero(h3);
-        locDao.createLocation(l1);
-
         //act
-        sightDao.createSighting(s1);
-        sightDao.createSighting(s2);
-        
-        List<Hero> heroesEmpireState = sightDao.readHeroSightingsByLocation(l1);
+        Sighting sight1 = sightDao.createSighting(s1);
+        Sighting sight2 = sightDao.createSighting(s2);
+
+        List<Hero> heroesEmpireState = sightDao.readHeroSightingsByLocation(loc1);
         List<Hero> allHeroes = hDao.readAllHeroes();
 
         //assert
-        assertTrue(heroesEmpireState.contains(h1));
-        assertTrue(heroesEmpireState.contains(h2));
+        assertTrue(heroesEmpireState.contains(hero1));
+        assertTrue(heroesEmpireState.contains(hero2));
+        assertFalse(heroesEmpireState.contains(hero3));
         assertEquals(heroesEmpireState.size(), 2);
-        assertEquals(heroesEmpireState, allHeroes);
+        assertNotEquals(heroesEmpireState, allHeroes);
     }
 
     /**
@@ -278,21 +283,21 @@ public class SightingDaoTest {
     @Test
     public void testReadLocationSightingsByHero() {
         //arrange
-        spDao.createSuperpower(sp1);
-        hDao.createHero(h1);
-        locDao.createLocation(l1);
-        locDao.createLocation(l2);
-        
         //act
-        sightDao.createSighting(s1);
-        sightDao.createSighting(s3);
-        
-        List<Location> h1Locations = sightDao.readLocationSightingsByHero(h1);
-        
+        Sighting sight1 = sightDao.createSighting(s1);
+        Sighting sight2 = sightDao.createSighting(s2);
+        Sighting sight3 = sightDao.createSighting(s3);
+
+        List<Location> allLocations = locDao.readAllLocations();
+
+        List<Location> h1Locations = sightDao.readLocationSightingsByHero(hero1);
+
         //assert
         assertEquals(h1Locations.size(), 2);
-        assertTrue(h1Locations.contains(l1));
-        assertTrue(h1Locations.contains(l2));
+        assertTrue(h1Locations.contains(loc1));
+        assertTrue(h1Locations.contains(loc2));
+        assertFalse(h1Locations.contains(loc3));
+        assertNotEquals(allLocations, h1Locations);
     }
 
     /**
@@ -301,9 +306,23 @@ public class SightingDaoTest {
     @Test
     public void testReadSightingsByDate() {
         //arrange
-
         //act
+        Sighting sight1 = sightDao.createSighting(s1);
+        Sighting sight2 = sightDao.createSighting(s2);
+        Sighting sight3 = sightDao.createSighting(s3);
+        Sighting sight4 = sightDao.createSighting(s4);
+
+        List<Sighting> allSightings = sightDao.readAllSightings();
+
+        List<Sighting> sightingToday = sightDao.readSightingsByDate(sight1.getDate());
+
         //assert
+        assertEquals(sightingToday.size(), 3);
+        assertTrue(sightingToday.contains(sight1));
+        assertTrue(sightingToday.contains(sight2));
+        assertTrue(sightingToday.contains(sight3));
+        assertFalse(sightingToday.contains(sight4));
+        assertNotEquals(allSightings, sightingToday);
     }
 
 }

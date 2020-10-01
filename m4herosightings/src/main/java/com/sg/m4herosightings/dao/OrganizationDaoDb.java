@@ -2,9 +2,11 @@ package com.sg.m4herosightings.dao;
 
 import com.sg.m4herosightings.dao.HeroDaoDb.HeroMapper;
 import com.sg.m4herosightings.dao.LocationDaoDb.LocationMapper;
+import com.sg.m4herosightings.dao.SuperpowerDaoDb.SuperpowerMapper;
 import com.sg.m4herosightings.dto.Hero;
 import com.sg.m4herosightings.dto.Location;
 import com.sg.m4herosightings.dto.Organization;
+import com.sg.m4herosightings.dto.Superpower;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -90,23 +92,27 @@ public class OrganizationDaoDb implements OrganizationDao {
                 + "JOIN heroOrganization ho ON h.heroId = ho.heroId "
                 + "JOIN organization o ON ho.organizationId = o.organizationId "
                 + "WHERE organizationId = ?";
-        return jdbc.query(GET_HEROES_ORGANIZATION, new HeroMapper(), organization.getOrganizationId());
+        List<Hero> heroes =  jdbc.query(GET_HEROES_ORGANIZATION, new HeroMapper(), organization.getOrganizationId());
+        for(Hero hero: heroes){
+            hero.setSuperpower(getPowerForHeroes(hero.getHeroId()));
+        }
+        return heroes;
+    }
+    
+    
+    @Override
+    public List<Organization> displayOrganizationForHero(Hero hero) {
+        final String GET_ORGNIZATIONS_FOR_HERO = "SELECT * organization o "
+                + "JOIN heroOrganization ho ON o.organizationId = ho.organization Id "
+                + "WHERE ho.heroId = ?";
+        List<Organization> organizations = jdbc.query(GET_ORGNIZATIONS_FOR_HERO, new OrganizationMapper(),  
+                hero.getHeroId());
+        getLocationsAndHeroesForOrganization(organizations);
+        
+        return organizations;
     }
 
-    private Location getLocationForOrganization(int id) {
-        final String GET_LOCATION_ORGANIZATION = "SELECT l.* FROM location l "
-                + "JOIN organization o ON o.locationId = l.locationId "
-                + "WHERE o.organizationId = ?";
-        return jdbc.queryForObject(GET_LOCATION_ORGANIZATION, new LocationMapper(), id);
-    }
-
-    private List<Hero> getMembersForOrganization(int id) {
-        final String GET_HERO_ORGANIZATION = "SELECT h.* FROM hero h "
-                + "JOIN heroOrganization ho ON h.heroId=ho.heroId "
-                + "WHERE organizationId = ?";
-        return jdbc.query(GET_HERO_ORGANIZATION, new HeroMapper(), id);
-    }
-
+       
     private void getLocationsAndHeroesForOrganization(List<Organization> organizations) {
         for(Organization org: organizations){
             org.setLocation(getLocationForOrganization(org.getOrganizationId()));
@@ -114,6 +120,52 @@ public class OrganizationDaoDb implements OrganizationDao {
         }
     }
 
+    
+    /*
+        This helper method for setup location for a organization by organizationId. 
+        returns Location; It called inside the getLocationsAndHeroesForOrganization method
+    */
+    private Location getLocationForOrganization(int id) {
+        final String GET_LOCATION_ORGANIZATION = "SELECT l.* FROM location l "
+                + "JOIN organization o ON o.locationId = l.locationId "
+                + "WHERE o.organizationId = ?";
+        return jdbc.queryForObject(GET_LOCATION_ORGANIZATION, new LocationMapper(), id);
+    }
+
+    /*
+    This helper method for setup heroes for a given organization by organization id
+    returns list of heroes. It used inside the getLocationsAndHeroesForOrganization method
+    */
+    private List<Hero> getMembersForOrganization(int id) {
+        final String GET_HERO_ORGANIZATION = "SELECT h.* FROM hero h "
+                + "JOIN heroOrganization ho ON h.heroId=ho.heroId "
+                + "WHERE organizationId = ?";
+        List<Hero> heroes =  jdbc.query(GET_HERO_ORGANIZATION, new HeroMapper(),id);
+
+        for(Hero hero: heroes){
+            hero.setSuperpower(getPowerForHeroes(hero.getHeroId()));
+        }
+        
+        return heroes;
+    }
+
+    /**
+    *This method gets a superpower for hero. used inside the getMembersForOrganization
+    and readHeroesForOrganization methods 
+    para- {hero id}
+    * return-{}
+    */
+    private Superpower getPowerForHeroes(int id){
+        String getPowerForHero = "SELECT * FROM superpower s "
+                + "JOIN hero h ON s.superpowerId = h.superpowerId "
+                + "WHERE h.heroId = ?";
+        return jdbc.queryForObject(getPowerForHero, new SuperpowerMapper(), id);
+    }
+ 
+    /**
+     * This helper method inserts heroId and organizationId into bridge table, used inside the create method
+     * @param organization - organization object
+     */
     private void insertIntoHeroOrganization(Organization organization) {
         final String ADD_HERO_ORGANIZATION = "INSERT into heroOrganization(heroId, organizationId) VALUES(?,?)";
         for(Hero hero: organization.getMembers()){

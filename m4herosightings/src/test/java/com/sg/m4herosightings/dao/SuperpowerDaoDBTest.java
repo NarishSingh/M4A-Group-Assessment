@@ -69,7 +69,7 @@ public class SuperpowerDaoDBTest {
         
         List<Hero> heroes = heroDao.readAllHeroes();
         for (Hero h : heroes) {
-            heroDao.deleteHero(h.getHeroId());
+            heroDao.deleteHeroById(h.getHeroId());
         }
         
         List<Superpower> superpowers = superpowerDao.readAllSuperpowers();
@@ -150,7 +150,7 @@ public class SuperpowerDaoDBTest {
     }
 
     /**
-     * Test of deleteSuperpower method, of class SuperpowerDaoDB.
+     * Test of deleteSuperpowerById method, of class SuperpowerDaoDB.
      */
     @Test
     public void testDeleteSuperpower() {
