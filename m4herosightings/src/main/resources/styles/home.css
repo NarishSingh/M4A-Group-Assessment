@@ -295,3 +295,7 @@ input {
 .top-about {
     background: black url("https://image.winudf.com/v2/image/Y29tLmh1YWRvbmcuZmVuZ2ppbmcxX3NjcmVlbnNob3RzXzBfM2I2ZTkzNzU/screen-0.jpg?fakeurl=1&type=.jpg") no-repeat center fixed;
 }
+
+#add-hero-heading {
+    color: limegreen;
+}
