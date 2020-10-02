@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -154,7 +155,18 @@ public class SuperpowerDaoDBTest {
      */
     @Test
     public void testDeleteSuperpower() {
-        //TODO implement
+        Superpower superpower = new Superpower();
+        superpower.setName("drink");
+        superpower.setDescription("drink a gallon of whisky in a second and still stay sober");
+        superpower = superpowerDao.createSuperpower(superpower);
+        
+        Superpower fromDao = superpowerDao.readSuperpowerById(superpower.getSuperpowerId());
+        
+        boolean deleted = superpowerDao.deleteSuperpowerById(superpower.getSuperpowerId());
+        assertTrue(deleted);
+        
+        fromDao = superpowerDao.readSuperpowerById(superpower.getSuperpowerId());
+        assertNull(fromDao);
     }
     
 }
