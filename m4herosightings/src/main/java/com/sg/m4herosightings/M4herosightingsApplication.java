@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class M4herosightingsApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(M4herosightingsApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(M4herosightingsApplication.class, args);
+    }
 
 }

@@ -263,10 +263,6 @@ input {
     background-color: green;
 }
 
-#hero-table {
-    width: 50%;
-}
-
 .results {
     border: 5px solid black;
     /* box-shadow: 5px 2px 1px black; */
