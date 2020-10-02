@@ -65,12 +65,22 @@
                         <tr>
                             <th>Name/Alias</th>
                             <th>Superpower</th>
-                            <th></th> <!--for details button-->
+                            <th></th> <!--Details-->
+                            <th></th> <!--Edit-->
+                            <th></th> <!--Delete-->
                         </tr>
                         </thead>
 
                         <!--Will fill dynamically from db-->
-                        <tbody id="hero-content-rows"></tbody>
+                        <tbody id="hero-content-rows">
+                        <tr th:each="hero: ${heroes}">
+                            <td th:text="${hero.name}">Hero Name</td>
+                            <td th:text="${hero.superpower.name}">Superpower Name</td> <!--FIXME verify if this works-->
+                            <td><a href="#" th:href="@{/viewHero(id=${hero.heroId})}">View</a></td>
+                            <td><a href="#" th:href="@{/editHero(id=${hero.heroId})}">Edit</a></td>
+                            <td><a href="#" th:href="@{/deleteHero(id=${hero.heroId})}">Delete</a></td>
+                        </tr>
+                        </tbody>
                     </table>
                 </ul>
             </div>
