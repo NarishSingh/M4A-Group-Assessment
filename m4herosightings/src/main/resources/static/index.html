@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>HERO Sightings</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!--styles-->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-              integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link rel="stylesheet" href=".//styles//home.css"> <!--our stylesheet-->
-    </head>
-    <body>
-        <!--begin body-->
-        <div class="bg"></div>
-        <div class="container-fluid">
-            <div class="title">
-                <h1><a href="#">Superheroes</a></h1>
-                <h3>Heroes</h3>
-            </div>
-            <div class="nav">
+    <!--styles-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/home.css"> <!--our stylesheet-->
+
+    <title>HERO Sightings</title>
+</head>
+<body>
+<!--begin body-->
+<div class="bg"></div>
+<div class="container-fluid">
+    <div class="title">
+        <h1><a href="#">Superheroes</a></h1>
+        <h3>Heroes</h3>
+    </div>
+    <div class="nav">
+        <ul>
+            <li><a href="index">Home</a></li>
+            <li><a href="heroes">Heroes</a>
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="heroes.html">Heroes</a>
@@ -35,46 +39,55 @@
                     <li><a href="about.html">About Us</a>
                     </li>
                 </ul>
+            </li>
+            <li><a href="sightings">Sightings</a>
+                <ul>
+                    <li><a href="sightings">Location</a></li>
+                </ul>
+            </li>
+            <li><a href="about">About Us</a>
+            </li>
+        </ul>
+    </div>
+    <div class="all">
+        <div class="top">
+            <div class="box-1">
+                <div class="separator"></div>
+                <div class="search">
+                    <input type="textbox">
+                </div>
+                <div class="separator"></div>
+                <div class="choose">
+                    <ul>
+                        <li>View Heroes</li>
+                        <li>Database</li>
+                    </ul>
+                </div>
+                <div class="results">
+
+                </div>
             </div>
-            <div class="all">
-                <div class="top">
-                    <div class="box-1">
-                        <div class="separator"></div>
-                        <div class="search">
-                            <input type="textbox">
-                        </div>
-                        <div class="separator"></div>
-                        <div class="choose">
-                            <ul>
-                                <li>View Heroes</li>
-                                <li>Database</li>
-                            </ul>
-                        </div>
-                        <div class="results">
+        </div>
 
-                        </div>
-                    </div>
-                </div>
+        <div class="middle">
 
-                <div class="middle">
+        </div>
 
-                </div>
+        <div class="bottom">
 
-                <div class="bottom">
+        </div>
+    </div>
+    <!--end body-->
 
-                </div>
-            </div>
-            <!--end body-->
-
-            <!--Scripts-->
-            <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-                    integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+    <!--Scripts-->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
             crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-                    integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
             crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-                    integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
             crossorigin="anonymous"></script>
-    </body>
+</body>
 </html>
