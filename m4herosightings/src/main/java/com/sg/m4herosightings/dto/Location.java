@@ -10,11 +10,11 @@ public class Location {
     /*fields*/
     private int locationId;
 
-    @NotBlank(message = "Latitude cannot be blank")
+    //@NotBlank(message = "Latitude cannot be blank")
     @Digits(integer = 2, fraction = 6, message = "Please enter a valid latitude")
     private double latitude;
 
-    @NotBlank(message = "Longitude cannot be blank")
+    //@NotBlank(message = "Longitude cannot be blank")
     @Digits(integer = 3, fraction = 6, message = "Please enter a valid longitude")
     private double longitude;
 
@@ -24,19 +24,19 @@ public class Location {
     @Size(max = 255, message = "Location description cannot exceed 255 chars")
     private String description;
 
-    @NotBlank
+    @NotBlank(message = "Street must not be blank")
     @Size(max = 100, message = "Street address cannot exceed 100 chars")
     private String street;
 
-    @NotBlank
+    @NotBlank(message = "City must not be blank")
     @Size(max = 30, message = "City name cannot exceed 30 chars")
     private String city;
 
-    @NotBlank
+    @NotBlank(message = "State must not be blank")
     @Size(max = 2, message = "Please enter the state abbreviation")
     private String state;
 
-    @NotBlank
+    @NotBlank(message = "Zipcode must not be blank")
     @Size(max = 5, message = "Please enter a valid zipcode")
     private String zipcode;
 
