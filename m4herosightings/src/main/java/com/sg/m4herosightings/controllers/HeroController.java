@@ -130,8 +130,11 @@ public class HeroController {
      */
     @GetMapping("editHero")
     public String editHero(Integer id, Model model) {
+        List<Superpower> superpowers = spDao.readAllSuperpowers();
         Hero hero = hDao.readHeroById(id);
+
         model.addAttribute("hero", hero);
+        model.addAttribute("superpowers", superpowers);
 
         return "editStudent";
     }

@@ -48,6 +48,7 @@
 
     <div class="top">
         <div class="box-1">
+            <!--search bar-->
             <div class="separator"></div>
             <div id="hero-search-bar" class="search">
                 <label for="search-hero-db">Hero/Villian Name:</label>
@@ -56,7 +57,8 @@
                 <button type="button" class="btn btn-outline-success" id="search-hero-btn">Search</button>
             </div>
             <div class="separator"></div>
-            <div class="choose">
+
+            <div class="choose" id="hero-data">
                 <ul>
                     <li>View Heroes</li>
                     <li>Database</li>
@@ -76,17 +78,22 @@
                         <tr th:each="hero: ${heroes}">
                             <td th:text="${hero.name}">Hero Name</td>
                             <td th:text="${hero.superpower.name}">Superpower Name</td> <!--FIXME verify if this works-->
-                            <td><a href="#" th:href="@{/viewHero(id=${hero.heroId})}"><i class="far fa-eye"></i></a></td>
-                            <td><a href="#" th:href="@{/editHero(id=${hero.heroId})}"><i class="fas fa-edit"></i></a></td>
-                            <td><a href="#" th:href="@{/deleteHero(id=${hero.heroId})}"><i class="fas fa-trash"></i></a></td>
+                            <td><a href="#" th:href="@{/viewHero(id=${hero.heroId})}"><i class="far fa-eye"></i></a>
+                            </td>
+                            <td><a href="#" th:href="@{/editHero(id=${hero.heroId})}"><i class="fas fa-edit"></i></a>
+                            </td>
+                            <td><a href="#" th:href="@{/deleteHero(id=${hero.heroId})}" data-toggle="modal"
+                                   data-target="#edit-modal">
+                                <i class="fas fa-trash"></i>
+                            </a></td>
                         </tr>
                         </tbody>
                     </table>
                 </ul>
             </div>
-            <div class="results">
+            <!--            <div class="results">-->
 
-            </div>
+            <!--            </div>-->
         </div>
     </div>
 
@@ -94,7 +101,7 @@
         <hr>
 
         <!--Add hero form-->
-        <div class="row justify-content-center">
+        <div class="row">
             <h3 id="add-hero-heading">Add Hero</h3>
         </div>
         <div class="row">
@@ -102,25 +109,25 @@
             <form class="col" action="addHero" method="POST">
                 <!--name-->
                 <div class="form-group row">
-                    <label for="name-input" class="col-form-label">Name/Alias:</label>
+                    <label for="name" class="col-form-label">Name/Alias:</label>
                     <div class="col-7">
-                        <input type="text" name="name-input" class="form-control" id="name-input"/>
+                        <input type="text" name="name-input" class="form-control" id="name"/>
                     </div>
                 </div>
 
                 <!--description-->
                 <div class="form-group row">
-                    <label for="description-input" class="col-form-label">Description:</label>
+                    <label for="description" class="col-form-label">Description:</label>
                     <div class="col-7">
-                        <input type="text" name="description-input" class="form-control" id="description-input">
+                        <input type="text" name="description-input" class="form-control" id="description">
                     </div>
                 </div>
 
                 <!--superpower select-->
                 <div class="form-group row">
-                    <label for="superpowers" class="col-form-label">Superpower:</label>
+                    <label for="superpower" class="col-form-label">Superpower:</label>
                     <div class="col-7">
-                        <select multiple id="superpowers" name="superpowers-select" class="form-control">
+                        <select multiple id="superpower" name="superpowers-select" class="form-control">
                             <option th:each="sp: ${superpowers}"
                                     th:value="${sp.superpowerId}"
                                     th:text="${sp.name}">
@@ -133,6 +140,62 @@
                 <!--submit btn-->
                 <button type="submit" id="add-hero-submit" class="btn btn-outline-success">Add Hero/Villian</button>
             </form>
+        </div>
+
+        <!--edit modal-->
+        <div class="modal fade" id="edit-modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="edit-modal-label">Edit Hero</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <!--edit form-->
+                    <div class="modal-body">
+                        <form action="edit-hero" method="POST" enctype="multipart/form-data">
+                            <div class="form-group row">
+                                <label for="name" class="col-form-label">Name/Alias:</label>
+                                <div>
+                                    <input type="text" class="form-control" name="name" id="name"
+                                           th:value="${hero.name}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="description" class="col-form-label">Description:</label>
+                                <div>
+                                    <input type="text" class="form-control" name="description" id="description"
+                                           th:value="${hero.description}"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="superpower" class="col-form-label">Superpower:</label>
+                                <div>
+                                    <select name="superpowerId" id="superpower" class="form-control">
+                                        <option th:each="sp : ${superpowers}"
+                                                th:value="${sp.superpowerId}"
+                                                th:text="${sp.name}"
+                                                th:selected="${hero.superpower.superpowerId == superpower.superpowerId}">
+                                            Superpower Name
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="heroId" th:value="${hero.heroId}"/>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-danger">Edit</button>
+                        <button type="button" class="btn btn-outline-success">Cancel</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
