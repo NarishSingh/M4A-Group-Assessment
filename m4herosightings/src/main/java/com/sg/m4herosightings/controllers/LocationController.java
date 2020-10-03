@@ -13,6 +13,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,32 +38,38 @@ public class LocationController {
     public String getLocations(Model model){
         List<Location> locations = locationDao.readAllLocations();
         model.addAttribute("locations", locations);
+        model.addAttribute("errors", violations);
         return "location";
     }
     
     @PostMapping("addLocation")
     public String addLocation(Location location){
         //assign location info to get coordinates
-        String address = location.getStreet() + ", " + location.getCity() + 
-                         ", " + location.getState() + " " + location.getZipcode();
-        
-        //Geocode converter object
-        Geocode geo = new Geocode();
-        
-        try{
-            //spliting coordinates by comma 
-            String[] coordinates = geo.GeocodeSync(address).split(",");
-            //assigning latitude to location
-            location.setLatitude(Double.parseDouble(coordinates[0]));
-            //assigning longitude to location
-            location.setLongitude(Double.parseDouble(coordinates[1]));
-        }catch(IOException | InterruptedException ex){
-            //incase exception set to 0.0
-            location.setLatitude(0.0);
-            location.setLongitude(0.0);
+        Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
+        violations = validate.validate(location);
+        if(violations.isEmpty()){
+            String address = location.getStreet() + ", " + location.getCity() + 
+                             ", " + location.getState() + " " + location.getZipcode();
+
+            //Geocode converter object
+            Geocode geo = new Geocode();
+
+            try{
+                //spliting coordinates by comma 
+                String[] coordinates = geo.GeocodeSync(address).split(",");
+                //assigning latitude to location
+                location.setLatitude(Double.parseDouble(coordinates[0]));
+                //assigning longitude to location
+                location.setLongitude(Double.parseDouble(coordinates[1]));
+            }catch(IOException | InterruptedException ex){
+                //incase exception set to 0.0
+                location.setLatitude(0.0);
+                location.setLongitude(0.0);
+            }
+
+            locationDao.createLocation(location);
         }
-        
-        locationDao.createLocation(location);
+
         return "redirect:/location";
     }
     

@@ -60,6 +60,11 @@
                 </div>
             </div>
                         <div class="row m-4 border border-dark">
+                            <div class="col-12 m-1 text-center" 
+                                   th:if="${!errors.isEmpty()}">
+                                <p class="alert alert-danger" th:each="error : ${errors}" 
+                                    th:text="${error.message}">Error message</p>
+                            </div>
                             <div class="col-3 m-3 text-center">
                                 <span class="h3">Add Address</span>
                             </div>
@@ -139,7 +144,16 @@
                                     th:data-location-long="${location.longitude}"
                                     th:data-location-desc="${location.description}"
                                     >Details</a></td>
-                                <td><a href="#" th:href="@{/editLocation(id=${location.locationId})}">Edit</a></td>
+                                <td><a href="#" data-toggle="modal" data-target="#locationUpdate"
+                                    th:data-location-update-id="${location.locationId}"
+                                    th:data-location-update-name="${location.name}"
+                                    th:data-location-update-street="${location.street}"
+                                    th:data-location-update-city="${location.city}"
+                                    th:data-location-update-state="${location.state}"
+                                    th:data-location-update-zipcode="${location.zipcode}"
+                                    th:data-location-update-lat="${location.latitude}"
+                                    th:data-location-update-long="${location.longitude}"
+                                    th:data-location-update-desc="${location.description}">Edit</a></td>
                                 <td><a href="#" th:href="@{/deleteLocation(id=${location.locationId})}">Delete</a></td>
                             </tr>
                         </tbody>
@@ -197,30 +211,66 @@
                 </div>
               </div>
             </div>
-            
-            
-                        <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
-              Launch demo modal
-            </button>
+
 
             <!-- Modal -->
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+            <div class="modal fade" id="locationUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLongTitle">Update Location</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body">
-                    ...
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
+                     <form action="updateLocation" method="POST">
+                         <div class="modal-body">
+                               
+                                     <div class="row form-group">
+                                         <label for="updateStreet" class="col-3 col-form-label">Street</label>
+                                          <div class="col-9">
+                                             <input type="text" id="updateStreet" name="street" class="form-control"/>
+                                         </div>
+                                    </div>     
+                                    <div class="row form-group">
+                                         <label for="updateCity" class="col-3 col-form-label">City</label>
+                                         <div class="col-9">
+                                             <input id="updateCity" name="city" type="text" class="form-control"/>
+                                         </div>
+                                     </div>
+                                     <div class="row form-group">
+                                         <label for="updateState" class="col-3 col-form-label">State</label>
+                                         <div class="col-9">
+                                             <input type="text" class="form-control" id="updateState" name="state"/>
+                                         </div>
+                                     </div>
+                                     <div class="row form-group">
+                                         <label for="updateZipcode" class="col-3 col-form-label">Zipcode</label>
+                                         <div class="col-9">
+                                             <input type="text" id="updateZipcode" name="zipcode" class="form-control"/>
+                                         </div>
+                                     </div>
+                                     <div class="row form-group">
+                                         <label class="col-3 col-form-label" for="updateName">Name</label>
+                                         <div class="col-9">
+                                             <input type="text" id="updateName" name="name" class="form-control"/>
+                                         </div>
+                                     </div> 
+                                     <div class="row form-group">
+                                         <label class="col-3 col-form-label" for="updateDescription">Description</label>
+                                         <div class="col-9">
+                                             <textarea id="updateLocationDescription" name="description" class="form-control"></textarea>
+                                         </div> 
+                                     </div>
+                                     <input type="hidden" id="updateLocationId" name="locationId" class="form-control"/>
+                                     
+                                 
+                        </div>
+                        <div class="modal-footer">
+                          <button type="submit" class="btn btn-primary">Update Location</button>
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                     </form>
                 </div>
               </div>
             </div>
@@ -250,9 +300,24 @@
                 $('#locationCord').text(link.data('location-long') + ' ' + link.data('location-lat'));
                 $('#locationDescription').text(link.data('location-desc'));
                 console.log(name);
-            })
+                });
+            
+                $('#locationUpdate').on('show.bs.modal', function(event) {
+                var updatelink = $(event.relatedTarget);
+                $('#updateLocationId').val(updatelink.data('location-update-id'));
+                $('#updateName').val(updatelink.data('location-update-name'));
+                     //$('#updateName').val("Name");
+                $('#updateStreet').val(updatelink.data('location-update-street'));
+                $('#updateCity').val(updatelink.data('location-update-city'));
+                $('#updateState').val(updatelink.data('location-update-state'));
+                $('#updateZipcode').val(updatelink.data('location-update-zipcode'));
+                $('#locationCord').val(updatelink.data('location-long') + ' ' + updatelink.data('location-lat'));
+                $('#updateLocationDescription').val(updatelink.data('location-update-desc'));
+                console.log(updatelink.data('location-update-name'));
+                });
         </script>
     </body>
 </html>
 
 <!--                                       th:href="@{/showLocationDetails(id=${location.locationId})}"-->
+<!-- th:href="@{/editLocation(id=${location.locationId})}"-->
