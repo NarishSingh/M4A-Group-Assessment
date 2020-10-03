@@ -43,7 +43,7 @@ public class HeroController {
 
     Set<ConstraintViolation<Hero>> violations = new HashSet<>();
 
-    /*on main subdomain*/
+    /*MAIN SUBDOMAIN*/
     /**
      * GET - on loading subdomain, load all heroes from db to be rendered to
      * table
@@ -65,9 +65,10 @@ public class HeroController {
      * POST - attempt to create a new Hero in db
      *
      * @param hero    {Hero} a valid Hero obj from template engine
-     * @param result  {BindingResult}
+     * @param result  {BindingResult} Will hold validation errors for Hero
+     *                creation
      * @param request {HttpServletRequest}
-     * @param model   {Model}
+     * @param model   {Model} will hold Superpowers and Heroes from db
      * @return {String} reload page if has errors, redirect to heroes subdomain
      *         if successful
      */
@@ -104,9 +105,67 @@ public class HeroController {
     }
 
     /*DETAILS*/
-//    @GetMapping("viewHero")
+    /**
+     * GET - view a Hero's details
+     *
+     * @param id    {Integer} a valid id retrieved from template
+     * @param model {Model} will hold the retrieve Hero obj
+     * @return {String} load page with obj added to model
+     */
+    @GetMapping("viewHero")
+    public String viewHeroDetails(Integer id, Model model) {
+        Hero hero = hDao.readHeroById(id);
+        model.addAttribute("hero", hero);
+
+        return "viewHero";
+    }
+
     /*EDIT*/
-//    @GetMapping("editHero")
+    /**
+     * GET - attempt to edit a hero in db
+     *
+     * @param id    {Integer} a valid id for hero existing in db
+     * @param model {Model} will hold the retrieved original hero obj
+     * @return {String} load page with obj in model
+     */
+    @GetMapping("editHero")
+    public String editHero(Integer id, Model model) {
+        Hero hero = hDao.readHeroById(id);
+        model.addAttribute("hero", hero);
+
+        return "editStudent";
+    }
+
+    /**
+     * POST - perform the edit of a Hero in db
+     *
+     * @param hero   {Hero} obj to be validated
+     * @param result {BindingResult} holds validation errors for hero editing
+     * @return {String} reload page if failed, redirect to subdomain if
+     *         successful
+     */
+    @PostMapping("editHero")
+    public String performEditStudent(@Valid Hero hero, BindingResult result) {
+        if (result.hasErrors()) {
+            return "editStudent";
+        }
+
+        hDao.updateHero(hero);
+
+        return "redirect:/heroes";
+    }
+
     /*DELETE*/
-//    @GetMapping("deleteHero")
+    /**
+     * GET - delete a Hero from db
+     *
+     * @param id {Integer} a valid id for hero existing in db
+     * @return {String} redirect to subdomain if successful
+     */
+    @GetMapping("deleteHero")
+    public String deleteHero(Integer id) {
+        hDao.deleteHeroById(id);
+
+        return "redirect:/heroes";
+    }
 }
