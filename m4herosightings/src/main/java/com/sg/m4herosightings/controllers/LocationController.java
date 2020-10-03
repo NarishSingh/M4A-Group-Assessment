@@ -9,7 +9,10 @@ import com.sg.m4herosightings.dao.LocationDao;
 import com.sg.m4herosightings.dto.Location;
 import com.sg.m4herosightings.helper.Geocode;
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import javax.validation.ConstraintViolation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +29,8 @@ public class LocationController {
     
     @Autowired
     LocationDao locationDao;
+    
+    Set<ConstraintViolation<Location>> violations = new HashSet<>();
     
     @GetMapping("location")
     public String getLocations(Model model){
@@ -71,6 +76,30 @@ public class LocationController {
         Location location = locationDao.readLocationById(id);
         model.addAttribute("location", location);
         return "location";
+    }
+    
+    @PostMapping("updateLocation")
+    public String updateLocation(Location location){
+        String address = location.getStreet() + ", " + location.getCity() + 
+                         ", " + location.getState() + " " + location.getZipcode();
+        
+        //Geocode converter object
+        Geocode geo = new Geocode();
+        
+        try{
+            //spliting coordinates by comma 
+            String[] coordinates = geo.GeocodeSync(address).split(",");
+            //assigning latitude to location
+            location.setLatitude(Double.parseDouble(coordinates[0]));
+            //assigning longitude to location
+            location.setLongitude(Double.parseDouble(coordinates[1]));
+        }catch(IOException | InterruptedException ex){
+            //incase exception set to 0.0
+            location.setLatitude(0.0);
+            location.setLongitude(0.0);
+        }
+        locationDao.updateLocation(location);
+        return "redirect:/location";
     }
     
 }
