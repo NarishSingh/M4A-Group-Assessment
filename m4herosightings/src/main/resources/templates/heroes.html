@@ -76,9 +76,9 @@
                         <tr th:each="hero: ${heroes}">
                             <td th:text="${hero.name}">Hero Name</td>
                             <td th:text="${hero.superpower.name}">Superpower Name</td> <!--FIXME verify if this works-->
-                            <td><a href="#" th:href="@{/viewHero(id=${hero.heroId})}">View</a></td>
-                            <td><a href="#" th:href="@{/editHero(id=${hero.heroId})}">Edit</a></td>
-                            <td><a href="#" th:href="@{/deleteHero(id=${hero.heroId})}">Delete</a></td>
+                            <td><a href="#" th:href="@{/viewHero(id=${hero.heroId})}"><i class="far fa-eye"></i></a></td>
+                            <td><a href="#" th:href="@{/editHero(id=${hero.heroId})}"><i class="fas fa-edit"></i></a></td>
+                            <td><a href="#" th:href="@{/deleteHero(id=${hero.heroId})}"><i class="fas fa-trash"></i></a></td>
                         </tr>
                         </tbody>
                     </table>
