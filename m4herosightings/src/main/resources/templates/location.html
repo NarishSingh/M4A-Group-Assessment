@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>HERO Sightings - Heroes & Villians</title>
+
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Link to BS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Style CSS -->
+    <link rel="stylesheet" href=".//styles//home.css">
+</head>
+
+<body>
+<div class="bg"></div>
+<div class="container-fluid">
+    <div class="title">
+        <h1><a href="#">Locations</a></h1>
+    </div>
+    <div class="nav">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="heroes.html">Heroes</a>
+                <ul>
+                    <li><a href="heroes.html">Powers</a></li>
+                    <li><a href="heroes.html">Organizations</a></li>
+                </ul>
+            </li>
+            <li><a href="sightings.html">Sightings</a>
+                <ul>
+                    <li><a href="sightings.html">Location</a></li>
+                </ul>
+            </li>
+            <li><a href="about.html">About Us</a>
+            </li>
+        </ul>
+    </div>
+    <!--navbar-->
+    <div class="top">
+        <div class="box-1">
+            <div class="separator"></div>
+            <div class="search">
+                <input type="textbox">
+            </div>
+            <div class="separator"></div>
+            <div class="choose">
+                <ul>
+                    <li>View Heroes</li>
+                    <li>Database</li>
+                </ul>
+            </div>
+            <div class="results">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="row m-4 border border-dark">
+        <!--error msg-->
+        <div class="col-12 m-1 text-center"
+             th:if="${!errors.isEmpty()}">
+            <p class="alert alert-danger" th:each="error : ${errors}"
+               th:text="${error.message}">Error message</p>
+        </div>
+        <!--add location form-->
+        <div class="col-3 m-3 text-center">
+            <span class="h3">Add Address</span>
+        </div>
+        <div class="col-7 m-3 text-center">
+            <form action="addLocation" method="POST">
+                <div class="row form-group">
+                    <label class="col-3 col-form-label" for="street">Street</label>
+                    <div class="col-9">
+                        <input type="text" id="street" name="street" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label for="city" class="col-3 col-form-label">City</label>
+                    <div class="col-9">
+                        <input id="city" name="city" type="text" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label for="city" class="col-3 col-form-label">State</label>
+                    <div class="col-9">
+                        <input type="text" class="form-control" id="state" name="state"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label for="zipcode" class="col-3 col-form-label">Zipcode</label>
+                    <div class="col-9">
+                        <input type="text" id="zipcode" name="zipcode" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-3 col-form-label" for="name">Name</label>
+                    <div class="col-9">
+                        <input type="text" id="name" name="name" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-3 col-form-label" for="description">Description</label>
+                    <div class="col-9">
+                        <textarea id="description" name="description" class="form-control"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Location</button>
+            </form>
+        </div>
+
+        <div class="middle">
+
+        </div>
+
+    </div>
+    <div class="row m-4 border border-dark">
+        <div class="col text-center m-3">
+            <!--location data table-->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Details</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="location : ${locations}">
+                    <td th:text="${location.locationId}">Location Id</td>
+                    <td th:text="${location.city}">Location City</td>
+                    <td th:text="${location.state}">Location State</td>
+                    <td><a href="#" data-toggle="modal" data-target="#locationDetails"
+                           th:data-location-id="${location.locationId}"
+                           th:data-location-name="${location.name}"
+                           th:data-location-street="${location.street}"
+                           th:data-location-city="${location.city}"
+                           th:data-location-state="${location.state}"
+                           th:data-location-zipcode="${location.zipcode}"
+                           th:data-location-lat="${location.latitude}"
+                           th:data-location-long="${location.longitude}"
+                           th:data-location-desc="${location.description}"
+                    >Details</a></td>
+                    <td><a href="#" data-toggle="modal" data-target="#locationUpdate"
+                           th:data-location-update-id="${location.locationId}"
+                           th:data-location-update-name="${location.name}"
+                           th:data-location-update-street="${location.street}"
+                           th:data-location-update-city="${location.city}"
+                           th:data-location-update-state="${location.state}"
+                           th:data-location-update-zipcode="${location.zipcode}"
+                           th:data-location-update-lat="${location.latitude}"
+                           th:data-location-update-long="${location.longitude}"
+                           th:data-location-update-desc="${location.description}">Edit</a></td>
+                    <td><a href="#" th:href="@{/deleteLocation(id=${location.locationId})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="locationDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+         aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Location Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row m-4">
+                        <div class="col-6 text-right">
+                            <strong>ID</strong>
+                        </div>
+                        <div class="col-6 text-left">
+                            <span id="locationId"></span>
+                        </div>
+                        <div class="col-6 text-right">
+                            <strong>Name</strong>
+                        </div>
+                        <div class="col-6 text-left">
+                            <span id="locationName"></span>
+                        </div>
+                        <div class="col-6 text-right">
+                            <strong>Address</strong>
+                        </div>
+                        <div class="col-6 text-left">
+                            <span id="locationAddress"></span>
+                        </div>
+                        <div class="col-6 text-right">
+                            <strong>Coordinates</strong>
+                        </div>
+                        <div class="col-6 text-left">
+                            <span id="locationCord"></span>
+                        </div>
+                        <div class="col-6 text-right">
+                            <strong>Description</strong>
+                        </div>
+                        <div class="col-6 text-left">
+                            <span id="locationDescription"></span><br/>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Update Modal -->
+    <div class="modal fade" id="locationUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Update Location</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="updateLocation" method="POST">
+                    <div class="modal-body">
+
+                        <div class="row form-group">
+                            <label for="updateStreet" class="col-3 col-form-label">Street</label>
+                            <div class="col-9">
+                                <input type="text" id="updateStreet" name="street" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label for="updateCity" class="col-3 col-form-label">City</label>
+                            <div class="col-9">
+                                <input id="updateCity" name="city" type="text" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label for="updateState" class="col-3 col-form-label">State</label>
+                            <div class="col-9">
+                                <input type="text" class="form-control" id="updateState" name="state"/>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label for="updateZipcode" class="col-3 col-form-label">Zipcode</label>
+                            <div class="col-9">
+                                <input type="text" id="updateZipcode" name="zipcode" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-3 col-form-label" for="updateName">Name</label>
+                            <div class="col-9">
+                                <input type="text" id="updateName" name="name" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <label class="col-3 col-form-label" for="updateDescription">Description</label>
+                            <div class="col-9">
+                                <textarea id="updateLocationDescription" name="description"
+                                          class="form-control"></textarea>
+                            </div>
+                        </div>
+                        <input type="hidden" id="updateLocationId" name="locationId" class="form-control"/>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Update Location</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="bottom">
+
+    </div>
+</div>
+
+<!--Scripts-->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+<script>
+    /*Show details modal*/
+    $('#locationDetails').on('show.bs.modal', function (event) {
+        var link = $(event.relatedTarget);
+        $('#locationId').text(link.data('location-id'));
+        $('#locationName').text(link.data('location-name'));
+        $('#locationAddress').text(link.data('location-street') + ' ' + link.data('location-city')
+            + ' ' + link.data('location-state') + ' ' + link.data('location-zipcode'));
+        $('#locationCord').text(link.data('location-long') + ' ' + link.data('location-lat'));
+        $('#locationDescription').text(link.data('location-desc'));
+        console.log(name);
+    });
+
+    /*Show update modal*/
+    $('#locationUpdate').on('show.bs.modal', function (event) {
+        var updatelink = $(event.relatedTarget);
+        $('#updateLocationId').val(updatelink.data('location-update-id'));
+        $('#updateName').val(updatelink.data('location-update-name'));
+        //$('#updateName').val("Name");
+        $('#updateStreet').val(updatelink.data('location-update-street'));
+        $('#updateCity').val(updatelink.data('location-update-city'));
+        $('#updateState').val(updatelink.data('location-update-state'));
+        $('#updateZipcode').val(updatelink.data('location-update-zipcode'));
+        $('#locationCord').val(updatelink.data('location-long') + ' ' + updatelink.data('location-lat'));
+        $('#updateLocationDescription').val(updatelink.data('location-update-desc'));
+        console.log(updatelink.data('location-update-name'));
+    });
+</script>
+</body>
+</html>
+
+<!--                                       th:href="@{/showLocationDetails(id=${location.locationId})}"-->
+<!-- th:href="@{/editLocation(id=${location.locationId})}"-->

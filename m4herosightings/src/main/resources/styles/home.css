@@ -13,8 +13,13 @@
     padding-top: 50px;
 }
 
-.top, .middle, .bottom {
+.top, .bottom {
     padding: 20px;
+}
+
+.middle {
+    padding: 20px;
+    justify-content: center;
 }
 
 h1 a {
@@ -263,10 +268,6 @@ input {
     background-color: green;
 }
 
-#hero-table {
-    width: 50%;
-}
-
 .results {
     border: 5px solid black;
     /* box-shadow: 5px 2px 1px black; */
@@ -298,4 +299,8 @@ input {
 
 .top-about {
     background: black url("https://image.winudf.com/v2/image/Y29tLmh1YWRvbmcuZmVuZ2ppbmcxX3NjcmVlbnNob3RzXzBfM2I2ZTkzNzU/screen-0.jpg?fakeurl=1&type=.jpg") no-repeat center fixed;
+}
+
+#add-hero-heading {
+    color: limegreen;
 }
