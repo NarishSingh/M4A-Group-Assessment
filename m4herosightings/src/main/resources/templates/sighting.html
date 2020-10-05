@@ -50,23 +50,43 @@
         <form action="addSighting" method="post">
             <!--date-->
             <div class="form-group row">
-
+                <label for="name" class="col-3 col-form-label">Name/Alias:</label>
+                <div class="col-9">
+                    <input type="text" class="form-control" name="name" id="name">
+                </div>
             </div>
 
             <!--description-->
             <div class="form-group row">
-
+                <label for="description" class="col-3 col-form-label">Description:</label>
+                <div class="col-9">
+                    <input type="text" class="form-control" name="description" id="description">
+                </div>
             </div>
 
             <!--hero select-->
             <div class="form-group row">
-
+                <label for="superpower" class="col-3 col-form-label">Superpower:</label>
+                <select name="superpowerId" id="superpower" class="form-control">
+                    <option th:each="superpower : ${superpowers}" th:value="${superpower.superpowerId}"
+                            th:text="${superpower.name}">
+                        Superpower
+                    </option>
+                </select>
             </div>
 
             <!--location select-->
             <div class="form-group row">
-
+                <label for="location" class="col-3 col-form-label">Location:</label>
+                <select name="locationId" id="location" class="form-control">
+                    <option th:each="location : ${locations}" th:value="${location.locationId}"
+                            th:text="${location.name}">
+                        Location
+                    </option>
+                </select>
             </div>
+
+            <button type="submit" class="btn btn-success">Add Sighting</button>
         </form>
     </div>
 </div>
