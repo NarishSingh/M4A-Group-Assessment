@@ -14,7 +14,7 @@
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <!-- Style CSS -->
-    <link rel="stylesheet" href="../styles/home.css">
+    <link rel="stylesheet" href="home">
 </head>
 
 <style>
@@ -132,6 +132,7 @@
                     </thead>
 
                     <!--Will fill dynamically from db-->
+                    <!--FIXME not working, kinda-->
                     <tbody id="hero-content-rows">
                     <tr th:each="hero: ${heroes}">
                         <td th:text="${hero.name}">Hero Name</td>
@@ -139,12 +140,12 @@
                         <td><a href="#" class="view-hero-btn" th:href="@{/viewHero(id=${hero.heroId})}"><i
                                 class="far fa-eye"></i></a>
                         </td>
-                        <td><a href="#" class="edit-hero-btn" th:href="@{/editHero(id=${hero.heroId})}"><i
+                        <td><a href="#" class="edit-hero-btn" th:href="@{/editHero(id=${hero.heroId})}"
+                               data-toggle="modal"
+                               data-target="#edit-modal"><i
                                 class="fas fa-edit"></i></a>
                         </td>
-                        <td><a href="#" class="delete-hero-btn" th:href="@{/deleteHero(id=${hero.heroId})}"
-                               data-toggle="modal"
-                               data-target="#edit-modal">
+                        <td><a href="#" class="delete-hero-btn" th:href="@{/deleteHero(id=${hero.heroId})}">
                             <i class="fas fa-trash"></i>
                         </a></td>
                     </tr>
@@ -154,7 +155,7 @@
             </div>
 
             <!--view hero modal-->
-            <!--FIXME might have to do as a seperate page-->
+            <!--FIXME looks wild-->
             <div class="modal fade" id="view-hero-modal" tabindex="-1" aria-labelledby="view-hero-modal"
                  aria-hidden="true">
                 <div class="modal-dialog">
@@ -209,11 +210,12 @@
     <div class="middle">
         <hr>
         <!--Add hero form-->
+        <!--FIXME templates not working-->
         <div class="row">
             <h3 id="add-hero-heading">Add Hero</h3>
         </div>
         <div class="row">
-            <!--FIXME figure out how to center this form-->
+            <!--FIXME but superpower isn't loading-->
             <form class="col" action="addHero" method="POST">
                 <!--name-->
                 <div class="form-group row">
@@ -282,6 +284,8 @@
                                 </div>
                             </div>
 
+
+                            <!--FIXME TEMPLATE NOT PULLING SUPERPOWER-->
                             <!--superpower select-->
                             <div class="form-group row">
                                 <label for="superpower" class="col-form-label">Superpower:</label>
@@ -302,8 +306,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger">Edit</button>
-                        <button type="button" class="btn btn-outline-success">Cancel</button>
+                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-outline-success">Edit</button>
                     </div>
                 </div>
             </div>
