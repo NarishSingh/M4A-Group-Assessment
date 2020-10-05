@@ -60,7 +60,7 @@ public class HeroController {
 
         return "heroes";
     }
-
+    
     /**
      * POST - attempt to create a new Hero in db
      *
