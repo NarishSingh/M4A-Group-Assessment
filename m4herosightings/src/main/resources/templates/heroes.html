@@ -19,9 +19,10 @@
 
 <style>
     .nav {
-        background-color: rgba(0,0,0,0.5);
+        background-color: rgba(0, 0, 0, 0.5);
         height: 80px;
     }
+
     .title {
         background-size: cover;
         background-position: 50% 50%;
@@ -50,7 +51,7 @@
     }
 
     .database {
-        background-color:rgba(0,0,0,0.5);
+        background-color: rgba(0, 0, 0, 0.5);
         padding: 80px;
         margin-top: -10px;
     }
@@ -61,7 +62,7 @@
     }
 
     #hero-search-bar {
-        background-color: rgba(0,0,0,0.5);
+        background-color: rgba(0, 0, 0, 0.5);
         padding: 20px;
     }
 </style>
@@ -118,34 +119,37 @@
             <div class="results">
                 <table class="table table-dark table-striped" id="hero-table">
                     <thead>
-                        <tr>
-                            <th>Name/Alias</th>
-                            <th>Superpower</th>
-                            <th></th>
-                            <!--Details-->
-                            <th></th>
-                            <!--Edit-->
-                            <th></th>
-                            <!--Delete-->
-                        </tr>
+                    <tr>
+                        <th>Name/Alias</th>
+                        <th>Superpower</th>
+                        <th></th>
+                        <!--Details-->
+                        <th></th>
+                        <!--Edit-->
+                        <th></th>
+                        <!--Delete-->
+                    </tr>
                     </thead>
-                
+
                     <!--Will fill dynamically from db-->
                     <tbody id="hero-content-rows">
-                        <tr th:each="hero: ${heroes}">
-                            <td th:text="${hero.name}">Hero Name</td>
-                            <td th:text="${hero.superpower.name}">Superpower Name</td> <!--FIXME verify if this works-->
-                            <td><a href="#" class="view-hero-btn" th:href="@{/viewHero(id=${hero.heroId})}"><i class="far fa-eye"></i></a>
-                            </td>
-                            <td><a href="#" class="edit-hero-btn" th:href="@{/editHero(id=${hero.heroId})}"><i class="fas fa-edit"></i></a>
-                            </td>
-                            <td><a href="#" class="delete-hero-btn" th:href="@{/deleteHero(id=${hero.heroId})}" data-toggle="modal"
-                                   data-target="#edit-modal">
-                                <i class="fas fa-trash"></i>
-                            </a></td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <tr th:each="hero: ${heroes}">
+                        <td th:text="${hero.name}">Hero Name</td>
+                        <td th:text="${hero.superpower.name}">Superpower Name</td>
+                        <td><a href="#" class="view-hero-btn" th:href="@{/viewHero(id=${hero.heroId})}"><i
+                                class="far fa-eye"></i></a>
+                        </td>
+                        <td><a href="#" class="edit-hero-btn" th:href="@{/editHero(id=${hero.heroId})}"><i
+                                class="fas fa-edit"></i></a>
+                        </td>
+                        <td><a href="#" class="delete-hero-btn" th:href="@{/deleteHero(id=${hero.heroId})}"
+                               data-toggle="modal"
+                               data-target="#edit-modal">
+                            <i class="fas fa-trash"></i>
+                        </a></td>
+                    </tr>
+                    </tbody>
+                </table>
                 </ul>
             </div>
 
