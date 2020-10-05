@@ -1,3 +1,6 @@
+/*
+    TODO for search bar - have it do a query with the inputted string
+ */
 package com.sg.m4herosightings.controllers;
 
 import com.sg.m4herosightings.dao.HeroDao;
@@ -158,4 +161,5 @@ public class HeroController {
 
         return "redirect:/heroes";
     }
+    
 }
