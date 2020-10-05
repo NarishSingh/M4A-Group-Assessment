@@ -98,15 +98,17 @@
     <div class="top">
         <div class="box-1">
             <!--search bar-->
+            <!--FIXME find out how to implement-->
             <div class="separator"></div>
-            <div id="hero-search-bar justify-content-center align-items-center" class="search">
-                <label for="search-hero-db">Hero/Villian Name:</label>
+            <div id="hero-search-bar" class="search">
+                <label for="search-hero-db">Name/Alias:</label>
                 <input id="search-hero-db" name="search-hero-db" type="text">
 
                 <button type="button" class="btn btn-success" id="search-hero-btn">Search</button>
             </div>
             <div class="separator"></div>
 
+            <!--hero data table-->
             <div class="choose" id="hero-data">
                 <ul>
                     <li>View Heroes</li>
@@ -132,28 +134,79 @@
                     <tbody id="hero-content-rows">
                         <tr th:each="hero: ${heroes}">
                             <td th:text="${hero.name}">Hero Name</td>
-                            <td th:text="${hero.superpower.name}">Superpower Name</td>
-                            <!--FIXME verify if this works-->
-                            <td><a href="#" th:href="@{/viewHero(id=${hero.heroId})}"><i class="far fa-eye"></i></a>
+                            <td th:text="${hero.superpower.name}">Superpower Name</td> <!--FIXME verify if this works-->
+                            <td><a href="#" class="view-hero-btn" th:href="@{/viewHero(id=${hero.heroId})}"><i class="far fa-eye"></i></a>
                             </td>
-                            <td><a href="#" th:href="@{/editHero(id=${hero.heroId})}"><i class="fas fa-edit"></i></a>
+                            <td><a href="#" class="edit-hero-btn" th:href="@{/editHero(id=${hero.heroId})}"><i class="fas fa-edit"></i></a>
                             </td>
-                            <td><a href="#" th:href="@{/deleteHero(id=${hero.heroId})}" data-toggle="modal" data-target="#edit-modal">
-                                    <i class="fas fa-trash"></i>
-                                </a></td>
+                            <td><a href="#" class="delete-hero-btn" th:href="@{/deleteHero(id=${hero.heroId})}" data-toggle="modal"
+                                   data-target="#edit-modal">
+                                <i class="fas fa-trash"></i>
+                            </a></td>
                         </tr>
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </ul>
+            </div>
+
+            <!--view hero modal-->
+            <!--FIXME might have to do as a seperate page-->
+            <div class="modal fade" id="view-hero-modal" tabindex="-1" aria-labelledby="view-hero-modal"
+                 aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="view-hero-modal-label">Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <form action="viewHero" method="GET" id="view-hero-readonly-form">
+                                <!--view name-->
+                                <div class="form-group row">
+                                    <label for="name" class="col-form-label">Name/Alias:</label>
+                                    <input type="text" class="form-control" name="name" id="name" th:text="${hero.name}"
+                                           readonly>
+                                </div>
+
+                                <!--view description-->
+                                <div class="form-group row">
+                                    <label for="description" class="col-form-label">Description</label>
+                                    <input type="text" class="form-control" name="description" id="description"
+                                           th:text="${hero.description}" readonly>
+                                </div>
+
+                                <!--view superpower - name and description-->
+                                <div class="form-group row">
+                                    <label for="superpower" class="col-form-label">Superpower:</label>
+                                    <input type="text" class="form-control" name="superpower" id="superpower"
+                                           th:text="${hero.superpower.name}" readonly>
+                                    <textarea rows="3" th:text="${hero.superpower.description}" readonly></textarea>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div>
+                            <modal-footer>
+                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+                            </modal-footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--<div class="results">
             </div>-->
         </div>
     </div>
 
     <div class="middle">
         <hr>
-
         <!--Add hero form-->
         <div class="row">
-            <h3 id="add-hero-heading" style="padding-top:200px">Add Hero</h3>
+            <h3 id="add-hero-heading">Add Hero</h3>
         </div>
         <div class="row">
             <!--FIXME figure out how to center this form-->
@@ -206,7 +259,8 @@
 
                     <!--edit form-->
                     <div class="modal-body">
-                        <form action="edit-hero" method="POST" enctype="multipart/form-data">
+                        <form action="editHero" method="POST" enctype="multipart/form-data">
+                            <!--edit name-->
                             <div class="form-group row">
                                 <label for="name" class="col-form-label">Name/Alias:</label>
                                 <div>
@@ -215,6 +269,7 @@
                                 </div>
                             </div>
 
+                            <!--edit description-->
                             <div class="form-group row">
                                 <label for="description" class="col-form-label">Description:</label>
                                 <div>
@@ -223,6 +278,7 @@
                                 </div>
                             </div>
 
+                            <!--superpower select-->
                             <div class="form-group row">
                                 <label for="superpower" class="col-form-label">Superpower:</label>
                                 <div>
@@ -250,9 +306,9 @@
         </div>
     </div>
 
-    <div class="bottom">
+    <!--<div class="bottom">
 
-    </div>
+    </div>-->
 </div>
 
 <!--Scripts-->
@@ -265,5 +321,17 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
+
+<script>
+    $(document).ready(function () {
+        $(document).on('click', '.view-hero-btn', function (e) {
+            $('#view-hero-modal').modal();
+        });
+
+        $(document).on('click', '.edit-hero-btn', function (e) {
+            $('#edit-hero-modal').modal();
+        });
+    });
+</script>
 </body>
 </html>
