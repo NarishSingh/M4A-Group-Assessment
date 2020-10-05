@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class LocationController {
+    
+    /*
+    for search bar - have it do a query with the inputted string
+    */
 
     @Autowired
     LocationDao locationDao;
