@@ -28,19 +28,14 @@ public class HeroController {
 
     @Autowired
     SuperpowerDao spDao;
-
     @Autowired
     HeroDao hDao;
-
     @Autowired
     OrganizationDao oDao;
-
     @Autowired
     LocationDao ldao;
-
     @Autowired
     SightingDao siDao;
-
     Set<ConstraintViolation<Hero>> violations = new HashSet<>();
 
     /*MAIN SUBDOMAIN*/
@@ -116,6 +111,7 @@ public class HeroController {
     public String viewHeroDetails(Integer id, Model model) {
         Hero hero = hDao.readHeroById(id);
         model.addAttribute("hero", hero);
+        model.addAttribute("superpower", hero.getSuperpower());
 
         return "viewHero";
     }
