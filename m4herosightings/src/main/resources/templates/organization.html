@@ -15,7 +15,7 @@
 <!--Begin Body-->
 <!--Navbar-->
 <div class="container">
-      <div class="row m-4">
+    <div class="row m-4">
         <div class="col text-center border border-dark">
             <a href="/"><h1>HERO Sightings</h1></a>
         </div>
@@ -39,11 +39,11 @@
     </div>
     <div class="row m-4 border border-dark">
         <!--error msg-->
-<!--        <div class="col-12 m-1 text-center"
-             th:if="${!errors.isEmpty()}">
-            <p class="alert alert-danger" th:each="error : ${errors}"
-               th:text="${error.message}">Error message</p>
-        </div>-->
+        <!--        <div class="col-12 m-1 text-center"
+                     th:if="${!errors.isEmpty()}">
+                    <p class="alert alert-danger" th:each="error : ${errors}"
+                       th:text="${error.message}">Error message</p>
+                </div>-->
         <!--add location form-->
         <div class="col-3 m-3 text-center">
             <span class="h3">Add Address</span>
@@ -70,24 +70,25 @@
                 </div>
                 <div class="row form-group">
                     <label for="location" class="col-3 col-form-label">Location</label>
-                     <div class="col-9">
-                            <select id="location" name="locationId" class="form-control">
-                                <option th:each="location: ${locations}"
-                                        th:value="${location.locationId}"
-                                        th:text="${location.name + ' ' + location.zipcode}">Address</option>
-                            </select>
-                     </div>
-                </div>
-<!--                <div class="row form-group">
-                    <label class="col-3 col-form-label" for="member">Name</label>
                     <div class="col-9">
-                        <select multible id="member" name="heroId" class="form-control">
-                            <option th:each="hero: ${heroes}"
-                                    th:value="${hero.heroId}"
-                                    th:text="${hero.name + ' - ' + hero.superpower.name}">Hero</option>
+                        <select id="location" name="locationId" class="form-control">
+                            <option th:each="location: ${locations}"
+                                    th:value="${location.locationId}"
+                                    th:text="${location.name + ' ' + location.zipcode}">Address
+                            </option>
                         </select>
                     </div>
-                </div>-->
+                </div>
+                <!--                <div class="row form-group">
+                                    <label class="col-3 col-form-label" for="member">Name</label>
+                                    <div class="col-9">
+                                        <select multible id="member" name="heroId" class="form-control">
+                                            <option th:each="hero: ${heroes}"
+                                                    th:value="${hero.heroId}"
+                                                    th:text="${hero.name + ' - ' + hero.superpower.name}">Hero</option>
+                                        </select>
+                                    </div>
+                                </div>-->
                 <div class="row form-group">
                     <label class="col-3 col-form-label" for="description">Description</label>
                     <div class="col-9">
@@ -99,36 +100,36 @@
         </div>
 
     </div>
-       <div class="row m-4 border border-dark">
-            <div class="col text-center m-3">
-                <!--location data table-->
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Details</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="organization : ${organizations}">
-                        <td th:text="${organization.organizationId}">Organization Id</td>
-                        <td th:text="${organization.name}">Organization Name</td>
-                        <td th:text="${organization.email}">Organization Email</td>
-                        <td th:text="${organization.phone}">Organization Phone</td>
-                        <td><a href="#" th:href="@{/displayOrgDetails(id=${organization.organizationId})}"
-                        >Details</a></td>
-                        <td><a href="#" th:href="@{/editOrganization(id=${organization.organizationId})}">Edit</a></td>
-                        <td><a href="#" th:href="@{/deleteOrganization(id=${organization.organizationId})}">Delete</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+    <div class="row m-4 border border-dark">
+        <div class="col text-center m-3">
+            <!--location data table-->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Details</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="organization : ${organizations}">
+                    <td th:text="${organization.organizationId}">Organization Id</td>
+                    <td th:text="${organization.name}">Organization Name</td>
+                    <td th:text="${organization.email}">Organization Email</td>
+                    <td th:text="${organization.phone}">Organization Phone</td>
+                    <td><a href="#" th:href="@{/displayOrgDetails(id=${organization.organizationId})}"
+                    >Details</a></td>
+                    <td><a href="#" th:href="@{/editOrganization(id=${organization.organizationId})}">Edit</a></td>
+                    <td><a href="#" th:href="@{/deleteOrganization(id=${organization.organizationId})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
+    </div>
 </div>
 
 <!--End Body-->

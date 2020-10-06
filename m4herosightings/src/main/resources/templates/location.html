@@ -39,13 +39,13 @@
     </div>
 
 
-<div class="row m-4 border border-dark">
+    <div class="row m-4 border border-dark">
         <!--error msg-->
-<!--        <div class="col-12 m-1 text-center"
-             th:if="${!errors.isEmpty()}">
-            <p class="alert alert-danger" th:each="error : ${errors}"
-               th:text="${error.message}">Error message</p>
-        </div>-->
+        <!--        <div class="col-12 m-1 text-center"
+                     th:if="${!errors.isEmpty()}">
+                    <p class="alert alert-danger" th:each="error : ${errors}"
+                       th:text="${error.message}">Error message</p>
+                </div>-->
         <!--add location form-->
         <div class="col-3 m-3 text-center">
             <span class="h3">Add Address</span>
@@ -93,34 +93,34 @@
         </div>
 
     </div>
-            <div class="row m-4 border border-dark">
-            <div class="col text-center m-3">
-                <!--location data table-->
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>City</th>
-                        <th>State</th>
-                        <th>Details</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="location : ${locations}">
-                        <td th:text="${location.locationId}">Location Id</td>
-                        <td th:text="${location.city}">Location City</td>
-                        <td th:text="${location.state}">Location State</td>
-                        <td><a href="#" th:href="@{/showLocationDetails(id=${location.locationId})}"
-                        >Details</a></td>
-                        <td><a href="#" th:href="@{/editLocation(id=${location.locationId})}">Edit</a></td>
-                        <td><a href="#" th:href="@{/deleteLocation(id=${location.locationId})}">Delete</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+    <div class="row m-4 border border-dark">
+        <div class="col text-center m-3">
+            <!--location data table-->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Details</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="location : ${locations}">
+                    <td th:text="${location.locationId}">Location Id</td>
+                    <td th:text="${location.city}">Location City</td>
+                    <td th:text="${location.state}">Location State</td>
+                    <td><a href="#" th:href="@{/showLocationDetails(id=${location.locationId})}"
+                    >Details</a></td>
+                    <td><a href="#" th:href="@{/editLocation(id=${location.locationId})}">Edit</a></td>
+                    <td><a href="#" th:href="@{/deleteLocation(id=${location.locationId})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
+    </div>
 </div>
 <!--End Body-->
 
