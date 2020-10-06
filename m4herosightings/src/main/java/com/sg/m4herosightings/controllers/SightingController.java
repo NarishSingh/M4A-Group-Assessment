@@ -9,6 +9,7 @@ import com.sg.m4herosightings.dto.Hero;
 import com.sg.m4herosightings.dto.Location;
 import com.sg.m4herosightings.dto.Sighting;
 import com.sg.m4herosightings.dto.Superpower;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -95,12 +96,12 @@ public class SightingController {
             model.addAttribute("superpowers", spDao.readAllSuperpowers());
             model.addAttribute("heroes", hDao.readAllHeroes());
             model.addAttribute("locations", locDao.readAllLocations());
-
             return "addSighting";
         }
 
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(sighting);
+        
 
         if (violations.isEmpty()) {
             siDao.createSighting(sighting);

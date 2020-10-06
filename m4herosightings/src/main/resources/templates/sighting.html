@@ -21,30 +21,30 @@
     </div>
     <div class="row m-4 border border-dark">
         <div class="col text-center m-3">
-            <a href="superpower" class="btn btn-outline-primary btn-lg">Teachers</a>
+            <a href="superpower" class="btn btn-outline-primary btn-lg">Superpowers</a>
         </div>
         <div class="col text-center m-3">
-            <a href="hero" class="btn btn-outline-primary btn-lg">Students</a>
+            <a href="hero" class="btn btn-outline-primary btn-lg">Heroes/Villains</a>
         </div>
         <div class="col text-center m-3">
-            <a href="location" class="btn btn-outline-primary btn-lg">Courses</a>
+            <a href="location" class="btn btn-outline-primary btn-lg">Locations</a>
         </div>
         <div class="col text-center m-3">
-            <a href="sighting" class="btn btn-outline-primary btn-lg">Courses</a>
+            <a href="sighting" class="btn btn-outline-primary btn-lg">Sightings</a>
         </div>
         <div class="col text-center m-3">
-            <a href="organization" class="btn btn-outline-primary btn-lg">Courses</a>
+            <a href="organization" class="btn btn-outline-primary btn-lg">Organizations</a>
         </div>
     </div>
 </div>
 
 <!--error box-->
-<div class="col-12 m-1 text-center"
+<!--FIXME error box crashing page-->
+<!--<div class="col-12 m-1 text-center"
      th:if="${!errors.isEmpty()}">
     <p class="alert alert-danger" th:each="error : ${errors}"
        th:text="${error.message}">Error message</p>
-</div>
-
+</div>-->
 
 <!--add sighting form-->
 <div class="row border m-4">
@@ -53,12 +53,12 @@
     </div>
 
     <div class="col-7 text-center m-3">
-        <form action="addSighting" method="post">
+        <form action="addSighting" method="POST">
             <!--date-->
             <div class="form-group row">
-                <label for="name" class="col-3 col-form-label">Name/Alias:</label>
+                <label for="date" class="col-3 col-form-label">Date:</label>
                 <div class="col-9">
-                    <input type="text" class="form-control" name="name" id="name">
+                    <input type="date" class="form-control" name="date" id="date">
                 </div>
             </div>
 
@@ -72,10 +72,10 @@
 
             <!--hero select-->
             <div class="form-group row">
-                <label for="superpower" class="col-3 col-form-label">Superpower:</label>
-                <select name="superpowerId" id="superpower" class="form-control">
-                    <option th:each="superpower : ${superpowers}" th:value="${superpower.superpowerId}"
-                            th:text="${superpower.name}">
+                <label for="hero" class="col-3 col-form-label">Superpower:</label>
+                <select name="heroId" id="hero" class="form-control col">
+                    <option th:each="hero : ${heroes}" th:value="${hero.heroId}"
+                            th:text="${hero.name}">
                         Superpower
                     </option>
                 </select>
@@ -84,7 +84,7 @@
             <!--location select-->
             <div class="form-group row">
                 <label for="location" class="col-3 col-form-label">Location:</label>
-                <select name="locationId" id="location" class="form-control">
+                <select name="locationId" id="location" class="form-control col">
                     <option th:each="location : ${locations}" th:value="${location.locationId}"
                             th:text="${location.name}">
                         Location
