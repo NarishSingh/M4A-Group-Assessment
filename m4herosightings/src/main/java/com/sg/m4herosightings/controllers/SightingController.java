@@ -78,6 +78,7 @@ public class SightingController {
     @PostMapping("addSighting")
     public String addSighting(@Valid Sighting sighting, BindingResult result,
             HttpServletRequest request, Model model) {
+        String dateString = request.getParameter("date");
         String heroId = request.getParameter("heroId");
         String locationId = request.getParameter("locationId");
 
@@ -88,6 +89,7 @@ public class SightingController {
             FieldError error = new FieldError("location", "locationId", "Must include a location");
             result.addError(error);
         } else {
+            sighting.setDate(LocalDate.parse(dateString));
             sighting.setHero(hDao.readHeroById(Integer.parseInt(heroId)));
             sighting.setLocation(locDao.readLocationById(Integer.parseInt(locationId)));
         }
@@ -96,7 +98,7 @@ public class SightingController {
             model.addAttribute("superpowers", spDao.readAllSuperpowers());
             model.addAttribute("heroes", hDao.readAllHeroes());
             model.addAttribute("locations", locDao.readAllLocations());
-            return "addSighting";
+//            return "addSighting";
         }
 
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
@@ -140,11 +142,12 @@ public class SightingController {
     @GetMapping("editSighting")
     public String editSighting(Integer id, Model model) {
         List<Hero> heroes = hDao.readAllHeroes();
-        List<Location> locations = locDao.readAllLocations();
-        Sighting sighting = siDao.readSightingById(id);
-
         model.addAttribute("heroes", heroes);
-        model.addAttribute("location", locations);
+        
+        List<Location> locations = locDao.readAllLocations();
+        model.addAttribute("locations", locations);
+        
+        Sighting sighting = siDao.readSightingById(id);
         model.addAttribute("sighting", sighting);
 
         return "editSighting";

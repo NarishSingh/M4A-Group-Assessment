@@ -51,42 +51,53 @@
         <span class="h3">Edit Sighting</span>
     </div>
     <div class="col-7 text-center m-3">
-        <form action="editSighting" method="post">
+        <form action="editSighting" method="POST">
             <!--date-->
-            <label for="date" class="col-3 col-form-label">Date:</label>
-            <div class="form-control">
-                <input type="date" name="date" id="date" class="form-control"
-                       th:value="${sighting.date}">
+            <div class="form-group row">
+                <label for="date" class="col-3 col-form-label">Date:</label>
+                <div class="col-9">
+                    <input type="date" name="date" id="date" class="form-control"
+                           th:value="${sighting.date}">
+                </div>
             </div>
 
             <!--description-->
-            <div class="form-control">
-                <textarea name="description" id="description" class="form-control" rows="3"
-                          th:value="${sighting.description}"></textarea>
+            <div class="form-group row">
+                <label for="description" class="col-3 col-form-label">Description:</label>
+                <div class="col-9">
+                    <input type="text" name="description" id="description" class="form-control"
+                           th:value="${sighting.description}">
+                </div>
             </div>
 
             <!--hero-->
-            <div class="form-control">
-                <select name="hero" id="hero" class="form-control">
-                    <option th:each="hero : ${heroes}"
-                            th:value="${hero.heroId}"
-                            th:text="${hero.name}"
-                            th:selected="${sighting.hero.heroId == hero.heroId}">
-                        Hero
-                    </option>
-                </select>
+            <div class="form-group row">
+                <label for="hero" class="col-3 col-form-label">Hero:</label>
+                <div class="col-9">
+                    <select name="hero" id="hero" class="form-control">
+                        <option th:each="hero : ${heroes}"
+                                th:value="${hero.heroId}"
+                                th:text="${hero.name}"
+                                th:selected="${sighting.hero.heroId == hero.heroId}">
+                            Hero
+                        </option>
+                    </select>
+                </div>
             </div>
 
             <!--location-->
-            <div class="form-control">
-                <select name="location" id="location" class="form-control">
-                    <option th:each="location : ${locations}"
-                            th:value="${location.locationId}"
-                            th:text="${location.name}"
-                            th:selected="${sighting.location.locationId == location.locationId}">
-                        Location
-                    </option>
-                </select>
+            <div class="form-group row">
+                <label for="location" class="col-3 col-form-label">Location:</label>
+                <div class="col-9">
+                    <select name="location" id="location" class="form-control">
+                        <option th:each="location : ${locations}"
+                                th:value="${location.locationId}"
+                                th:text="${location.name}"
+                                th:selected="${sighting.location.locationId == location.locationId}">
+                            Location
+                        </option>
+                    </select>
+                </div>
             </div>
 
             <!--hidden id tracking-->

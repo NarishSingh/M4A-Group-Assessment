@@ -116,9 +116,9 @@
                 <td th:text="${sighting.date}">Sighting Date</td>
                 <td th:text="${sighting.hero.name}">Sighting Hero</td>
                 <td th:text="${sighting.location.name}">Sighting Location</td>
-                <td><a href="#" th:href="@{/viewSighting(id=${sighting.id})}"><i class="fas fa-eye"></i></a></td>
-                <td><a href="#" th:href="@{/editSighting(id=${sighting.id})}"><i class="fas fa-edit"></i></a></td>
-                <td><a href="#" th:href="@{/deleteSighting(id=${sighting.id})}"><i class="fas fa-trash"></i></a></td>
+                <td><a href="#" th:href="@{/viewSighting(id=${sighting.sightingId})}"><i class="fas fa-eye"></i></a></td>
+                <td><a href="#" th:href="@{/editSighting(id=${sighting.sightingId})}"><i class="fas fa-edit"></i></a></td>
+                <td><a href="#" th:href="@{/deleteSighting(id=${sighting.sightingId})}"><i class="fas fa-trash"></i></a></td>
             </tr>
             </tbody>
         </table>
