@@ -91,6 +91,34 @@
     </div>
 </div>
 
+<!--sighting data table-->
+<div class="row m-4 border border-dark">
+    <div class="col text-center m-3">
+        <table class="table table-striped table-dark">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Hero</th>
+                <th>Location</th>
+                <th></th> <!--View-->
+                <th></th> <!--Edit-->
+                <th></th> <!--Delete-->
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="sighting : ${sightings}">
+                <td th:text="${sighting.date}">Sighting Date</td>
+                <td th:text="${sighting.hero.name}">Sighting Hero</td>
+                <td th:text="${sighting.location.name}">Sighting Location</td>
+                <td><a href="#" th:href="@{/viewSighting(id=${sighting.id})}"><i class="fas fa-eye"></i></a></td>
+                <td><a href="#" th:href="@{/editSighting(id=${sighting.id})}"><i class="fas fa-edit"></i></a></td>
+                <td><a href="#" th:href="@{/deleteSighting(id=${sighting.id})}"><i class="fas fa-trash"></i></a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
 <!--End Body-->
 
 <!--Scripts-->

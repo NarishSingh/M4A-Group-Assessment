@@ -53,7 +53,7 @@ public class SightingController {
         List<Hero> heroes = hDao.readAllHeroes();
         List<Location> locations = locDao.readAllLocations();
         List<Sighting> sightings = siDao.readAllSightings();
-
+        
         model.addAttribute("superpowers", superpowers);
         model.addAttribute("heroes", heroes);
         model.addAttribute("locations", locations);
