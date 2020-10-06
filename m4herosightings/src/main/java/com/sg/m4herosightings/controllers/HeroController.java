@@ -40,7 +40,7 @@ public class HeroController {
      * @param model {Model} will hold all heroes from db
      * @return {String} same subdomain
      */
-    @GetMapping("heroes")
+    @GetMapping("hero")
     public String displayHeroes(Model model) {
         List<Superpower> superpowers = spDao.readAllSuperpowers();
         List<Hero> heroes = hDao.readAllHeroes();
