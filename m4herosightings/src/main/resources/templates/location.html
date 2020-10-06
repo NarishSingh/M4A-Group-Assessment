@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Hero Sightings - Locations</title>
@@ -18,28 +17,111 @@
 <div class="container">
     <div class="row m-4">
         <div class="col text-center border border-dark">
-            <h1>HERO Sightings</h1>
+            <a href="/"><h1>HERO Sightings</h1></a>
         </div>
     </div>
     <div class="row m-4 border border-dark">
         <div class="col text-center m-3">
-            <a href="superpower" class="btn btn-outline-primary btn-lg">Teachers</a>
+            <a href="superpower" class="btn btn-outline-primary btn-lg">Superpowers</a>
         </div>
         <div class="col text-center m-3">
-            <a href="hero" class="btn btn-outline-primary btn-lg">Students</a>
+            <a href="hero" class="btn btn-outline-primary btn-lg">Heroes</a>
         </div>
         <div class="col text-center m-3">
-            <a href="location" class="btn btn-outline-primary btn-lg">Courses</a>
+            <a href="location" class="btn btn-outline-primary btn-lg">Locations</a>
         </div>
         <div class="col text-center m-3">
-            <a href="sighting" class="btn btn-outline-primary btn-lg">Courses</a>
+            <a href="sighting" class="btn btn-outline-primary btn-lg">Sighting</a>
         </div>
         <div class="col text-center m-3">
-            <a href="organization" class="btn btn-outline-primary btn-lg">Courses</a>
+            <a href="organization" class="btn btn-outline-primary btn-lg">Organization</a>
         </div>
     </div>
-</div>
 
+
+<div class="row m-4 border border-dark">
+        <!--error msg-->
+<!--        <div class="col-12 m-1 text-center"
+             th:if="${!errors.isEmpty()}">
+            <p class="alert alert-danger" th:each="error : ${errors}"
+               th:text="${error.message}">Error message</p>
+        </div>-->
+        <!--add location form-->
+        <div class="col-3 m-3 text-center">
+            <span class="h3">Add Address</span>
+        </div>
+        <div class="col-7 m-3 text-center">
+            <form action="addLocation" method="POST">
+                <div class="row form-group">
+                    <label class="col-3 col-form-label" for="street">Street</label>
+                    <div class="col-9">
+                        <input type="text" id="street" name="street" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label for="city" class="col-3 col-form-label">City</label>
+                    <div class="col-9">
+                        <input id="city" name="city" type="text" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label for="city" class="col-3 col-form-label">State</label>
+                    <div class="col-9">
+                        <input type="text" class="form-control" id="state" name="state"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label for="zipcode" class="col-3 col-form-label">Zipcode</label>
+                    <div class="col-9">
+                        <input type="text" id="zipcode" name="zipcode" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-3 col-form-label" for="name">Name</label>
+                    <div class="col-9">
+                        <input type="text" id="name" name="name" class="form-control"/>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-3 col-form-label" for="description">Description</label>
+                    <div class="col-9">
+                        <textarea id="description" name="description" class="form-control"></textarea>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Location</button>
+            </form>
+        </div>
+
+    </div>
+            <div class="row m-4 border border-dark">
+            <div class="col text-center m-3">
+                <!--location data table-->
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>City</th>
+                        <th>State</th>
+                        <th>Details</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="location : ${locations}">
+                        <td th:text="${location.locationId}">Location Id</td>
+                        <td th:text="${location.city}">Location City</td>
+                        <td th:text="${location.state}">Location State</td>
+                        <td><a href="#" th:href="@{/showLocationDetails(id=${location.locationId})}"
+                        >Details</a></td>
+                        <td><a href="#" th:href="@{/editLocation(id=${location.locationId})}">Edit</a></td>
+                        <td><a href="#" th:href="@{/deleteLocation(id=${location.locationId})}">Delete</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</div>
 <!--End Body-->
 
 <!--Scripts-->
