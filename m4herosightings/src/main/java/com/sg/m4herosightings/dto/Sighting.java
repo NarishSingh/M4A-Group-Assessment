@@ -21,6 +21,7 @@ public class Sighting {
     private String description;
 
     private Hero hero;
+    
     private Location location;
 
     /*ctors*/
