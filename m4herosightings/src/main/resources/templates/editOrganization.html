@@ -21,19 +21,103 @@
     </div>
     <div class="row m-4 border border-dark">
         <div class="col text-center m-3">
-            <a href="superpower" class="btn btn-outline-primary btn-lg">Teachers</a>
+            <a href="superpower" class="btn btn-outline-primary btn-lg">Superpowers</a>
         </div>
         <div class="col text-center m-3">
-            <a href="hero" class="btn btn-outline-primary btn-lg">Students</a>
+            <a href="hero" class="btn btn-outline-primary btn-lg">Heroes</a>
         </div>
         <div class="col text-center m-3">
-            <a href="location" class="btn btn-outline-primary btn-lg">Courses</a>
+            <a href="location" class="btn btn-outline-primary btn-lg">Locations</a>
         </div>
         <div class="col text-center m-3">
-            <a href="sighting" class="btn btn-outline-primary btn-lg">Courses</a>
+            <a href="sighting" class="btn btn-outline-primary btn-lg">Sighting</a>
         </div>
         <div class="col text-center m-3">
-            <a href="organization" class="btn btn-outline-primary btn-lg">Courses</a>
+            <a href="organization" class="btn btn-outline-primary btn-lg">Organization</a>
+        </div>
+    </div>
+        <div class="row m-4 border border-dark">
+        <div class="col-3 text-center m-3">
+            <span class="h3">Edit Organization</span>
+        </div>
+        <div class="col-7 text-center m-3">
+            <form action="editOrganization" method="POST">
+                <div class="modal-body">
+
+                    <div class="row form-group">
+                        <label for="updateName" class="col-3 col-form-label">Name</label>
+                        <div class="col-9">
+                            <input type="text" id="updateName" name="name" class="form-control"
+                                   th:value="${organization.name}"/>
+                            <div th:if="${#fields.hasErrors('organization.name')}">
+                                <p th:each="error: ${#fields.errors('organization.name')}" th:text="${error}"
+                                   class="alert alert-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="updatePhone" class="col-3 col-form-label">Phone</label>
+                        <div class="col-9">
+                            <input id="updatePhone" name="phone" type="text" class="form-control"
+                                   th:value="${organization.phone}"/>
+                            <div th:if="${#fields.hasErrors('organization.phone')}">
+                                <p th:each="error: ${#fields.errors('organization.phone')}" th:text="${error}"
+                                   class="alert alert-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="updateEmail" class="col-3 col-form-label">Email</label>
+                        <div class="col-9">
+                            <input type="text" class="form-control" id="updateEmail" name="email"
+                                   th:value="${organization.email}"/>
+                            <div th:if="${#fields.hasErrors('organization.email')}">
+                                <p th:each="error: ${#fields.errors('organization.email')}" th:text="${error}"
+                                   class="alert alert-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="location" class="col-3 col-form-label">Location</label>
+                        <div class="col-9">
+                            <select id="location" name="locationId" class="form-control">
+                                <option th:each="location: ${locations}"
+                                        th:value="${location.locationId}"
+                                        th:text="${location.name + ' - ' + location.zipcode}"
+                                        th:selected="${organization.location.locationId == location.locationId}">Location Name</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label for="hero" class="col-3 col-form-label">Members</label>
+                        <div class="col-9">
+                            <select multiple id="hero" name="heroId" class="form-control">
+                                <option th:each="hero: ${heroes}"
+                                        th:value="${hero.heroId}"
+                                        th:text="${hero.name + ' - ' + hero.superpower.name}"
+                                        th:selected="${organization.members.contains(hero)}">Member Name</option>
+                            </select>
+                            <div th:if="${#fields.hasErrors('organization.members')}">
+                                <p th:each="error: ${#fields.errors('organization.members')}" th:text="${error}"
+                                   class="alert alert-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-3 col-form-label" for="updateDescription">Description</label>
+                        <div class="col-9">
+                            <input type="text" id="updateDescription" name="description"
+                                   class="form-control" th:value="${organization.description}"/>
+                            <div th:if="${#fields.hasErrors('organization.description')}">
+                                <p th:each="error: ${#fields.errors('organization.description')}" th:text="${error}"
+                                   class="alert alert-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="organizationId" th:value="${organization.organizationId}" class="form-control"/>
+                    <button type="submit" class="btn btn-primary">Update Organization</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

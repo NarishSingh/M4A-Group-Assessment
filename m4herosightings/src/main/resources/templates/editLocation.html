@@ -49,6 +49,10 @@
                         <div class="col-9">
                             <input type="text" id="updateStreet" name="street" class="form-control"
                                    th:value="${location.street}"/>
+                                <div th:if="${#fields.hasErrors('location.street')}">
+                                   <p th:each="error : ${#fields.errors('location.street')}" class="alert alert-danger" 
+                                      th:text="${error}"> Bad street name</p>
+                                </div>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -56,6 +60,10 @@
                         <div class="col-9">
                             <input id="updateCity" name="city" type="text" class="form-control"
                                    th:value="${location.city}"/>
+                            <div th:if="${#fields.hasErrors('location.city')}">
+                                   <p th:each="error : ${#fields.errors('location.city')}" class="alert alert-danger" 
+                                      th:text="${error}"> Bad city name</p>
+                            </div>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -63,6 +71,10 @@
                         <div class="col-9">
                             <input type="text" class="form-control" id="updateState" name="state"
                                    th:value="${location.state}"/>
+                            <div th:if="${#fields.hasErrors('location.state')}">
+                                   <p th:each="error : ${#fields.errors('location.state')}" class="alert alert-danger" 
+                                      th:text="${error}"> Bad state name</p>
+                            </div>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -70,6 +82,10 @@
                         <div class="col-9">
                             <input type="text" id="updateZipcode" name="zipcode" class="form-control"
                                    th:value="${location.zipcode}"/>
+                            <div th:if="${#fields.hasErrors('location.zipcode')}">
+                                   <p th:each="error : ${#fields.errors('location.zipcode')}" class="alert alert-danger" 
+                                      th:text="${error}"> Bad zipcode </p>
+                            </div>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -77,13 +93,21 @@
                         <div class="col-9">
                             <input type="text" id="updateName" name="name" class="form-control"
                                    th:value="${location.name}"/>
+                            <div th:if="${#fields.hasErrors('location.name')}">
+                                   <p th:each="error : ${#fields.errors('location.name')}" class="alert alert-danger" 
+                                      th:text="${error}"> Bad location name</p>
+                            </div>
                         </div>
                     </div>
                     <div class="row form-group">
                         <label class="col-3 col-form-label" for="updateDescription">Description</label>
                         <div class="col-9">
                             <input type="text" id="updateDescription" name="description"
-                                   class="form-control" th:value="${location.description}"></textarea>
+                                   class="form-control" th:value="${location.description}"/>
+                            <div th:if="${#fields.hasErrors('location.description')}">
+                                   <p th:each="error : ${#fields.errors('location.description')}" class="alert alert-danger" 
+                                      th:text="${error}"> Bad Description</p>
+                            </div>
                         </div>
                     </div>
                     <input type="hidden" name="locationId" th:value="${location.locationId}" class="form-control"/>

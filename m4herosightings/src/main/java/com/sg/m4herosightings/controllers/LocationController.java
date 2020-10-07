@@ -8,6 +8,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.validation.ConstraintViolation;
+import org.springframework.validation.BindingResult;
+import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,13 +66,14 @@ public class LocationController {
                 location.setLatitude(Double.parseDouble(coordinates[0]));
                 //assigning longitude to location
                 location.setLongitude(Double.parseDouble(coordinates[1]));
-            } catch (IOException | InterruptedException ex) {
+                locationDao.createLocation(location);
+            } catch (IOException | NumberFormatException |InterruptedException ex) {
                 //incase exception set to 0.0
                 location.setLatitude(0.0);
                 location.setLongitude(0.0);
             }
-
-            locationDao.createLocation(location);
+            
+            
         }
 
         return "redirect:/location";
@@ -126,7 +129,12 @@ public class LocationController {
      * @return {String} redirect to subdomain
      */
     @PostMapping("editLocation")
-    public String updateLocation(Location location) {
+    public String updateLocation(@Valid Location location, BindingResult result) {
+        
+        if(result.hasErrors()){
+            return "editLocation";
+        }
+        
         
         String address = location.getStreet() + ", " + location.getCity()
                 + ", " + location.getState() + " " + location.getZipcode();
@@ -141,13 +149,13 @@ public class LocationController {
             location.setLatitude(Double.parseDouble(coordinates[0]));
             //assigning longitude to location
             location.setLongitude(Double.parseDouble(coordinates[1]));
-        } catch (IOException | InterruptedException ex) {
+            locationDao.updateLocation(location);
+        } catch (IOException | NumberFormatException| InterruptedException ex) {
             //incase exception set to 0.0
             location.setLatitude(0.0);
             location.setLongitude(0.0);
         }
 
-        locationDao.updateLocation(location);
 
         return "redirect:/location";
     }

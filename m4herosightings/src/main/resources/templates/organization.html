@@ -38,17 +38,17 @@
     </div>
     <div class="row m-4 border border-dark">
         <!--error msg-->
-        <!--        <div class="col-12 m-1 text-center"
+                <div class="col-12 m-1 text-center"
                      th:if="${!errors.isEmpty()}">
                     <p class="alert alert-danger" th:each="error : ${errors}"
                        th:text="${error.message}">Error message</p>
-                </div>-->
+                </div>
         <!--add location form-->
         <div class="col-3 m-3 text-center">
-            <span class="h3">Add Address</span>
+            <span class="h3">Add Organization</span>
         </div>
         <div class="col-7 m-3 text-center">
-            <form action="addLocation" method="POST">
+            <form action="addOrganization" method="POST">
                 <div class="row form-group">
                     <label class="col-3 col-form-label" for="name">Name</label>
                     <div class="col-9">
@@ -69,32 +69,32 @@
                 </div>
                 <div class="row form-group">
                     <label for="location" class="col-3 col-form-label">Location</label>
-                    <div class="col-9">
-                        <select id="location" name="locationId" class="form-control">
-                            <option th:each="location: ${locations}"
-                                    th:value="${location.locationId}"
+                     <div class="col-9">
+                            <select id="location" name="locationId" class="form-control">
+                                <option th:each="location: ${locations}"
+                                        th:value="${location.locationId}"
                                     th:text="${location.name + ' ' + location.zipcode}">Address
                             </option>
                         </select>
                     </div>
                 </div>
-                <!--                <div class="row form-group">
+                                <div class="row form-group">
                                     <label class="col-3 col-form-label" for="member">Name</label>
                                     <div class="col-9">
-                                        <select multible id="member" name="heroId" class="form-control">
+                                        <select multiple id="member" name="heroId" class="form-control">
                                             <option th:each="hero: ${heroes}"
                                                     th:value="${hero.heroId}"
                                                     th:text="${hero.name + ' - ' + hero.superpower.name}">Hero</option>
                                         </select>
                                     </div>
-                                </div>-->
+                                </div>
                 <div class="row form-group">
                     <label class="col-3 col-form-label" for="description">Description</label>
                     <div class="col-9">
                         <textarea id="description" name="description" class="form-control"></textarea>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Add Location</button>
+                <button type="submit" class="btn btn-primary">Add Organization</button>
             </form>
         </div>
 

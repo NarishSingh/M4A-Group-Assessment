@@ -13,11 +13,14 @@ import java.util.List;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
+import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -71,8 +74,10 @@ public class OrganizationController {
              
              org.setLocation(locationDao.readLocationById(Integer.parseInt(locationId)));
              List<Hero> heroes = new ArrayList<>();
-             for(String id: heroesId){
-                 heroes.add(heroDao.readHeroById(Integer.parseInt(id)));
+             if(heroesId != null){
+                for(String id: heroesId){
+                    heroes.add(heroDao.readHeroById(Integer.parseInt(id)));
+                }
              }
              org.setMembers(heroes);
              orgDao.createOrganization(org);
@@ -103,6 +108,7 @@ public class OrganizationController {
      */
     @GetMapping("editOrganization")
     public String updateOrganization(Integer id, Model model){
+
         Organization org = orgDao.readOrganizationById(id);
         List<Location> locations = locationDao.readAllLocations();
         List<Hero> heroes = heroDao.readAllHeroes();
@@ -111,24 +117,48 @@ public class OrganizationController {
         model.addAttribute("heroes", heroes);
         return "editOrganization";
     }
-    //Need input validation for edit
+
     
     /**
      * POST - add org to db
      * @param org
+     * @param result
      * @param request
+     * @param model
      * @return 
      */
     @PostMapping("editOrganization")
-    public String updateOrganization(Organization org, HttpServletRequest request){
+    public String updateOrganization(@Valid Organization org, BindingResult result, HttpServletRequest request, Model model){
+        if(result.hasErrors()){
+            return "editOrganization";
+        }
         String locationId = request.getParameter("locationId");
         String[] heroIds = request.getParameterValues("heroId");
         org.setLocation(locationDao.readLocationById(Integer.parseInt(locationId)));
         List<Hero> heroes = new ArrayList<>();
-        for(String id: heroIds){
-            heroes.add(heroDao.readHeroById(Integer.parseInt(id)));
+        if(heroIds != null){
+            for(String id: heroIds){
+                heroes.add(heroDao.readHeroById(Integer.parseInt(id)));
+            }
+        }else{
+            FieldError error = new FieldError("organization", "members", "Must include one Member");
+            result.addError(error);
         }
         org.setMembers(heroes);
+        
+        if(result.hasErrors()){
+            model.addAttribute("organization", org);
+            model.addAttribute("locations", locationDao.readAllLocations());
+            model.addAttribute("heroes", heroDao.readAllHeroes());
+            return "editOrganization";
+        }
+        orgDao.updateOrganization(org);
+        return "redirect:/organization";
+    }
+    
+    @GetMapping("deleteOrganization")
+    public String deleteOrganization(Integer id){
+        orgDao.deleteOrganizationById(id);
         return "redirect:/organization";
     }
     
