@@ -126,7 +126,7 @@ public class HeroController {
         model.addAttribute("hero", hero);
         model.addAttribute("superpowers", superpowers);
 
-        return "editStudent";
+        return "editHero";
     }
 
     /**
@@ -140,7 +140,7 @@ public class HeroController {
     @PostMapping("editHero")
     public String performEditStudent(@Valid Hero hero, BindingResult result) {
         if (result.hasErrors()) {
-            return "editStudent";
+            return "editHero";
         }
 
         hDao.updateHero(hero);
