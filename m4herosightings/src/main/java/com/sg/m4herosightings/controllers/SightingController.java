@@ -186,6 +186,9 @@ public class SightingController {
             model.addAttribute("locations", locDao.readAllLocations());
 
             model.addAttribute("sighting", sighting);
+            sighting.setDate(LocalDate.parse(dateString));
+            sighting.setHero(hDao.readHeroById(Integer.parseInt(heroId)));
+            sighting.setLocation(locDao.readLocationById(Integer.parseInt(locationId)));
             
             return "editSighting";
         }
