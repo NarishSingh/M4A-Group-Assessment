@@ -47,7 +47,7 @@ public class HeroController {
         model.addAttribute("heroes", heroes);
         model.addAttribute("superpowers", superpowers);
 
-        return "heroes";
+        return "hero";
     }
 
     /**
@@ -90,7 +90,7 @@ public class HeroController {
             hDao.createHero(hero);
         }
 
-        return "redirect:/heroes";
+        return "redirect:/hero";
     }
 
     /*DETAILS*/
@@ -145,7 +145,7 @@ public class HeroController {
 
         hDao.updateHero(hero);
 
-        return "redirect:/heroes";
+        return "redirect:/hero";
     }
 
     /*DELETE*/
@@ -159,7 +159,7 @@ public class HeroController {
     public String deleteHero(Integer id) {
         hDao.deleteHeroById(id);
 
-        return "redirect:/heroes";
+        return "redirect:/hero";
     }
     
 }

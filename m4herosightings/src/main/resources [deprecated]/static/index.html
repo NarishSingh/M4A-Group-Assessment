@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+    <head>
+        <title>
+
+        </title>
+
+        <meta charset="UTF-8">
+        <meta name="description" content="">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Link to BS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+              integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+
+        <!-- Style CSS -->
+        <!--    <link rel="stylesheet" href="index.css">-->
+        <link rel="stylesheet" th:href="@{index.css}"/>
+        <link rel="stylesheet" th:href="@{plugins/swiper.min.css}"/>
+
+        <!-- Add icon library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!--        <style>
+            @font-face {
+                font-family: 'Archivo Black';
+                src: url("fonts/ArchivoBlack-Regular.ttf");
+            }
+
+            .swiper-container {
+                background-color: rgba(0, 0, 0, 0.5);
+                height: 100%;
+                width: 100%;
+                margin: 0 auto;
+            }
+
+            .swiper-container img {
+                background-color: rgba(0, 0, 0, 0.5);
+                width: 500px;
+                z-index: -5;
+            }
+
+            .swiper-slider {
+                width: 500px;
+            }
+
+            .swiper-wrapper {
+                width: 500px;
+            }
+
+            .section-1 {
+                height: 75vh;
+                position: relative;
+                background-size: cover;
+                background-position: 50% 50%;
+                background-attachment: fixed;
+                background-image: url("assets/cover-4.jpg");
+            }
+
+            .overlay {
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                top: 0;
+                left: 0;
+                background: rgba(0, 0, 0, 0.5);
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+            }
+
+            .top .section-2 {
+                text-align: center;
+                padding: 100px;
+            }
+
+            .top .section-2 h3 {
+                color: rgb(0, 247, 255);
+                font-size: 20px;
+            }
+
+            .top .section-2 p {
+                color: white;
+                font-size: 30px;
+                font-family: 'Archivo Black';
+            }
+
+            #info {
+                padding: 20px;
+                color: rgba(255, 255, 255, 0.486);
+                font-size: 25px;
+            }
+
+            .top .section-2 .btn {
+                margin: 0 auto;
+                margin-bottom: 100px;
+                margin-top: 30px;
+                margin-left: 10px;
+                margin-right: 10px;
+                padding: 10px, 30px, 10px, 30px;
+            }
+
+            .top .section-2 .row {
+                border: 5px solid red;
+                display: flex;
+            }
+
+            .top .section-2 .column {
+                border: 5px solid blue;
+            }
+        </style>-->
+    </head>
+
+    <body>
+        <div class="bg"></div>
+        <div class="container-fluid">
+            <div class="nav">
+                <ul>
+                    <li><a th:href="@{index.html}">Home</a></li>
+                    <li><a th:href="@{heroes.html}">Heroes</a>
+                        <ul>
+                            <li><a th:href="@{}">Powers</a></li> <!--FIXME add page when created-->
+                            <li><a th:href="@{}">Organizations</a></li> <!--FIXME add page when created-->
+                        </ul>
+                    </li>
+                    <li><a href="sightings.html">Sightings</a>
+                        <ul>
+                            <li><a th:href="@{location.html}" id="scrollToLocation">Location</a></li> <!--TODO ONLY ONE THAT WORKS-->
+                        </ul>
+                    </li>
+                    <li><a href="#" th:href="@{about.html}">About</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="top">
+                <div class="section-1">
+                    <div class="overlay"></div>
+                    <!-- <button type="button" class="btn btn-outline-danger btn-lg" id="get-started" style="color:white;background-color:rgba(0,0,0,0.8);z-index:3;margin-top:30%;padding:10px;padding-left:30px;padding-right:30px">Get Started</button> -->
+                </div>
+                <div class="section-2">
+                    <h3>Improve your vision</h3>
+                    <p>Analyzing all heroes' activity...</p>
+                    <button type="button" class="btn btn-outline-primary btn-lg" id="register">News</button>
+                    <hr style="background-color:rgba(255,255,255,0.15);">
+                    <p id="info">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                        industry's standard
+                        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+                        a type specimen
+                        book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                        essentially
+                        unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+                        passages, and more
+                        recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        <br><br>
+                        You will track a hero or a fight, as well as their contact.
+                    </p>
+                    <button type="button" class="btn btn-outline-success btn-lg" id="register">Register</button>
+                    <button type="button" class="btn btn-outline-danger btn-lg" id="login">Login</button>
+                </div>
+            </div>
+            <div class="middle">
+                <div class="section-1">
+                    <div class="overlay" style="background-color:rgba(0,0,0,0.5);"></div>
+                    <div class="swiper-container">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide" onhover="hoverText">
+                                <img th:src="@{assets/glacier.jpg}" alt="glacier">
+                            </div>
+                            <div class="swiper-slide">
+                                <img th:src="@{assets/glacier.jpg}" alt="glacier">
+                            </div>
+                            <div class="swiper-slide">
+                                <img th:src="@{assets/glacier.jpg}" alt="glacier">
+                            </div>
+                        </div>
+                        <!-- DOT NAV -->
+                        <div class="swiper-pagination"
+                             style="background-color:rgba(0,0,0,0.8);height:50px;padding-top:18px"></div>
+                        <!-- NOT SURE YET -->
+                        <div class="swiper-scrollbar"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom">
+                <div class="row">
+                    <div class="column col-6">
+                        <h3>Our Mission</h3>
+                        <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                            Ipsum has been the industry's
+                            standard
+                            dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+                            make a type
+                            specimen
+                            book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                            remaining essentially
+                            unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem
+                            Ipsum passages, and
+                            more
+                            recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                        </p>
+                        <!--description-->
+                        <div class="form-group row justify-content-center align-items-center">
+                            <label for="description-input" class="col-form-label"></label>
+                            <div class="col-7">
+                                <input type="text" name="description-input" class="form-control" id="description-input">
+                            </div>
+                            <button type="button" class="btn btn-outline-warning btn-lg" id="send">Send Feedback</button>
+                        </div>
+                    </div>
+                    <div class="column col-4">
+                        <h3>About</h3>
+                        <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                            Ipsum has been the industry's standard
+                            dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+                            make a type specimen
+                            book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                            remaining essentially
+                            unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem
+                            Ipsum passages, and more
+                            recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+                            Ipsum.</p>
+                    </div>
+                    <div class="column col-2">
+                        <h3 style="text-align:right">SEARCH</h3><br><br>
+                        <ul style="list-style:none;text-align:right;color:white">
+                            <a href="#">
+                                <li>News</li>
+                            </a>
+                            <a href="#">
+                                <li>Account</li>
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+                <hr style="background-color:rgba(255,255,255,0.1);">
+            </div>
+            <div class="footer">
+                <!-- Add font awesome icons -->
+                <a href="#" class="fa fa-facebook"></a>
+                <a href="#" class="fa fa-linkedin"></a>
+                <a href="#" class="fa fa-youtube"></a>
+                <a href="#" class="fa fa-instagram"></a>
+                <a href="#" class="fa fa-reddit"></a>
+                <br><br>
+                @Copyright iTimmy
+            </div>
+        </div>
+
+    </body>
+
+    <!-- PLUGINS + THIRD PARTY -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+    <script src="plugins/swiper.min.js"></script>
+
+    <script type="text/javascript">
+        // no use right now
+        $(".sightingGallery").on('click', function (event) {
+            console.log("a");
+            event.scrollToSightingsLocation;
+        });
+
+        var hoverText = document.querySelector(".hoverText");
+
+        function scrollToSightingsLocation(event) {
+            console.log("on");
+            window.scrollX = 2248;
+        }
+
+        document.addEventListener('scroll', function () {
+            var x = window.scrollX;
+            var y = window.scrollY;
+            console.log(x);
+            console.log(y);
+        });
+    </script>
+
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+            },
+        });
+    </script>
+
+</html>
