@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
 
@@ -99,8 +99,36 @@
                 <button type="submit" class="btn btn-primary">Add Organization</button>
             </form>
         </div>
+
+    </div>
+    <div class="row m-4 border border-dark">
         <div class="col text-center m-3">
-            <a href="organization" class="btn btn-outline-primary btn-lg">Courses</a>
+            <!--location data table-->
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Details</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="organization : ${organizations}">
+                    <td th:text="${organization.organizationId}">Organization Id</td>
+                    <td th:text="${organization.name}">Organization Name</td>
+                    <td th:text="${organization.email}">Organization Email</td>
+                    <td th:text="${organization.phone}">Organization Phone</td>
+                    <td><a href="#" th:href="@{/displayOrgDetails(id=${organization.organizationId})}"
+                    >Details</a></td>
+                    <td><a href="#" th:href="@{/editOrganization(id=${organization.organizationId})}">Edit</a></td>
+                    <td><a href="#" th:href="@{/deleteOrganization(id=${organization.organizationId})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
