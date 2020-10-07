@@ -14,7 +14,6 @@
 </head>
 <body>
 <!--Begin Body-->
-
 <!--Navbar-->
 <div class="container">
     <div class="row m-4">
@@ -41,6 +40,43 @@
     </div>
 </div>
 
+<div class="row m-4 border">
+    <div class="col-6 text-right"><strong>ID:</strong></div>
+    <div class="col-6 text-left">
+        <span th:text="${sighting.sightingId}">display id</span>
+    </div>
+
+    <div class="col-6 text-right"><strong>Date:</strong></div>
+    <div class="col-6 text-left">
+        <span th:text="${sighting.date}">display date</span>
+    </div>
+
+    <div class="col-6 text-right"><strong>Description:</strong></div>
+    <div class="col-6 text-left">
+        <span th:text="${sighting.description}">display description</span>
+    </div>
+
+    <div class="col-6 text-right"><strong>Hero:</strong></div>
+    <div class="col-6 text-left">
+        <span th:text="${sighting.hero.name}">display name</span>
+    </div>
+
+    <div class="col-6 text-right"><strong>Location:</strong></div>
+    <div class="col-6 text-left">
+        <span th:text="${sighting.location.name}">display location</span>
+    </div>
+
+    <div class="col-6 text-right"><strong>Address:</strong></div>
+    <div class="col-6 text-left">
+        <span th:text="${sighting.location.street + ' ' + sighting.location.city + ' ' + sighting.location.state + ' '
+        + sighting.location.zipcode}">display address</span>
+    </div>
+
+    <div class="col-6 text-right"><strong>Coordinates:</strong></div>
+    <div class="col-6 text-left">
+        <span th:text="${sighting.location.latitude + ' ' + sighting.location.longitude}">display coordinates</span>
+    </div>
+</div>
 <!--End Body-->
 
 <!--Scripts-->
