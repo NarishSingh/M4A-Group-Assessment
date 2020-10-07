@@ -81,9 +81,6 @@ public class SightingController {
     @PostMapping("addSighting")
     public String addSighting(@Valid Sighting sighting, BindingResult result,
             HttpServletRequest request, Model model) {
-        Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
-        violations = validate.validate(sighting);
-
         String dateString = request.getParameter("date");
         String heroId = request.getParameter("heroId");
         String locationId = request.getParameter("locationId");
@@ -104,7 +101,11 @@ public class SightingController {
             model.addAttribute("superpowers", spDao.readAllSuperpowers());
             model.addAttribute("heroes", hDao.readAllHeroes());
             model.addAttribute("locations", locDao.readAllLocations());
+            model.addAttribute("errors", violations);
         }
+
+        Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
+        violations = validate.validate(sighting);
 
         if (violations.isEmpty()) {
             siDao.createSighting(sighting);
