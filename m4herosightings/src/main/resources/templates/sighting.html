@@ -1,12 +1,12 @@
+<!DOCTYPE html>
 <html>
-
-<head>
-    <title>HERO Sighting - Sightings</title>
-
+<head lang="en" xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>HERO Sighting - Sightings</title>
 
     <!-- Link to BS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -128,7 +128,7 @@
             <a href="index.html" class="btn btn-outline-primary btn-lg" id="landingPage">Home</a>
         </div>
         <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Students</a>
+            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villians</a>
         </div>
         <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
             <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
@@ -225,18 +225,18 @@
         <div class="middle" id="sightingsMiddle"
              style="background-image:url('assets/cover-4.jpg');background-attachment:fixed;height:80%"><br><br><br>
             <!--add sighting form-->
-            <div class="row m-4">
+            <div class="row border m-4">
                 <div class="col-3 text-center m-3">
                     <span class="h3">Add Sighting</span>
                 </div>
 
                 <div class="col-7 text-center m-3">
-                    <form action="addSighting" method="post">
+                    <form action="addSighting" method="POST">
                         <!--date-->
                         <div class="form-group row">
-                            <label for="name" class="col-3 col-form-label">Name/Alias:</label>
+                            <label for="date" class="col-3 col-form-label">Date:</label>
                             <div class="col-9">
-                                <input type="text" class="form-control" name="name" id="name">
+                                <input type="date" class="form-control" name="date" id="date">
                             </div>
                         </div>
 
@@ -250,10 +250,9 @@
 
                         <!--hero select-->
                         <div class="form-group row">
-                            <label for="superpower" class="col-3 col-form-label">Superpower:</label>
-                            <select name="superpowerId" id="superpower" class="form-control">
-                                <option th:each="superpower : ${superpowers}" th:value="${superpower.superpowerId}"
-                                        th:text="${superpower.name}">
+                            <label for="hero" class="col-3 col-form-label">Superpower:</label>
+                            <select name="heroId" id="hero" class="form-control col">
+                                <option th:each="hero : ${heroes}" th:value="${hero.heroId}" th:text="${hero.name}">
                                     Superpower
                                 </option>
                             </select>
@@ -262,7 +261,7 @@
                         <!--location select-->
                         <div class="form-group row">
                             <label for="location" class="col-3 col-form-label">Location:</label>
-                            <select name="locationId" id="location" class="form-control">
+                            <select name="locationId" id="location" class="form-control col">
                                 <option th:each="location : ${locations}" th:value="${location.locationId}"
                                         th:text="${location.name}">
                                     Location
@@ -270,103 +269,105 @@
                             </select>
                         </div>
 
-                        <button type="submit" class="btn btn-success">Add Sighting</button>
+                        <button type="submit" class="btn btn-outline-primary">Add Sighting</button>
                     </form>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="bottom" id="about">
-            <div class="row">
-                <div class="column col-xl-6 col-lg-12 col-sm-12">
-                    <h3>Our Mission</h3>
-                    <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem
-                        Ipsum has been the industry's
-                        standard
-                        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                        it to make
-                        a type
-                        specimen
-                        book. It has survived not only five centuries, but also the leap into electronic
-                        typesetting, remaining
-                        essentially
-                        unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                        Lorem Ipsum
-                        passages, and
-                        more
-                        recently with desktop publishing software like Aldus PageMaker including versions of Lorem
-                        Ipsum.
-                    </p>
-                </div>
-                <div class="column col-xl-6 col-lg-12 col-sm-12">
-                    <h3>About</h3>
-                    <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem
-                        Ipsum has been the industry's standard
-                        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                        it to make
-                        a type specimen
-                        book. It has survived not only five centuries, but also the leap into electronic
-                        typesetting, remaining
-                        essentially
-                        unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                        Lorem Ipsum
-                        passages, and more
-                        recently with desktop publishing software like Aldus PageMaker including versions of Lorem
-                        Ipsum.</p>
-                </div>
+    <div class="bottom" id="about">
+        <div class="row">
+            <div class="column col-xl-6 col-lg-12 col-sm-12">
+                <h3>Our Mission</h3>
+                <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem
+                    Ipsum has been the industry's
+                    standard
+                    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                    it to make
+                    a type
+                    specimen
+                    book. It has survived not only five centuries, but also the leap into electronic
+                    typesetting, remaining
+                    essentially
+                    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+                    Lorem Ipsum
+                    passages, and
+                    more
+                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+                    Ipsum.
+                </p>
             </div>
-            <div class="row">
-                <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12">
-                    <div class="form-group row justify-content-center align-items-center">
-                        <label for="description-input" class="col-form-label"></label>
-                        <div class="col-xl-7 col-lg-12 col-sm-12">
-                            <input type="text" name="description-input" class="form-control" id="description-input">
-                        </div>
-                        <button type="button" class="btn btn-outline-warning btn-lg" id="send">Send
-                            Feedback
-                        </button>
-                    </div>
-                </div>
-                <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12" style="padding-left: 100px">
-                    <ul class="row" style="list-style:none;text-align:center;color:white">
-                        <a class="col-3" href="#">
-                            <li>Home</li>
-                        </a> |
-                        <a class="col-3" href="#">
-                            <li>Heroes</li>
-                        </a> |
-                        <a class="col-3" href="#">
-                            <li>Sightings</li>
-                        </a>
-                    </ul>
-                </div>
+            <div class="column col-xl-6 col-lg-12 col-sm-12">
+                <h3>About</h3>
+                <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem
+                    Ipsum has been the industry's standard
+                    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                    it to make
+                    a type specimen
+                    book. It has survived not only five centuries, but also the leap into electronic
+                    typesetting, remaining
+                    essentially
+                    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+                    Lorem Ipsum
+                    passages, and more
+                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+                    Ipsum.</p>
             </div>
         </div>
-        <hr style="background-color:rgba(255,255,255,0.1);">
-        <div class="footer">
-            <!-- Add font awesome icons -->
-            <a href="#" class="fa fa-facebook"></a>
-            <a href="#" class="fa fa-linkedin"></a>
-            <a href="#" class="fa fa-youtube"></a>
-            <a href="#" class="fa fa-instagram"></a>
-            <a href="#" class="fa fa-reddit"></a>
-            <br><br>
-            @Copyright iTimmy
+        <div class="row">
+            <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group row justify-content-center align-items-center">
+                    <label for="description-input" class="col-form-label"></label>
+                    <div class="col-xl-7 col-lg-12 col-sm-12">
+                        <input type="text" name="description-input" class="form-control" id="description-input">
+                    </div>
+                    <button type="button" class="btn btn-outline-warning btn-lg" id="send">Send
+                        Feedback
+                    </button>
+                </div>
+            </div>
+            <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12" style="padding-left: 100px">
+                <ul class="row" style="list-style:none;text-align:center;color:white">
+                    <a class="col-3" href="#">
+                        <li>Home</li>
+                    </a> |
+                    <a class="col-3" href="#">
+                        <li>Heroes</li>
+                    </a> |
+                    <a class="col-3" href="#">
+                        <li>Sightings</li>
+                    </a>
+                </ul>
+            </div>
         </div>
     </div>
+    <hr style="background-color:rgba(255,255,255,0.1);">
+    <div class="footer">
+        <!-- Add font awesome icons -->
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-linkedin"></a>
+        <a href="#" class="fa fa-youtube"></a>
+        <a href="#" class="fa fa-instagram"></a>
+        <a href="#" class="fa fa-reddit"></a>
+        <br><br>
+        @Copyright iTimmy
+    </div>
+</div>
 </div>
 </body>
 
 <!-- PLUGINS + THIRD PARTY -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
