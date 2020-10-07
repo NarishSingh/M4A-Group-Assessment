@@ -78,23 +78,24 @@
 <body>
 <div class="bg"></div>
 <div class="container-fluid">
-    <div class="nav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="hero">Heroes</a>
-                <ul>
-                    <li><a href="hero">Powers</a></li>
-                    <li><a href="hero">Organizations</a></li>
-                </ul>
-            </li>
-            <li><a href="sightings.html">Sightings</a>
-                <ul>
-                    <li><a href="sightings.html" id="scrollToLocation">Location</a></li>
-                </ul>
-            </li>
-            <li><a href="about.html">About Us</a>
-            </li>
-        </ul>
+    <div class="row m-4">
+        <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
+            <a id="toggleTheme" class="btn btn-outline-info btn-lg">
+                <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
+            </a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="index.html" class="btn btn-outline-primary btn-lg" id="landingPage">Home</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villians</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a id="nav-about" class="btn btn-outline-primary btn-lg">About</a>
+        </div>
     </div>
     <div class="all">
         <div class="top">
