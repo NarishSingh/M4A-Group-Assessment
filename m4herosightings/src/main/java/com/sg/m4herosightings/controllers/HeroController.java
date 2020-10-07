@@ -79,7 +79,7 @@ public class HeroController {
             model.addAttribute("superpowers", spDao.readAllSuperpowers());
             model.addAttribute("hero", hero);
 
-            return "addHero";
+            return "redirect:/hero";
         }
 
         //validate inputs and create hero if all clear

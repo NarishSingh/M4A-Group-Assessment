@@ -54,6 +54,50 @@
             </div>
             <div class="separator"></div>
 
+            <!--add hero form-->
+            <hr>
+            <!--Add hero form-->
+            <!--FIXME templates not working-->
+            <div class="row">
+                <h3 id="add-hero-heading">Add Hero</h3>
+            </div>
+            <div class="row">
+                <form class="col" action="addHero" method="POST">
+                    <!--name-->
+                    <div class="form-group row">
+                        <label for="name" class="col-form-label">Name/Alias:</label>
+                        <div class="col-7">
+                            <input type="text" name="name" class="form-control" id="name"/>
+                        </div>
+                    </div>
+
+                    <!--description-->
+                    <div class="form-group row">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <div class="col-7">
+                            <input type="text" name="description" class="form-control" id="description">
+                        </div>
+                    </div>
+
+                    <!--superpower select-->
+                    <div class="form-group row">
+                        <label for="superpower" class="col-form-label">Superpower:</label>
+                        <div class="col-7">
+                            <select id="superpower" name="superpowerId" class="form-control">
+                                <option th:each="superpower: ${superpowers}"
+                                        th:value="${superpower.superpowerId}"
+                                        th:text="${superpower.name}">
+                                    Superpower Name
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--submit btn-->
+                    <button type="submit" class="btn btn-outline-primary">Add Hero/Villian</button>
+                </form>
+            </div>
+
             <!--hero data table-->
             <div class="choose" id="hero-data">
                 <ul>
@@ -76,7 +120,6 @@
                     </tr>
                     </thead>
 
-                    <!--Will fill dynamically from db-->
                     <tbody id="hero-content-rows">
                     <tr th:each="hero: ${heroes}">
                         <td th:text="${hero.name}">Hero Name</td>

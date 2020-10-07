@@ -60,6 +60,9 @@ public class SightingController {
         model.addAttribute("locations", locations);
         model.addAttribute("sightings", sightings);
 
+        violations.clear();
+        model.addAttribute("errors", violations);
+
         return "sighting";
     }
 
@@ -78,6 +81,9 @@ public class SightingController {
     @PostMapping("addSighting")
     public String addSighting(@Valid Sighting sighting, BindingResult result,
             HttpServletRequest request, Model model) {
+        Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
+        violations = validate.validate(sighting);
+
         String dateString = request.getParameter("date");
         String heroId = request.getParameter("heroId");
         String locationId = request.getParameter("locationId");
@@ -99,9 +105,6 @@ public class SightingController {
             model.addAttribute("heroes", hDao.readAllHeroes());
             model.addAttribute("locations", locDao.readAllLocations());
         }
-
-        Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
-        violations = validate.validate(sighting);
 
         if (violations.isEmpty()) {
             siDao.createSighting(sighting);
@@ -148,6 +151,9 @@ public class SightingController {
         Sighting sighting = siDao.readSightingById(id);
         model.addAttribute("sighting", sighting);
 
+        violations.clear();
+        model.addAttribute("errors", violations);
+
         return "editSighting";
     }
 
@@ -164,32 +170,29 @@ public class SightingController {
     @PostMapping("editSighting")
     public String performEditSighting(@Valid Sighting sighting, BindingResult result,
             HttpServletRequest request, Model model) {
+        if (result.hasErrors()) {
+            return "editSighting";
+        }
+
         String dateString = request.getParameter("date");
         String heroId = request.getParameter("heroId");
         String locationId = request.getParameter("locationId");
 
-        if (heroId == null) {
-            FieldError error = new FieldError("hero", "heroId", "Must include a hero or villian sighted");
-            result.addError(error);
-        } else if (locationId == null) {
-            FieldError error = new FieldError("location", "locationId", "Must include a location");
-            result.addError(error);
-        } else {
-            sighting.setDate(LocalDate.parse(dateString));
-            sighting.setHero(hDao.readHeroById(Integer.parseInt(heroId)));
-            sighting.setLocation(locDao.readLocationById(Integer.parseInt(locationId)));
-        }
+        sighting.setDate(LocalDate.parse(dateString));
+        sighting.setHero(hDao.readHeroById(Integer.parseInt(heroId)));
+        sighting.setLocation(locDao.readLocationById(Integer.parseInt(locationId)));
 
         if (result.hasErrors()) {
+            model.addAttribute("sighting", sighting);
+
             model.addAttribute("superpowers", spDao.readAllSuperpowers());
             model.addAttribute("heroes", hDao.readAllHeroes());
             model.addAttribute("locations", locDao.readAllLocations());
+            model.addAttribute("errors", violations);
 
-            model.addAttribute("sighting", sighting);
-            sighting.setDate(LocalDate.parse(dateString));
-            sighting.setHero(hDao.readHeroById(Integer.parseInt(heroId)));
-            sighting.setLocation(locDao.readLocationById(Integer.parseInt(locationId)));
-            
+//            sighting.setDate(LocalDate.parse(dateString));
+//            sighting.setHero(hDao.readHeroById(Integer.parseInt(heroId)));
+//            sighting.setLocation(locDao.readLocationById(Integer.parseInt(locationId)));
             return "editSighting";
         }
 
