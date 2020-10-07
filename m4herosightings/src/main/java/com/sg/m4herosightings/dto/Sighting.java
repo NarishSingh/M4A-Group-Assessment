@@ -3,7 +3,6 @@ package com.sg.m4herosightings.dto;
 import java.time.LocalDate;
 import java.util.Objects;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
@@ -12,7 +11,7 @@ public class Sighting {
     /*fields*/
     private int sightingId;
 
-    @NotNull(message = "Sighting date cannot be blank")
+    @NotBlank(message = "Sighting date cannot be blank")
     @Past(message = "Future sightings cannot be confirmed")
     private LocalDate date;
 
@@ -21,7 +20,6 @@ public class Sighting {
     private String description;
 
     private Hero hero;
-    
     private Location location;
 
     /*ctors*/

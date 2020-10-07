@@ -38,7 +38,7 @@ public class LocationController {
 
         return "location";
     }
-    
+
     /**
      * POST - add a new location to db
      *
@@ -102,20 +102,7 @@ public class LocationController {
         Location location = locationDao.readLocationById(id);
         model.addAttribute("location", location);
 
-        return "locationDetails";
-    }
-    
-    /**
-     * GET - location info to edit form
-     * @param id location id
-     * @param model for location object
-     * @return to updateLocation
-     */
-    @GetMapping("editLocation")
-    public String updateLocation(Integer id, Model model){
-        Location location = locationDao.readLocationById(id);
-        model.addAttribute("location", location);
-        return "editLocation";
+        return "location";
     }
 
     /**
@@ -125,9 +112,8 @@ public class LocationController {
      *                 obj to be edited
      * @return {String} redirect to subdomain
      */
-    @PostMapping("editLocation")
+    @PostMapping("updateLocation")
     public String updateLocation(Location location) {
-        
         String address = location.getStreet() + ", " + location.getCity()
                 + ", " + location.getState() + " " + location.getZipcode();
 

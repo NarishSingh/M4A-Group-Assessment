@@ -18,7 +18,6 @@ public class Location {
     @Digits(integer = 3, fraction = 6, message = "Please enter a valid longitude")
     private double longitude;
 
-    @NotBlank(message = "Please enter a name for this location")
     @Size(max = 50, message = "Location name cannot exceed 50 chars")
     private String name;
 
