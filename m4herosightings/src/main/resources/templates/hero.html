@@ -25,17 +25,16 @@
     .choose ul li {
         display: inline;
         text-align: center;
-        border: 5px solid red;
     }
 
     .choose ul {
-        background-color: limegreen;
+        background-color: rgba(0, 0, 0, 0.75);
+        color: white;
         margin: 0 auto;
         padding: 10px;
     }
 
     .choose {
-        border: 5px solid blue;
         justify-content: space-between;
     }
 
@@ -69,12 +68,13 @@
     }
 </style>
 
+<body>
 <!--Begin Body-->
 <div class="bg"></div>
 <div class="container-fluid">
 
     <!--Navbar-->
-    <div class="row m-4">
+    <div class="row m-4 navBar">
         <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
             <a id="toggleTheme" class="btn btn-outline-info btn-lg">
                 <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
@@ -405,8 +405,7 @@
                         <input type="text" name="description-input" class="form-control" id="description-input">
                     </div>
                     <button type="button" class="btn btn-outline-warning btn-lg" id="send">Send
-                        Feedback
-                    </button>
+                        Feedback</button>
                 </div>
             </div>
             <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12" style="padding-left: 100px">
@@ -435,21 +434,20 @@
         <br><br>
         @Copyright Bob, Narish, Timmy
     </div>
-</div>
 
-<!--End Body-->
+    <!--End Body-->
 
-<!--Scripts-->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
-<script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
-<script src="main.js"></script>
+    <!--Scripts-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
 </body>
 </html>
