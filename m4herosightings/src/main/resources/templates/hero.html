@@ -131,7 +131,7 @@
                     <tbody id="hero-content-rows">
                     <tr th:each="hero: ${heroes}">
                         <td th:text="${hero.name}">Hero Name</td>
-                        <td><img th:src="${hero.photoFileName}" alt="Hero picture" style="height: 50px"/></td>
+                        <td><img th:src="${hero.photoFileName}" style="height: 50px"/></td>
                         <td th:text="${hero.superpower.name}">Superpower Name</td>
                         <td><a href="#" th:href="@{/viewHero(id=${hero.heroId})}"><i class="far fa-eye"></i></a>
                         </td>
