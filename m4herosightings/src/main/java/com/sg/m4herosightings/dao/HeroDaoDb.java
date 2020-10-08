@@ -22,12 +22,13 @@ public class HeroDaoDb implements HeroDao {
     @Override
     @Transactional
     public Hero createHero(Hero hero) {
-        final String ADD_HERO = "INSERT INTO hero(name, description, superpowerId) "
-                + "VALUES(?,?,?);";
+        final String ADD_HERO = "INSERT INTO hero(name, description, superpowerId, photoFileName) "
+                + "VALUES(?,?,?,?);";
         jdbc.update(ADD_HERO, 
                 hero.getName(), 
-                hero.getDescription(), 
-                hero.getSuperpower().getSuperpowerId());
+                hero.getDescription(),
+                hero.getSuperpower().getSuperpowerId(),
+                hero.getPhotoFileName());
 
         int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
         hero.setHeroId(newId);
@@ -66,12 +67,14 @@ public class HeroDaoDb implements HeroDao {
                 + "SET "
                 + "name = ?, "
                 + "description = ?, "
-                + "superpowerId = ? "
+                + "superpowerId = ?, "
+                + "photoFileName = ? "
                 + "WHERE heroId = ?;";
         int updated = jdbc.update(UPDATE_HERO,
                 hero.getName(),
                 hero.getDescription(),
                 hero.getSuperpower().getSuperpowerId(),
+                hero.getPhotoFileName(),
                 hero.getHeroId());
 
         if (updated == 1) {
@@ -134,6 +137,7 @@ public class HeroDaoDb implements HeroDao {
             hero.setHeroId(rs.getInt("heroId"));
             hero.setName(rs.getString("name"));
             hero.setDescription(rs.getString("description"));
+            hero.setPhotoFileName(rs.getString("photoFileName"));
 
             return hero;
         }
