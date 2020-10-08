@@ -25,17 +25,16 @@
     .choose ul li {
         display: inline;
         text-align: center;
-        border: 5px solid red;
     }
 
     .choose ul {
-        background-color: limegreen;
+        background-color: rgba(0, 0, 0, 0.75);
+        color: white;
         margin: 0 auto;
         padding: 10px;
     }
 
     .choose {
-        border: 5px solid blue;
         justify-content: space-between;
     }
 
@@ -75,7 +74,7 @@
 <div class="container-fluid">
 
     <!--Navbar-->
-    <div class="row m-4">
+    <div class="row m-4 navBar">
         <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
             <a id="toggleTheme" class="btn btn-outline-info btn-lg">
                 <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
@@ -153,7 +152,7 @@
             <!--Add hero form-->
             <div class="hero-form bg-color">
                 <div class="row">
-                    <h3 id="add-hero-heading" style="color:white;margin:0 auto">Add Hero</h3>
+                    <h3 id="add-hero-heading" class="white-text" style="margin:0 auto">Add Hero</h3>
                 </div>
                 <div class="row">
                     <form class="col" action="addHero" method="POST">
@@ -187,11 +186,11 @@
                         </div>
                 
                         <!--submit btn-->
-                        <button type="submit" class="btn btn-outline-primary">Add Hero/Villian</button>
+                        <button type="submit" class="btn other btn-outline-primary">Add Hero/Villian</button>
                     </form>
                     <!--add form error box-->
                     <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
-                        <p class="alert alert-danger bg-danger" th:each="error : ${errors}" th:text="${error.message}">Error message</p>
+                        <p class="alert alert-danger bg-danger" style="color:white" th:each="error : ${errors}" th:text="${error.message}">Error message</p>
                     </div>
                 </div>
             </div>
