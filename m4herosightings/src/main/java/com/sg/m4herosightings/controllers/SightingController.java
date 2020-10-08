@@ -19,11 +19,15 @@ import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 
 @Controller
 public class SightingController {
@@ -59,7 +63,6 @@ public class SightingController {
         model.addAttribute("locations", locations);
         model.addAttribute("sightings", sightings);
 
-//        violations.clear();
         model.addAttribute("errors", violations);
 
         return "sighting";
@@ -136,9 +139,6 @@ public class SightingController {
         Sighting sighting = siDao.readSightingById(id);
         model.addAttribute("sighting", sighting);
 
-        violations.clear();
-        model.addAttribute("errors", violations);
-
         return "editSighting";
     }
 
@@ -153,31 +153,30 @@ public class SightingController {
      *         homepage if successfully updates
      */
     @PostMapping("editSighting")
-    public String performEditSighting(@Valid Sighting sighting, BindingResult result,
+    public String performEditSighting(@Valid Sighting sighting, BindingResult result, 
+//            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
             HttpServletRequest request, Model model) {
-        if (result.hasErrors()) {
-            return "editSighting";
-        }
-
-        String dateString = request.getParameter("date");
         String heroId = request.getParameter("heroId");
         String locationId = request.getParameter("locationId");
-
-        sighting.setDate(LocalDate.parse(dateString));
         sighting.setHero(hDao.readHeroById(Integer.parseInt(heroId)));
         sighting.setLocation(locDao.readLocationById(Integer.parseInt(locationId)));
+        
+        String dateString = request.getParameter("date");
+        if (!dateString.isEmpty()) {
+            sighting.setDate(LocalDate.parse(dateString));
+        } else {
+            FieldError error = new FieldError("sighting", "date", "Please choose a valid date in the past");
+            result.addError(error);
+        }
 
         if (result.hasErrors()) {
             model.addAttribute("sighting", sighting);
-
+            
             model.addAttribute("superpowers", spDao.readAllSuperpowers());
             model.addAttribute("heroes", hDao.readAllHeroes());
             model.addAttribute("locations", locDao.readAllLocations());
             model.addAttribute("errors", violations);
 
-//            sighting.setDate(LocalDate.parse(dateString));
-//            sighting.setHero(hDao.readHeroById(Integer.parseInt(heroId)));
-//            sighting.setLocation(locDao.readLocationById(Integer.parseInt(locationId)));
             return "editSighting";
         }
 

@@ -58,8 +58,8 @@ public class OrganizationController {
     /**
      * POST - add a new Organization to db
      *
-     * @param organization and locationId, heroeIds {Organization} constructed
-     *                     from user inputs
+     * @param org
+     * @param request
      * @return {String} redirect to subdomain
      */
     @PostMapping("addOrganization")
