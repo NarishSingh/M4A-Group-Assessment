@@ -22,7 +22,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -60,7 +59,7 @@ public class SightingController {
         model.addAttribute("locations", locations);
         model.addAttribute("sightings", sightings);
 
-        violations.clear();
+//        violations.clear();
         model.addAttribute("errors", violations);
 
         return "sighting";
@@ -70,38 +69,23 @@ public class SightingController {
     /**
      * POST - create a new sighting in db
      *
-     * @param sighting {Sighting} a valid obj
-     * @param result   {BindingResult} will hold validation errors
-     * @param request  {HttpServletRequest}
-     * @param model    {Model} will hold the lists required for creating
-     *                 Sighting
+     * @param request {HttpServletRequest}
      * @return {String} reload page if errors, redirect to Sighting homepage if
      *         successful
      */
     @PostMapping("addSighting")
-    public String addSighting(@Valid Sighting sighting, BindingResult result,
-            HttpServletRequest request, Model model) {
+    public String addSighting(HttpServletRequest request) {
         String dateString = request.getParameter("date");
         String heroId = request.getParameter("heroId");
+        String descriptionString = request.getParameter("description");
         String locationId = request.getParameter("locationId");
 
-        if (heroId == null) {
-            FieldError error = new FieldError("hero", "heroId", "Must include a hero or villian sighted");
-            result.addError(error);
-        } else if (locationId == null) {
-            FieldError error = new FieldError("location", "locationId", "Must include a location");
-            result.addError(error);
-        } else {
+        Sighting sighting = new Sighting();
+        if (!dateString.isBlank()) {
             sighting.setDate(LocalDate.parse(dateString));
             sighting.setHero(hDao.readHeroById(Integer.parseInt(heroId)));
+            sighting.setDescription(descriptionString);
             sighting.setLocation(locDao.readLocationById(Integer.parseInt(locationId)));
-        }
-
-        if (result.hasErrors()) {
-            model.addAttribute("superpowers", spDao.readAllSuperpowers());
-            model.addAttribute("heroes", hDao.readAllHeroes());
-            model.addAttribute("locations", locDao.readAllLocations());
-            model.addAttribute("errors", violations);
         }
 
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();

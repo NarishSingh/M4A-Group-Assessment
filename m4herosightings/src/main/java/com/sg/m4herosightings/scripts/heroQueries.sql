@@ -15,3 +15,4 @@ INSERT INTO hero (name, description, superpowerId)
 SELECT * FROM superpower;
 SELECT * FROM hero;
 SELECT * FROM sighting;
+SELECT * FROM location;

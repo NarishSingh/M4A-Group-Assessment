@@ -222,15 +222,14 @@
             </div>
         </div>
 
+
+
         <div class="middle" id="sightingsMiddle"
              style="background-image:url('assets/cover-4.jpg');background-attachment:fixed;height:80%"><br><br><br>
 
             <!--add form error box-->
-            <div class="col-12 m-1 text-center"
-                 th:if="${!errors.isEmpty()}">
-                <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">
-                    Error message
-                </p>
+            <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+                <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error message</p>
             </div>
 
             <!--add sighting form-->
@@ -342,10 +341,10 @@
                 <ul class="row" style="list-style:none;text-align:center;color:white">
                     <a class="col-3" href="#">
                         <li>Home</li>
-                    </a> |
+                    </a>
                     <a class="col-3" href="#">
                         <li>Heroes</li>
-                    </a> |
+                    </a>
                     <a class="col-3" href="#">
                         <li>Sightings</li>
                     </a>
