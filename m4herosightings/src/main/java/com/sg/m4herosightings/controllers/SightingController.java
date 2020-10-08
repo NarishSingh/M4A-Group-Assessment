@@ -9,6 +9,7 @@ import com.sg.m4herosightings.dto.Hero;
 import com.sg.m4herosightings.dto.Location;
 import com.sg.m4herosightings.dto.Sighting;
 import com.sg.m4herosightings.dto.Superpower;
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,12 +19,15 @@ import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 
 @Controller
 public class SightingController {
@@ -53,11 +57,13 @@ public class SightingController {
         List<Hero> heroes = hDao.readAllHeroes();
         List<Location> locations = locDao.readAllLocations();
         List<Sighting> sightings = siDao.readAllSightings();
-        
+
         model.addAttribute("superpowers", superpowers);
         model.addAttribute("heroes", heroes);
         model.addAttribute("locations", locations);
         model.addAttribute("sightings", sightings);
+
+        model.addAttribute("errors", violations);
 
         return "sighting";
     }
@@ -66,37 +72,23 @@ public class SightingController {
     /**
      * POST - create a new sighting in db
      *
-     * @param sighting {Sighting} a valid obj
-     * @param result   {BindingResult} will hold validation errors
-     * @param request  {HttpServletRequest}
-     * @param model    {Model} will hold the lists required for creating
-     *                 Sighting
+     * @param request {HttpServletRequest}
      * @return {String} reload page if errors, redirect to Sighting homepage if
      *         successful
      */
     @PostMapping("addSighting")
-    public String addSighting(@Valid Sighting sighting, BindingResult result,
-            HttpServletRequest request, Model model) {
+    public String addSighting(HttpServletRequest request) {
+        String dateString = request.getParameter("date");
         String heroId = request.getParameter("heroId");
+        String descriptionString = request.getParameter("description");
         String locationId = request.getParameter("locationId");
 
-        if (heroId == null) {
-            FieldError error = new FieldError("hero", "heroId", "Must include a hero or villian sighted");
-            result.addError(error);
-        } else if (locationId == null) {
-            FieldError error = new FieldError("location", "locationId", "Must include a location");
-            result.addError(error);
-        } else {
+        Sighting sighting = new Sighting();
+        if (!dateString.isBlank()) {
+            sighting.setDate(LocalDate.parse(dateString));
             sighting.setHero(hDao.readHeroById(Integer.parseInt(heroId)));
+            sighting.setDescription(descriptionString);
             sighting.setLocation(locDao.readLocationById(Integer.parseInt(locationId)));
-        }
-
-        if (result.hasErrors()) {
-            model.addAttribute("superpowers", spDao.readAllSuperpowers());
-            model.addAttribute("heroes", hDao.readAllHeroes());
-            model.addAttribute("locations", locDao.readAllLocations());
-
-            return "addSighting";
         }
 
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
@@ -139,40 +131,92 @@ public class SightingController {
     @GetMapping("editSighting")
     public String editSighting(Integer id, Model model) {
         List<Hero> heroes = hDao.readAllHeroes();
-        List<Location> locations = locDao.readAllLocations();
-        Sighting sighting = siDao.readSightingById(id);
-
         model.addAttribute("heroes", heroes);
-        model.addAttribute("location", locations);
+
+        List<Location> locations = locDao.readAllLocations();
+        model.addAttribute("locations", locations);
+
+        Sighting sighting = siDao.readSightingById(id);
         model.addAttribute("sighting", sighting);
+
+        model.addAttribute("errors", violations);
 
         return "editSighting";
     }
 
-    /**
-     * POST - perform the edit of a Sighting obj
-     *
-     * @param sighting {Sighting} obj to be validated
-     * @param result   {BindingResult} holds validation errors for Sighting
-     * @return {String} reload page if fail from errors, return to sighting
-     *         homepage if successfully updates
-     */
+    /*
     @PostMapping("editSighting")
-    public String performEditSighting(@Valid Sighting sighting, BindingResult result) {
+    public String performEditSighting(@Valid Sighting sighting, BindingResult result, 
+//            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            HttpServletRequest request, Model model) {
+        String heroId = request.getParameter("heroId");
+        String locationId = request.getParameter("locationId");
+        sighting.setHero(hDao.readHeroById(Integer.parseInt(heroId)));
+        sighting.setLocation(locDao.readLocationById(Integer.parseInt(locationId)));
+        
+        String dateString = request.getParameter("date");
+        if (!dateString.isEmpty()) {
+            sighting.setDate(LocalDate.parse(dateString));
+        } else {
+            FieldError error = new FieldError("sighting", "date", "Please choose a valid date in the past");
+            result.addError(error);
+        }
+
         if (result.hasErrors()) {
+            model.addAttribute("sighting", sighting);
+            
             model.addAttribute("superpowers", spDao.readAllSuperpowers());
             model.addAttribute("heroes", hDao.readAllHeroes());
             model.addAttribute("locations", locDao.readAllLocations());
+            model.addAttribute("errors", violations);
 
-            model.addAttribute("sighting", sighting);
-            sighting.setDate(LocalDate.parse(dateString));
-            sighting.setHero(hDao.readHeroById(Integer.parseInt(heroId)));
-            sighting.setLocation(locDao.readLocationById(Integer.parseInt(locationId)));
-          
             return "editSighting";
         }
 
         siDao.updateSighting(sighting);
+
+        return "redirect:/sighting";
+    }
+     */
+    /**
+     * POST - perform an update on a sighting
+     *
+     * @param request
+     * @param date
+     * @param model
+     * @return {String} redirect to home page if successful, reload with errors
+     *         if fails
+     */
+    @PostMapping("editSighting")
+    public String performEditSighting(HttpServletRequest request,
+            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            Model model) {
+        Sighting sighting = siDao.readSightingById(Integer.parseInt(request.getParameter("id")));
+
+        String heroId = request.getParameter("heroId");
+        String locationId = request.getParameter("locationId");
+        String descrString = request.getParameter("description");
+
+        sighting.setDate(date);
+        sighting.setDescription(descrString);
+        sighting.setHero(hDao.readHeroById(Integer.parseInt(heroId)));
+        sighting.setLocation(locDao.readLocationById(Integer.parseInt(locationId)));
+
+        Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
+        violations = validate.validate(sighting);
+
+        if (violations.isEmpty()) {
+            siDao.updateSighting(sighting);
+        } else {
+            model.addAttribute("sighting", sighting);
+
+            model.addAttribute("superpowers", spDao.readAllSuperpowers());
+            model.addAttribute("heroes", hDao.readAllHeroes());
+            model.addAttribute("locations", locDao.readAllLocations());
+            model.addAttribute("errors", violations);
+
+            return "editSighting";
+        }
 
         return "redirect:/sighting";
     }

@@ -12,8 +12,8 @@
 </head>
 <body>
 <!--Begin Body-->
-<!--Navbar-->
 <div class="container">
+    <!--Navbar and heading-->
     <div class="row m-4">
         <div class="col text-center border border-dark">
             <h1>HERO Sightings</h1>
@@ -36,6 +36,8 @@
             <a href="organization" class="btn btn-outline-primary btn-lg">Organizations</a>
         </div>
     </div>
+
+    <!--Details div-->
     <div class="row m-4 border border-dark">
         <div class="col-6 text-right">
             <strong>ID</strong>
@@ -85,7 +87,6 @@
         <div class="col-6 text-left">
             <span th:text="${location.description}">Location Description</span>
         </div>
-
     </div>
 </div>
 

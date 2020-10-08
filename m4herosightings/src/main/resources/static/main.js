@@ -71,7 +71,6 @@ function darkMode() {
     $(".alert").addClass("bg-danger");
 
     $(".hero-form h3").addClass("white-text").removeClass("black-text");
-
     document.querySelector(".themeStatus").innerHTML = 'Dark';
     var bgimgs = document.querySelectorAll(".bg-img");
     bgimgs.forEach((e) => {
@@ -81,6 +80,7 @@ function darkMode() {
     bgcolors.forEach((e) => {
         e.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
     }) 
+
     document.querySelector(".bottom p").style.color = 'white';
     var paragraphs = document.querySelectorAll("p, label, .bottom a, .h3");
     paragraphs.forEach((e) => {
@@ -89,6 +89,7 @@ function darkMode() {
     document.getElementById("send").className = 'btn btn-outline-warning btn-lg';
 
     document.getElementById("toggleTheme").className = 'btn btn-outline-info btn-lg';
+
     $(".navBar .btn, .news, .other").addClass("btn-outline-primary").removeClass("btn-primary");
     $(".registerLogin .register").addClass("btn-outline-success").removeClass("btn-success");
     $(".registerLogin .login").addClass("btn-outline-danger").removeClass("btn-danger");
@@ -119,6 +120,7 @@ function lightMode() {
     bgcolors.forEach((e) => {
         e.style.backgroundColor = "rgba(255, 255, 255, 0.75)";
     }) 
+
     var paragraphs = document.querySelectorAll("p, label, .bottom a, .h3");
     paragraphs.forEach((e) => {
         e.style.color = 'black';
@@ -127,6 +129,7 @@ function lightMode() {
 
     // REDUCE REDUNDANCY
     document.getElementById("toggleTheme").className = 'btn btn-info btn-lg';
+
     $(".navBar .btn, .news, .other").addClass("btn-primary").removeClass("btn-outline-primary");
     $(".registerLogin .register").addClass("btn-success").removeClass("btn-outline-success");
     $(".registerLogin .login").addClass("btn-danger").removeClass("btn-outline-danger");
@@ -137,6 +140,7 @@ function lightMode() {
     $(".table").addClass("table-light").removeClass("table-dark");
     $(".results .border").addClass("border-light").removeClass("border-dark");
     $(".revealMap h3").css({ 'background-color': 'rgb(255, 255, 255)', 'color': 'rgb(0, 0, 0)' });
+
     lightTheme = true;
 }
 

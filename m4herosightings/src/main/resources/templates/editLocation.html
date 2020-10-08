@@ -49,6 +49,7 @@
                         <div class="col-9">
                             <input type="text" id="updateStreet" name="street" class="form-control"
                                    th:value="${location.street}"/>
+                          
                                 <div th:if="${#fields.hasErrors('location.street')}">
                                    <p th:each="error : ${#fields.errors('location.street')}" class="alert alert-danger" 
                                       th:text="${error}"> Bad street name</p>
@@ -61,6 +62,7 @@
                             <input id="updateCity" name="city" type="text" class="form-control"
                                    th:value="${location.city}"/>
                             <div th:if="${#fields.hasErrors('location.city')}">
+
                                    <p th:each="error : ${#fields.errors('location.city')}" class="alert alert-danger" 
                                       th:text="${error}"> Bad city name</p>
                             </div>
