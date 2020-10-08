@@ -138,6 +138,8 @@ public class SightingController {
 
         Sighting sighting = siDao.readSightingById(id);
         model.addAttribute("sighting", sighting);
+        
+        model.addAttribute("errors", violations);
 
         return "editSighting";
     }
