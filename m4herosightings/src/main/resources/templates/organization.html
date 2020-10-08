@@ -14,8 +14,8 @@
 </head>
 <body>
 <!--Begin Body-->
-<!--Navbar-->
 <div class="container">
+    <!--Navbar and heading-->
     <div class="row m-4">
         <div class="col text-center border border-dark">
             <h1>HERO Sightings</h1>
@@ -45,7 +45,7 @@
             <p class="alert alert-danger" th:each="error : ${errors}"
                th:text="${error.message}">Error message</p>
         </div>
-        <!--add location form-->
+        <!--add organization form-->
         <div class="col-3 m-3 text-center">
             <span class="h3">Add Organization</span>
         </div>
@@ -73,9 +73,9 @@
                     <label for="location" class="col-3 col-form-label">Location</label>
                     <div class="col-9">
                         <select id="location" name="locationId" class="form-control">
-                            <option th:each="location: ${locations}"
-                                    th:value="${location.locationId}"
-                                    th:text="${location.name + ' ' + location.zipcode}">Address
+                            <option th:each="location: ${locations}" th:value="${location.locationId}"
+                                    th:text="${location.name + ' ' + location.zipcode}">
+                                Address
                             </option>
                         </select>
                     </div>
@@ -84,9 +84,9 @@
                     <label class="col-3 col-form-label" for="member">Name</label>
                     <div class="col-9">
                         <select multiple id="member" name="heroId" class="form-control">
-                            <option th:each="hero: ${heroes}"
-                                    th:value="${hero.heroId}"
-                                    th:text="${hero.name + ' - ' + hero.superpower.name}">Hero
+                            <option th:each="hero: ${heroes}" th:value="${hero.heroId}"
+                                    th:text="${hero.name + ' - ' + hero.superpower.name}">
+                                Hero
                             </option>
                         </select>
                     </div>
@@ -104,7 +104,7 @@
     </div>
     <div class="row m-4 border border-dark">
         <div class="col text-center m-3">
-            <!--location data table-->
+            <!--organization data table-->
             <table class="table table-striped">
                 <thead>
                 <tr>

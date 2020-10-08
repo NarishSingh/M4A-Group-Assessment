@@ -9,16 +9,69 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/index.css">
 </head>
-<body>
+
+<style>
+    .top {
+        padding-bottom: 100px;
+    }
+
+    .search {
+        padding-top: 200px;
+        padding-bottom: 150px;
+    }
+
+    .choose ul li {
+        display: inline;
+        text-align: center;
+        border: 5px solid red;
+    }
+
+    .choose ul {
+        background-color: limegreen;
+        margin: 0 auto;
+        padding: 10px;
+    }
+
+    .choose {
+        border: 5px solid blue;
+        justify-content: space-between;
+    }
+
+    .data-table {
+        padding: 50px;
+    }
+
+    .hero-form {
+        margin: 200px;
+    }
+
+    .hero-form label {
+        color: white;
+        padding-left: 130px;
+    }
+
+    .hero-form h3 {
+        padding: 100px;
+    }
+
+    .hero-form .row {
+        padding: 10px;
+    }
+
+    .hero-form button {
+        margin: 100px;
+    }
+
+    .search label {
+        color: white;
+    }
+</style>
+
 <!--Begin Body-->
 <div class="bg"></div>
 <div class="container-fluid">
-
-    <div class="title">
-        <h1><a href="#">Superheroes</a></h1>
-        <h3>Heroes</h3>
-    </div>
 
     <!--Navbar-->
     <div class="row m-4">
@@ -41,7 +94,7 @@
         </div>
     </div>
 
-    <div class="top">
+    <div class="top bg-img">
         <div class="box-1">
             <!--search bar-->
             <!--FIXME find out how to implement-->
@@ -54,54 +107,7 @@
             </div>
             <div class="separator"></div>
 
-
-
             <hr>
-            <!--Add hero form-->
-            <div class="row">
-                <h3 id="add-hero-heading">Add Hero</h3>
-            </div>
-            <div class="row">
-                <!--add form error box-->
-                <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
-                    <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error message</p>
-                </div>
-
-                <form class="col" action="addHero" method="POST">
-                    <!--name-->
-                    <div class="form-group row">
-                        <label for="name" class="col-form-label">Name/Alias:</label>
-                        <div class="col-7">
-                            <input type="text" name="name" class="form-control" id="name"/>
-                        </div>
-                    </div>
-
-                    <!--description-->
-                    <div class="form-group row">
-                        <label for="description" class="col-form-label">Description:</label>
-                        <div class="col-7">
-                            <input type="text" name="description" class="form-control" id="description">
-                        </div>
-                    </div>
-
-                    <!--superpower select-->
-                    <div class="form-group row">
-                        <label for="superpower" class="col-form-label">Superpower:</label>
-                        <div class="col-7">
-                            <select id="superpower" name="superpowerId" class="form-control">
-                                <option th:each="superpower: ${superpowers}"
-                                        th:value="${superpower.superpowerId}"
-                                        th:text="${superpower.name}">
-                                    Superpower Name
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!--submit btn-->
-                    <button type="submit" class="btn btn-outline-primary">Add Hero/Villian</button>
-                </form>
-            </div>
 
             <!--hero data table-->
             <div class="choose" id="hero-data">
@@ -138,7 +144,54 @@
                     </tr>
                     </tbody>
                 </table>
-                </ul>
+            </div>
+
+            <!--Add hero form-->
+            <div class="row">
+                <h3 id="add-hero-heading">Add Hero</h3>
+            </div>
+            <div class="row">
+                <!--add form error box-->
+                <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+                    <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">
+                        Error message
+                    </p>
+                </div>
+
+                <form class="col" action="addHero" method="POST">
+                    <!--name-->
+                    <div class="form-group row">
+                        <label for="name" class="col-form-label">Name/Alias:</label>
+                        <div class="col-7">
+                            <input type="text" name="name" class="form-control" id="name"/>
+                        </div>
+                    </div>
+
+                    <!--description-->
+                    <div class="form-group row">
+                        <label for="description" class="col-form-label">Description:</label>
+                        <div class="col-7">
+                            <input type="text" name="description" class="form-control" id="description">
+                        </div>
+                    </div>
+
+                    <!--superpower select-->
+                    <div class="form-group row">
+                        <label for="superpower" class="col-form-label">Superpower:</label>
+                        <div class="col-7">
+                            <select id="superpower" name="superpowerId" class="form-control">
+                                <option th:each="superpower: ${superpowers}"
+                                        th:value="${superpower.superpowerId}"
+                                        th:text="${superpower.name}">
+                                    Superpower Name
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!--submit btn-->
+                    <button type="submit" class="btn btn-outline-primary">Add Hero/Villian</button>
+                </form>
             </div>
 
             <!--view hero modal-->
@@ -299,8 +352,85 @@
         </div>
     </div>-->
 
-    <!--<div class="bottom">
-    </div>-->
+    <div class="bottom" id="about">
+        <div class="row">
+            <div class="column col-xl-6 col-lg-12 col-sm-12">
+                <h3>Our Mission</h3>
+                <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem
+                    Ipsum has been the industry's
+                    standard
+                    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                    it to make
+                    a type
+                    specimen
+                    book. It has survived not only five centuries, but also the leap into electronic
+                    typesetting, remaining
+                    essentially
+                    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+                    Lorem Ipsum
+                    passages, and
+                    more
+                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+                    Ipsum.
+                </p>
+            </div>
+            <div class="column col-xl-6 col-lg-12 col-sm-12">
+                <h3>About</h3>
+                <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem
+                    Ipsum has been the industry's standard
+                    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                    it to make
+                    a type specimen
+                    book. It has survived not only five centuries, but also the leap into electronic
+                    typesetting, remaining
+                    essentially
+                    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+                    Lorem Ipsum
+                    passages, and more
+                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+                    Ipsum.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group row justify-content-center align-items-center">
+                    <label for="description-input" class="col-form-label"></label>
+                    <div class="col-xl-7 col-lg-12 col-sm-12">
+                        <input type="text" name="description-input" class="form-control" id="description-input">
+                    </div>
+                    <button type="button" class="btn btn-outline-warning btn-lg" id="send">Send
+                        Feedback
+                    </button>
+                </div>
+            </div>
+            <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12" style="padding-left: 100px">
+                <ul class="row" style="list-style:none;text-align:center;color:white">
+                    <a class="col-3" href="#">
+                        <li>Home</li>
+                    </a> |
+                    <a class="col-3" href="#">
+                        <li>Heroes</li>
+                    </a> |
+                    <a class="col-3" href="#">
+                        <li>Sightings</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr style="background-color:rgba(255,255,255,0.1);">
+    <div class="footer">
+        <!-- Add font awesome icons -->
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-linkedin"></a>
+        <a href="#" class="fa fa-youtube"></a>
+        <a href="#" class="fa fa-instagram"></a>
+        <a href="#" class="fa fa-reddit"></a>
+        <br><br>
+        @Copyright Bob, Narish, Timmy
+    </div>
 </div>
 
 <!--End Body-->
@@ -316,5 +446,6 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
+<script src="main.js"></script>
 </body>
 </html>

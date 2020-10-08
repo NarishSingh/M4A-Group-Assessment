@@ -13,7 +13,7 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Style CSS -->
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="plugins/swiper.min.css">
 
     <style>
@@ -48,19 +48,8 @@
             width: 500px;
         }
 
-        .hoverBox {
-            background-color: rgba(0, 0, 255, 0.5);
-            z-index: 5;
-        }
-
-        .top {
-            background-image: url("assets/cover-4.jpg");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-
         .search {
-            padding-top: 30px;
+            padding-top: 100px;
             margin: 0 auto;
             align-items: center;
             justify-content: center;
@@ -68,8 +57,7 @@
 
         .results {
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 150px;
+            padding: 50px;
         }
 
         label {
@@ -112,6 +100,14 @@
             width: 100%;
             z-index: 5;
         }
+
+        .sightings-form {
+            padding: 50px;
+        }
+
+        .middle {
+            padding-bottom: 100px;
+        }
     </style>
 </head>
 
@@ -138,7 +134,7 @@
         </div>
     </div>
     <div class="all">
-        <div class="top" id="sightingsTop">
+        <div class="top bg-img" id="sightingsTop">
             <div class="box-1">
                 <!-- ITUNES-LIKE SLIDER -->
                 <div class="swiper-container">
@@ -179,9 +175,9 @@
                 </div>
                 <div class="separator"></div>
                 <div class="choose">
-                    <ul>
+                    <!-- <ul>
                         <li>Sightings</li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <div class="results">
                     <!--sighting data table-->
@@ -223,9 +219,8 @@
         </div>
 
 
-
-        <div class="middle" id="sightingsMiddle"
-             style="background-image:url('assets/cover-4.jpg');background-attachment:fixed;height:80%"><br><br><br>
+        <div class="middle bg-img" id="sightingsMiddle"
+             style="height:80%"><br><br><br>
 
             <!--add form error box-->
             <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
@@ -233,7 +228,7 @@
             </div>
 
             <!--add sighting form-->
-            <div class="row border m-4">
+            <div class="row m-4 sightings-form bg-color">
                 <div class="col-3 text-center m-3">
                     <span class="h3">Add Sighting</span>
                 </div>
@@ -361,7 +356,7 @@
         <a href="#" class="fa fa-instagram"></a>
         <a href="#" class="fa fa-reddit"></a>
         <br><br>
-        @Copyright iTimmy
+        @Copyright Bob, Narish, Timmy
     </div>
 </div>
 </div>

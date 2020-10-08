@@ -40,11 +40,10 @@
 
     <div class="row m-4 border border-dark">
         <!--error msg-->
-            <div class="col-12 m-1 text-center" 
-                    th:if="${!errors.isEmpty()}">
-                <p class="alert alert-danger" th:each="error : ${errors}" 
-                    th:text="${error.message}">Error message</p>
-            </div>
+        <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+            <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error message</p>
+        </div>
+
         <!--add location form-->
         <div class="col-3 m-3 text-center">
             <span class="h3">Add Address</span>

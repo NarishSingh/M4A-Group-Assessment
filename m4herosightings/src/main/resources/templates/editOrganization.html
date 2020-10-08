@@ -38,7 +38,7 @@
             <a href="organization" class="btn btn-outline-primary btn-lg">Organization</a>
         </div>
     </div>
-        <div class="row m-4 border border-dark">
+    <div class="row m-4 border border-dark">
         <div class="col-3 text-center m-3">
             <span class="h3">Edit Organization</span>
         </div>
@@ -86,7 +86,9 @@
                                 <option th:each="location: ${locations}"
                                         th:value="${location.locationId}"
                                         th:text="${location.name + ' - ' + location.zipcode}"
-                                        th:selected="${organization.location.locationId == location.locationId}">Location Name</option>
+                                        th:selected="${organization.location.locationId == location.locationId}">
+                                    Location Name
+                                </option>
                             </select>
                         </div>
                     </div>
@@ -97,7 +99,8 @@
                                 <option th:each="hero: ${heroes}"
                                         th:value="${hero.heroId}"
                                         th:text="${hero.name + ' - ' + hero.superpower.name}"
-                                        th:selected="${organization.members.contains(hero)}">Member Name</option>
+                                        th:selected="${organization.members.contains(hero)}">Member Name
+                                </option>
                             </select>
                             <div th:if="${#fields.hasErrors('organization.members')}">
                                 <p th:each="error: ${#fields.errors('organization.members')}" th:text="${error}"
@@ -116,7 +119,8 @@
                             </div>
                         </div>
                     </div>
-                    <input type="hidden" name="organizationId" th:value="${organization.organizationId}" class="form-control"/>
+                    <input type="hidden" name="organizationId" th:value="${organization.organizationId}"
+                           class="form-control"/>
                     <button type="submit" class="btn btn-primary">Update Organization</button>
                 </div>
             </form>
