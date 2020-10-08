@@ -46,17 +46,17 @@
         <span class="h3">Edit Sighting</span>
     </div>
     <div class="col-7 text-center m-3">
+        <!--edit form error box-->
+        <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+            <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error message</p>
+        </div>
+
         <form action="editSighting" method="POST">
             <!--date-->
             <div class="form-group row">
                 <label for="date" class="col-3 col-form-label">Date:</label>
                 <div class="col-9">
                     <input type="date" name="date" id="date" class="form-control" th:value="${sighting.date}">
-
-                    <div th:if="${#fields.hasErrors('sighting.date')}">
-                        <p th:each="error: ${#fields.errors('sighting.date')}" th:text="${error}"
-                           class="alert alert-danger"></p>
-                    </div>
                 </div>
             </div>
 
@@ -66,11 +66,6 @@
                 <div class="col-9">
                     <input type="text" name="description" id="description" class="form-control"
                            th:value="${sighting.description}">
-
-                    <div th:if="${#fields.hasErrors('sighting.description')}">
-                        <p th:each="error: ${#fields.errors('sighting.description')}" th:text="${error}"
-                           class="alert alert-danger"></p>
-                    </div>
                 </div>
             </div>
 
@@ -84,11 +79,6 @@
                             Hero
                         </option>
                     </select>
-
-                    <div th:if="${#fields.hasErrors('sighting.hero')}">
-                        <p th:each="error: ${#fields.errors('sighting.hero')}" th:text="${error}"
-                           class="alert alert-danger"></p>
-                    </div>
                 </div>
             </div>
 
@@ -103,11 +93,6 @@
                             Location
                         </option>
                     </select>
-
-                    <div th:if="${#fields.hasErrors('sighting.location')}">
-                        <p th:each="error: ${#fields.errors('sighting.location')}" th:text="${error}"
-                           class="alert alert-danger"></p>
-                    </div>
                 </div>
             </div>
 

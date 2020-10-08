@@ -116,12 +116,12 @@ public class HeroController {
      * POST - perform the edit of a Hero in db
      *
      * @param request
+     * @param model
      * @return {String} reload page if failed, redirect to subdomain if
      *         successful
      */
     @PostMapping("editHero")
     public String performEditHero(HttpServletRequest request, Model model) {
-
         List<Superpower> superpowers = spDao.readAllSuperpowers();
         
         int heroId = Integer.parseInt(request.getParameter("id"));

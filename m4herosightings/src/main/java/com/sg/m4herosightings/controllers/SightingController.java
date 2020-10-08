@@ -138,22 +138,13 @@ public class SightingController {
 
         Sighting sighting = siDao.readSightingById(id);
         model.addAttribute("sighting", sighting);
-        
+
         model.addAttribute("errors", violations);
 
         return "editSighting";
     }
 
-    /**
-     * POST - perform the edit of a Sighting obj
-     *
-     * @param sighting {Sighting} obj to be validated
-     * @param result   {BindingResult} holds validation errors for Sighting
-     * @param request  {HttpServletRequest}
-     * @param model    {Model} will hold the lists required for editing Sighting
-     * @return {String} reload page if fail from errors, return to sighting
-     *         homepage if successfully updates
-     */
+    /*
     @PostMapping("editSighting")
     public String performEditSighting(@Valid Sighting sighting, BindingResult result, 
 //            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
@@ -183,6 +174,49 @@ public class SightingController {
         }
 
         siDao.updateSighting(sighting);
+
+        return "redirect:/sighting";
+    }
+     */
+    /**
+     * POST - perform an update on a sighting
+     *
+     * @param request
+     * @param date
+     * @param model
+     * @return {String} redirect to home page if successful, reload with errors
+     *         if fails
+     */
+    @PostMapping("editSighting")
+    public String performEditSighting(HttpServletRequest request,
+            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            Model model) {
+        Sighting sighting = siDao.readSightingById(Integer.parseInt(request.getParameter("id")));
+
+        String heroId = request.getParameter("heroId");
+        String locationId = request.getParameter("locationId");
+        String descrString = request.getParameter("description");
+
+        sighting.setDate(date);
+        sighting.setDescription(descrString);
+        sighting.setHero(hDao.readHeroById(Integer.parseInt(heroId)));
+        sighting.setLocation(locDao.readLocationById(Integer.parseInt(locationId)));
+
+        Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
+        violations = validate.validate(sighting);
+
+        if (violations.isEmpty()) {
+            siDao.updateSighting(sighting);
+        } else {
+            model.addAttribute("sighting", sighting);
+
+            model.addAttribute("superpowers", spDao.readAllSuperpowers());
+            model.addAttribute("heroes", hDao.readAllHeroes());
+            model.addAttribute("locations", locDao.readAllLocations());
+            model.addAttribute("errors", violations);
+
+            return "editSighting";
+        }
 
         return "redirect:/sighting";
     }
