@@ -44,6 +44,9 @@
 //     }
 // }
 
+$(".white-text").css({ 'color': 'white' });
+$(".black-text").css({ 'color': 'black' });
+
 var lightTheme = false;
 
 $("#toggleTheme").on('click', function () {
@@ -62,8 +65,13 @@ $("#toggleTheme").on('click', function () {
 
 
 function darkMode() {
-    document.querySelector("body").style.backgroundColor = 'black';
-    document.querySelector(".container-fluid").style.backgroundColor = 'black';
+    $("body, .container-fluid, .bottom").css({ 'background-color': 'black' });
+    $(".overlay").css({ 'background-color': 'rgba(0, 0, 0, 0.5)' });
+    $(".choose ul").css({ 'background-color': 'rgba(0, 0, 0, 0.75)', 'color': 'white'});
+    $(".alert").addClass("bg-danger");
+
+    $(".hero-form h3").addClass("white-text").removeClass("black-text");
+
     document.querySelector(".themeStatus").innerHTML = 'Dark';
     var bgimgs = document.querySelectorAll(".bg-img");
     bgimgs.forEach((e) => {
@@ -73,7 +81,6 @@ function darkMode() {
     bgcolors.forEach((e) => {
         e.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
     }) 
-    document.querySelector(".bottom").style.backgroundColor = 'black';
     document.querySelector(".bottom p").style.color = 'white';
     var paragraphs = document.querySelectorAll("p, label, .bottom a, .h3");
     paragraphs.forEach((e) => {
@@ -82,17 +89,27 @@ function darkMode() {
     document.getElementById("send").className = 'btn btn-outline-warning btn-lg';
 
     document.getElementById("toggleTheme").className = 'btn btn-outline-info btn-lg';
-    document.getElementById("landingPage").className = 'btn btn-outline-primary btn-lg';
-    document.getElementById("heroes").className = 'btn btn-outline-primary btn-lg';
-    document.getElementById("sightings").className = 'btn btn-outline-primary btn-lg';
-    document.getElementById("nav-about").className = 'btn btn-outline-primary btn-lg';
-    // document.querySelector().style.color = 'white';
+    $(".navBar .btn, .news, .other").addClass("btn-outline-primary").removeClass("btn-primary");
+    $(".registerLogin .register").addClass("btn-outline-success").removeClass("btn-success");
+    $(".registerLogin .login").addClass("btn-outline-danger").removeClass("btn-danger");
+    
+    $(".swiper-container img").css({ 'background-color': 'rgba(0, 0, 0, 0.5)' });
+    $(".swiper-pagination-bullets").css({ 'background-color': 'rgba(0, 0, 0, 0.15)' });
+    $(".swiper-container").css({ 'background-color': 'rgba(0, 0, 0, 0.5)' });
+    $(".table").addClass("table-dark").removeClass("table-light");
+    $(".results .border").addClass("border-dark").removeClass("border-light");
+    $(".revealMap h3").css({ 'background-color': 'rgb(0, 0, 0)', 'color': 'rgb(255, 255, 255)' });
     lightTheme = false;
 }
 
 function lightMode() {
-    document.querySelector("body").style.backgroundColor = 'white';
-    document.querySelector(".container-fluid").style.backgroundColor = 'white';
+    $("body, .container-fluid, .bottom, .choose ul").css({ 'background-color': 'white'});
+    $(".overlay").css({ 'background-color': 'rgba(255, 255, 255, 0.25)' });
+    $(".choose ul").css({ 'background-color': 'rgba(255, 255, 255, 0.75)', 'color': 'black' });
+    $(".alert").removeClass("bg-danger");
+
+    $(".hero-form h3").addClass("black-text").removeClass("white-text");
+
     document.querySelector(".themeStatus").innerHTML = 'Light';
     var bgimgs = document.querySelectorAll(".bg-img");
     bgimgs.forEach((e) => {
@@ -102,7 +119,6 @@ function lightMode() {
     bgcolors.forEach((e) => {
         e.style.backgroundColor = "rgba(255, 255, 255, 0.75)";
     }) 
-    document.querySelector(".bottom").style.backgroundColor = 'white';
     var paragraphs = document.querySelectorAll("p, label, .bottom a, .h3");
     paragraphs.forEach((e) => {
         e.style.color = 'black';
@@ -111,11 +127,16 @@ function lightMode() {
 
     // REDUCE REDUNDANCY
     document.getElementById("toggleTheme").className = 'btn btn-info btn-lg';
-    document.getElementById("landingPage").className = 'btn btn-primary btn-lg';
-    document.getElementById("heroes").className = 'btn btn-primary btn-lg';
-    document.getElementById("sightings").className = 'btn btn-primary btn-lg';
-    document.getElementById("nav-about").className = 'btn btn-primary btn-lg';
-    // document.querySelector("label").style.color = 'black';
+    $(".navBar .btn, .news, .other").addClass("btn-primary").removeClass("btn-outline-primary");
+    $(".registerLogin .register").addClass("btn-success").removeClass("btn-outline-success");
+    $(".registerLogin .login").addClass("btn-danger").removeClass("btn-outline-danger");
+
+    $(".swiper-container img").css({ 'background-color': 'rgba(255, 255, 255, 0.25)' });
+    $(".swiper-pagination-bullets").css({ 'background-color': 'rgba(255, 255, 255, 0.05)' });
+    $(".swiper-container").css({ 'background-color': 'rgba(255, 255, 255, 0.15)' });
+    $(".table").addClass("table-light").removeClass("table-dark");
+    $(".results .border").addClass("border-light").removeClass("border-dark");
+    $(".revealMap h3").css({ 'background-color': 'rgb(255, 255, 255)', 'color': 'rgb(0, 0, 0)' });
     lightTheme = true;
 }
 
