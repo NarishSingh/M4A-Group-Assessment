@@ -46,6 +46,7 @@ public class HeroController {
         List<Hero> heroes = hDao.readAllHeroes();
         model.addAttribute("heroes", heroes);
         model.addAttribute("superpowers", superpowers);
+//        model.addAttribute("errors", violations);
 
         return "hero";
     }
@@ -114,17 +115,17 @@ public class HeroController {
     /**
      * GET - attempt to edit a hero in db
      *
-     * @param id    {Integer} a valid id for hero existing in db
+     * @param request
      * @param model {Model} will hold the retrieved original hero obj
      * @return {String} load page with obj in model
      */
     @GetMapping("editHero")
-    public String editHero(Integer id, Model model) {
+    public String editHero(HttpServletRequest request, Model model) {
         List<Superpower> superpowers = spDao.readAllSuperpowers();
-        Hero hero = hDao.readHeroById(id);
+        Hero hero = hDao.readHeroById(Integer.parseInt(request.getParameter("id")));
 
-        model.addAttribute("hero", hero);
         model.addAttribute("superpowers", superpowers);
+        model.addAttribute("hero", hero);
 
         return "editHero";
     }
@@ -138,12 +139,34 @@ public class HeroController {
      *         successful
      */
     @PostMapping("editHero")
-    public String performEditStudent(@Valid Hero hero, BindingResult result) {
+    public String performEditHero(HttpServletRequest request) {
+        /*
         if (result.hasErrors()) {
             return "editHero";
         }
 
         hDao.updateHero(hero);
+        */
+        
+        int heroId = Integer.parseInt(request.getParameter("id"));
+        Hero hero = hDao.readHeroById(heroId);
+        
+        int spId = Integer.parseInt(request.getParameter("superpower"));
+        Superpower sp = spDao.readSuperpowerById(spId);
+        hero.setSuperpower(sp);
+        
+        String heroName = request.getParameter("name");
+        String heroDescription = request.getParameter("description");
+        
+        hero.setName(heroName);
+        hero.setDescription(heroDescription);
+        
+        Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
+        violations = validate.validate(hero);
+
+        if (violations.isEmpty()) {
+            hDao.updateHero(hero);
+        }
 
         return "redirect:/hero";
     }
