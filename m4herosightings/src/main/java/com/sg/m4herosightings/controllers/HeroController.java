@@ -46,7 +46,7 @@ public class HeroController {
         List<Hero> heroes = hDao.readAllHeroes();
         model.addAttribute("heroes", heroes);
         model.addAttribute("superpowers", superpowers);
-//        model.addAttribute("errors", violations);
+        model.addAttribute("errors", violations);
 
         return "hero";
     }
@@ -54,36 +54,19 @@ public class HeroController {
     /**
      * POST - attempt to create a new Hero in db
      *
-     * @param hero    {Hero} a valid Hero obj from template engine
-     * @param result  {BindingResult} Will hold validation errors for Hero
-     *                creation
-     * @param request {HttpServletRequest}
-     * @param model   {Model} will hold Superpowers and Heroes from db
+     * @param request
      * @return {String} reload page if has errors, redirect to heroes subdomain
      *         if successful
      */
     @PostMapping("addHero")
-    public String addHero(@Valid Hero hero, BindingResult result,
-            HttpServletRequest request, Model model) {
+    public String addHero(HttpServletRequest request) {
         String superpowerId = request.getParameter("superpowerId");
 
-        //verify that a superpower was selected
-        if (superpowerId != null) {
-            hero.setSuperpower(spDao.readSuperpowerById(Integer.parseInt(superpowerId)));
-        } else {
-            FieldError error = new FieldError("hero", "superpowerId", "A hero needs a superpower!");
-            result.addError(error);
-        }
+        Hero hero = new Hero();
+        hero.setSuperpower(spDao.readSuperpowerById(Integer.parseInt(superpowerId)));
+        hero.setName(request.getParameter("name"));
+        hero.setDescription(request.getParameter("description"));
 
-        //reload if has errors
-        if (result.hasErrors()) {
-            model.addAttribute("superpowers", spDao.readAllSuperpowers());
-            model.addAttribute("hero", hero);
-
-            return "redirect:/hero";
-        }
-
-        //validate inputs and create hero if all clear
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(hero);
 
@@ -116,7 +99,7 @@ public class HeroController {
      * GET - attempt to edit a hero in db
      *
      * @param request
-     * @param model {Model} will hold the retrieved original hero obj
+     * @param model   {Model} will hold the retrieved original hero obj
      * @return {String} load page with obj in model
      */
     @GetMapping("editHero")
@@ -127,45 +110,55 @@ public class HeroController {
         model.addAttribute("superpowers", superpowers);
         model.addAttribute("hero", hero);
 
+        model.addAttribute("errors", violations);
+
         return "editHero";
     }
 
     /**
      * POST - perform the edit of a Hero in db
      *
-     * @param hero   {Hero} obj to be validated
-     * @param result {BindingResult} holds validation errors for hero editing
+     * @param request
      * @return {String} reload page if failed, redirect to subdomain if
      *         successful
      */
     @PostMapping("editHero")
-    public String performEditHero(HttpServletRequest request) {
+    public String performEditHero(HttpServletRequest request, Model model) {
         /*
         if (result.hasErrors()) {
             return "editHero";
         }
 
         hDao.updateHero(hero);
-        */
+         */
+
+        List<Superpower> superpowers = spDao.readAllSuperpowers();
         
         int heroId = Integer.parseInt(request.getParameter("id"));
         Hero hero = hDao.readHeroById(heroId);
-        
+
         int spId = Integer.parseInt(request.getParameter("superpower"));
         Superpower sp = spDao.readSuperpowerById(spId);
         hero.setSuperpower(sp);
-        
+
         String heroName = request.getParameter("name");
         String heroDescription = request.getParameter("description");
-        
+
         hero.setName(heroName);
         hero.setDescription(heroDescription);
-        
+
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(hero);
 
         if (violations.isEmpty()) {
             hDao.updateHero(hero);
+        } else {
+            model.addAttribute("superpowers", superpowers);
+            model.addAttribute("hero", hero);
+
+            model.addAttribute("errors", violations);
+
+            return "editHero";
         }
 
         return "redirect:/hero";
@@ -184,5 +177,5 @@ public class HeroController {
 
         return "redirect:/hero";
     }
-    
+
 }

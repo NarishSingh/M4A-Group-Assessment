@@ -54,10 +54,7 @@
             </div>
             <div class="separator"></div>
 
-            <!--add form error box-->
-            <!--<div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
-                <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error message</p>
-            </div>-->
+
 
             <hr>
             <!--Add hero form-->
@@ -65,6 +62,11 @@
                 <h3 id="add-hero-heading">Add Hero</h3>
             </div>
             <div class="row">
+                <!--add form error box-->
+                <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+                    <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error message</p>
+                </div>
+
                 <form class="col" action="addHero" method="POST">
                     <!--name-->
                     <div class="form-group row">
