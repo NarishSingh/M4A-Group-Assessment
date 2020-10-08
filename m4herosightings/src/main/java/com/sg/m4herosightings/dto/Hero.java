@@ -18,6 +18,8 @@ public class Hero {
     private String description;
 
     private Superpower superpower;
+    
+    private String photoFileName;
 
     /*ctor*/
     public Hero() {
@@ -69,14 +71,23 @@ public class Hero {
         this.superpower = superpower;
     }
 
+    public String getPhotoFileName() {
+        return photoFileName;
+    }
+
+    public void setPhotoFileName(String photoFileName) {
+        this.photoFileName = photoFileName;
+    }
+
     /*testing*/
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + this.heroId;
-        hash = 67 * hash + Objects.hashCode(this.name);
-        hash = 67 * hash + Objects.hashCode(this.description);
-        hash = 67 * hash + Objects.hashCode(this.superpower);
+        int hash = 3;
+        hash = 41 * hash + this.heroId;
+        hash = 41 * hash + Objects.hashCode(this.name);
+        hash = 41 * hash + Objects.hashCode(this.description);
+        hash = 41 * hash + Objects.hashCode(this.superpower);
+        hash = 41 * hash + Objects.hashCode(this.photoFileName);
         return hash;
     }
 
@@ -101,6 +112,9 @@ public class Hero {
         if (!Objects.equals(this.description, other.description)) {
             return false;
         }
+        if (!Objects.equals(this.photoFileName, other.photoFileName)) {
+            return false;
+        }
         if (!Objects.equals(this.superpower, other.superpower)) {
             return false;
         }
@@ -110,7 +124,8 @@ public class Hero {
     @Override
     public String toString() {
         return "Hero{" + "heroId=" + heroId + ", name=" + name + ", description=" 
-                + description + ", superpower=" + superpower + '}';
+                + description + ", superpower=" + superpower + ", photoFileName=" 
+                + photoFileName + '}';
     }
-
+    
 }

@@ -122,18 +122,16 @@
                     <tr>
                         <th>Name/Alias</th>
                         <th>Superpower</th>
-                        <th></th>
-                        <!--Details-->
-                        <th></th>
-                        <!--Edit-->
-                        <th></th>
-                        <!--Delete-->
+                        <th></th> <!--Details-->
+                        <th></th> <!--Edit-->
+                        <th></th> <!--Delete-->
                     </tr>
                     </thead>
 
                     <tbody id="hero-content-rows">
                     <tr th:each="hero: ${heroes}">
                         <td th:text="${hero.name}">Hero Name</td>
+                        <td><img th:src="${hero.photoFileName}" alt="Hero picture" style="height: 50px"/></td>
                         <td th:text="${hero.superpower.name}">Superpower Name</td>
                         <td><a href="#" th:href="@{/viewHero(id=${hero.heroId})}"><i class="far fa-eye"></i></a>
                         </td>
@@ -158,7 +156,7 @@
                     </p>
                 </div>
 
-                <form class="col" action="addHero" method="POST">
+                <form class="col" action="addHero" method="POST" enctype="multipart/form-data">
                     <!--name-->
                     <div class="form-group row">
                         <label for="name" class="col-form-label">Name/Alias:</label>
@@ -187,6 +185,12 @@
                                 </option>
                             </select>
                         </div>
+                    </div>
+
+                    <!--image upload-->
+                    <div class="form-group row">
+                        <label for="file" class="col-form-label">Profile Picture</label>
+                        <input type="file" name="file" id="file" class="form-control">
                     </div>
 
                     <!--submit btn-->

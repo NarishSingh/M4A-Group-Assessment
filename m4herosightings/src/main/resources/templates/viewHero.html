@@ -51,6 +51,11 @@
         <span th:text="${hero.name}">display name</span>
     </div>
 
+    <div class="col-6 text-right"><strong>Image:</strong></div>
+    <div class="col-6 text-left">
+        <img th:src="${hero.photoFileName}" alt="Hero picture" style="height: 250px"/>
+    </div>
+
     <div class="col-6 text-right"><strong>Description:</strong></div>
     <div class="col-6 text-left">
         <span th:text="${hero.description}">display description</span>

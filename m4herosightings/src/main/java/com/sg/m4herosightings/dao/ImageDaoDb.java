@@ -14,7 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Repository
 public class ImageDaoDb implements ImageDao {
 
-    private final String RESOURCE_ROOT = ""; //FIXME find the root path
+    private final String RESOURCE_ROOT = "C:/Users/naris/Documents/Work/TECHHIRE/REPOSITORY/M4A-Group-Assessment/m4herosightings/src/main/resources/static";
     private final String UPLOAD_DIR = "images/uploads/";
 
     @Override
@@ -81,7 +81,7 @@ public class ImageDaoDb implements ImageDao {
 
                 savedAs = UPLOAD_DIR + directory + "/" + filename;
             } catch (IOException e) {
-                return null; //TODO maybe throw an error?
+                return null;
             }
         }
 

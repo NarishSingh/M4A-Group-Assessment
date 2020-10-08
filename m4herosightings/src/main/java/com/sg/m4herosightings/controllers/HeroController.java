@@ -1,12 +1,13 @@
-/*
-    TODO for search bar - have it do a query with the inputted string
- */
+//TODO for search bar - have it do a query with the inputted string
 package com.sg.m4herosightings.controllers;
 
 import com.sg.m4herosightings.dao.HeroDao;
+import com.sg.m4herosightings.dao.ImageDao;
 import com.sg.m4herosightings.dao.SuperpowerDao;
 import com.sg.m4herosightings.dto.Hero;
 import com.sg.m4herosightings.dto.Superpower;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,6 +20,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 public class HeroController {
@@ -27,6 +30,9 @@ public class HeroController {
     SuperpowerDao spDao;
     @Autowired
     HeroDao hDao;
+    @Autowired
+    ImageDao iDao;
+    private final String heroUploadDir = "Heroes";
     Set<ConstraintViolation<Hero>> violations = new HashSet<>();
 
     /*MAIN SUBDOMAIN*/
@@ -52,17 +58,21 @@ public class HeroController {
      * POST - attempt to create a new Hero in db
      *
      * @param request
+     * @param file
      * @return {String} reload page if has errors, redirect to heroes subdomain
      *         if successful
      */
     @PostMapping("addHero")
-    public String addHero(HttpServletRequest request) {
+    public String addHero(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
+        String filePath = iDao.saveImage(file, Long.toString(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)), heroUploadDir);
+
         String superpowerId = request.getParameter("superpowerId");
 
         Hero hero = new Hero();
         hero.setSuperpower(spDao.readSuperpowerById(Integer.parseInt(superpowerId)));
         hero.setName(request.getParameter("name"));
         hero.setDescription(request.getParameter("description"));
+        hero.setPhotoFileName(filePath);
 
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(hero);
@@ -116,14 +126,16 @@ public class HeroController {
      * POST - perform the edit of a Hero in db
      *
      * @param request
+     * @param file
      * @param model
      * @return {String} reload page if failed, redirect to subdomain if
      *         successful
      */
     @PostMapping("editHero")
-    public String performEditHero(HttpServletRequest request, Model model) {
+    public String performEditHero(HttpServletRequest request, 
+            @RequestParam("file") MultipartFile file, Model model) {
         List<Superpower> superpowers = spDao.readAllSuperpowers();
-        
+
         int heroId = Integer.parseInt(request.getParameter("id"));
         Hero hero = hDao.readHeroById(heroId);
 
@@ -136,6 +148,7 @@ public class HeroController {
 
         hero.setName(heroName);
         hero.setDescription(heroDescription);
+        hero.setPhotoFileName(iDao.updateImage(file, hero.getPhotoFileName(), heroUploadDir));
 
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(hero);
@@ -158,11 +171,15 @@ public class HeroController {
     /**
      * GET - delete a Hero from db
      *
-     * @param id {Integer} a valid id for hero existing in db
+     * @param request
      * @return {String} redirect to subdomain if successful
      */
     @GetMapping("deleteHero")
-    public String deleteHero(Integer id) {
+    public String deleteHero(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Hero hero = hDao.readHeroById(id);
+
+        iDao.deleteImage(hero.getPhotoFileName());
         hDao.deleteHeroById(id);
 
         return "redirect:/hero";

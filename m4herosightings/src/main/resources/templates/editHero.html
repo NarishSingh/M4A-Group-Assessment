@@ -12,7 +12,6 @@
 </head>
 <body>
 <!--Begin Body-->
-<!--Begin Body-->
 <div class="bg"></div>
 <div class="container-fluid">
 
@@ -53,7 +52,7 @@
                 <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error message</p>
             </div>
 
-            <form action="editHero" method="POST">
+            <form action="editHero" method="POST" enctype="multipart/form-data">
                 <!--name-->
                 <div class="form-group row">
                     <label for="name" class="col-3 col-form-label">Name/Alias:</label>
@@ -83,6 +82,13 @@
                             </option>
                         </select>
                     </div>
+                </div>
+
+                <!--image upload-->
+                <img th:src="${hero.photoFileName}" alt="Hero picture" style="height: 250px"/>
+                <div class="form-group row">
+                    <label for="file" class="col-form-label">Hero Image</label>
+                    <input type="file" name="file" id="file" class="form-control-file">
                 </div>
 
                 <!--hidden id tracking-->
