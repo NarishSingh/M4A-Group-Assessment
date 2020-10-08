@@ -66,10 +66,8 @@ public class HeroController {
     public String addHero(HttpServletRequest request, @RequestParam("file") MultipartFile file) {
         String filePath = iDao.saveImage(file, Long.toString(LocalDateTime.now().toEpochSecond(ZoneOffset.UTC)), heroUploadDir);
 
-        String superpowerId = request.getParameter("superpowerId");
-
         Hero hero = new Hero();
-        hero.setSuperpower(spDao.readSuperpowerById(Integer.parseInt(superpowerId)));
+        hero.setSuperpower(spDao.readSuperpowerById(Integer.parseInt(request.getParameter("superpowerId"))));
         hero.setName(request.getParameter("name"));
         hero.setDescription(request.getParameter("description"));
         hero.setPhotoFileName(filePath);
