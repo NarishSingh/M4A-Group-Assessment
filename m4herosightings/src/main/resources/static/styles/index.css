@@ -8,6 +8,17 @@ body {
     background-color: black;
 }
 
+.bg-img {
+    background-attachment: fixed;
+    background-image: url("../assets/cover-4.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.bg-color {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
 .footer {
     padding: 50px;
 }

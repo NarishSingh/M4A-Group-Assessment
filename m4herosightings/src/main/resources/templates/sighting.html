@@ -48,12 +48,6 @@
             width: 500px;
         }
 
-        .top {
-            background-image: url("assets/cover-4.jpg");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-
         .search {
             padding-top: 100px;
             margin: 0 auto;
@@ -108,9 +102,7 @@
         }
 
         .sightings-form {
-            background-color: rgba(0, 0, 0, 0.75);
             padding: 50px;
-            
         }
 
         .middle {
@@ -142,7 +134,7 @@
         </div>
     </div>
     <div class="all">
-        <div class="top" id="sightingsTop">
+        <div class="top bg-img" id="sightingsTop">
             <div class="box-1">
                 <!-- ITUNES-LIKE SLIDER -->
                 <div class="swiper-container">
@@ -228,8 +220,8 @@
 
 
 
-        <div class="middle" id="sightingsMiddle"
-             style="background-image:url('assets/cover-4.jpg');background-attachment:fixed;height:80%"><br><br><br>
+        <div class="middle bg-img" id="sightingsMiddle"
+             style="height:80%"><br><br><br>
 
             <!--add form error box-->
             <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
@@ -237,7 +229,7 @@
             </div>
 
             <!--add sighting form-->
-            <div class="row m-4 sightings-form">
+            <div class="row m-4 sightings-form bg-color">
                 <div class="col-3 text-center m-3">
                     <span class="h3">Add Sighting</span>
                 </div>

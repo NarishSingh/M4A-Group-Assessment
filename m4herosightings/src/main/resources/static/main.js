@@ -65,8 +65,14 @@ function darkMode() {
     document.querySelector("body").style.backgroundColor = 'black';
     document.querySelector(".container-fluid").style.backgroundColor = 'black';
     document.querySelector(".themeStatus").innerHTML = 'Dark';
-    // document.getElementById("sightingsTop").style.backgroundImage = "url('assets/cover-4.jpg')";
-    // document.getElementById("sightingsMiddle").style.backgroundImage = "url('assets/cover-4.jpg')";
+    var bgimgs = document.querySelectorAll(".bg-img");
+    bgimgs.forEach((e) => {
+        e.style.backgroundImage = "url('assets/cover-4.jpg')";
+    })
+    var bgcolors = document.querySelectorAll(".bg-color");
+    bgcolors.forEach((e) => {
+        e.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
+    }) 
     document.querySelector(".bottom").style.backgroundColor = 'black';
     document.querySelector(".bottom p").style.color = 'white';
     var paragraphs = document.querySelectorAll("p, label, .bottom a, .h3");
@@ -88,8 +94,14 @@ function lightMode() {
     document.querySelector("body").style.backgroundColor = 'white';
     document.querySelector(".container-fluid").style.backgroundColor = 'white';
     document.querySelector(".themeStatus").innerHTML = 'Light';
-    // document.getElementById("sightingsTop").style.backgroundImage = "url('https://cdn.wallpapersafari.com/77/60/Qmy5KZ.jpg')";
-    // document.getElementById("sightingsMiddle").style.backgroundImage = "url('https://cdn.wallpapersafari.com/77/60/Qmy5KZ.jpg')";
+    var bgimgs = document.querySelectorAll(".bg-img");
+    bgimgs.forEach((e) => {
+        e.style.backgroundImage = "url('https://cdn.wallpapersafari.com/77/60/Qmy5KZ.jpg')";
+    })
+    var bgcolors = document.querySelectorAll(".bg-color");
+    bgcolors.forEach((e) => {
+        e.style.backgroundColor = "rgba(255, 255, 255, 0.75)";
+    }) 
     document.querySelector(".bottom").style.backgroundColor = 'white';
     var paragraphs = document.querySelectorAll("p, label, .bottom a, .h3");
     paragraphs.forEach((e) => {
