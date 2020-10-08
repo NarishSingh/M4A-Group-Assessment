@@ -67,7 +67,7 @@
     }
 
     .top .section-2 h3 {
-        color: rgb(0, 247, 255);
+        color: rgb(0, 53, 54);
         font-size: 20px;
     }
 
@@ -108,7 +108,7 @@
     <div class="bg"></div>
     <!--Heading & Navbar-->
      <div class="container-fluid">
-        <div class="row m-4">
+        <div class="row m-4 navBar">
             <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
                 <a id="toggleTheme" class="btn btn-outline-info btn-lg"><h5 class="themeStatus" style="display:inline;color:white">Dark</h5></a>
             </div>
@@ -137,7 +137,7 @@
             <div class="section-2">
                 <h3>Improve your vision</h3>
                 <p>Analyzing all heroes' activity...</p>
-                <button type="button" class="btn btn-outline-primary btn-lg" id="news">News</button>
+                <button type="button" class="btn news btn-outline-primary btn-lg" id="news">News</button>
                 <hr style="background-color:rgba(255,255,255,0.15);">
                 <p id="info">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
@@ -152,8 +152,10 @@
                     <br><br>
                     You will track a hero or a fight, as well as their contact.
                 </p>
-                <button type="button" class="btn btn-outline-success btn-lg" id="register">Register</button>
-                <button type="button" class="btn btn-outline-danger btn-lg" id="login">Login</button>
+                <div class="registerLogin">
+                    <button type="button" class="btn register btn-outline-success btn-lg" id="register">Register</button>
+                    <button type="button" class="btn login btn-outline-danger btn-lg" id="login">Login</button>
+                </div>
             </div>
         </div>
         <div class="middle col-sm-12" id="landingPageMiddle">
