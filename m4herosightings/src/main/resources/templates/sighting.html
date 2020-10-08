@@ -1,21 +1,19 @@
+<!DOCTYPE html>
 <html>
-
-<head>
-    <title>
-
-    </title>
-
+<head lang="en" xmlns:th="http://www.thymeleaf.org">
     <meta charset="UTF-8">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <title>HERO Sighting - Sightings</title>
+
     <!-- Link to BS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <!-- Style CSS -->
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="plugins/swiper.min.css">
 
     <style>
@@ -50,11 +48,6 @@
             width: 500px;
         }
 
-        .hoverBox {
-            background-color: rgba(0, 0, 255, 0.5);
-            z-index: 5;
-        }
-
         .top {
             background-image: url("assets/cover-4.jpg");
             background-repeat: no-repeat;
@@ -62,7 +55,7 @@
         }
 
         .search {
-            padding-top: 30px;
+            padding-top: 100px;
             margin: 0 auto;
             align-items: center;
             justify-content: center;
@@ -70,8 +63,7 @@
 
         .results {
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 150px;
+            padding: 50px;
         }
 
         label {
@@ -83,7 +75,7 @@
         }
 
         .revealMap {
-            background-color:rgba(255, 255, 255, 0.815);
+            background-color: rgba(255, 255, 255, 0.815);
             background-size: cover;
             z-index: 5;
             position: absolute;
@@ -93,6 +85,7 @@
             transition-duration: 1000ms;
             opacity: 0%;
         }
+
         .revealMap:hover {
             transition-property: opacity;
             transition-duration: 500ms;
@@ -100,6 +93,7 @@
             background-image: url("https://www.bergmannpc.com/imager/contentimages/project/unc-charlotte-center-city/6658/UNC-Center-City-Campus-Exterior_20d4ef1e03a0bb7e3cb004631c67ab23.jpg");
             background-size: cover;
         }
+
         /* background-image on 'revealMap:hover' will change based on its sightingID */
 
         .revealMap h3 {
@@ -112,257 +106,282 @@
             width: 100%;
             z-index: 5;
         }
+
+        .sightings-form {
+            background-color: rgba(0, 0, 0, 0.75);
+            padding: 50px;
+            
+        }
+
+        .middle {
+            padding-bottom: 100px;
+        }
     </style>
 </head>
 
 <body>
-    <div class="bg"></div>
-    <div class="container-fluid">
-        <div class="row m-4">
-            <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
-                <a id="toggleTheme" class="btn btn-outline-info btn-lg">
-                    <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
-                </a>
-            </div>
-            <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                <a href="index.html" class="btn btn-outline-primary btn-lg" id="landingPage">Home</a>
-            </div>
-            <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Students</a>
-            </div>
-            <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
-            </div>
-            <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                <a id="nav-about" class="btn btn-outline-primary btn-lg">About</a>
+<div class="bg"></div>
+<div class="container-fluid">
+    <div class="row m-4">
+        <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
+            <a id="toggleTheme" class="btn btn-outline-info btn-lg">
+                <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
+            </a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="index.html" class="btn btn-outline-primary btn-lg" id="landingPage">Home</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villians</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a id="nav-about" class="btn btn-outline-primary btn-lg">About</a>
+        </div>
+    </div>
+    <div class="all">
+        <div class="top" id="sightingsTop">
+            <div class="box-1">
+                <!-- ITUNES-LIKE SLIDER -->
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="revealMap" id="sightingID">
+                                <h3>Hero 1</h3>
+                            </div>
+                            <img src="https://www.bergmannpc.com/imager/contentimages/project/unc-charlotte-center-city/6658/UNC-Center-City-Campus-Exterior_20d4ef1e03a0bb7e3cb004631c67ab23.jpg">
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="revealMap" id="sightingID2">
+                                <h3>Hero 1</h3>
+                            </div>
+                            <img src="assets/glacier.jpg">
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="revealMap" id="sightingID3">
+                                <h3>Hero 1</h3>
+                            </div>
+                            <img src="assets/glacier.jpg">
+                        </div>
+                    </div>
+                    <!-- DOT NAV -->
+                    <div class="swiper-pagination"></div>
+                    <!-- NOT SURE YET -->
+                    <div class="swiper-scrollbar"></div>
+                </div>
+                <!-- <div class="sightingGallery">
+
+                </div> -->
+                <div class="separator"></div>
+                <div class="search">
+                    <div id="hero-search-bar" class="search">
+                        <input id="search-hero-db" name="search-hero-db" type="text">
+                    </div>
+                    <button type="button" class="btn btn-primary btn-md" id="search-hero-btn">Search</button>
+                </div>
+                <div class="separator"></div>
+                <div class="choose">
+                    <!-- <ul>
+                        <li>Sightings</li>
+                    </ul> -->
+                </div>
+                <div class="results">
+                    <!--sighting data table-->
+                    <div class="row m-4 border border-dark">
+                        <div class="col text-center m-3">
+                            <table class="table table-striped table-dark">
+                                <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Hero</th>
+                                    <th>Location</th>
+                                    <th></th>
+                                    <!--View-->
+                                    <th></th>
+                                    <!--Edit-->
+                                    <th></th>
+                                    <!--Delete-->
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="sighting : ${sightings}">
+                                    <td th:text="${sighting.date}">Sighting Date</td>
+                                    <td th:text="${sighting.hero.name}">Sighting Hero</td>
+                                    <td th:text="${sighting.location.name}">Sighting Location</td>
+                                    <td><a href="#" th:href="@{/viewSighting(id=${sighting.sightingId})}"><i
+                                            class="fas fa-eye"></i></a></td>
+                                    <td><a href="#" th:href="@{/editSighting(id=${sighting.sightingId})}"><i
+                                            class="fas fa-edit"></i></a></td>
+                                    <td><a href="#" th:href="@{/deleteSighting(id=${sighting.sightingId})}"><i
+                                            class="fas fa-trash"></i></a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="all">
-            <div class="top" id="sightingsTop">
-                <div class="box-1">
-                    <!-- ITUNES-LIKE SLIDER -->
-                    <div class="swiper-container">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="revealMap" id="sightingID">
-                                    <h3>Hero 1</h3>
-                                </div>
-                                <img src="https://www.bergmannpc.com/imager/contentimages/project/unc-charlotte-center-city/6658/UNC-Center-City-Campus-Exterior_20d4ef1e03a0bb7e3cb004631c67ab23.jpg">
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="revealMap" id="sightingID2">
-                                    <h3>Hero 1</h3>
-                                </div>
-                                <img src="assets/glacier.jpg">
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="revealMap" id="sightingID3">
-                                    <h3>Hero 1</h3>
-                                </div>
-                                <img src="assets/glacier.jpg">
-                            </div>
-                        </div>
-                        <!-- DOT NAV -->
-                        <div class="swiper-pagination"></div>
-                        <!-- NOT SURE YET -->
-                        <div class="swiper-scrollbar"></div>
-                    </div>
-                    <!-- <div class="sightingGallery">
-                        
-                    </div> -->
-                    <div class="separator"></div>
-                    <div class="search">
-                        <div id="hero-search-bar" class="search">
-                            <input id="search-hero-db" name="search-hero-db" type="text">
-                        </div>
-                        <button type="button" class="btn btn-primary btn-md" id="search-hero-btn">Search</button>
-                    </div>
-                    <div class="separator"></div>
-                    <div class="choose">
-                        <ul>
-                            <li>Sightings</li>
-                        </ul>
-                    </div>
-                    <div class="results">
-                        <!--sighting data table-->
-                        <div class="row m-4 border border-dark">
-                            <div class="col text-center m-3">
-                                <table class="table table-striped table-dark">
-                                    <thead>
-                                        <tr>
-                                            <th>Date</th>
-                                            <th>Hero</th>
-                                            <th>Location</th>
-                                            <th></th>
-                                            <!--View-->
-                                            <th></th>
-                                            <!--Edit-->
-                                            <th></th>
-                                            <!--Delete-->
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr th:each="sighting : ${sightings}">
-                                            <td th:text="${sighting.date}">Sighting Date</td>
-                                            <td th:text="${sighting.hero.name}">Sighting Hero</td>
-                                            <td th:text="${sighting.location.name}">Sighting Location</td>
-                                            <td><a href="#" th:href="@{/viewSighting(id=${sighting.id})}"><i class="fas fa-eye"></i></a></td>
-                                            <td><a href="#" th:href="@{/editSighting(id=${sighting.id})}"><i class="fas fa-edit"></i></a></td>
-                                            <td><a href="#" th:href="@{/deleteSighting(id=${sighting.id})}"><i class="fas fa-trash"></i></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+
+
+        <div class="middle" id="sightingsMiddle"
+             style="background-image:url('assets/cover-4.jpg');background-attachment:fixed;height:80%"><br><br><br>
+
+            <!--add form error box-->
+            <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+                <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error message</p>
             </div>
 
-            <div class="middle" id="sightingsMiddle" style="background-image:url('assets/cover-4.jpg');background-attachment:fixed;height:80%"><br><br><br>
-                <!--add sighting form-->
-                <div class="row m-4">
-                    <div class="col-3 text-center m-3">
-                        <span class="h3">Add Sighting</span>
-                    </div>
-                
-                    <div class="col-7 text-center m-3">
-                        <form action="addSighting" method="post">
-                            <!--date-->
-                            <div class="form-group row">
-                                <label for="name" class="col-3 col-form-label">Name/Alias:</label>
-                                <div class="col-9">
-                                    <input type="text" class="form-control" name="name" id="name">
-                                </div>
+            <!--add sighting form-->
+            <div class="row m-4 sightings-form">
+                <div class="col-3 text-center m-3">
+                    <span class="h3">Add Sighting</span>
+                </div>
+
+                <div class="col-7 text-center m-3">
+                    <form action="addSighting" method="POST">
+                        <!--date-->
+                        <div class="form-group row">
+                            <label for="date" class="col-3 col-form-label">Date:</label>
+                            <div class="col-9">
+                                <input type="date" class="form-control" name="date" id="date">
                             </div>
-                
-                            <!--description-->
-                            <div class="form-group row">
-                                <label for="description" class="col-3 col-form-label">Description:</label>
-                                <div class="col-9">
-                                    <input type="text" class="form-control" name="description" id="description">
-                                </div>
+                        </div>
+
+                        <!--description-->
+                        <div class="form-group row">
+                            <label for="description" class="col-3 col-form-label">Description:</label>
+                            <div class="col-9">
+                                <input type="text" class="form-control" name="description" id="description">
                             </div>
-                
-                            <!--hero select-->
-                            <div class="form-group row">
-                                <label for="superpower" class="col-3 col-form-label">Superpower:</label>
-                                <select name="superpowerId" id="superpower" class="form-control">
-                                    <option th:each="superpower : ${superpowers}" th:value="${superpower.superpowerId}"
-                                        th:text="${superpower.name}">
-                                        Superpower
-                                    </option>
-                                </select>
-                            </div>
-                
-                            <!--location select-->
-                            <div class="form-group row">
-                                <label for="location" class="col-3 col-form-label">Location:</label>
-                                <select name="locationId" id="location" class="form-control">
-                                    <option th:each="location : ${locations}" th:value="${location.locationId}"
+                        </div>
+
+                        <!--hero select-->
+                        <div class="form-group row">
+                            <label for="hero" class="col-3 col-form-label">Superpower:</label>
+                            <select name="heroId" id="hero" class="form-control col">
+                                <option th:each="hero : ${heroes}" th:value="${hero.heroId}" th:text="${hero.name}">
+                                    Superpower
+                                </option>
+                            </select>
+                        </div>
+
+                        <!--location select-->
+                        <div class="form-group row">
+                            <label for="location" class="col-3 col-form-label">Location:</label>
+                            <select name="locationId" id="location" class="form-control col">
+                                <option th:each="location : ${locations}" th:value="${location.locationId}"
                                         th:text="${location.name}">
-                                        Location
-                                    </option>
-                                </select>
-                            </div>
-                
-                            <button type="submit" class="btn btn-success">Add Sighting</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <div class="bottom" id="about">
-                <div class="row">
-                    <div class="column col-xl-6 col-lg-12 col-sm-12">
-                        <h3>Our Mission</h3>
-                        <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem
-                            Ipsum has been the industry's
-                            standard
-                            dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                            it to make
-                            a type
-                            specimen
-                            book. It has survived not only five centuries, but also the leap into electronic
-                            typesetting, remaining
-                            essentially
-                            unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                            Lorem Ipsum
-                            passages, and
-                            more
-                            recently with desktop publishing software like Aldus PageMaker including versions of Lorem
-                            Ipsum.
-                        </p>
-                    </div>
-                    <div class="column col-xl-6 col-lg-12 col-sm-12">
-                        <h3>About</h3>
-                        <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
-                            industry. Lorem
-                            Ipsum has been the industry's standard
-                            dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                            it to make
-                            a type specimen
-                            book. It has survived not only five centuries, but also the leap into electronic
-                            typesetting, remaining
-                            essentially
-                            unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                            Lorem Ipsum
-                            passages, and more
-                            recently with desktop publishing software like Aldus PageMaker including versions of Lorem
-                            Ipsum.</p>
-                    </div>
-                </div>    
-                <div class="row">
-                    <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12">
-                        <div class="form-group row justify-content-center align-items-center">
-                            <label for="description-input" class="col-form-label"></label>
-                            <div class="col-xl-7 col-lg-12 col-sm-12">
-                                <input type="text" name="description-input" class="form-control" id="description-input">
-                            </div>
-                            <button type="button" class="btn btn-outline-warning btn-lg" id="send">Send
-                                Feedback</button>
+                                    Location
+                                </option>
+                            </select>
                         </div>
-                    </div>
-                    <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12" style="padding-left: 100px">
-                        <ul class="row" style="list-style:none;text-align:center;color:white">
-                            <a class="col-3" href="#">
-                                <li>Home</li>
-                            </a> | 
-                            <a class="col-3" href="#">
-                                <li>Heroes</li>
-                            </a> | 
-                            <a class="col-3" href="#">
-                                <li>Sightings</li>
-                            </a>
-                        </ul>
-                    </div>
-                </div>  
-            </div>
-            <hr style="background-color:rgba(255,255,255,0.1);">
-            <div class="footer">
-                <!-- Add font awesome icons -->
-                <a href="#" class="fa fa-facebook"></a>
-                <a href="#" class="fa fa-linkedin"></a>
-                <a href="#" class="fa fa-youtube"></a>
-                <a href="#" class="fa fa-instagram"></a>
-                <a href="#" class="fa fa-reddit"></a>
-                <br><br>
-                @Copyright iTimmy
+
+                        <button type="submit" class="btn btn-outline-primary">Add Sighting</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
+
+    <div class="bottom" id="about">
+        <div class="row">
+            <div class="column col-xl-6 col-lg-12 col-sm-12">
+                <h3>Our Mission</h3>
+                <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem
+                    Ipsum has been the industry's
+                    standard
+                    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                    it to make
+                    a type
+                    specimen
+                    book. It has survived not only five centuries, but also the leap into electronic
+                    typesetting, remaining
+                    essentially
+                    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+                    Lorem Ipsum
+                    passages, and
+                    more
+                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+                    Ipsum.
+                </p>
+            </div>
+            <div class="column col-xl-6 col-lg-12 col-sm-12">
+                <h3>About</h3>
+                <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem
+                    Ipsum has been the industry's standard
+                    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                    it to make
+                    a type specimen
+                    book. It has survived not only five centuries, but also the leap into electronic
+                    typesetting, remaining
+                    essentially
+                    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+                    Lorem Ipsum
+                    passages, and more
+                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+                    Ipsum.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group row justify-content-center align-items-center">
+                    <label for="description-input" class="col-form-label"></label>
+                    <div class="col-xl-7 col-lg-12 col-sm-12">
+                        <input type="text" name="description-input" class="form-control" id="description-input">
+                    </div>
+                    <button type="button" class="btn btn-outline-warning btn-lg" id="send">Send
+                        Feedback
+                    </button>
+                </div>
+            </div>
+            <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12" style="padding-left: 100px">
+                <ul class="row" style="list-style:none;text-align:center;color:white">
+                    <a class="col-3" href="#">
+                        <li>Home</li>
+                    </a>
+                    <a class="col-3" href="#">
+                        <li>Heroes</li>
+                    </a>
+                    <a class="col-3" href="#">
+                        <li>Sightings</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr style="background-color:rgba(255,255,255,0.1);">
+    <div class="footer">
+        <!-- Add font awesome icons -->
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-linkedin"></a>
+        <a href="#" class="fa fa-youtube"></a>
+        <a href="#" class="fa fa-instagram"></a>
+        <a href="#" class="fa fa-reddit"></a>
+        <br><br>
+        @Copyright Bob, Narish, Timmy
+    </div>
+</div>
+</div>
 </body>
 
 <!-- PLUGINS + THIRD PARTY -->
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <script src="plugins/swiper.min.js"></script>
 

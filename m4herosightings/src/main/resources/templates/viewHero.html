@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Hero Sightings - Sighting Details</title>
-
+    <title>Hero Sightings - Hero Details</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
@@ -17,7 +16,7 @@
 <div class="container">
     <div class="row m-4">
         <div class="col text-center border border-dark">
-            <h1>HERO Sightings - View Sighting</h1>
+            <h1>HERO Sightings - View Hero</h1>
         </div>
     </div>
     <div class="row m-4">
@@ -44,38 +43,23 @@
 <div class="row m-4 border">
     <div class="col-6 text-right"><strong>ID:</strong></div>
     <div class="col-6 text-left">
-        <span th:text="${sighting.sightingId}">display id</span>
-    </div>
-
-    <div class="col-6 text-right"><strong>Date:</strong></div>
-    <div class="col-6 text-left">
-        <span th:text="${sighting.date}">display date</span>
-    </div>
-
-    <div class="col-6 text-right"><strong>Description:</strong></div>
-    <div class="col-6 text-left">
-        <span th:text="${sighting.description}">display description</span>
+        <span th:text="${hero.heroId}">display id</span>
     </div>
 
     <div class="col-6 text-right"><strong>Hero:</strong></div>
     <div class="col-6 text-left">
-        <span th:text="${sighting.hero.name}">display name</span>
+        <span th:text="${hero.name}">display name</span>
     </div>
+
+    <div class="col-6 text-right"><strong>Description:</strong></div>
+    <div class="col-6 text-left">
+        <span th:text="${hero.description}">display description</span>
+    </div>
+
 
     <div class="col-6 text-right"><strong>Location:</strong></div>
     <div class="col-6 text-left">
-        <span th:text="${sighting.location.name}">display location</span>
-    </div>
-
-    <div class="col-6 text-right"><strong>Address:</strong></div>
-    <div class="col-6 text-left">
-        <span th:text="${sighting.location.street + ' ' + sighting.location.city + ' ' + sighting.location.state + ' '
-        + sighting.location.zipcode}">display address</span>
-    </div>
-
-    <div class="col-6 text-right"><strong>Coordinates:</strong></div>
-    <div class="col-6 text-left">
-        <span th:text="${sighting.location.latitude + ' ' + sighting.location.longitude}">display coordinates</span>
+        <span th:text="${hero.superpower.name + ' - ' + hero.superpower.description}">display superpower</span>
     </div>
 </div>
 <!--End Body-->

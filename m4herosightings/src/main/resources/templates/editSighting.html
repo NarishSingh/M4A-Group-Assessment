@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Hero Sightings - Edit Sighting</title>
@@ -21,34 +19,28 @@
             <h1>HERO Sightings</h1>
         </div>
     </div>
-    <div class="row m-4 border border-dark">
-        <div class="col text-center m-3">
-            <a href="superpower" class="btn btn-outline-primary btn-lg">Teachers</a>
+    <div class="row m-4">
+        <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
+            <a id="toggleTheme" class="btn btn-outline-info btn-lg">
+                <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
+            </a>
         </div>
-        <div class="col text-center m-3">
-            <a href="hero" class="btn btn-outline-primary btn-lg">Students</a>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="index.html" class="btn btn-outline-primary btn-lg" id="landingPage">Home</a>
         </div>
-        <div class="col text-center m-3">
-            <a href="location" class="btn btn-outline-primary btn-lg">Courses</a>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villians</a>
         </div>
-        <div class="col text-center m-3">
-            <a href="sighting" class="btn btn-outline-primary btn-lg">Courses</a>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
         </div>
-        <div class="col text-center m-3">
-            <a href="organization" class="btn btn-outline-primary btn-lg">Courses</a>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a id="nav-about" class="btn btn-outline-primary btn-lg">About</a>
         </div>
     </div>
 </div>
 
-<!--error box-->
-<!--FIXME input validation-->
-<!--<div class="col-12 m-1 text-center"
-     th:if="${!errors.isEmpty()}">
-    <p class="alert alert-danger" th:each="error : ${errors}"
-       th:text="${error.message}">Error message</p>
-</div>-->
-
-<!--edit sighting form-->
+<!--edit sighting form with errors boxes under fields-->
 <div class="row m-4 border">
     <div class="col-3 text-center m-3">
         <span class="h3">Edit Sighting</span>
@@ -60,6 +52,11 @@
                 <label for="date" class="col-3 col-form-label">Date:</label>
                 <div class="col-9">
                     <input type="date" name="date" id="date" class="form-control" th:value="${sighting.date}">
+
+                    <div th:if="${#fields.hasErrors('sighting.date')}">
+                        <p th:each="error: ${#fields.errors('sighting.date')}" th:text="${error}"
+                           class="alert alert-danger"></p>
+                    </div>
                 </div>
             </div>
 
@@ -69,6 +66,11 @@
                 <div class="col-9">
                     <input type="text" name="description" id="description" class="form-control"
                            th:value="${sighting.description}">
+
+                    <div th:if="${#fields.hasErrors('sighting.description')}">
+                        <p th:each="error: ${#fields.errors('sighting.description')}" th:text="${error}"
+                           class="alert alert-danger"></p>
+                    </div>
                 </div>
             </div>
 
@@ -76,12 +78,17 @@
             <div class="form-group row">
                 <label for="hero" class="col-3 col-form-label">Hero:</label>
                 <div class="col-9">
-                    <select name="hero" id="hero" class="form-control">
+                    <select name="heroId" id="hero" class="form-control">
                         <option th:each="hero : ${heroes}" th:value="${hero.heroId}" th:text="${hero.name}"
                                 th:selected="${sighting.hero.heroId == hero.heroId}">
                             Hero
                         </option>
                     </select>
+
+                    <div th:if="${#fields.hasErrors('sighting.hero')}">
+                        <p th:each="error: ${#fields.errors('sighting.hero')}" th:text="${error}"
+                           class="alert alert-danger"></p>
+                    </div>
                 </div>
             </div>
 
@@ -89,18 +96,23 @@
             <div class="form-group row">
                 <label for="location" class="col-3 col-form-label">Location:</label>
                 <div class="col-9">
-                    <select name="location" id="location" class="form-control">
+                    <select name="locationId" id="location" class="form-control">
                         <option th:each="location : ${locations}" th:value="${location.locationId}"
                                 th:text="${location.name}"
                                 th:selected="${sighting.location.locationId == location.locationId}">
                             Location
                         </option>
                     </select>
+
+                    <div th:if="${#fields.hasErrors('sighting.location')}">
+                        <p th:each="error: ${#fields.errors('sighting.location')}" th:text="${error}"
+                           class="alert alert-danger"></p>
+                    </div>
                 </div>
             </div>
 
             <!--hidden id tracking-->
-            <input type="hidden" name="id" th:value="sighting.sightingId"/>
+            <input type="hidden" name="id" th:value="${sighting.sightingId}"/>
 
             <button type="submit" class="btn btn-success">Edit Sighting</button>
         </form>

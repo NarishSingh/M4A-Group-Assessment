@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-
-    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>Hero Sightings - Edit Hero/Villian</title>
@@ -14,28 +12,84 @@
 </head>
 <body>
 <!--Begin Body-->
-<!--Navbar-->
-<div class="container">
+<!--Begin Body-->
+<div class="bg"></div>
+<div class="container-fluid">
+
+    <div class="title">
+        <h1><a href="#">Superheroes</a></h1>
+        <h3>Heroes</h3>
+    </div>
+
+    <!--Navbar-->
     <div class="row m-4">
-        <div class="col text-center border border-dark">
-            <h1>HERO Sightings</h1>
+        <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
+            <a id="toggleTheme" class="btn btn-outline-info btn-lg">
+                <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
+            </a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="index.html" class="btn btn-outline-primary btn-lg" id="landingPage">Home</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villians</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a id="nav-about" class="btn btn-outline-primary btn-lg">About</a>
         </div>
     </div>
-    <div class="row m-4 border border-dark">
-        <div class="col text-center m-3">
-            <a href="superpower" class="btn btn-outline-primary btn-lg">Teachers</a>
+
+    <!--edit hero form-->
+    <div class="row m-4 border">
+        <div class="col-3 text-center m-3">
+            <span class="h3">Edit Hero</span>
         </div>
-        <div class="col text-center m-3">
-            <a href="hero" class="btn btn-outline-primary btn-lg">Students</a>
-        </div>
-        <div class="col text-center m-3">
-            <a href="location" class="btn btn-outline-primary btn-lg">Courses</a>
-        </div>
-        <div class="col text-center m-3">
-            <a href="sighting" class="btn btn-outline-primary btn-lg">Courses</a>
-        </div>
-        <div class="col text-center m-3">
-            <a href="organization" class="btn btn-outline-primary btn-lg">Courses</a>
+        <div class="col-7 text-center m-3">
+            <!--edit form error box-->
+            <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+                <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error message</p>
+            </div>
+
+            <form action="editHero" method="POST">
+                <!--name-->
+                <div class="form-group row">
+                    <label for="name" class="col-3 col-form-label">Name/Alias:</label>
+                    <div class="col-9">
+                        <input type="text" class="form-control" name="name" id="name" th:value="${hero.name}">
+                    </div>
+                </div>
+
+                <!--description-->
+                <div class="form-group row">
+                    <label for="description" class="col-3 col-form-label">Description:</label>
+                    <div class="col-9">
+                        <input type="text" name="description" id="description" class="form-control"
+                               th:value="${hero.description}">
+                    </div>
+                </div>
+
+                <!--superpower select-->
+                <div class="form-group row">
+                    <label for="superpower" class="col-3 col-form-label">Hero:</label>
+                    <div class="col-9">
+                        <select name="superpower" id="superpower" class="form-control">
+                            <option th:each="superpower : ${superpowers}" th:value="${superpower.superpowerId}"
+                                    th:text="${superpower.name}"
+                                    th:selected="${hero.superpower.superpowerId == superpower.superpowerId}">
+                                Hero
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <!--hidden id tracking-->
+                <input type="hidden" name="id" th:value="${hero.heroId}"/>
+
+                <button type="submit" class="btn btn-success">Edit Hero</button>
+            </form>
         </div>
     </div>
 </div>
