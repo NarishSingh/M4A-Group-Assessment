@@ -9,30 +9,86 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/index.css">
 </head>
 <body>
 <!--Begin Body-->
-<!--Navbar-->
-<div class="row m-4 navBar">
-    <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
-        <a id="toggleTheme" class="btn btn-outline-info btn-lg">
-            <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
-        </a>
+<div class="container-fluid">
+    <!--Navbar-->
+    <div class="row m-4 navBar">
+        <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
+            <a id="toggleTheme" class="btn btn-outline-info btn-lg">
+                <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
+            </a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="index.html" class="btn btn-outline-primary btn-lg" id="landingPage">Home</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villains</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a id="nav-about" class="btn btn-outline-primary btn-lg">About</a>
+        </div>
     </div>
-    <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-        <a href="index.html" class="btn btn-outline-primary btn-lg" id="landingPage">Home</a>
+
+    <!--power data table-->
+    <div id="superpower-data">
+        <table class="table table-dark table-striped" id="superpower-table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th></th> <!--Details-->
+                <th></th> <!--Edit-->
+                <th></th> <!--Delete-->
+            </tr>
+            </thead>
+
+            <tbody id="superpower-content-rows">
+            <tr th:each="sp : ${superpowers}">
+                <td th:text="${sp.name}">Power</td>
+                <td th:text="${sp.description}">Description</td>
+                <td><a href="#" th:href="@{/viewSuperpower(id=${sp.superpowerId})}"><i class="far fa-eye"></a></td>
+                <td><a href="#" th:href="@{/editSuperpower(id=${sp.superpowerId})}"><i class="fas fa-edit"></a></td>
+                <td><a href="#" th:href="@{/deleteSuperpower(id=${sp.superpowerId})}"><i class="fas fa-trash"></a></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-    <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-        <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villains</a>
-    </div>
-    <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-        <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
-    </div>
-    <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-        <a id="nav-about" class="btn btn-outline-primary btn-lg">About</a>
+
+    <!--add power form-->
+    <div>
+        <div class="row">
+            <h3>Add Superpower</h3>
+        </div>
+        <div class="row">
+            <form action="addSuperpower" method="POST">
+                <!--name-->
+                <div class="form-group row">
+                    <label for="name" class="col-form-label">Power:</label>
+                    <div class="col-7">
+                        <input type="text" name="name" class="form-control" id="name">
+                    </div>
+                </div>
+
+                <!--description-->
+                <div class="form-group row">
+                    <label for="description" class="col-form-label">Description:</label>
+                    <div class="col-7">
+                        <input type="text" name="description" class="form-control" id="description">
+                    </div>
+                </div>
+
+                <!--submit btn-->
+                <button type="submit" class="btn btn-outline-primary">Add Power</button>
+            </form>
+        </div>
     </div>
 </div>
-
 
 <!--End Body-->
 
