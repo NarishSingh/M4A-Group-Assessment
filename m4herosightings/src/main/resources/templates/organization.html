@@ -16,28 +16,27 @@
 <!--Begin Body-->
 <div class="container">
     <!--Navbar and heading-->
-    <div class="row m-4">
-        <div class="col text-center border border-dark">
-            <h1>HERO Sightings</h1>
+    <!--Navbar-->
+    <div class="row m-4 navBar">
+        <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
+            <a id="toggleTheme" class="btn btn-outline-info btn-lg">
+                <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
+            </a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="index.html" class="btn btn-outline-primary btn-lg" id="landingPage">Home</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villains</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a id="nav-about" class="btn btn-outline-primary btn-lg">About</a>
         </div>
     </div>
-    <div class="row m-4 border border-dark">
-        <div class="col text-center m-3">
-            <a href="superpower" class="btn btn-outline-primary btn-lg">Teachers</a>
-        </div>
-        <div class="col text-center m-3">
-            <a href="hero" class="btn btn-outline-primary btn-lg">Students</a>
-        </div>
-        <div class="col text-center m-3">
-            <a href="location" class="btn btn-outline-primary btn-lg">Courses</a>
-        </div>
-        <div class="col text-center m-3">
-            <a href="sighting" class="btn btn-outline-primary btn-lg">Courses</a>
-        </div>
-        <div class="col text-center m-3">
-            <a href="organization" class="btn btn-outline-primary btn-lg">Organization</a>
-        </div>
-    </div>
+
     <div class="row m-4 border border-dark">
         <!--error msg-->
         <div class="col-12 m-1 text-center"
@@ -45,7 +44,7 @@
             <p class="alert alert-danger" th:each="error : ${errors}"
                th:text="${error.message}">Error message</p>
         </div>
-      
+
         <!--add organization form-->
         <div class="col-3 m-3 text-center">
             <span class="h3">Add Organization</span>
