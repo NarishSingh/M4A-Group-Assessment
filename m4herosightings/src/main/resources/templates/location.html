@@ -146,12 +146,14 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
+
 <script th:inline="javascript">
     function showMap() {
         var apiKey = "AIzaSyBpD442VLkwZ5_Kp795_zE-UWHy8-6EBQc";
         var mapArray = [[${locations}]];
         $.each(mapArray, function (index, map) {
-            var mapsrc = "https://www.google.com/maps/embed/v1/view?key=" + apiKey + "&center=" + map.latitude + "," + map.longitude + "&zoom=18";
+            var mapsrc = "https://www.google.com/maps/embed/v1/place?key=" + apiKey + "&q=" + map.latitude + ","
+                + map.longitude + "&center=" + map.latitude + "," + map.longitude + "&zoom=18";
             $('<div>', {
                 class: "col-12 m-3",
                 id: "map" + map.locationId
