@@ -5,6 +5,7 @@ import com.sg.m4herosightings.dto.Superpower;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.Validation;
@@ -44,10 +45,12 @@ public class SuperpowerController {
      *
      * @param superpower {Superpower} a validated superpower obj
      * @param result     {BindingResult} enforces validation rules
+     * @param model      {Model} holds obj and errors
      * @return {String} reload homepage
      */
     @PostMapping("addSuperpower")
-    public String addSuperpower(@Valid Superpower superpower, BindingResult result) {
+    public String addSuperpower(@Valid Superpower superpower, BindingResult result,
+            Model model) {
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(superpower);
 
@@ -79,17 +82,18 @@ public class SuperpowerController {
     /**
      * GET - retrieve original Superpower to be edited
      *
-     * @param id    {Integer} the id of the superpower to be edited
-     * @param model {Model} holds obj
+     * @param request
+     * @param model   {Model} holds obj
      * @return {String} load edit page
      */
     @GetMapping("editSuperpower")
-    public String editSuperpower(Integer id, Model model) {
-        Superpower superpower = spDao.readSuperpowerById(id);
+    public String editSuperpower(HttpServletRequest request, Model model) {
+        Superpower superpower = spDao.readSuperpowerById(Integer.parseInt(request.getParameter("id")));
 
         model.addAttribute("superpower", superpower);
+        model.addAttribute("errors", violations);
 
-        return "viewSuperpower";
+        return "editSuperpower";
     }
 
     /**
@@ -101,18 +105,21 @@ public class SuperpowerController {
      * @return {String} redirect to homepage if successful, reload otherwise
      */
     @PostMapping("editSuperpower")
-    public String performEditSuperpower(@Valid Superpower superpower, BindingResult result, Model model) {
+    public String performEditSuperpower(HttpServletRequest request, Model model) {
+        Superpower superpower = spDao.readSuperpowerById(Integer.parseInt(request.getParameter("id")));
+        superpower.setName(request.getParameter("name"));
+        superpower.setDescription(request.getParameter("description"));
+
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
         violations = validate.validate(superpower);
 
-        if (result.hasErrors()) {
-            model.addAttribute("superpower", superpower);
-
-            return "editSuperpower";
-        }
-
         if (violations.isEmpty()) {
             spDao.updateSuperpower(superpower);
+        } else {
+            model.addAttribute("superpower", superpower);
+            model.addAttribute("errors", violations);
+
+            return "editSuperpower";
         }
 
         return "redirect:/superpower";

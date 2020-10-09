@@ -66,6 +66,11 @@
             <h3>Add Superpower</h3>
         </div>
         <div class="row">
+            <!--edit form error box-->
+            <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+                <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error message</p>
+            </div>
+
             <form action="addSuperpower" method="POST">
                 <!--name-->
                 <div class="form-group row">
