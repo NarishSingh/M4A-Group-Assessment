@@ -28,13 +28,10 @@ public class OrganizationController {
 
     @Autowired
     OrganizationDao orgDao;
-
     @Autowired
     LocationDao locationDao;
-
     @Autowired
     HeroDao heroDao;
-
     Set<ConstraintViolation<Organization>> violations = new HashSet<>();
 
     /**
@@ -65,22 +62,20 @@ public class OrganizationController {
     @PostMapping("addOrganization")
     public String addOrganization(Organization org, HttpServletRequest request) {
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
+        String locationId = request.getParameter("locationId");
+        String[] heroesId = request.getParameterValues("heroId");
+        org.setLocation(locationDao.readLocationById(Integer.parseInt(locationId)));
+        List<Hero> heroes = new ArrayList<>();
+        if (heroesId != null) {
+            for (String id : heroesId) {
+                heroes.add(heroDao.readHeroById(Integer.parseInt(id)));
+            }
+        }
+        org.setMembers(heroes);
         violations = validate.validate(org);
         if (violations.isEmpty()) {
-            String locationId = request.getParameter("locationId");
-            String[] heroesId = request.getParameterValues("heroId");
-
-            org.setLocation(locationDao.readLocationById(Integer.parseInt(locationId)));
-            List<Hero> heroes = new ArrayList<>();
-            if (heroesId != null) {
-                for (String id : heroesId) {
-                    heroes.add(heroDao.readHeroById(Integer.parseInt(id)));
-                }
-            }
-            org.setMembers(heroes);
             orgDao.createOrganization(org);
         }
-
         return "redirect:/organization";
     }
 
@@ -107,7 +102,6 @@ public class OrganizationController {
      */
     @GetMapping("editOrganization")
     public String updateOrganization(Integer id, Model model) {
-
         Organization org = orgDao.readOrganizationById(id);
         List<Location> locations = locationDao.readAllLocations();
         List<Hero> heroes = heroDao.readAllHeroes();
@@ -144,7 +138,6 @@ public class OrganizationController {
             result.addError(error);
         }
         org.setMembers(heroes);
-
         if (result.hasErrors()) {
             model.addAttribute("organization", org);
             model.addAttribute("locations", locationDao.readAllLocations());
@@ -167,9 +160,4 @@ public class OrganizationController {
         model.addAttribute("organizations", orgs);
         return "displayOrgsForHero";
     }
-
-//    @GetMapping("displayHeroesForOrg")
-//    public String displayHeroesForOrg(String orgName){
-//        
-//    }
 }
