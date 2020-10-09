@@ -99,9 +99,9 @@ public class SuperpowerController {
     /**
      * POST - attempt to edit a superpower in db
      *
-     * @param superpower {Superpower} a validated obj
-     * @param result     {BindingResult} enforces validation rules
-     * @param model      {Model} holds obj on reload for failure to edit
+     * @param request {HttpServletRequest} retrieves form data for attempting
+     *                update
+     * @param model   {Model} holds obj on reload for failure to edit
      * @return {String} redirect to homepage if successful, reload otherwise
      */
     @PostMapping("editSuperpower")
