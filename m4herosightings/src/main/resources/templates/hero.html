@@ -72,7 +72,6 @@
 <!--Begin Body-->
 <div class="bg"></div>
 <div class="container-fluid">
-
     <!--Navbar-->
     <div class="row m-4 navBar">
         <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
@@ -84,7 +83,7 @@
             <a href="index.html" class="btn btn-outline-primary btn-lg" id="landingPage">Home</a>
         </div>
         <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villians</a>
+            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villains</a>
         </div>
         <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
             <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
@@ -121,6 +120,7 @@
                     <thead>
                     <tr>
                         <th>Name/Alias</th>
+                        <th>Picture</th>
                         <th>Superpower</th>
                         <th></th> <!--Details-->
                         <th></th> <!--Edit-->
@@ -131,7 +131,7 @@
                     <tbody id="hero-content-rows">
                     <tr th:each="hero: ${heroes}">
                         <td th:text="${hero.name}">Hero Name</td>
-                        <td><img th:src="${hero.photoFileName}" style="height: 50px"/></td>
+                        <td><img th:src="${hero.photoFileName}" style="height: 50px; padding: 0px; margin-top: 0px;"/></td>
                         <td th:text="${hero.superpower.name}">Superpower Name</td>
                         <td><a href="#" th:href="@{/viewHero(id=${hero.heroId})}"><i class="far fa-eye"></i></a>
                         </td>

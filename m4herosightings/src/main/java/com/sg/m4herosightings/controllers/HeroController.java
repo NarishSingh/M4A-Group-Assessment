@@ -3,8 +3,10 @@ package com.sg.m4herosightings.controllers;
 
 import com.sg.m4herosightings.dao.HeroDao;
 import com.sg.m4herosightings.dao.ImageDao;
+import com.sg.m4herosightings.dao.OrganizationDao;
 import com.sg.m4herosightings.dao.SuperpowerDao;
 import com.sg.m4herosightings.dto.Hero;
+import com.sg.m4herosightings.dto.Organization;
 import com.sg.m4herosightings.dto.Superpower;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -30,6 +32,8 @@ public class HeroController {
     SuperpowerDao spDao;
     @Autowired
     HeroDao hDao;
+    @Autowired
+    OrganizationDao oDao;
     @Autowired
     ImageDao iDao;
     private final String heroUploadDir = "Heroes";
@@ -93,8 +97,11 @@ public class HeroController {
     @GetMapping("viewHero")
     public String viewHeroDetails(Integer id, Model model) {
         Hero hero = hDao.readHeroById(id);
+        List<Organization> organizations = oDao.displayOrganizationForHero(hero);
+        
         model.addAttribute("hero", hero);
         model.addAttribute("superpower", hero.getSuperpower());
+        model.addAttribute("organizations", organizations);
 
         return "viewHero";
     }

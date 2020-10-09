@@ -66,6 +66,11 @@
     <div class="col-6 text-left">
         <span th:text="${hero.superpower.name + ' - ' + hero.superpower.description}">display superpower</span>
     </div>
+
+    <div class="col-6 text-right"><strong>Organizations:</strong></div>
+    <div class="col-6 text-left">
+        <span th:each="org : ${organizations}" th:text="${org.name}">display org list</span>
+    </div>
 </div>
 <!--End Body-->
 
