@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Hero Sightings - Delete Location</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/index.css">
+</head>
+
+<style>
+    @media screen and (min-width: 991px) {
+        .middle {
+            padding: 100px;
+            transition-property: padding;
+            transition-duration: 100ms;
+        }
+
+        .view-hero {
+            height: 500px;
+            align-items: center;
+        }
+
+        .sec-1 {
+            width: 500px;
+        }
+
+        .sec-2 {
+            width: 500px;
+            padding: 50px;
+            height: 100%;
+        }
+    }
+
+    @media screen and (max-width: 991px) {
+        .middle {
+            padding: 10px;
+            transition-property: padding;
+            transition-duration: 100ms;
+        }
+
+        .sec-1 {
+            padding: 100px;
+        }
+    }
+
+    .sec-2 {
+        border: 1px solid grey;
+    }
+
+    .confirmation .bg-color {
+        padding: 50px;
+    }
+
+    .confirmation {
+        padding-bottom: 500px;
+    }
+</style>
+
+<body>
+<!--Begin Body-->
+<div class="bg"></div>
+<div class="container-fluid">
+    <!--Navbar-->
+    <div class="row m-4 navBar">
+        <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
+            <a id="toggleTheme" class="btn btn-outline-info btn-lg">
+                <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
+            </a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="index.html" class="btn btn-outline-primary btn-lg" id="landingPage">Home</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villians</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
+        </div>
+        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+            <a id="nav-about" class="btn btn-outline-primary btn-lg">About</a>
+        </div>
+    </div>
+
+    <!--view location to be deleted-->
+    <div class="middle bg-img">
+        <div class="row m-4 view-hero bg-color white-text">
+            <div class="column sec-1 col-sm-12 col-lg-6">
+                <div class="row">
+                    <div class="col-6 text-right"><strong>ID:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${location.locationId}">display id</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Name:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${location.name}">display name</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Description:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${location.description}">display description</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Street:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${location.street}">display street</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>City:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${location.city}">display City</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>State:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${location.state}">display State</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Zipcode:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${location.zipcode}">display Zipcode</span>
+                    </div>
+                    <div class="col-6 text-right"><strong>Coordinates:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${location.latitude + '/' + location.longitude}">display Coordinates</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column sec-2 col-sm-12 col-lg-6">
+                <div class="col-12"><strong>View Location:</strong></div>
+                <div class="col-12">
+                    <!--TODO show map view here-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="confirmation bg-img">
+        <div class="row m-4 edit-hero border-dark bg-color white-text">
+            <div class="column col-12 text-center m-3">
+                <span class="h3">Confirm to delete hero?</span>
+            </div>
+            <div class="column col-12 text-center m-3">
+                <form action="performDeleteLocation" method="get">
+                    <!--hidden id tracking-->
+                    <input type="hidden" name="id" th:value="${location.locationId}"/>
+
+                    <button type="submit" class="btn btn-outline-success">Confirm</button>
+                    <a href="hero" class="btn btn-outline-danger">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--End Body-->
+<div class="bottom" id="about">
+    <div class="row">
+        <div class="column col-xl-6 col-lg-12 col-sm-12">
+            <h3>Our Mission</h3>
+            <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem
+                Ipsum has been the industry's
+                standard
+                dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                it to make
+                a type
+                specimen
+                book. It has survived not only five centuries, but also the leap into electronic
+                typesetting, remaining
+                essentially
+                unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+                Lorem Ipsum
+                passages, and
+                more
+                recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+                Ipsum.
+            </p>
+        </div>
+        <div class="column col-xl-6 col-lg-12 col-sm-12">
+            <h3>About</h3>
+            <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
+                industry. Lorem
+                Ipsum has been the industry's standard
+                dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                it to make
+                a type specimen
+                book. It has survived not only five centuries, but also the leap into electronic
+                typesetting, remaining
+                essentially
+                unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+                Lorem Ipsum
+                passages, and more
+                recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+                Ipsum.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12">
+            <div class="form-group row justify-content-center align-items-center">
+                <label for="description-input" class="col-form-label"></label>
+                <div class="col-xl-7 col-lg-12 col-sm-12">
+                    <input type="text" name="description-input" class="form-control" id="description-input">
+                </div>
+                <button type="button" class="btn btn-outline-warning btn-lg" id="send">Send
+                    Feedback
+                </button>
+            </div>
+        </div>
+        <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12" style="padding-left: 100px">
+            <ul class="row" style="list-style:none;text-align:center;color:white">
+                <a class="col-3" href="#">
+                    <li>Home</li>
+                </a> |
+                <a class="col-3" href="#">
+                    <li>Heroes</li>
+                </a> |
+                <a class="col-3" href="#">
+                    <li>Sightings</li>
+                </a>
+            </ul>
+        </div>
+    </div>
+</div>
+<hr style="background-color:rgba(255,255,255,0.1);">
+<div class="footer">
+    <a href="#" class="fa fa-facebook"></a>
+    <a href="#" class="fa fa-linkedin"></a>
+    <a href="#" class="fa fa-youtube"></a>
+    <a href="#" class="fa fa-instagram"></a>
+    <a href="#" class="fa fa-reddit"></a>
+    <br><br>
+    @Copyright Bob, Narish, Timmy
+</div>
+<!--End Body-->
+
+<!--Scripts-->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+</body>
+</html>
