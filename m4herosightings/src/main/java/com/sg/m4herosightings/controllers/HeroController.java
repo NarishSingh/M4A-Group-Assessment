@@ -61,8 +61,8 @@ public class HeroController {
     /**
      * POST - attempt to create a new Hero in db
      *
-     * @param request
-     * @param file
+     * @param request {HttpServletRequest} pulls in form data
+     * @param file    {MultipartFile} an user uploaded image
      * @return {String} reload page if has errors, redirect to heroes subdomain
      *         if successful
      */
@@ -98,7 +98,7 @@ public class HeroController {
     public String viewHeroDetails(Integer id, Model model) {
         Hero hero = hDao.readHeroById(id);
         List<Organization> organizations = oDao.displayOrganizationForHero(hero);
-        
+
         model.addAttribute("hero", hero);
         model.addAttribute("superpower", hero.getSuperpower());
         model.addAttribute("organizations", organizations);
@@ -110,7 +110,7 @@ public class HeroController {
     /**
      * GET - attempt to edit a hero in db
      *
-     * @param request
+     * @param request {HttpServletRequest} will pull in edit form data
      * @param model   {Model} will hold the retrieved original hero obj
      * @return {String} load page with obj in model
      */
@@ -130,14 +130,14 @@ public class HeroController {
     /**
      * POST - perform the edit of a Hero in db
      *
-     * @param request
-     * @param file
-     * @param model
+     * @param request {HttpServletRequest} will pull in edit form data
+     * @param file    {MultipartFile} an user uploaded image to replace original
+     * @param model   {Model} will hold the retrieved original hero obj
      * @return {String} reload page if failed, redirect to subdomain if
      *         successful
      */
     @PostMapping("editHero")
-    public String performEditHero(HttpServletRequest request, 
+    public String performEditHero(HttpServletRequest request,
             @RequestParam("file") MultipartFile file, Model model) {
         List<Superpower> superpowers = spDao.readAllSuperpowers();
 
@@ -176,16 +176,36 @@ public class HeroController {
     /**
      * GET - delete a Hero from db
      *
-     * @param request
-     * @return {String} redirect to subdomain if successful
+     * @param request {HttpServletRequest} will pull in id to retrieve obj
+     * @param model   {Model} will hold relevant data for Hero
+     * @return {String} load page with hero to be deleted
      */
     @GetMapping("deleteHero")
-    public String deleteHero(HttpServletRequest request) {
+    public String deleteHero(HttpServletRequest request, Model model) {
         int id = Integer.parseInt(request.getParameter("id"));
         Hero hero = hDao.readHeroById(id);
+        List<Organization> organizations = oDao.displayOrganizationForHero(hero);
+
+        model.addAttribute("hero", hero);
+        model.addAttribute("superpower", hero.getSuperpower());
+        model.addAttribute("organizations", organizations);
+
+        return "deleteHero";
+    }
+
+    /**
+     * GET - delete a hero from db
+     *
+     * @param request {HttpServletRequest} will pull in id for delete query
+     * @return {String} redirect to hero
+     */
+    @GetMapping("performDeleteHero")
+    public String performDeleteHero(HttpServletRequest request) {
+        int heroId = Integer.parseInt(request.getParameter("id"));
+        Hero hero = hDao.readHeroById(heroId);
 
         iDao.deleteImage(hero.getPhotoFileName());
-        hDao.deleteHeroById(id);
+        hDao.deleteHeroById(heroId);
 
         return "redirect:/hero";
     }

@@ -86,8 +86,7 @@
         </div>
     </div>
 
-    <!--edit hero form-->
-    <!--view-->
+    <!--view hero to be deleted-->
     <div class="middle bg-img">
         <div class="row m-4 view-hero bg-color white-text">
             <div class="column sec-1 col-sm-12 col-lg-6">
@@ -109,8 +108,9 @@
 
                     <div class="col-6 text-right"><strong>Location:</strong></div>
                     <div class="col-6 text-left">
-                            <span th:text="${hero.superpower.name + ' - ' + hero.superpower.description}">display
-                                superpower</span>
+                            <span th:text="${hero.superpower.name + ' - ' + hero.superpower.description}">
+                                display superpower
+                            </span>
                     </div>
 
                     <div class="col-6 text-right"><strong>Organizations:</strong></div>
@@ -135,8 +135,13 @@
                 <span class="h3">Confirm to delete hero?</span>
             </div>
             <div class="column col-12 text-center m-3">
-                <button type="confirm" class="btn btn-outline-success">Confirm</button>
-                <button type="cancel" class="btn btn-outline-danger">Cancel</button>
+                <form action="performDeleteHero" method="get">
+                    <!--hidden id tracking-->
+                    <input type="hidden" name="id" th:value="${hero.heroId}"/>
+
+                    <button type="submit" class="btn btn-outline-success">Confirm</button>
+                    <a href="hero" class="btn btn-outline-danger">Cancel</a>
+                </form>
             </div>
         </div>
     </div>
