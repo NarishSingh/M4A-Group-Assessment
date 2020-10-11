@@ -51,6 +51,7 @@ public class HeroController {
     public String displayHeroes(Model model) {
         List<Superpower> superpowers = spDao.readAllSuperpowers();
         List<Hero> heroes = hDao.readAllHeroes();
+        
         model.addAttribute("heroes", heroes);
         model.addAttribute("superpowers", superpowers);
         model.addAttribute("errors", violations);

@@ -128,8 +128,8 @@
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
 <script th:inline="javascript">
     function loadMap() {
-        let apiKey = "AIzaSyBpD442VLkwZ5_Kp795_zE-UWHy8-6EBQc";
-        let map = [[${location}]];
+        const apiKey = "AIzaSyBpD442VLkwZ5_Kp795_zE-UWHy8-6EBQc";
+        var map = [[${location}]];
 
         var mapsrc = "https://www.google.com/maps/embed/v1/place?key=" + apiKey + "&q=" + map.latitude + ","
             + map.longitude + "&center=" + map.latitude + "," + map.longitude + "&zoom=18";

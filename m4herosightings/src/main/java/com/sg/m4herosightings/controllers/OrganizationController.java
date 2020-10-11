@@ -107,6 +107,7 @@ public class OrganizationController {
     public String diplayOrgsForHero(Model model) {
         List<Organization> orgs = orgDao.readAllOrganizations();
         model.addAttribute("organizations", orgs);
+        
         return "displayOrgsForHero";
     }
 
@@ -206,7 +207,7 @@ public class OrganizationController {
     public String performDeleteOrganization(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
         orgDao.deleteOrganizationById(id);
-        
+
         return "redirect:/organization";
     }
 }

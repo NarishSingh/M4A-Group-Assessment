@@ -73,7 +73,6 @@ public class LocationController {
                 location.setLatitude(0.0);
                 location.setLongitude(0.0);
             }
-
         }
 
         return "redirect:/location";
@@ -106,6 +105,7 @@ public class LocationController {
     public String updateLocation(Integer id, Model model) {
         Location location = locationDao.readLocationById(id);
         model.addAttribute("location", location);
+        
         return "editLocation";
     }
 
@@ -114,11 +114,11 @@ public class LocationController {
      *
      * @param location {Location} a well formed obj with id corresponding to the
      *                 obj to be edited
+     * @param result   {BindingResult} will hold validation errors
      * @return {String} redirect to subdomain
      */
     @PostMapping("editLocation")
     public String updateLocation(@Valid Location location, BindingResult result) {
-
         if (result.hasErrors()) {
             return "editLocation";
         }
