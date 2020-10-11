@@ -9,12 +9,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/index.css">
 </head>
+<style>
+    .middle-viewLayout .bg-color {
+        padding: 100px;
+    }
+</style>
 <body>
 <!--Begin Body-->
-
-<!--Navbar-->
-<div class="container">
+<div class="container-fluid">
     <!--Navbar-->
     <div class="row m-4 navBar">
         <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
@@ -36,55 +40,75 @@
         </div>
     </div>
 
-    <div class="row m-4 border border-dark">
-        <div class="col-6 text-right">
-            <strong>ID</strong>
-        </div>
-        <div class="col-6 text-left">
-            <span th:text="${organization.organizationId}">Location Id</span>
-        </div>
-        <div class="col-6 text-right">
-            <strong>Name</strong>
-        </div>
-        <div class="col-6 text-left">
-            <span th:text="${organization.name}">Organization Name</span>
-        </div>
-        <div class="col-6 text-right">
-            <strong>Street</strong>
-        </div>
-        <div class="col-6 text-left">
-            <span th:text="${organization.phone}">Organization phone</span>
-        </div>
-        <div class="col-6 text-right">
-            <strong>Email</strong>
-        </div>
-        <div class="col-6 text-left">
-            <span th:text="${organization.email}">Organization email</span>
-        </div>
-        <div class="col-6 text-right">
-            <strong>Description</strong>
-        </div>
-        <div class="col-6 text-left">
-            <span th:text="${organization.description}">Organization Description</span>
-        </div>
-        <div class="col-6 text-right">
-            <strong>Location</strong>
-        </div>
-        <div class="col-6 text-left">
-            <span th:text="${organization.location.name + ' - ' + organization.location.zipcode}"></span>
-        </div>
-        <div class="col-6 text-right">
-            <strong>Members</strong>
-        </div>
-        <div class="col-6 text-left">
-            <span th:each="hero: ${organization.members}">
-                <span th:text="${hero.name + ' - ' + hero.superpower.name}"></span><br>
-            </span>
+    <div class="row m-4 bg-img">
+        <div class="col text-center bg-color">
+            <h1>HERO Sightings - View Sighting</h1>
         </div>
     </div>
-</div>
+    <div class="middle-viewLayout bg-img">
+        <div class="row m-4 view-hero bg-color white-text">
+            <div class="column sec-1 col-sm-12 col-lg-6">
+                <div class="row">
+                    <div class="col-6 text-right"><strong>ID:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${organization.organizationId}">display id</span>
+                    </div>
 
-<!--End Body-->
+                    <div class="col-6 text-right"><strong>Name:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${organization.name}">display Name</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Description:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${organization.description}">display description</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Phone Number:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${organization.phone}">display Phone Number</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Location:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${organization.location.name}">display City</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Address:</strong></div>
+                    <div class="col-6 text-left">
+                            <span th:text="${organization.location.street + ' ' + organization.location.city + ' '
+                            + organization.location.state + ' ' + organization.location.zipcode}">
+                                display Address
+                            </span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Coordinates:</strong></div>
+                    <div class="col-6 text-left">
+                            <span th:text="${organization.location.latitude + '/' + organization.location.longitude}">
+                                display Coordinates
+                            </span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Members:</strong></div>
+                    <div class="col-6 text-left">
+                            <span th:each="hero: ${organization.members}">
+                                <span th:text="${hero.name + ' - ' + hero.superpower.name}"></span><br>
+                            </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column sec-2 col-sm-12 col-lg-6">
+                <div class="col-12"><strong>View Location:</strong></div>
+                <div class="col-12">
+                    <div class="googleMap"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom" id="about"></div>
+</div>
 
 <!--Scripts-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -97,5 +121,7 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+<script src="footer.js"></script>
 </body>
 </html>

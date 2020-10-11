@@ -13,13 +13,8 @@
 </head>
 <body>
 <!--Begin Body-->
-<!--Navbar-->
-<div class="container">
-    <div class="row m-4">
-        <div class="col text-center border border-dark">
-            <h1>HERO Sightings - View Sighting</h1>
-        </div>
-    </div>
+<div class="container-fluid">
+    <!--Navbar-->
     <div class="row m-4">
         <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
             <a id="toggleTheme" class="btn btn-outline-info btn-lg">
@@ -41,42 +36,75 @@
     </div>
 </div>
 
-<div class="row m-4 border">
-    <div class="col-6 text-right"><strong>ID:</strong></div>
-    <div class="col-6 text-left">
-        <span th:text="${sighting.sightingId}">display id</span>
+<div class="row m-4 bg-img">
+    <div class="col text-center bg-color">
+        <h1>HERO Sightings - View Sighting</h1>
+    </div>
+</div>
+
+<div class="middle-viewLayout bg-img">
+    <!--view sighting to be deleted-->
+    <div class="middle-deleteConfirmation bg-img">
+        <div class="row m-4 view-hero bg-color white-text">
+            <div class="column sec-1 col-sm-12 col-lg-6">
+                <div class="row">
+                    <div class="col-6 text-right"><strong>ID:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${sighting.sightingId}">display id</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Date:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${sighting.date}">display date</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Description:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${sighting.description}">display description</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Hero/Villain:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${sighting.hero.name}">display hero/villain</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Hero/Villain Image:</strong></div>
+                    <div class="col-6">
+                        <img th:src="${hero.photoFileName}" alt="Hero picture" style="height: 100px; padding: 0px"/>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Location:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${sighting.location.name}">display City</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Sighting Address:</strong></div>
+                    <div class="col-6 text-left">
+                            <span th:text="${sighting.location.street + ' ' + sighting.location.city + ' '
+                            + sighting.location.state + ' ' + sighting.location.zipcode}">
+                                display Address
+                            </span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Sighting Coordinates:</strong></div>
+                    <div class="col-6 text-left">
+                            <span th:text="${sighting.location.latitude + '/' + sighting.location.longitude}">
+                                display Coordinates
+                            </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column sec-2 col-sm-12 col-lg-6">
+                <div class="col-12"><strong>View Location:</strong></div>
+                <div class="col-12">
+                    <div class="googleMap"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="col-6 text-right"><strong>Date:</strong></div>
-    <div class="col-6 text-left">
-        <span th:text="${sighting.date}">display date</span>
-    </div>
-
-    <div class="col-6 text-right"><strong>Description:</strong></div>
-    <div class="col-6 text-left">
-        <span th:text="${sighting.description}">display description</span>
-    </div>
-
-    <div class="col-6 text-right"><strong>Hero:</strong></div>
-    <div class="col-6 text-left">
-        <span th:text="${sighting.hero.name}">display name</span>
-    </div>
-
-    <div class="col-6 text-right"><strong>Location:</strong></div>
-    <div class="col-6 text-left">
-        <span th:text="${sighting.location.name}">display location</span>
-    </div>
-
-    <div class="col-6 text-right"><strong>Address:</strong></div>
-    <div class="col-6 text-left">
-        <span th:text="${sighting.location.street + ' ' + sighting.location.city + ' ' + sighting.location.state + ' '
-        + sighting.location.zipcode}">display address</span>
-    </div>
-
-    <div class="col-6 text-right"><strong>Coordinates:</strong></div>
-    <div class="col-6 text-left">
-        <span th:text="${sighting.location.latitude + ' ' + sighting.location.longitude}">display coordinates</span>
-    </div>
+    <div class="bottom" id="about"></div>
 </div>
 <!--End Body-->
 
@@ -91,5 +119,7 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+<script src="footer.js"></script>
 </body>
 </html>

@@ -11,6 +11,34 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css">
 </head>
+
+<style>
+    .middle {
+        /* border: 5px solid red; */
+        margin: 0 auto;
+    }
+
+    .row, .row .row {
+        /* border:5px solid blue; */
+        margin: 0 auto;
+    }
+
+    .col-12 {
+        /* border:5px solid green; */
+        margin: 0 auto;
+    }
+
+    .middle .bg-color {
+        padding: 50px;
+        margin: 0 auto;
+    }
+
+    .middle .superpower-form {
+        padding-bottom: 500px;
+    }
+
+
+</style>
 <body>
 <!--Begin Body-->
 <div class="container-fluid">
@@ -61,11 +89,12 @@
     </div>
 
     <!--add power form-->
-    <div>
-        <div class="row">
+    <div class="middle bg-img">
+        <div class="row bg-color text-center">
             <h3>Add Superpower</h3>
         </div>
-        <div class="row">
+
+        <div class="row superpower-form bg-color justify-content-center">
             <!--edit form error box-->
             <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
                 <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error message</p>
@@ -74,16 +103,16 @@
             <form action="addSuperpower" method="POST">
                 <!--name-->
                 <div class="form-group row">
-                    <label for="name" class="col-form-label">Power:</label>
-                    <div class="col-7">
+                    <label for="name" class="col-12 col-form-label">Power:</label>
+                    <div class="col-12">
                         <input type="text" name="name" class="form-control" id="name">
                     </div>
                 </div>
 
                 <!--description-->
                 <div class="form-group row">
-                    <label for="description" class="col-form-label">Description:</label>
-                    <div class="col-7">
+                    <label for="description" class="col-12 col-form-label">Description:</label>
+                    <div class="col-12">
                         <input type="text" name="description" class="form-control" id="description">
                     </div>
                 </div>
@@ -93,7 +122,10 @@
             </form>
         </div>
     </div>
+
+    <div class="bottom" id="about"></div>
 </div>
+
 <!--End Body-->
 
 <!--Scripts-->
@@ -107,5 +139,7 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+<script src="footer.js"></script>
 </body>
 </html>

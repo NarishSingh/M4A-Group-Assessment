@@ -11,58 +11,8 @@
     <link rel="stylesheet" href="styles/index.css">
 </head>
 
-<style>
-    @media screen and (min-width: 991px) {
-        .middle {
-            padding: 100px;
-            transition-property: padding;
-            transition-duration: 100ms;
-        }
-
-        .view-hero {
-            height: 500px;
-            align-items: center;
-        }
-
-        .sec-1 {
-            width: 500px;
-        }
-
-        .sec-2 {
-            width: 500px;
-            padding: 50px;
-            height: 100%;
-        }
-    }
-
-    @media screen and (max-width: 991px) {
-        .middle {
-            padding: 10px;
-            transition-property: padding;
-            transition-duration: 100ms;
-        }
-
-        .sec-1 {
-            padding: 100px;
-        }
-    }
-
-    .sec-2 {
-        border: 1px solid grey;
-    }
-
-    .confirmation .bg-color {
-        padding: 50px;
-    }
-
-    .confirmation {
-        padding-bottom: 500px;
-    }
-</style>
-
 <body>
 <!--Begin Body-->
-<div class="bg"></div>
 <div class="container-fluid">
     <!--Navbar-->
     <div class="row m-4 navBar">
@@ -86,7 +36,7 @@
     </div>
 
     <!--view location to be deleted-->
-    <div class="middle bg-img">
+    <div class="middle-deleteConfirmation bg-img">
         <div class="row m-4 view-hero bg-color white-text">
             <div class="column sec-1 col-sm-12 col-lg-6">
                 <div class="row">
@@ -158,84 +108,7 @@
     </div>
 </div>
 
-<div class="bottom" id="about">
-    <div class="row">
-        <div class="column col-xl-6 col-lg-12 col-sm-12">
-            <h3>Our Mission</h3>
-            <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem
-                Ipsum has been the industry's
-                standard
-                dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                it to make
-                a type
-                specimen
-                book. It has survived not only five centuries, but also the leap into electronic
-                typesetting, remaining
-                essentially
-                unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                Lorem Ipsum
-                passages, and
-                more
-                recently with desktop publishing software like Aldus PageMaker including versions of Lorem
-                Ipsum.
-            </p>
-        </div>
-        <div class="column col-xl-6 col-lg-12 col-sm-12">
-            <h3>About</h3>
-            <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem
-                Ipsum has been the industry's standard
-                dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                it to make
-                a type specimen
-                book. It has survived not only five centuries, but also the leap into electronic
-                typesetting, remaining
-                essentially
-                unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                Lorem Ipsum
-                passages, and more
-                recently with desktop publishing software like Aldus PageMaker including versions of Lorem
-                Ipsum.</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12">
-            <div class="form-group row justify-content-center align-items-center">
-                <label for="description-input" class="col-form-label"></label>
-                <div class="col-xl-7 col-lg-12 col-sm-12">
-                    <input type="text" name="description-input" class="form-control" id="description-input">
-                </div>
-                <button type="button" class="btn btn-outline-warning btn-lg" id="send">Send
-                    Feedback
-                </button>
-            </div>
-        </div>
-        <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12" style="padding-left: 100px">
-            <ul class="row" style="list-style:none;text-align:center;color:white">
-                <a class="col-3" href="#">
-                    <li>Home</li>
-                </a> |
-                <a class="col-3" href="#">
-                    <li>Heroes</li>
-                </a> |
-                <a class="col-3" href="#">
-                    <li>Sightings</li>
-                </a>
-            </ul>
-        </div>
-    </div>
-</div>
-<hr style="background-color:rgba(255,255,255,0.1);">
-<div class="footer">
-    <a href="#" class="fa fa-facebook"></a>
-    <a href="#" class="fa fa-linkedin"></a>
-    <a href="#" class="fa fa-youtube"></a>
-    <a href="#" class="fa fa-instagram"></a>
-    <a href="#" class="fa fa-reddit"></a>
-    <br><br>
-    @Copyright Bob, Narish, Timmy
-</div>
+<div class="bottom" id="about"></div>
 <!--End Body-->
 
 <!--Scripts-->
@@ -275,5 +148,7 @@
     });
 </script>
 <script src="main.js"></script>
+<script src="footer.js"></script>
+
 </body>
 </html>

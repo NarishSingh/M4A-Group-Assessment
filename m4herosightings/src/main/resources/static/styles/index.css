@@ -21,7 +21,7 @@ body {
 }
 
 .white-text {
-  color: white;
+    color: white;
 }
 
 .footer {
@@ -91,14 +91,11 @@ body {
 }
 
 
-
-
-
 /*sightimngs*/
 .box-1 {
     padding-top: 150px;
     margin: 0 auto;
-} 
+}
 
 .search {
     padding-top: 100px;
@@ -166,8 +163,6 @@ label {
 }
 
 
-
-
 /* hero form */
 .data-table {
     padding: 50px;
@@ -206,6 +201,7 @@ label {
     .hero-form h5 {
         text-align: center;
     }
+
     .hero-form {
         margin: 0px;
         transition-property: margin;
@@ -223,153 +219,144 @@ label {
 
 /* delete confirmation */
 @media screen and (min-width: 991px) {
-        .middle-deleteConfirmation {
-            padding: 100px;
-            transition-property: padding;
-            transition-duration: 100ms;
-        }
-
-        .view-hero {
-            height: 500px;
-            align-items: center;
-        }
-
-        .sec-1 {
-            width: 500px;
-        }
-
-        .sec-2 {
-            width: 500px;
-            padding: 50px;
-            height: 100%;
-        }
+    .middle-deleteConfirmation {
+        padding: 100px;
+        transition-property: padding;
+        transition-duration: 100ms;
     }
 
-    @media screen and (max-width: 991px) {
-        .middle-deleteConfirmation {
-            padding: 10px;
-            transition-property: padding;
-            transition-duration: 100ms;
-        }
-
-        .middle-deleteConfirmation .sec-1 {
-            padding: 100px;
-        }
+    .view-hero {
+        height: 500px;
+        align-items: center;
     }
 
-    .middle-deleteConfirmation .sec-2 {
-        border: 1px solid grey;
+    .sec-1 {
+        width: 500px;
     }
 
-    .confirmation .bg-color {
+    .sec-2 {
+        width: 500px;
         padding: 50px;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .middle-deleteConfirmation {
+        padding: 10px;
+        transition-property: padding;
+        transition-duration: 100ms;
     }
 
-    .confirmation {
-        padding-bottom: 500px;
-    }
-
-    /* editConfimration */
-    .middle-editConfirmation .bg-color {
+    .middle-deleteConfirmation .sec-1 {
         padding: 100px;
     }
+}
+
+.middle-deleteConfirmation .sec-2 {
+    border: 1px solid grey;
+}
+
+.confirmation .bg-color {
+    padding: 50px;
+}
+
+.confirmation {
+    padding-bottom: 500px;
+}
+
+/* editConfimration */
+.middle-editConfirmation .bg-color {
+    padding: 100px;
+}
+
+.middle-editConfirmation {
+    padding: 100px;
+}
+
+@media screen and (max-width: 991px) {
+    .middle-editConfirmation {
+        padding: 10px;
+        transition-property: padding;
+        transition-duration: 500ms;
+    }
+
+    .middle-editConfirmation .row {
+        margin: 0 auto;
+    }
+
+    .edit {
+        padding-top: 0px;
+        transition-property: padding-top;
+        transition-duration: 500ms;
+    }
+
+    .edit h5 {
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 880px) {
     .middle-editConfirmation {
         padding: 100px;
+        transition-property: padding;
+        transition-duration: 500ms;
     }
 
-    @media screen and (max-width: 991px) {
-        .middle-editConfirmation {
-            padding: 10px;
-            transition-property: padding;
-            transition-duration: 500ms;
-        }
-
-        .middle-editConfirmation .row {
-            margin: 0 auto;
-        }
-
-        .edit {
-            padding-top: 0px;
-            transition-property: padding-top;
-            transition-duration: 500ms;
-        }
-
-        .edit h5 {
-            text-align: center;
-        }
+    .edit {
+        padding-top: 50px;
+        transition-property: padding-top;
+        transition-duration: 500ms;
     }
 
-    @media screen and (min-width: 880px) {
-        .middle-editConfirmation {
-            padding: 100px;
-            transition-property: padding;
-            transition-duration: 500ms;
-        }
-
-        .edit {
-            padding-top: 50px;
-            transition-property: padding-top;
-            transition-duration: 500ms;
-        }
-
-        .edit h5 {
-            margin: 0 auto;
-        }
+    .edit h5 {
+        margin: 0 auto;
     }
+}
 
-    /*view*/
+/*view*/
+.middle-viewLayout {
+    padding: 100px;
+}
+
+@media screen and (min-width: 991px) {
     .middle-viewLayout {
         padding: 100px;
+        transition-property: padding;
+        transition-duration: 100ms;
     }
-    
-    @media screen and (min-width: 991px) {
-        .middle-viewLayout {
-            padding: 100px;
-            transition-property: padding;
-            transition-duration: 100ms;
-        }
-        .view {
-            height: 500px;
-            align-items: center;
-        }
-        .middle-viewLayout .sec-1 {
-            width: 500px;
-        }
-        .middle-viewLayout .sec-2 {
-            width: 500px;
-            padding: 50px;
-            height: 100%;
-        }
+
+    .view {
+        height: 500px;
+        align-items: center;
     }
-    @media screen and (max-width: 991px) {
-        .middle-viewLayout {
-            padding: 10px;
-            transition-property: padding;
-            transition-duration: 100ms;
-        }
-        .middle-viewLayout .sec-1 {
-            padding: 100px;
-        }
+
+    .middle-viewLayout .sec-1 {
+        width: 500px;
     }
+
     .middle-viewLayout .sec-2 {
-        border: 1px solid grey;
+        width: 500px;
+        padding: 50px;
+        height: 100%;
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .middle-viewLayout {
+        padding: 10px;
+        transition-property: padding;
+        transition-duration: 100ms;
     }
 
+    .middle-viewLayout .sec-1 {
+        padding: 100px;
+    }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.middle-viewLayout .sec-2 {
+    border: 1px solid grey;
+}
 
 
 h1 a {
@@ -380,13 +367,13 @@ h1 a {
     /* border: 5px solid blue; */
     float: right;
     height: 8.5%;
-    color:rgba(255, 196, 0, 0.85);
+    color: rgba(255, 196, 0, 0.85);
     background-color: black;
     z-index: 3;
 }
 
 .nav a {
-    color:rgba(0, 195, 255, 0.85);
+    color: rgba(0, 195, 255, 0.85);
 }
 
 .nav ul, .nav ul li {
@@ -415,7 +402,7 @@ h1 a {
 
 .nav a:hover {
     text-decoration: none;
-    color:white;
+    color: white;
 }
 
 .nav ul li a {
@@ -485,7 +472,7 @@ p {
 
 .bottom {
     padding-top: 100px;
-    background-color:rgb(5, 5, 5);
+    background-color: rgb(5, 5, 5);
 }
 
 .bottom h3 {
@@ -494,12 +481,13 @@ p {
     color: rgb(88, 88, 88);
 }
 
-.bottom a{
+.bottom a {
     color: white;
 }
+
 .bottom a:hover {
     text-decoration: none;
-    color:rgba(255, 196, 0, 0.85);
+    color: rgba(255, 196, 0, 0.85);
 }
 
 .footer a {
@@ -507,17 +495,17 @@ p {
     text-align: center;
     font-size: 30px;
     padding-top: 3.6px;
-    
+
 }
 
 .fa {
-  border-radius: 100%;
-  font-size: 30px;
-  height: 5%;
-  width: 2.5%;
-  text-align: center;
-  text-decoration: none;
-  margin: 0 auto;
+    border-radius: 100%;
+    font-size: 30px;
+    height: 5%;
+    width: 2.5%;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 auto;
 }
 
 .fa:hover {
@@ -525,107 +513,107 @@ p {
 }
 
 .fa-facebook {
-  background: #3B5998;
-  color: white;
+    background: #3B5998;
+    color: white;
 }
 
 .fa-twitter {
-  background: #55ACEE;
-  color: white;
+    background: #55ACEE;
+    color: white;
 }
 
 .fa-google {
-  background: #dd4b39;
-  color: white;
+    background: #dd4b39;
+    color: white;
 }
 
 .fa-linkedin {
-  background: #007bb5;
-  color: white;
+    background: #007bb5;
+    color: white;
 }
 
 .fa-youtube {
-  background: #bb0000;
-  color: white;
+    background: #bb0000;
+    color: white;
 }
 
 .fa-instagram {
-  background: #125688;
-  color: white;
+    background: #125688;
+    color: white;
 }
 
 .fa-pinterest {
-  background: #cb2027;
-  color: white;
+    background: #cb2027;
+    color: white;
 }
 
 .fa-snapchat-ghost {
-  background: #fffc00;
-  color: white;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    background: #fffc00;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .fa-skype {
-  background: #00aff0;
-  color: white;
+    background: #00aff0;
+    color: white;
 }
 
 .fa-android {
-  background: #a4c639;
-  color: white;
+    background: #a4c639;
+    color: white;
 }
 
 .fa-dribbble {
-  background: #ea4c89;
-  color: white;
+    background: #ea4c89;
+    color: white;
 }
 
 .fa-vimeo {
-  background: #45bbff;
-  color: white;
+    background: #45bbff;
+    color: white;
 }
 
 .fa-tumblr {
-  background: #2c4762;
-  color: white;
+    background: #2c4762;
+    color: white;
 }
 
 .fa-vine {
-  background: #00b489;
-  color: white;
+    background: #00b489;
+    color: white;
 }
 
 .fa-foursquare {
-  background: #45bbff;
-  color: white;
+    background: #45bbff;
+    color: white;
 }
 
 .fa-stumbleupon {
-  background: #eb4924;
-  color: white;
+    background: #eb4924;
+    color: white;
 }
 
 .fa-flickr {
-  background: #f40083;
-  color: white;
+    background: #f40083;
+    color: white;
 }
 
 .fa-yahoo {
-  background: #430297;
-  color: white;
+    background: #430297;
+    color: white;
 }
 
 .fa-soundcloud {
-  background: #ff5500;
-  color: white;
+    background: #ff5500;
+    color: white;
 }
 
 .fa-reddit {
-  background: #ff5700;
-  color: white;
+    background: #ff5700;
+    color: white;
 }
 
 .fa-rss {
-  background: #ff6600;
-  color: white;
+    background: #ff6600;
+    color: white;
 }

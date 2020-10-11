@@ -48,79 +48,13 @@
             width: 500px;
         }
 
-        .search {
-            padding-top: 100px;
-            margin: 0 auto;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .results {
-            height: 100%;
-            padding: 50px;
-        }
-
-        label {
-            color: white;
-        }
-
-        .middle .h3 {
-            color: white;
-        }
-
-        .revealMap {
-            background-color: rgba(255, 255, 255, 0.815);
-            background-size: cover;
-            z-index: 5;
-            position: absolute;
-            height: 500px;
-            width: 500px;
-            transition-property: opacity;
-            transition-duration: 1000ms;
-            opacity: 0%;
-        }
-
-        .revealMap:hover {
-            transition-property: opacity;
-            transition-duration: 500ms;
-            opacity: 100%;
-            background-image: url("https://www.bergmannpc.com/imager/contentimages/project/unc-charlotte-center-city/6658/UNC-Center-City-Campus-Exterior_20d4ef1e03a0bb7e3cb004631c67ab23.jpg");
-            background-size: cover;
-        }
-
-        /* background-image on 'revealMap:hover' will change based on its sightingID */
-
-        .revealMap h3 {
-            background-color: black;
-            color: white;
-            bottom: 0px;
-            position: absolute;
-            text-align: center;
-            margin: 0 auto;
-            width: 100%;
-            z-index: 5;
-        }
-
         .middle {
             padding-bottom: 100px;
-        }
-
-        @media screen and (max-width: 990px) {
-            .sightings-form:not(.h3) {
-                margin: 0 auto;
-                text-align: center;
-            }
-        }
-
-        .sightings-form {
-            padding: 50px;
-            margin: 0 auto;
         }
     </style>
 </head>
 
 <body>
-<div class="bg"></div>
 <div class="container-fluid">
     <div class="row m-4 navBar">
         <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
@@ -146,22 +80,22 @@
             <div class="box-1">
                 <!-- ITUNES-LIKE SLIDER -->
                 <div class="swiper-container">
-                    <div class="swiper-wrapper">
+                    <div class="swiper-wrapper" th:each="sighting : ${sightings}">
                         <div class="swiper-slide">
                             <div class="revealMap" id="sightingID">
-                                <h3>Hero 1</h3>
+                                <h3 th:text="${sighting.hero.name}">Hero 1</h3>
                             </div>
                             <img src="https://www.bergmannpc.com/imager/contentimages/project/unc-charlotte-center-city/6658/UNC-Center-City-Campus-Exterior_20d4ef1e03a0bb7e3cb004631c67ab23.jpg">
                         </div>
                         <div class="swiper-slide">
                             <div class="revealMap" id="sightingID2">
-                                <h3>Hero 1</h3>
+                                <h3 th:text="${sighting.hero.name}">Hero 1</h3>
                             </div>
                             <img src="assets/glacier.jpg">
                         </div>
                         <div class="swiper-slide">
                             <div class="revealMap" id="sightingID3">
-                                <h3>Hero 1</h3>
+                                <h3 th:text="${sighting.hero.name}">Hero 1</h3>
                             </div>
                             <img src="assets/glacier.jpg">
                         </div>
@@ -363,8 +297,6 @@
         @Copyright Bob, Narish, Timmy
     </div>
 </div>
-</div>
-</body>
 
 <!-- PLUGINS + THIRD PARTY -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -400,5 +332,5 @@
         },
     });
 </script>
-
+</body>
 </html>

@@ -12,55 +12,8 @@
     <link rel="stylesheet" href="styles/index.css">
 </head>
 
-<style>
-    @media screen and (max-width: 991px) {
-        .middle {
-            padding: 10px;
-            transition-property: padding;
-            transition-duration: 500ms;
-        }
-
-        .middle .row {
-            margin: 0 auto;
-        }
-
-        .edit-hero {
-            padding-top: 0px;
-            transition-property: padding-top;
-            transition-duration: 500ms;
-        }
-
-        .edit-hero h5 {
-            text-align: center;
-        }
-    }
-
-    @media screen and (min-width: 880px) {
-        .middle {
-            padding: 100px;
-            transition-property: padding;
-            transition-duration: 500ms;
-        }
-
-        .edit-hero {
-            padding-top: 50px;
-            transition-property: padding-top;
-            transition-duration: 500ms;
-        }
-
-        .edit-hero h5 {
-            margin: 0 auto;
-        }
-    }
-
-    .column {
-        margin: 0 auto;
-    }
-</style>
-
 <body>
 <!--Begin Body-->
-<div class="bg"></div>
 <div class="container-fluid">
     <!--Navbar-->
     <div class="row m-4 navBar">
@@ -82,10 +35,15 @@
             <a id="nav-about" class="btn btn-outline-primary btn-lg">About</a>
         </div>
     </div>
+    <div class="row m-4 bg-img">
+        <div class="col text-center bg-color">
+            <h1>HERO Sightings</h1>
+        </div>
+    </div>
 
     <!--edit hero form-->
-    <div class="middle bg-img">
-        <div class="row m-4 edit-hero border-dark bg-color white-text">
+    <div class="middle-editConfirmation bg-img">
+        <div class="row m-4 edit border-dark bg-color white-text">
             <div class="column col-lg-3 col-xs-12 text-center m-3">
                 <span class="h3">Edit Hero</span>
             </div>
@@ -135,7 +93,7 @@
                     </div>
 
                     <!--image upload-->
-                    <img th:src="${hero.photoFileName}" alt="Hero picture" style="height: 250px"/>
+                    <img th:src="${hero.photoFileName}" alt="Hero picture" style="height: 250px; padding: 0;"/>
                     <div class="form-group row">
                         <label for="file" class="column col-xs-12 col-form-label">Hero Image</label>
                         <input type="file" name="file" id="file" class="form-control-file">
@@ -151,85 +109,7 @@
     </div>
 </div>
 
-<!--End Body-->
-<div class="bottom" id="about">
-    <div class="row">
-        <div class="column col-xl-6 col-lg-12 col-sm-12">
-            <h3>Our Mission</h3>
-            <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem
-                Ipsum has been the industry's
-                standard
-                dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                it to make
-                a type
-                specimen
-                book. It has survived not only five centuries, but also the leap into electronic
-                typesetting, remaining
-                essentially
-                unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                Lorem Ipsum
-                passages, and
-                more
-                recently with desktop publishing software like Aldus PageMaker including versions of Lorem
-                Ipsum.
-            </p>
-        </div>
-        <div class="column col-xl-6 col-lg-12 col-sm-12">
-            <h3>About</h3>
-            <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem
-                Ipsum has been the industry's standard
-                dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                it to make
-                a type specimen
-                book. It has survived not only five centuries, but also the leap into electronic
-                typesetting, remaining
-                essentially
-                unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                Lorem Ipsum
-                passages, and more
-                recently with desktop publishing software like Aldus PageMaker including versions of Lorem
-                Ipsum.</p>
-        </div>
-    </div>
-    <div class="row">
-        <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12">
-            <div class="form-group row justify-content-center align-items-center">
-                <label for="description-input" class="col-form-label"></label>
-                <div class="col-xl-7 col-lg-12 col-sm-12">
-                    <input type="text" name="description-input" class="form-control" id="description-input">
-                </div>
-                <button type="button" class="btn btn-outline-warning btn-lg" id="send">Send
-                    Feedback
-                </button>
-            </div>
-        </div>
-        <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12" style="padding-left: 100px">
-            <ul class="row" style="list-style:none;text-align:center;color:white">
-                <a class="col-3" href="#">
-                    <li>Home</li>
-                </a> |
-                <a class="col-3" href="#">
-                    <li>Heroes</li>
-                </a> |
-                <a class="col-3" href="#">
-                    <li>Sightings</li>
-                </a>
-            </ul>
-        </div>
-    </div>
-</div>
-<hr style="background-color:rgba(255,255,255,0.1);">
-<div class="footer">
-    <a href="#" class="fa fa-facebook"></a>
-    <a href="#" class="fa fa-linkedin"></a>
-    <a href="#" class="fa fa-youtube"></a>
-    <a href="#" class="fa fa-instagram"></a>
-    <a href="#" class="fa fa-reddit"></a>
-    <br><br>
-    @Copyright Bob, Narish, Timmy
-</div>
+<div class="bottom" id="about"></div>
 <!--End Body-->
 
 <!--Scripts-->
@@ -244,5 +124,7 @@
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
 <script src="main.js"></script>
+<script src="footer.js"></script>
 </body>
+
 </html>
