@@ -80,24 +80,12 @@
             <div class="box-1">
                 <!-- ITUNES-LIKE SLIDER -->
                 <div class="swiper-container">
-                    <div class="swiper-wrapper" th:each="sighting : ${sightings}">
-                        <div class="swiper-slide">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" th:each="sighting : ${sightings}">
                             <div class="revealMap" id="sightingID">
                                 <h3 th:text="${sighting.hero.name}">Hero 1</h3>
                             </div>
                             <img src="https://www.bergmannpc.com/imager/contentimages/project/unc-charlotte-center-city/6658/UNC-Center-City-Campus-Exterior_20d4ef1e03a0bb7e3cb004631c67ab23.jpg">
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="revealMap" id="sightingID2">
-                                <h3 th:text="${sighting.hero.name}">Hero 1</h3>
-                            </div>
-                            <img src="assets/glacier.jpg">
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="revealMap" id="sightingID3">
-                                <h3 th:text="${sighting.hero.name}">Hero 1</h3>
-                            </div>
-                            <img src="assets/glacier.jpg">
                         </div>
                     </div>
                     <!-- DOT NAV -->
