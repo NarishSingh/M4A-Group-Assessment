@@ -1,0 +1,40 @@
+.navBar {
+    list-style: none;
+}
+
+.navBar h5 {
+    text-align: center;
+    margin: 0 auto;
+}
+
+@media screen and (min-width: 1105px) {
+    .navBar .btn {
+        width: 150px;
+        transition-property: width;
+        transition-duration: 200ms;
+    }
+}
+
+@media screen and (max-width: 1105px) {
+    .navBar .btn {
+        width: 50px;
+        transition-property: width;
+        transition-duration: 200ms;
+    }
+}
+
+@media screen and (max-width: 580px) {
+    .navBar .btn {
+        width: 12px;
+        transition-property: width;
+        transition-duration: 200ms;
+    }
+}
+
+.navBar .btn {
+    height: 50px;
+}
+
+.navBar .btn h5, .navBar .themeStatus {
+    padding-top: 5px;
+}

@@ -1,13 +1,11 @@
 .all {
     background-color: rgba(8, 8, 8, 0.8);
 }
-
 .title {
     /* border: 5px solid pink; */
     height: 30%;
     text-align: center;
 }
-
 .title h1 {
     font-size: 50px;
     padding-top: 50px;
@@ -20,7 +18,6 @@
 h1 a {
     color: black;
 }
-
 h1 a:hover {
     text-decoration: none;
     color: darkgreen;
@@ -29,7 +26,7 @@ h1 a:hover {
 .nav {
     /* border: 5px solid blue; */
     height: 10%;
-    color: rgba(255, 255, 255, 0.85);
+    color:rgba(255,255,255,0.85);
     background-color: rgba(0, 0, 0, 0.88);
 }
 
@@ -54,12 +51,11 @@ h1 a:hover {
 }
 
 .nav a {
-    color: white;
+    color:white;
 }
-
 .nav a:hover {
     text-decoration: none;
-    color: limegreen;
+    color:limegreen;
 }
 
 .nav ul li a {
@@ -93,19 +89,17 @@ a {
     /* border: 5px solid orange; */
     height: 100%;
 }
-
 .info-1 {
     /* border: 5px solid yellow; */
     height: 70%;
     width: 100%
 }
-
 .info-2 {
     /* border: 5px solid yellow; */
     height: 30%;
     width: 100%;
     background-color: rgba(0, 0, 0, 0.88);
-    color: rgba(255, 255, 255, 0.85);
+    color:rgba(255,255,255,0.85);
 }
 
 .news {
@@ -116,7 +110,7 @@ a {
     /* border: 5px solid yellow; */
     height: 50%;
     background-color: rgba(0, 0, 0, 0.88);
-    color: rgba(255, 255, 255, 0.85);
+    color:rgba(255,255,255,0.85);
 }
 
 .news-1 h3 {
@@ -133,7 +127,7 @@ a {
     height: 50%;
     width: 50%;
     background-color: rgba(0, 0, 0, 0.88);
-    color: rgba(255, 255, 255, 0.85);
+    color:rgba(255,255,255,0.85);
 }
 
 .middle {
@@ -222,6 +216,11 @@ body {
 }
 
 
+
+
+
+
+
 /* HEROES */
 /* .search {
     height: 2%;
@@ -255,7 +254,6 @@ input {
     list-style: none;
     width: 50%;
 }
-
 .choose ul li:hover {
     background-color: green;
 }
@@ -268,6 +266,13 @@ input {
 }
 
 
+
+
+
+
+
+
+
 .column .left, .column .right {
     height: 30%;
 }
@@ -275,7 +280,6 @@ input {
 .left img, .right p {
     padding: 80px;
 }
-
 .left img {
     width: 82%;
 }

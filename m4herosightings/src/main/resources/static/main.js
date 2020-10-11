@@ -13,7 +13,7 @@
 .on
 .hover
 */
-
+console.log("fdsfsf");
 var lightTheme = false;
 
 $("#toggleTheme").on('click', function () {
@@ -28,6 +28,7 @@ $("#toggleTheme").on('click', function () {
         darkMode();
     }
 })
+
 
 function darkMode() {
     $("body, .container-fluid, .bottom").css({'background-color': 'black'});
@@ -119,6 +120,7 @@ function lightMode() {
     lightTheme = true;
 }
 
+
 $("#nav-about").on('click', function () {
     var element = document.getElementById('about');
     var position = element.getBoundingClientRect();
@@ -127,6 +129,7 @@ $("#nav-about").on('click', function () {
 
     window.scroll(x, y);
 })
+
 
 // TOGGLES THE SIGHTINGS GALLERY
 var isHidden = false;
