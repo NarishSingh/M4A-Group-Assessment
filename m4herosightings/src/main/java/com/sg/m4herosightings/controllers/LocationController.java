@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.security.auth.message.callback.PrivateKeyCallback;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
 import org.springframework.validation.BindingResult;
 import javax.validation.Valid;
@@ -29,8 +31,8 @@ public class LocationController {
     /**
      * GET - load all locations from db
      *
-     * @param model {Model}
-     * @return {String} the main subdomain
+     * @param model {Model} holds relevant data on location
+     * @return {String} load main subdomain
      */
     @GetMapping("location")
     public String getLocations(Model model) {
@@ -40,7 +42,7 @@ public class LocationController {
 
         return "location";
     }
-    
+
     /**
      * POST - add a new location to db
      *
@@ -67,27 +69,13 @@ public class LocationController {
                 //assigning longitude to location
                 location.setLongitude(Double.parseDouble(coordinates[1]));
                 locationDao.createLocation(location);
-            } catch (IOException | NumberFormatException |InterruptedException ex) {
+            } catch (IOException | NumberFormatException | InterruptedException ex) {
                 //incase exception set to 0.0
                 location.setLatitude(0.0);
                 location.setLongitude(0.0);
             }
-            
-            
+
         }
-
-        return "redirect:/location";
-    }
-
-    /**
-     * GET - delete a location from db
-     *
-     * @param id {Integer} id for an existing location, retrieved from template
-     * @return {String} redirect to subdomain
-     */
-    @GetMapping("deleteLocation")
-    public String deleteLocation(Integer id) {
-        locationDao.deleteLocationById(id);
 
         return "redirect:/location";
     }
@@ -107,15 +95,16 @@ public class LocationController {
 
         return "locationDetails";
     }
-    
+
     /**
      * GET - location info to edit form
-     * @param id location id
+     *
+     * @param id    location id
      * @param model for location object
      * @return to updateLocation
      */
     @GetMapping("editLocation")
-    public String updateLocation(Integer id, Model model){
+    public String updateLocation(Integer id, Model model) {
         Location location = locationDao.readLocationById(id);
         model.addAttribute("location", location);
         return "editLocation";
@@ -130,12 +119,11 @@ public class LocationController {
      */
     @PostMapping("editLocation")
     public String updateLocation(@Valid Location location, BindingResult result) {
-        
-        if(result.hasErrors()){
+
+        if (result.hasErrors()) {
             return "editLocation";
         }
-        
-        
+
         String address = location.getStreet() + ", " + location.getCity()
                 + ", " + location.getState() + " " + location.getZipcode();
 
@@ -150,14 +138,44 @@ public class LocationController {
             //assigning longitude to location
             location.setLongitude(Double.parseDouble(coordinates[1]));
             locationDao.updateLocation(location);
-        } catch (IOException | NumberFormatException| InterruptedException ex) {
+        } catch (IOException | NumberFormatException | InterruptedException ex) {
             //incase exception set to 0.0
             location.setLatitude(0.0);
             location.setLongitude(0.0);
         }
 
-
         return "redirect:/location";
     }
 
+    /**
+     * GET - load delete confirmation page for a location from db
+     *
+     * @param request {HttpServletRequest} will pull in id for delete query
+     * @param model   {Model} will hold relevant data for Location
+     * @return {String} load page with location to be deleted
+     */
+    @GetMapping("deleteLocation")
+    public String deleteLocation(HttpServletRequest request, Model model) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Location location = locationDao.readLocationById(id);
+
+        model.addAttribute("location", location);
+
+        return "deleteLocation";
+    }
+
+    /**
+     * GET - delete a location from db
+     *
+     * @param request {HttpServletRequest} will pull in id for delete query
+     * @return {String} redirect to location homepage
+     */
+    @GetMapping("performDeleteLocation")
+    public String performDeleteLocation(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        locationDao.deleteLocationById(id);
+
+        return "redirect:/location";
+    }
 }

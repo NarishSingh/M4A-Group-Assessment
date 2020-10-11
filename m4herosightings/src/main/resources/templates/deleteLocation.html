@@ -135,7 +135,7 @@
             <div class="column sec-2 col-sm-12 col-lg-6">
                 <div class="col-12"><strong>View Location:</strong></div>
                 <div class="col-12">
-                    <!--TODO show map view here-->
+                    <div class="googleMap"></div>
                 </div>
             </div>
         </div>
@@ -152,14 +152,13 @@
                     <input type="hidden" name="id" th:value="${location.locationId}"/>
 
                     <button type="submit" class="btn btn-outline-success">Confirm</button>
-                    <a href="hero" class="btn btn-outline-danger">Cancel</a>
+                    <a href="location" class="btn btn-outline-danger">Cancel</a>
                 </form>
             </div>
         </div>
     </div>
 </div>
 
-<!--End Body-->
 <div class="bottom" id="about">
     <div class="row">
         <div class="column col-xl-6 col-lg-12 col-sm-12">
@@ -251,6 +250,30 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
+<script th:inline="javascript">
+    $(document).ready(function () {
+        $(document).on('onload', '.googleMap', function (index, map) {
+            var apiKey = "AIzaSyBpD442VLkwZ5_Kp795_zE-UWHy8-6EBQc";
+            var mapsrc = "https://www.google.com/maps/embed/v1/place?key=" + apiKey + "&q=" + map.latitude + ","
+                + map.longitude + "&center=" + map.latitude + "," + map.longitude + "&zoom=18";
+
+            $('<div>', {
+                class: "col-12 m-3",
+                id: "map" + map.locationId
+            }).appendTo('.googleMap');
+
+            $('<iframe>', {
+                src: mapsrc,
+                width: "600",
+                height: "450",
+                frameborder: "0",
+                style: "border:0"
+            }).appendTo('#map' + map.locationId);
+
+            $('iframe').attr('allowfullscreen', '');
+        });
+    });
+</script>
 <script src="main.js"></script>
 </body>
 </html>
