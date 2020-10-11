@@ -174,7 +174,7 @@ public class HeroController {
 
     /*DELETE*/
     /**
-     * GET - delete a Hero from db
+     * GET - load delete confirmation page for a Hero from db
      *
      * @param request {HttpServletRequest} will pull in id to retrieve obj
      * @param model   {Model} will hold relevant data for Hero
@@ -197,7 +197,7 @@ public class HeroController {
      * GET - delete a hero from db
      *
      * @param request {HttpServletRequest} will pull in id for delete query
-     * @return {String} redirect to hero
+     * @return {String} redirect to hero homepage
      */
     @GetMapping("performDeleteHero")
     public String performDeleteHero(HttpServletRequest request) {
