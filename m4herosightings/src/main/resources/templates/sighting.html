@@ -257,7 +257,7 @@
 
                         <!--hero select-->
                         <div class="form-group row">
-                            <label for="hero" class="col-lg-3 col-xs-12 col-form-label">Superpower:</label>
+                            <label for="hero" class="col-lg-3 col-xs-12 col-form-label">Hero/Villain:</label>
                             <select name="heroId" id="hero" class="form-control col">
                                 <option th:each="hero : ${heroes}" th:value="${hero.heroId}" th:text="${hero.name}">
                                     Superpower
