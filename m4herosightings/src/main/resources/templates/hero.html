@@ -42,13 +42,11 @@
         padding: 50px;
     }
 
-    .hero-form {
-        margin: 200px;
-    }
-
     .hero-form label {
         color: white;
-        padding-left: 130px;
+        /* padding-left: 130px; */
+        text-align: center;
+        margin: 0 auto;
     }
 
     .hero-form h3 {
@@ -56,7 +54,9 @@
     }
 
     .hero-form .row {
+        margin: 0 auto;
         padding: 10px;
+        width: 100%;
     }
 
     .hero-form button {
@@ -66,6 +66,32 @@
     .search label {
         color: white;
     }
+
+    .hero-form h5 {
+        text-align: right;
+    }
+
+    @media screen and (max-width: 991px) {
+        .hero-form h5 {
+            text-align: center;
+        }
+    }
+
+    @media screen and (min-width: 880px) {
+        .hero-form {
+            margin: 200px;
+        }
+    }
+
+    .col {
+        /* border: 5px solid red; */
+    }
+
+    @media screen and (max-width: 380px) {
+        /* .navBar {
+            border: 5px solid blue;
+        } */
+    }
 </style>
 
 <body>
@@ -74,21 +100,21 @@
 <div class="container-fluid">
     <!--Navbar-->
     <div class="row m-4 navBar">
-        <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
+        <div class="col text-left col-lg-4 col-md-12 col-sm-12 col-xs-12">
             <a id="toggleTheme" class="btn btn-outline-info btn-lg">
                 <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
             </a>
         </div>
-        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+        <div class="col text-center col-lg-2 col-md-12 col-sm-12 col-xs-12">
             <a href="index.html" class="btn btn-outline-primary btn-lg" id="landingPage">Home</a>
         </div>
-        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+        <div class="col text-center col-lg-2 col-md-12 col-sm-12 col-xs-12">
             <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villains</a>
         </div>
-        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+        <div class="col text-center col-lg-2 col-md-12 col-sm-12 col-xs-12">
             <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
         </div>
-        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
+        <div class="col text-center col-lg-2 col-md-12 col-sm-12 col-xs-12">
             <a id="nav-about" class="btn btn-outline-primary btn-lg">About</a>
         </div>
     </div>
@@ -131,7 +157,8 @@
                     <tbody id="hero-content-rows">
                     <tr th:each="hero: ${heroes}">
                         <td th:text="${hero.name}">Hero Name</td>
-                        <td><img th:src="${hero.photoFileName}" style="height: 50px; padding: 0px; margin-top: 0px;"/></td>
+                        <td><img th:src="${hero.photoFileName}" style="height: 50px; padding: 0px; margin-top: 0px;"/>
+                        </td>
                         <td th:text="${hero.superpower.name}">Superpower Name</td>
                         <td><a href="#" th:href="@{/viewHero(id=${hero.heroId})}"><i class="far fa-eye"></i></a>
                         </td>
@@ -145,57 +172,61 @@
             </div>
 
             <!--Add hero form-->
-            <div class="row">
-                <h3 id="add-hero-heading">Add Hero</h3>
-            </div>
-            <div class="row">
-                <!--add form error box-->
-                <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
-                    <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">
-                        Error message
-                    </p>
+            <div class="hero-form bg-color">
+                <div class="row">
+                    <h3 id="add-hero-heading" class="white-text" style="margin:0 auto">Add Hero</h3>
                 </div>
+                <div class="row">
+                    <!--add form error box-->
+                    <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+                        <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">
+                            Error message
+                        </p>
+                    </div>
 
-                <form class="col" action="addHero" method="POST" enctype="multipart/form-data">
-                    <!--name-->
-                    <div class="form-group row">
-                        <label for="name" class="col-form-label">Name/Alias:</label>
-                        <div class="col-7">
-                            <input type="text" name="name" class="form-control" id="name"/>
+                    <form class="column col" action="addHero" method="POST" enctype="multipart/form-data"
+                          style="padding:50px">
+                        <!--name-->
+                        <div class="form-group row">
+                            <label for="name" class="column col-lg-5 col-form-label"><h5>Name/Alias:</h5></label>
+                            <div class="column col-lg-7 col-xs-12">
+                                <input type="text" name="name" class="form-control" id="name"/>
+                            </div>
                         </div>
-                    </div>
 
-                    <!--description-->
-                    <div class="form-group row">
-                        <label for="description" class="col-form-label">Description:</label>
-                        <div class="col-7">
-                            <input type="text" name="description" class="form-control" id="description">
+                        <!--description-->
+                        <div class="form-group row">
+                            <label for="description" class="column col-lg-5 col-form-label">
+                                <h5>Description:</h5>
+                            </label>
+                            <div class="column col-lg-7 col-xs-12">
+                                <input type="text" name="description" class="form-control" id="description">
+                            </div>
                         </div>
-                    </div>
 
-                    <!--superpower select-->
-                    <div class="form-group row">
-                        <label for="superpower" class="col-form-label">Superpower:</label>
-                        <div class="col-7">
-                            <select id="superpower" name="superpowerId" class="form-control">
-                                <option th:each="superpower: ${superpowers}"
-                                        th:value="${superpower.superpowerId}"
-                                        th:text="${superpower.name}">
-                                    Superpower Name
-                                </option>
-                            </select>
+                        <!--superpower select-->
+                        <div class="form-group row">
+                            <label for="superpower" class="column col-lg-5 col-form-label"><h5>Superpower:</h5></label>
+                            <div class="column col-lg-7 col-xs-12">
+                                <select id="superpower" name="superpowerId" class="form-control">
+                                    <option th:each="superpower: ${superpowers}" th:value="${superpower.superpowerId}"
+                                            th:text="${superpower.name}">
+                                        Superpower Name
+                                    </option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
-                    <!--image upload-->
-                    <div class="form-group row">
-                        <label for="file" class="col-form-label">Profile Picture</label>
-                        <input type="file" name="file" id="file" class="form-control-file">
-                    </div>
+                        <!--image upload-->
+                        <div class="form-group row">
+                            <label for="file" class="column col-form-label">Profile Picture</label>
+                            <input type="file" name="file" id="file" class="column form-control-file">
+                        </div>
 
-                    <!--submit btn-->
-                    <button type="submit" class="btn btn-outline-primary">Add Hero/Villain</button>
-                </form>
+                        <!--submit btn-->
+                        <button type="submit" class="btn btn-outline-primary">Add Hero/Villain</button>
+                    </form>
+                </div>
             </div>
 
             <!--view hero modal-->
@@ -405,7 +436,8 @@
                         <input type="text" name="description-input" class="form-control" id="description-input">
                     </div>
                     <button type="button" class="btn btn-outline-warning btn-lg" id="send">Send
-                        Feedback</button>
+                        Feedback
+                    </button>
                 </div>
             </div>
             <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12" style="padding-left: 100px">

@@ -13,48 +13,51 @@
 </head>
 
 <style>
+    @media screen and (min-width: 991px) {
+        .middle {
+            padding: 100px;
+            transition-property: padding;
+            transition-duration: 100ms;
+        }
+
+        .view-hero {
+            height: 500px;
+            align-items: center;
+        }
+
+        .sec-1 {
+            width: 500px;
+        }
+
+        .sec-2 {
+            width: 500px;
+            padding: 50px;
+            height: 100%;
+        }
+    }
+
     @media screen and (max-width: 991px) {
         .middle {
             padding: 10px;
             transition-property: padding;
-            transition-duration: 500ms;
+            transition-duration: 100ms;
         }
 
-        .middle .row {
-            margin: 0 auto;
-        }
-
-        .edit-hero {
-            padding-top: 0px;
-            transition-property: padding-top;
-            transition-duration: 500ms;
-        }
-
-        .edit-hero h5 {
-            text-align: center;
-        }
-    }
-
-    @media screen and (min-width: 880px) {
-        .middle {
+        .sec-1 {
             padding: 100px;
-            transition-property: padding;
-            transition-duration: 500ms;
-        }
-
-        .edit-hero {
-            padding-top: 50px;
-            transition-property: padding-top;
-            transition-duration: 500ms;
-        }
-
-        .edit-hero h5 {
-            margin: 0 auto;
         }
     }
 
-    .column {
-        margin: 0 auto;
+    .sec-2 {
+        border: 1px solid grey;
+    }
+
+    .confirmation .bg-color {
+        padding: 50px;
+    }
+
+    .confirmation {
+        padding-bottom: 500px;
     }
 </style>
 
@@ -84,68 +87,56 @@
     </div>
 
     <!--edit hero form-->
+    <!--view-->
     <div class="middle bg-img">
-        <div class="row m-4 edit-hero border-dark bg-color white-text">
-            <div class="column col-lg-3 col-xs-12 text-center m-3">
-                <span class="h3">Edit Hero</span>
-            </div>
-            <div class="column col-lg-7 col-xs-12 text-center m-3">
-                <!--edit form error box-->
-                <div class="column col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
-                    <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error
-                        message</p>
+        <div class="row m-4 view-hero bg-color white-text">
+            <div class="column sec-1 col-sm-12 col-lg-6">
+                <div class="row">
+                    <div class="col-6 text-right"><strong>ID:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${hero.heroId}">display id</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Hero:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${hero.name}">display name</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Description:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${hero.description}">display description</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Location:</strong></div>
+                    <div class="col-6 text-left">
+                            <span th:text="${hero.superpower.name + ' - ' + hero.superpower.description}">display
+                                superpower</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Organizations:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:each="org : ${organizations}" th:text="${org.name + ' '}">display org list</span>
+                    </div>
                 </div>
+            </div>
 
-                <form action="editHero" method="POST" enctype="multipart/form-data">
-                    <!--name-->
-                    <div class="form-group row">
-                        <label for="name" class="column col-lg-3 col-xs-12 col-form-label">
-                            <h5>Name/Alias:</h5>
-                        </label>
-                        <div class="column col-lg-9 col-xs-12">
-                            <input type="text" class="form-control" name="name" id="name" th:value="${hero.name}">
-                        </div>
-                    </div>
-
-                    <!--description-->
-                    <div class="form-group row">
-                        <label for="description" class="column col-lg-3 col-xs-12 col-form-label">
-                            <h5>Description:</h5>
-                        </label>
-                        <div class="column col-lg-9 col-xs-12">
-                            <input type="text" name="description" id="description" class="form-control"
-                                   th:value="${hero.description}">
-                        </div>
-                    </div>
-
-                    <!--superpower select-->
-                    <div class="form-group row">
-                        <label for="superpower" class="column col-lg-3 col-xs-12 col-form-label">
-                            <h5>Hero:</h5>
-                        </label>
-                        <div class="column col-lg-9 col-xs-12">
-                            <select name="superpower" id="superpower" class="form-control">
-                                <option th:each="superpower : ${superpowers}" th:value="${superpower.superpowerId}"
-                                        th:text="${superpower.name}"
-                                        th:selected="${hero.superpower.superpowerId == superpower.superpowerId}">
-                                    Hero
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!--image upload-->
+            <div class="column sec-2 col-sm-12 col-lg-6">
+                <div class="col-12"><strong>Image:</strong></div>
+                <div class="col-12">
                     <img th:src="${hero.photoFileName}" alt="Hero picture" style="height: 250px"/>
-                    <div class="form-group row">
-                        <label for="file" class="column col-xs-12 col-form-label">Hero Image</label>
-                        <input type="file" name="file" id="file" class="form-control-file">
-                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                    <!--hidden id tracking-->
-                    <input type="hidden" name="id" th:value="${hero.heroId}"/>
-
-                    <button type="submit" class="btn btn-outline-primary">Edit Hero</button>
-                </form>
+    <div class="confirmation bg-img">
+        <div class="row m-4 edit-hero border-dark bg-color white-text">
+            <div class="column col-12 text-center m-3">
+                <span class="h3">Confirm to delete hero?</span>
+            </div>
+            <div class="column col-12 text-center m-3">
+                <button type="confirm" class="btn btn-outline-success">Confirm</button>
+                <button type="cancel" class="btn btn-outline-danger">Cancel</button>
             </div>
         </div>
     </div>
@@ -245,4 +236,5 @@
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
 <script src="main.js"></script>
 </body>
+
 </html>

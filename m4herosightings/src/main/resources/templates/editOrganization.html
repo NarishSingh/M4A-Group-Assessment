@@ -81,8 +81,7 @@
                         <label for="location" class="col-3 col-form-label">Location</label>
                         <div class="col-9">
                             <select id="location" name="locationId" class="form-control">
-                                <option th:each="location: ${locations}"
-                                        th:value="${location.locationId}"
+                                <option th:each="location: ${locations}" th:value="${location.locationId}"
                                         th:text="${location.name + ' - ' + location.zipcode}"
                                         th:selected="${organization.location.locationId == location.locationId}">
                                     Location Name
@@ -94,10 +93,10 @@
                         <label for="hero" class="col-3 col-form-label">Members</label>
                         <div class="col-9">
                             <select multiple id="hero" name="heroId" class="form-control">
-                                <option th:each="hero: ${heroes}"
-                                        th:value="${hero.heroId}"
+                                <option th:each="hero: ${heroes}" th:value="${hero.heroId}"
                                         th:text="${hero.name + ' - ' + hero.superpower.name}"
-                                        th:selected="${organization.members.contains(hero)}">Member Name
+                                        th:selected="${organization.members.contains(hero)}">
+                                    Member Name
                                 </option>
                             </select>
                             <div th:if="${#fields.hasErrors('organization.members')}">
@@ -109,8 +108,8 @@
                     <div class="row form-group">
                         <label class="col-3 col-form-label" for="updateDescription">Description</label>
                         <div class="col-9">
-                            <input type="text" id="updateDescription" name="description"
-                                   class="form-control" th:value="${organization.description}"/>
+                            <input type="text" id="updateDescription" name="description" class="form-control"
+                                   th:value="${organization.description}"/>
                             <div th:if="${#fields.hasErrors('organization.description')}">
                                 <p th:each="error: ${#fields.errors('organization.description')}" th:text="${error}"
                                    class="alert alert-danger"></p>
@@ -125,7 +124,6 @@
         </div>
     </div>
 </div>
-
 <!--End Body-->
 
 <!--Scripts-->

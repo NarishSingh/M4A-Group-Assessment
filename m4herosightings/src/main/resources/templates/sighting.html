@@ -101,12 +101,20 @@
             z-index: 5;
         }
 
-        .sightings-form {
-            padding: 50px;
-        }
-
         .middle {
             padding-bottom: 100px;
+        }
+
+        @media screen and (max-width: 990px) {
+            .sightings-form:not(.h3) {
+                margin: 0 auto;
+                text-align: center;
+            }
+        }
+
+        .sightings-form {
+            padding: 50px;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -189,12 +197,9 @@
                                     <th>Date</th>
                                     <th>Hero</th>
                                     <th>Location</th>
-                                    <th></th>
-                                    <!--View-->
-                                    <th></th>
-                                    <!--Edit-->
-                                    <th></th>
-                                    <!--Delete-->
+                                    <th></th> <!--View-->
+                                    <th></th> <!--Edit-->
+                                    <th></th> <!--Delete-->
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -222,37 +227,37 @@
              style="height:80%"><br><br><br>
 
             <!--add form error box-->
-            <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+            <div class="column col-lg-12 col-sm-12 m-1 text-center" th:if="${!errors.isEmpty()}">
                 <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error message</p>
             </div>
 
             <!--add sighting form-->
             <div class="row m-4 sightings-form bg-color">
-                <div class="col-3 text-center m-3">
+                <div class="column col-lg-3 col-xs-12 text-center m-3">
                     <span class="h3">Add Sighting</span>
                 </div>
 
-                <div class="col-7 text-center m-3">
+                <div class="column col-lg-7 col-xs-12 text-center m-3">
                     <form action="addSighting" method="POST">
                         <!--date-->
                         <div class="form-group row">
-                            <label for="date" class="col-3 col-form-label">Date:</label>
-                            <div class="col-9">
+                            <label for="date" class="col-lg-3 col-xs-12 col-form-label">Date:</label>
+                            <div class="col-lg-9 col-xs-12">
                                 <input type="date" class="form-control" name="date" id="date">
                             </div>
                         </div>
 
                         <!--description-->
                         <div class="form-group row">
-                            <label for="description" class="col-3 col-form-label">Description:</label>
-                            <div class="col-9">
+                            <label for="description" class="col-lg-3 col-xs-12 col-form-label">Description:</label>
+                            <div class="col-lg-9 col-xs-12">
                                 <input type="text" class="form-control" name="description" id="description">
                             </div>
                         </div>
 
                         <!--hero select-->
                         <div class="form-group row">
-                            <label for="hero" class="col-3 col-form-label">Superpower:</label>
+                            <label for="hero" class="col-lg-3 col-xs-12 col-form-label">Superpower:</label>
                             <select name="heroId" id="hero" class="form-control col">
                                 <option th:each="hero : ${heroes}" th:value="${hero.heroId}" th:text="${hero.name}">
                                     Superpower
@@ -262,7 +267,7 @@
 
                         <!--location select-->
                         <div class="form-group row">
-                            <label for="location" class="col-3 col-form-label">Location:</label>
+                            <label for="location" class="col-lg-3 col-xs-12 col-form-label">Location:</label>
                             <select name="locationId" id="location" class="form-control col">
                                 <option th:each="location : ${locations}" th:value="${location.locationId}"
                                         th:text="${location.name}">
