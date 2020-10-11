@@ -14,39 +14,6 @@
 .hover
 */
 
-// DARK MODE \\
-// var toggle;
-
-// $("#toggleTheme").on("click", toggleTheme());
-
-// function toggleTheme () {
-//     if (toggle == true) {
-//         console.log(toggle);
-//         $(".container-fluid").css({ 'background-color': 'white' });
-//         $(".bottom").css({ 'background-color': 'white' });
-//         $("p").css({ 'color': 'black' });
-//         $(".bottom a").css({ 'color': 'black' });
-//         $(".section-2").css({ 'background-color': 'white' });
-//         $(".nav ul li").css({ 'background-color': 'rgba(255, 255, 255, 0.534)' });
-//         $(".nav a").css({ 'color': 'white' });
-//         $(".nav a:hover").css({ 'color': 'grey' });
-
-//         $(".swiper-container img").css({ 'background-color': 'rgba(255, 255, 255, 0.1)' });
-//         $(".swiper-pagination-bullets").css({ 'background-color': 'rgba(255, 255, 255, 0.15)' });
-//         toggle = false;
-//         console.log(toggle);
-//     } else if (toggle == false) {
-//         console.log(toggle);
-//         $(".container-fluid").css({ 'background-color': 'black' });
-//         $(".nav ul li").css({ 'background-color': 'rgba(0, 0, 0, 0.534)' });  
-//         console.log(toggle);
-//         toggle = true;
-//     }
-// }
-
-$(".white-text").css({ 'color': 'white' });
-$(".black-text").css({ 'color': 'black' });
-
 var lightTheme = false;
 
 $("#toggleTheme").on('click', function () {
@@ -86,6 +53,12 @@ function darkMode() {
     paragraphs.forEach((e) => {
         e.style.color = 'white';
     })
+
+    var texts = document.querySelectorAll(".white-text");
+    texts.forEach((e) => {
+        e.style.color = "white";
+    })
+
     document.getElementById("send").className = 'btn btn-outline-warning btn-lg';
 
     document.getElementById("toggleTheme").className = 'btn btn-outline-info btn-lg';
@@ -120,6 +93,10 @@ function lightMode() {
     bgcolors.forEach((e) => {
         e.style.backgroundColor = "rgba(255, 255, 255, 0.75)";
     }) 
+    var texts = document.querySelectorAll(".white-text");
+    texts.forEach((e) => {
+        e.style.color = "black";
+    })
 
     var paragraphs = document.querySelectorAll("p, label, .bottom a, .h3");
     paragraphs.forEach((e) => {

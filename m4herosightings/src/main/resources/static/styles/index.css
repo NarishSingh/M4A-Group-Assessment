@@ -1,5 +1,6 @@
 .container-fluid {
     background-color: black;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 body {
@@ -19,6 +20,10 @@ body {
     background-color: rgba(0, 0, 0, 0.75);
 }
 
+.white-text {
+    color: white;
+}
+
 .footer {
     padding: 50px;
 }
@@ -31,13 +36,13 @@ h1 a {
     /* border: 5px solid blue; */
     float: right;
     height: 8.5%;
-    color:rgba(255, 196, 0, 0.85);
+    color: rgba(255, 196, 0, 0.85);
     background-color: black;
     z-index: 3;
 }
 
 .nav a {
-    color:rgba(0, 195, 255, 0.85);
+    color: rgba(0, 195, 255, 0.85);
 }
 
 .nav ul, .nav ul li {
@@ -66,7 +71,7 @@ h1 a {
 
 .nav a:hover {
     text-decoration: none;
-    color:white;
+    color: white;
 }
 
 .nav ul li a {
@@ -105,7 +110,7 @@ a {
 }
 
 .bottom {
-    /* border: 5px solid red; */
+    padding-top: 100px;
     background-color: black;
 }
 
@@ -136,7 +141,7 @@ p {
 
 .bottom {
     padding-top: 100px;
-    background-color:rgb(5, 5, 5);
+    background-color: rgb(5, 5, 5);
 }
 
 .bottom h3 {
@@ -145,12 +150,13 @@ p {
     color: rgb(88, 88, 88);
 }
 
-.bottom a{
+.bottom a {
     color: white;
 }
+
 .bottom a:hover {
     text-decoration: none;
-    color:rgba(255, 196, 0, 0.85);
+    color: rgba(255, 196, 0, 0.85);
 }
 
 .footer a {
@@ -158,17 +164,16 @@ p {
     text-align: center;
     font-size: 30px;
     padding-top: 3.6px;
-    
 }
 
 .fa {
-  border-radius: 100%;
-  font-size: 30px;
-  height: 5%;
-  width: 2.5%;
-  text-align: center;
-  text-decoration: none;
-  margin: 0 auto;
+    border-radius: 100%;
+    font-size: 30px;
+    height: 5%;
+    width: 2.5%;
+    text-align: center;
+    text-decoration: none;
+    margin: 0 auto;
 }
 
 .fa:hover {
@@ -176,107 +181,107 @@ p {
 }
 
 .fa-facebook {
-  background: #3B5998;
-  color: white;
+    background: #3B5998;
+    color: white;
 }
 
 .fa-twitter {
-  background: #55ACEE;
-  color: white;
+    background: #55ACEE;
+    color: white;
 }
 
 .fa-google {
-  background: #dd4b39;
-  color: white;
+    background: #dd4b39;
+    color: white;
 }
 
 .fa-linkedin {
-  background: #007bb5;
-  color: white;
+    background: #007bb5;
+    color: white;
 }
 
 .fa-youtube {
-  background: #bb0000;
-  color: white;
+    background: #bb0000;
+    color: white;
 }
 
 .fa-instagram {
-  background: #125688;
-  color: white;
+    background: #125688;
+    color: white;
 }
 
 .fa-pinterest {
-  background: #cb2027;
-  color: white;
+    background: #cb2027;
+    color: white;
 }
 
 .fa-snapchat-ghost {
-  background: #fffc00;
-  color: white;
-  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    background: #fffc00;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 .fa-skype {
-  background: #00aff0;
-  color: white;
+    background: #00aff0;
+    color: white;
 }
 
 .fa-android {
-  background: #a4c639;
-  color: white;
+    background: #a4c639;
+    color: white;
 }
 
 .fa-dribbble {
-  background: #ea4c89;
-  color: white;
+    background: #ea4c89;
+    color: white;
 }
 
 .fa-vimeo {
-  background: #45bbff;
-  color: white;
+    background: #45bbff;
+    color: white;
 }
 
 .fa-tumblr {
-  background: #2c4762;
-  color: white;
+    background: #2c4762;
+    color: white;
 }
 
 .fa-vine {
-  background: #00b489;
-  color: white;
+    background: #00b489;
+    color: white;
 }
 
 .fa-foursquare {
-  background: #45bbff;
-  color: white;
+    background: #45bbff;
+    color: white;
 }
 
 .fa-stumbleupon {
-  background: #eb4924;
-  color: white;
+    background: #eb4924;
+    color: white;
 }
 
 .fa-flickr {
-  background: #f40083;
-  color: white;
+    background: #f40083;
+    color: white;
 }
 
 .fa-yahoo {
-  background: #430297;
-  color: white;
+    background: #430297;
+    color: white;
 }
 
 .fa-soundcloud {
-  background: #ff5500;
-  color: white;
+    background: #ff5500;
+    color: white;
 }
 
 .fa-reddit {
-  background: #ff5700;
-  color: white;
+    background: #ff5700;
+    color: white;
 }
 
 .fa-rss {
-  background: #ff6600;
-  color: white;
+    background: #ff6600;
+    color: white;
 }
