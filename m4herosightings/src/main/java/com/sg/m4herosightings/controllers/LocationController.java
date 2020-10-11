@@ -98,8 +98,8 @@ public class LocationController {
     /**
      * GET - location info to edit form
      *
-     * @param id    location id
-     * @param model for location object
+     * @param id    {Integer} location id
+     * @param model {Model} for location object
      * @return to updateLocation
      */
     @GetMapping("editLocation")
@@ -172,7 +172,6 @@ public class LocationController {
     @GetMapping("performDeleteLocation")
     public String performDeleteLocation(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
-
         locationDao.deleteLocationById(id);
 
         return "redirect:/location";

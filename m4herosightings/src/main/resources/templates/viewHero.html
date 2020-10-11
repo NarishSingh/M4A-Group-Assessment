@@ -106,7 +106,10 @@
 
                     <div class="col-6 text-right"><strong>Organizations:</strong></div>
                     <div class="col-6 text-left">
-                        <span th:each="org : ${organizations}" th:text="${org.name + ' '}">display org list</span>
+                        <span th:each="org : ${organizations}">
+                            <span th:text="${org.name}"></span>
+                            <br>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -114,7 +117,7 @@
             <div class="column sec-2 col-sm-12 col-lg-6">
                 <div class="col-12"><strong>Image:</strong></div>
                 <div class="col-12">
-                    <img th:src="${hero.photoFileName}" alt="Hero picture" style="height: 250px" />
+                    <img th:src="${hero.photoFileName}" alt="Hero picture" style="height: 250px; padding: 0px" />
                 </div>
             </div>
         </div>

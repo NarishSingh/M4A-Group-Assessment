@@ -144,9 +144,10 @@ public class SightingController {
     /**
      * POST - perform an update on a sighting
      *
-     * @param request
-     * @param date
-     * @param model
+     * @param request {HttpServletRequest} retrieves form data for attempting
+     *                update
+     * @param date    {LocalDate} a formatted date from the past
+     * @param model   {Model} holds obj on reload for failure to edit
      * @return {String} redirect to home page if successful, reload with errors
      *         if fails
      */
@@ -213,7 +214,6 @@ public class SightingController {
     @GetMapping("performDeleteSighting")
     public String performDeleteSighting(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
-
         siDao.deleteSightingById(id);
 
         return "redirect:/sighting";
