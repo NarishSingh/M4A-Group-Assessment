@@ -127,13 +127,31 @@ public class SuperpowerController {
 
     /*DELETE*/
     /**
-     * DELETE - delete a superpower from db
+     * DELETE - load delete confirmation page for a superpower from db
      *
-     * @param id {Integer} id of an existing superpower
-     * @return {String} redirect to homepage
+     * @param request {HttpServletRequest} will pull in id to retrieve obj
+     * @param model   {Model} will hold relevant data for Superpower
+     * @return {String} load page with superpower to be deleted
      */
     @GetMapping("deleteSuperpower")
-    public String deleteSuperpower(Integer id) {
+    public String deleteSuperpower(HttpServletRequest request, Model model) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Superpower superpower = spDao.readSuperpowerById(id);
+
+        model.addAttribute("superpower", superpower);
+
+        return "deleteSuperpower";
+    }
+
+    /**
+     * GET - delete a superpower from db
+     *
+     * @param request {HttpServletRequest} will pull in id for delete query
+     * @return {String} redirect to superpower homepage
+     */
+    @GetMapping("performDeleteSuperpower")
+    public String performdeleteSuperpower(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
         spDao.deleteSuperpowerById(id);
 
         return "redirect:/superpower";
