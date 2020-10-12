@@ -13,43 +13,10 @@
 .on
 .hover
 */
-
-// DARK MODE \\
-// var toggle;
-
-// $("#toggleTheme").on("click", toggleTheme());
-
-// function toggleTheme () {
-//     if (toggle == true) {
-//         console.log(toggle);
-//         $(".container-fluid").css({ 'background-color': 'white' });
-//         $(".bottom").css({ 'background-color': 'white' });
-//         $("p").css({ 'color': 'black' });
-//         $(".bottom a").css({ 'color': 'black' });
-//         $(".section-2").css({ 'background-color': 'white' });
-//         $(".nav ul li").css({ 'background-color': 'rgba(255, 255, 255, 0.534)' });
-//         $(".nav a").css({ 'color': 'white' });
-//         $(".nav a:hover").css({ 'color': 'grey' });
-
-//         $(".swiper-container img").css({ 'background-color': 'rgba(255, 255, 255, 0.1)' });
-//         $(".swiper-pagination-bullets").css({ 'background-color': 'rgba(255, 255, 255, 0.15)' });
-//         toggle = false;
-//         console.log(toggle);
-//     } else if (toggle == false) {
-//         console.log(toggle);
-//         $(".container-fluid").css({ 'background-color': 'black' });
-//         $(".nav ul li").css({ 'background-color': 'rgba(0, 0, 0, 0.534)' });  
-//         console.log(toggle);
-//         toggle = true;
-//     }
-// }
-
-$(".white-text").css({ 'color': 'white' });
-$(".black-text").css({ 'color': 'black' });
-
+console.log("runnning");
 var lightTheme = false;
 
-$("#toggleTheme").on('click', function () {
+$("#toggleTheme").on('click', function (event) {
     console.log("Gfdg");
     if (lightTheme == false) {
         console.log(lightTheme);
@@ -63,11 +30,10 @@ $("#toggleTheme").on('click', function () {
 })
 
 
-
-function darkMode() {
+function darkMode(event) {
     $("body, .container-fluid, .bottom").css({ 'background-color': 'black' });
     $(".overlay").css({ 'background-color': 'rgba(0, 0, 0, 0.5)' });
-    $(".choose ul").css({ 'background-color': 'rgba(0, 0, 0, 0.75)', 'color': 'white'});
+    $(".choose ul").css({ 'background-color': 'rgba(0, 0, 0, 0.75)', 'color': 'white' });
     $(".alert").addClass("bg-danger");
 
     $(".hero-form h3").addClass("white-text").removeClass("black-text");
@@ -79,13 +45,19 @@ function darkMode() {
     var bgcolors = document.querySelectorAll(".bg-color");
     bgcolors.forEach((e) => {
         e.style.backgroundColor = "rgba(0, 0, 0, 0.75)";
-    }) 
+    })
 
     document.querySelector(".bottom p").style.color = 'white';
     var paragraphs = document.querySelectorAll("p, label, .bottom a, .h3");
     paragraphs.forEach((e) => {
         e.style.color = 'white';
     })
+
+    var texts = document.querySelectorAll(".white-text");
+    texts.forEach((e) => {
+        e.style.color = "white";
+    })
+
     document.getElementById("send").className = 'btn btn-outline-warning btn-lg';
 
     document.getElementById("toggleTheme").className = 'btn btn-outline-info btn-lg';
@@ -93,7 +65,7 @@ function darkMode() {
     $(".navBar .btn, .news, .other").addClass("btn-outline-primary").removeClass("btn-primary");
     $(".registerLogin .register").addClass("btn-outline-success").removeClass("btn-success");
     $(".registerLogin .login").addClass("btn-outline-danger").removeClass("btn-danger");
-    
+
     $(".swiper-container img").css({ 'background-color': 'rgba(0, 0, 0, 0.5)' });
     $(".swiper-pagination-bullets").css({ 'background-color': 'rgba(0, 0, 0, 0.15)' });
     $(".swiper-container").css({ 'background-color': 'rgba(0, 0, 0, 0.5)' });
@@ -103,8 +75,8 @@ function darkMode() {
     lightTheme = false;
 }
 
-function lightMode() {
-    $("body, .container-fluid, .bottom, .choose ul").css({ 'background-color': 'white'});
+function lightMode(event) {
+    $("body, .container-fluid, .bottom, .choose ul").css({ 'background-color': 'white' });
     $(".overlay").css({ 'background-color': 'rgba(255, 255, 255, 0.25)' });
     $(".choose ul").css({ 'background-color': 'rgba(255, 255, 255, 0.75)', 'color': 'black' });
     $(".alert").removeClass("bg-danger");
@@ -119,7 +91,11 @@ function lightMode() {
     var bgcolors = document.querySelectorAll(".bg-color");
     bgcolors.forEach((e) => {
         e.style.backgroundColor = "rgba(255, 255, 255, 0.75)";
-    }) 
+    })
+    var texts = document.querySelectorAll(".white-text");
+    texts.forEach((e) => {
+        e.style.color = "black";
+    })
 
     var paragraphs = document.querySelectorAll("p, label, .bottom a, .h3");
     paragraphs.forEach((e) => {
@@ -145,8 +121,6 @@ function lightMode() {
 }
 
 
-
-
 $("#nav-about").on('click', function () {
     var element = document.getElementById('about');
     var position = element.getBoundingClientRect();
@@ -156,26 +130,38 @@ $("#nav-about").on('click', function () {
     window.scroll(x, y);
 })
 
-
 // TOGGLES THE SIGHTINGS GALLERY
 var isHidden = false;
 
-$("#sightingID").on('click', function () { // INTENDED TO NOT BE HARD-CODED
+/*
+$("#sightingID").on('click', function (event) { // INTENDED TO NOT BE HARD-CODED
+    let lat = $(this).data("lat");
+    let long = $(this).data("long");
+​
     if (isHidden == true) {
         revealLocation();
     } else if (isHidden == false) {
-        hideLocation();
+        hideLocation(lat, long);
     }
 })
+​
+ */
 
-function hideLocation() {
+function hideLocation(latitude, longitude) {
     var sightingID = document.getElementById("sightingID"); // INTENDED TO NOT BE HARD-CODED
-    sightingID.style.backgroundImage = "url('https://miro.medium.com/max/4064/1*qYUvh-EtES8dtgKiBRiLsA.png')"; // INTENDED TO NOT BE HARD-CODED
+    // sightingID.style.backgroundImage = "url('https://miro.medium.com/max/4064/1*qYUvh-EtES8dtgKiBRiLsA.png')"; // INTENDED TO NOT BE HARD-CODED
+
+    const apiKey = "AIzaSyBpD442VLkwZ5_Kp795_zE-UWHy8-6EBQc";
+    var mapsrc = "https://www.google.com/maps/embed/v1/place?key=" + apiKey + "&q=" + latitude + ","
+        + longitude + "&center=" + latitude + "," + longitude + "&zoom=18";
+
+    sightingID.style.backgroundImage = "url('" + mapsrc + "')";
     isHidden = true;
 }
 
-function revealLocation() {
+function revealLocation(id) {
     var sightingID = document.getElementById("sightingID"); // INTENDED TO NOT BE HARD-CODED
-    sightingID.style.backgroundImage = "url('https://www.bergmannpc.com/imager/contentimages/project/unc-charlotte-center-city/6658/UNC-Center-City-Campus-Exterior_20d4ef1e03a0bb7e3cb004631c67ab23.jpg')"; // INTENDED TO NOT BE HARD-CODED
+    // sightingID.style.backgroundImage = "url('https://www.bergmannpc.com/imager/contentimages/project/unc-charlotte-center-city/6658/UNC-Center-City-Campus-Exterior_20d4ef1e03a0bb7e3cb004631c67ab23.jpg')"; // INTENDED TO NOT BE HARD-CODED
+    sightingID.style.backgroundImage = "url('https://specials-images.forbesimg.com/imageserve/5d35eacaf1176b0008974b54/960x0.jpg?cropX1=790&cropX2=5350&cropY1=784&cropY2=3349')"; // INTENDED TO NOT BE HARD-CODED
     isHidden = false;
 }

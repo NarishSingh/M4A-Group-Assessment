@@ -9,17 +9,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/index.css">
 </head>
+
 <body>
 <!--Begin Body-->
 <!--Navbar-->
-<div class="container">
-    <div class="row m-4">
-        <div class="col text-center border border-dark">
-            <h1>HERO Sightings - View Hero</h1>
-        </div>
-    </div>
-    <div class="row m-4">
+<div class="container-fluid">
+    <div class="row m-4 navBar">
         <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
             <a id="toggleTheme" class="btn btn-outline-info btn-lg">
                 <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
@@ -38,29 +35,60 @@
             <a id="nav-about" class="btn btn-outline-primary btn-lg">About</a>
         </div>
     </div>
-</div>
 
-<div class="row m-4 border">
-    <div class="col-6 text-right"><strong>ID:</strong></div>
-    <div class="col-6 text-left">
-        <span th:text="${hero.heroId}">display id</span>
+    <div class="top bg-img">
+        <div class="row m-4 bg-color">
+            <div class="col text-center border white-text">
+                <h1>HERO Sightings - View Hero</h1>
+            </div>
+        </div>
     </div>
 
-    <div class="col-6 text-right"><strong>Hero:</strong></div>
-    <div class="col-6 text-left">
-        <span th:text="${hero.name}">display name</span>
+    <!--view-->
+    <div class="middle-viewLayout bg-img">
+        <div class="row m-4 view bg-color white-text">
+            <div class="column sec-1 col-sm-12 col-lg-6">
+                <div class="row">
+                    <div class="col-6 text-right"><strong>ID:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${hero.heroId}">display id</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Hero:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${hero.name}">display name</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Description:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${hero.description}">display description</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Location:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${hero.superpower.name + ' - ' + hero.superpower.description}">display superpower</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Organizations:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:each="org : ${organizations}">
+                            <span th:text="${org.name}"></span>
+                            <br>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="column sec-2 col-sm-12 col-lg-6">
+                <div class="col-12"><strong>Image:</strong></div>
+                <div class="col-12">
+                    <img th:src="${hero.photoFileName}" alt="Hero picture" style="height: 250px; padding: 0;"/>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="col-6 text-right"><strong>Description:</strong></div>
-    <div class="col-6 text-left">
-        <span th:text="${hero.description}">display description</span>
-    </div>
-
-
-    <div class="col-6 text-right"><strong>Location:</strong></div>
-    <div class="col-6 text-left">
-        <span th:text="${hero.superpower.name + ' - ' + hero.superpower.description}">display superpower</span>
-    </div>
+    <div class="bottom" id="about"></div>
 </div>
 <!--End Body-->
 
@@ -75,5 +103,7 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+<script src="footer.js"></script>
 </body>
 </html>

@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Hero Sightings</title>
+    <title>Hero Sightings - Delete Organization</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-          crossorigin="anonymous">
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css">
 </head>
 
@@ -26,7 +25,7 @@
             <a href="index.html" class="btn btn-outline-primary btn-lg" id="landingPage">Home</a>
         </div>
         <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villains</a>
+            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villians</a>
         </div>
         <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
             <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
@@ -36,12 +35,8 @@
         </div>
     </div>
 
-    <div class="row m-4 bg-img">
-        <div class="col text-center bg-color">
-            <h1>HERO Sightings - View Sighting</h1>
-        </div>
-    </div>
-    <div class="middle-viewLayout bg-img">
+    <!--view organization to be deleted-->
+    <div class="middle bg-img">
         <div class="row m-4 view-hero bg-color white-text">
             <div class="column sec-1 col-sm-12 col-lg-6">
                 <div class="row">
@@ -70,7 +65,7 @@
                         <span th:text="${organization.location.name}">display City</span>
                     </div>
 
-                    <div class="col-6 text-right"><strong>Address:</strong></div>
+                    <div class="col-6 text-right"><strong>Organization Address:</strong></div>
                     <div class="col-6 text-left">
                             <span th:text="${organization.location.street + ' ' + organization.location.city + ' '
                             + organization.location.state + ' ' + organization.location.zipcode}">
@@ -78,7 +73,7 @@
                             </span>
                     </div>
 
-                    <div class="col-6 text-right"><strong>Coordinates:</strong></div>
+                    <div class="col-6 text-right"><strong>Organization Coordinates:</strong></div>
                     <div class="col-6 text-left">
                             <span th:text="${organization.location.latitude + '/' + organization.location.longitude}">
                                 display Coordinates
@@ -103,8 +98,26 @@
         </div>
     </div>
 
-    <div class="bottom" id="about"></div>
+    <div class="confirmation bg-img">
+        <div class="row m-4 edit-hero border-dark bg-color white-text">
+            <div class="column col-12 text-center m-3">
+                <span class="h3">Confirm to delete organization?</span>
+            </div>
+            <div class="column col-12 text-center m-3">
+                <form action="performDeleteOrganization" method="get">
+                    <!--hidden id tracking-->
+                    <input type="hidden" name="id" th:value="${organization.organizationId}"/>
+
+                    <button type="submit" class="btn btn-outline-success">Confirm</button>
+                    <a href="organization" class="btn btn-outline-danger">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
+
+<div class="bottom" id="about"></div>
+<!--End Body-->
 
 <!--Scripts-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -117,6 +130,31 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
+<!--FIXME not working-->
+<!--<script th:inline="javascript">
+    $(document).ready(function () {
+        $(document).on('onload', '.googleMap', function (index, map) {
+            var apiKey = "AIzaSyBpD442VLkwZ5_Kp795_zE-UWHy8-6EBQc";
+            var mapsrc = "https://www.google.com/maps/embed/v1/place?key=" + apiKey + "&q=" + map.latitude + ","
+                + map.longitude + "&center=" + map.latitude + "," + map.longitude + "&zoom=18";
+
+            $('<div>', {
+                class: "col-12 m-3",
+                id: "map" + map.locationId
+            }).appendTo('.googleMap');
+
+            $('<iframe>', {
+                src: mapsrc,
+                width: "600",
+                height: "450",
+                frameborder: "0",
+                style: "border:0"
+            }).appendTo('#map' + map.locationId);
+
+            $('iframe').attr('allowfullscreen', '');
+        });
+    });
+</script>-->
 <script src="main.js"></script>
 <script src="footer.js"></script>
 </body>

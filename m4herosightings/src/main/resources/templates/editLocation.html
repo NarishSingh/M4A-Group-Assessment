@@ -9,17 +9,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
           crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/index.css">
 </head>
+
 <body>
 <!--Begin Body-->
 <!--Navbar-->
-<div class="container">
-    <div class="row m-4">
-        <div class="col text-center border border-dark">
-            <h1>HERO Sightings</h1>
-        </div>
-    </div>
-    <div class="row m-4 border border-dark">
+<div class="container-fluid">
+    <div class="row m-4 navBar">
         <div class="col text-center m-3">
             <a href="superpower" class="btn btn-outline-primary btn-lg">Superpowers</a>
         </div>
@@ -36,90 +33,103 @@
             <a href="organization" class="btn btn-outline-primary btn-lg">Organization</a>
         </div>
     </div>
-    <div class="row m-4 border border-dark">
-        <div class="col-3 text-center m-3">
-            <span class="h3">Edit Location</span>
+
+    <div class="row m-4 bg-img">
+        <div class="col text-center bg-color">
+            <h1>HERO Sightings</h1>
         </div>
-        <div class="col-7 text-center m-3">
-            <form action="editLocation" method="POST">
-                <div class="modal-body">
+    </div>
 
-                    <div class="row form-group">
-                        <label for="updateStreet" class="col-3 col-form-label">Street</label>
-                        <div class="col-9">
-                            <input type="text" id="updateStreet" name="street" class="form-control"
-                                   th:value="${location.street}"/>
-                          
+    <div class="middle-editConfirmation bg-img">
+        <div class="row m-4 edit border-dark bg-color white-text">
+            <div class="column col-lg-3 col-xs-12 text-center m-3">
+                <span class="h3">Edit Location</span>
+            </div>
+            <div class="column col-lg-7 col-xs-12 text-center m-3">
+                <form action="editLocation" method="POST">
+                    <div class="modal-body">
+
+                        <div class="row form-group">
+                            <label for="updateStreet" class="column col-lg-3 col-xs-12 col-form-label">Street</label>
+                            <div class="column col-lg-9 col-xs-12">
+                                <input type="text" id="updateStreet" name="street" class="form-control"
+                                       th:value="${location.street}"/>
+
                                 <div th:if="${#fields.hasErrors('location.street')}">
-                                   <p th:each="error : ${#fields.errors('location.street')}" class="alert alert-danger" 
-                                      th:text="${error}"> Bad street name</p>
+                                    <p th:each="error : ${#fields.errors('location.street')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad street name</p>
                                 </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row form-group">
-                        <label for="updateCity" class="col-3 col-form-label">City</label>
-                        <div class="col-9">
-                            <input id="updateCity" name="city" type="text" class="form-control"
-                                   th:value="${location.city}"/>
-                            <div th:if="${#fields.hasErrors('location.city')}">
+                        <div class="row form-group">
+                            <label for="updateCity" class="column col-lg-3 col-xs-12 col-form-label">City</label>
+                            <div class="column col-lg-9 col-xs-12">
+                                <input id="updateCity" name="city" type="text" class="form-control"
+                                       th:value="${location.city}"/>
+                                <div th:if="${#fields.hasErrors('location.city')}">
 
-                                   <p th:each="error : ${#fields.errors('location.city')}" class="alert alert-danger" 
-                                      th:text="${error}"> Bad city name</p>
+                                    <p th:each="error : ${#fields.errors('location.city')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad city name</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row form-group">
-                        <label for="updateState" class="col-3 col-form-label">State</label>
-                        <div class="col-9">
-                            <input type="text" class="form-control" id="updateState" name="state"
-                                   th:value="${location.state}"/>
-                            <div th:if="${#fields.hasErrors('location.state')}">
-                                   <p th:each="error : ${#fields.errors('location.state')}" class="alert alert-danger" 
-                                      th:text="${error}"> Bad state name</p>
+                        <div class="row form-group">
+                            <label for="updateState" class="column col-lg-3 col-xs-12 col-form-label">State</label>
+                            <div class="column col-lg-9 col-xs-12">
+                                <input type="text" class="form-control" id="updateState" name="state"
+                                       th:value="${location.state}"/>
+                                <div th:if="${#fields.hasErrors('location.state')}">
+                                    <p th:each="error : ${#fields.errors('location.state')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad state name</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row form-group">
-                        <label for="updateZipcode" class="col-3 col-form-label">Zipcode</label>
-                        <div class="col-9">
-                            <input type="text" id="updateZipcode" name="zipcode" class="form-control"
-                                   th:value="${location.zipcode}"/>
-                            <div th:if="${#fields.hasErrors('location.zipcode')}">
-                                   <p th:each="error : ${#fields.errors('location.zipcode')}" class="alert alert-danger" 
-                                      th:text="${error}"> Bad zipcode </p>
+                        <div class="row form-group">
+                            <label for="updateZipcode" class="column col-lg-3 col-xs-12 col-form-label">Zipcode</label>
+                            <div class="column col-lg-9 col-xs-12">
+                                <input type="text" id="updateZipcode" name="zipcode" class="form-control"
+                                       th:value="${location.zipcode}"/>
+                                <div th:if="${#fields.hasErrors('location.zipcode')}">
+                                    <p th:each="error : ${#fields.errors('location.zipcode')}"
+                                       class="alert alert-danger"
+                                       th:text="${error}"> Bad zipcode </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row form-group">
-                        <label class="col-3 col-form-label" for="updateName">Name</label>
-                        <div class="col-9">
-                            <input type="text" id="updateName" name="name" class="form-control"
-                                   th:value="${location.name}"/>
-                            <div th:if="${#fields.hasErrors('location.name')}">
-                                   <p th:each="error : ${#fields.errors('location.name')}" class="alert alert-danger" 
-                                      th:text="${error}"> Bad location name</p>
+                        <div class="row form-group">
+                            <label class="column col-lg-3 col-xs-12 col-form-label" for="updateName">Name</label>
+                            <div class="column col-lg-9 col-xs-12">
+                                <input type="text" id="updateName" name="name" class="form-control"
+                                       th:value="${location.name}"/>
+                                <div th:if="${#fields.hasErrors('location.name')}">
+                                    <p th:each="error : ${#fields.errors('location.name')}" class="alert alert-danger"
+                                       th:text="${error}"> Bad location name</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row form-group">
-                        <label class="col-3 col-form-label" for="updateDescription">Description</label>
-                        <div class="col-9">
-                            <input type="text" id="updateDescription" name="description"
-                                   class="form-control" th:value="${location.description}"/>
-                            <div th:if="${#fields.hasErrors('location.description')}">
-                                   <p th:each="error : ${#fields.errors('location.description')}" class="alert alert-danger" 
-                                      th:text="${error}"> Bad Description</p>
+                        <div class="row form-group">
+                            <label class="column col-lg-3 col-xs-12 col-form-label"
+                                   for="updateDescription">Description</label>
+                            <div class="column col-lg-9 col-xs-12">
+                                <input type="text" id="updateDescription" name="description"
+                                       class="form-control" th:value="${location.description}"/>
+                                <div th:if="${#fields.hasErrors('location.description')}">
+                                    <p th:each="error : ${#fields.errors('location.description')}"
+                                       class="alert alert-danger"
+                                       th:text="${error}"> Bad Description</p>
+                                </div>
                             </div>
                         </div>
+                        <input type="hidden" name="locationId" th:value="${location.locationId}" class="form-control"/>
+                        <button type="submit" class="btn btn-primary">Update Location</button>
                     </div>
-                    <input type="hidden" name="locationId" th:value="${location.locationId}" class="form-control"/>
-                    <button type="submit" class="btn btn-primary">Update Location</button>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 </div>
-
+<!--End Body-->
+<div class="bottom" id="about"></div>
 <!--End Body-->
 
 <!--Scripts-->
@@ -133,5 +143,7 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+<script src="footer.js"></script>
 </body>
 </html>

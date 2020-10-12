@@ -10,6 +10,7 @@
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
           crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/nav.css">
 </head>
 
 <style>
@@ -25,79 +26,28 @@
     .choose ul li {
         display: inline;
         text-align: center;
-        border: 5px solid red;
     }
 
     .choose ul {
-        background-color: limegreen;
+        background-color: rgba(0, 0, 0, 0.75);
+        color: white;
         margin: 0 auto;
         padding: 10px;
     }
 
     .choose {
-        border: 5px solid blue;
         justify-content: space-between;
-    }
-
-    .data-table {
-        padding: 50px;
-    }
-
-    .hero-form {
-        margin: 200px;
-    }
-
-    .hero-form label {
-        color: white;
-        padding-left: 130px;
-    }
-
-    .hero-form h3 {
-        padding: 100px;
-    }
-
-    .hero-form .row {
-        padding: 10px;
-    }
-
-    .hero-form button {
-        margin: 100px;
-    }
-
-    .search label {
-        color: white;
     }
 </style>
 
+<body>
 <!--Begin Body-->
-<div class="bg"></div>
 <div class="container-fluid">
-
     <!--Navbar-->
-    <div class="row m-4">
-        <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
-            <a id="toggleTheme" class="btn btn-outline-info btn-lg">
-                <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
-            </a>
-        </div>
-        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-            <a href="index.html" class="btn btn-outline-primary btn-lg" id="landingPage">Home</a>
-        </div>
-        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villians</a>
-        </div>
-        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-            <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
-        </div>
-        <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-            <a id="nav-about" class="btn btn-outline-primary btn-lg">About</a>
-        </div>
-    </div>
+    <div class="header navBar"></div>
 
     <div class="top bg-img">
         <div class="box-1">
-            <!--search bar-->
-            <!--FIXME find out how to implement-->
             <div class="separator"></div>
             <div id="hero-search-bar" class="search">
                 <label for="search-hero-db">Name/Alias:</label>
@@ -121,6 +71,7 @@
                     <thead>
                     <tr>
                         <th>Name/Alias</th>
+                        <th>Picture</th>
                         <th>Superpower</th>
                         <th></th> <!--Details-->
                         <th></th> <!--Edit-->
@@ -131,7 +82,8 @@
                     <tbody id="hero-content-rows">
                     <tr th:each="hero: ${heroes}">
                         <td th:text="${hero.name}">Hero Name</td>
-                        <td><img th:src="${hero.photoFileName}" alt="Hero picture" style="height: 50px"/></td>
+                        <td><img th:src="${hero.photoFileName}" style="height: 50px; padding: 0px; margin-top: 0px;"/>
+                        </td>
                         <td th:text="${hero.superpower.name}">Superpower Name</td>
                         <td><a href="#" th:href="@{/viewHero(id=${hero.heroId})}"><i class="far fa-eye"></i></a>
                         </td>
@@ -145,300 +97,70 @@
             </div>
 
             <!--Add hero form-->
-            <div class="row">
-                <h3 id="add-hero-heading">Add Hero</h3>
-            </div>
-            <div class="row">
-                <!--add form error box-->
-                <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
-                    <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">
-                        Error message
-                    </p>
+            <div class="hero-form bg-color">
+                <div class="row">
+                    <h3 id="add-hero-heading" class="white-text" style="margin:0 auto">Add Hero</h3>
                 </div>
-
-                <form class="col" action="addHero" method="POST" enctype="multipart/form-data">
-                    <!--name-->
-                    <div class="form-group row">
-                        <label for="name" class="col-form-label">Name/Alias:</label>
-                        <div class="col-7">
-                            <input type="text" name="name" class="form-control" id="name"/>
-                        </div>
+                <div class="row">
+                    <!--add form error box-->
+                    <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+                        <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">
+                            Error message
+                        </p>
                     </div>
 
-                    <!--description-->
-                    <div class="form-group row">
-                        <label for="description" class="col-form-label">Description:</label>
-                        <div class="col-7">
-                            <input type="text" name="description" class="form-control" id="description">
-                        </div>
-                    </div>
-
-                    <!--superpower select-->
-                    <div class="form-group row">
-                        <label for="superpower" class="col-form-label">Superpower:</label>
-                        <div class="col-7">
-                            <select id="superpower" name="superpowerId" class="form-control">
-                                <option th:each="superpower: ${superpowers}"
-                                        th:value="${superpower.superpowerId}"
-                                        th:text="${superpower.name}">
-                                    Superpower Name
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!--image upload-->
-                    <div class="form-group row">
-                        <label for="file" class="col-form-label">Profile Picture</label>
-                        <input type="file" name="file" id="file" class="form-control">
-                    </div>
-
-                    <!--submit btn-->
-                    <button type="submit" class="btn btn-outline-primary">Add Hero/Villian</button>
-                </form>
-            </div>
-
-            <!--view hero modal-->
-            <!--<div class="modal fade" id="view-hero-modal" tabindex="-1" aria-labelledby="view-hero-modal"
-                 aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="view-hero-modal-label">Details</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                    <form class="column col" action="addHero" method="POST" enctype="multipart/form-data"
+                          style="padding:50px">
+                        <!--name-->
+                        <div class="form-group row">
+                            <label for="name" class="column col-lg-5 col-form-label"><h5>Name/Alias:</h5></label>
+                            <div class="column col-lg-7 col-xs-12">
+                                <input type="text" name="name" class="form-control" id="name"/>
+                            </div>
                         </div>
 
-                        <div class="modal-body">
-                            <form action="viewHero" method="GET" id="view-hero-readonly-form">
-                                &lt;!&ndash;view name&ndash;&gt;
-                                <div class="form-group row">
-                                    <label for="name" class="col-form-label">Name/Alias:</label>
-                                    <input type="text" class="form-control" name="name" id="name" th:text="${hero.name}"
-                                           readonly>
-                                </div>
-
-                                &lt;!&ndash;view description&ndash;&gt;
-                                <div class="form-group row">
-                                    <label for="description" class="col-form-label">Description</label>
-                                    <input type="text" class="form-control" name="description" id="description"
-                                           th:text="${hero.description}" readonly>
-                                </div>
-
-                                &lt;!&ndash;view superpower - name and description&ndash;&gt;
-                                <div class="form-group row">
-                                    <label for="superpower" class="col-form-label">Superpower:</label>
-                                    <input type="text" class="form-control" name="superpower" id="superpower"
-                                           th:text="${hero.superpower.name}" readonly>
-                                    <textarea rows="3" th:text="${hero.superpower.description}" readonly></textarea>
-                                </div>
-                            </form>
+                        <!--description-->
+                        <div class="form-group row">
+                            <label for="description" class="column col-lg-5 col-form-label"><h5>Description:</h5>
+                            </label>
+                            <div class="column col-lg-7 col-xs-12">
+                                <input type="text" name="description" class="form-control" id="description">
+                            </div>
                         </div>
 
-                        <div>
-                            <modal-footer>
-                                <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
-                            </modal-footer>
+                        <!--superpower select-->
+                        <div class="form-group row">
+                            <label for="superpower" class="column col-lg-5 col-form-label"><h5>Superpower:</h5></label>
+                            <div class="column col-lg-7 col-xs-12">
+                                <select id="superpower" name="superpowerId" class="form-control">
+                                    <option th:each="superpower: ${superpowers}" th:value="${superpower.superpowerId}"
+                                            th:text="${superpower.name}">
+                                        Superpower Name
+                                    </option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
+
+                        <!--image upload-->
+                        <div class="form-group row">
+                            <label for="file" class="column col-form-label">Profile Picture</label>
+                            <input type="file" name="file" id="file" class="column form-control-file">
+                        </div>
+
+                        <!--submit btn-->
+                        <button type="submit" class="btn btn-outline-primary">Add Hero/Villain</button>
+                    </form>
                 </div>
-            </div>-->
-
-            <!--<div class="results">
-            </div>-->
+            </div>
         </div>
     </div>
 
-    <!--<div class="middle">
-        <hr>
-        &lt;!&ndash;Add hero form&ndash;&gt;
-        &lt;!&ndash;FIXME templates not working&ndash;&gt;
-        <div class="row">
-            <h3 id="add-hero-heading">Add Hero</h3>
-        </div>
-        <div class="row">
-            <form class="col" action="addHero" method="POST">
-                &lt;!&ndash;name&ndash;&gt;
-                <div class="form-group row">
-                    <label for="name" class="col-form-label">Name/Alias:</label>
-                    <div class="col-7">
-                        <input type="text" name="name-input" class="form-control" id="name"/>
-                    </div>
-                </div>
-
-                &lt;!&ndash;description&ndash;&gt;
-                <div class="form-group row">
-                    <label for="description" class="col-form-label">Description:</label>
-                    <div class="col-7">
-                        <input type="text" name="description-input" class="form-control" id="description">
-                    </div>
-                </div>
-
-                &lt;!&ndash;superpower select&ndash;&gt;
-                <div class="form-group row">
-                    <label for="superpower" class="col-form-label">Superpower:</label>
-                    <div class="col-7">
-                        <select multiple id="superpower" name="superpowers-select" class="form-control">
-                            <option th:each="sp: ${superpowers}"
-                                    th:value="${sp.superpowerId}"
-                                    th:text="${sp.name}">
-                                Superpower Name
-                            </option>
-                        </select>
-                    </div>
-                </div>
-
-                &lt;!&ndash;submit btn&ndash;&gt;
-                <button type="submit" id="add-hero-submit" class="btn btn-outline-success">Add Hero/Villian</button>
-            </form>
-        </div>
-
-        &lt;!&ndash;edit modal&ndash;&gt;
-        <div class="modal fade" id="edit-modal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="edit-modal-label">Edit Hero</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-
-                    &lt;!&ndash;edit form&ndash;&gt;
-                    <div class="modal-body">
-                        <form action="editHero" method="POST" enctype="multipart/form-data">
-                            &lt;!&ndash;edit name&ndash;&gt;
-                            <div class="form-group row">
-                                <label for="name" class="col-form-label">Name/Alias:</label>
-                                <div>
-                                    <input type="text" class="form-control" name="name" id="name"
-                                           th:value="${hero.name}"/>
-                                </div>
-                            </div>
-
-                            &lt;!&ndash;edit description&ndash;&gt;
-                            <div class="form-group row">
-                                <label for="description" class="col-form-label">Description:</label>
-                                <div>
-                                    <input type="text" class="form-control" name="description" id="description"
-                                           th:value="${hero.description}"/>
-                                </div>
-                            </div>
-
-
-                            &lt;!&ndash;FIXME TEMPLATE NOT PULLING SUPERPOWER&ndash;&gt;
-                            &lt;!&ndash;superpower select&ndash;&gt;
-                            <div class="form-group row">
-                                <label for="superpower" class="col-form-label">Superpower:</label>
-                                <div>
-                                    <select name="superpowerId" id="superpower" class="form-control">
-                                        <option th:each="sp : ${superpowers}"
-                                                th:value="${sp.superpowerId}"
-                                                th:text="${sp.name}"
-                                                th:selected="${hero.superpower.superpowerId == superpower.superpowerId}">
-                                            Superpower Name
-                                        </option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <input type="hidden" name="heroId" th:value="${hero.heroId}"/>
-                        </form>
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-outline-success">Edit</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>-->
-
+    <!-- FOOTER -->
     <div class="bottom" id="about">
-        <div class="row">
-            <div class="column col-xl-6 col-lg-12 col-sm-12">
-                <h3>Our Mission</h3>
-                <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
-                    industry. Lorem
-                    Ipsum has been the industry's
-                    standard
-                    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                    it to make
-                    a type
-                    specimen
-                    book. It has survived not only five centuries, but also the leap into electronic
-                    typesetting, remaining
-                    essentially
-                    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                    Lorem Ipsum
-                    passages, and
-                    more
-                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem
-                    Ipsum.
-                </p>
-            </div>
-            <div class="column col-xl-6 col-lg-12 col-sm-12">
-                <h3>About</h3>
-                <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
-                    industry. Lorem
-                    Ipsum has been the industry's standard
-                    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
-                    it to make
-                    a type specimen
-                    book. It has survived not only five centuries, but also the leap into electronic
-                    typesetting, remaining
-                    essentially
-                    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
-                    Lorem Ipsum
-                    passages, and more
-                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem
-                    Ipsum.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12">
-                <div class="form-group row justify-content-center align-items-center">
-                    <label for="description-input" class="col-form-label"></label>
-                    <div class="col-xl-7 col-lg-12 col-sm-12">
-                        <input type="text" name="description-input" class="form-control" id="description-input">
-                    </div>
-                    <button type="button" class="btn btn-outline-warning btn-lg" id="send">Send
-                        Feedback
-                    </button>
-                </div>
-            </div>
-            <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12" style="padding-left: 100px">
-                <ul class="row" style="list-style:none;text-align:center;color:white">
-                    <a class="col-3" href="#">
-                        <li>Home</li>
-                    </a> |
-                    <a class="col-3" href="#">
-                        <li>Heroes</li>
-                    </a> |
-                    <a class="col-3" href="#">
-                        <li>Sightings</li>
-                    </a>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <hr style="background-color:rgba(255,255,255,0.1);">
-    <div class="footer">
-        <!-- Add font awesome icons -->
-        <a href="#" class="fa fa-facebook"></a>
-        <a href="#" class="fa fa-linkedin"></a>
-        <a href="#" class="fa fa-youtube"></a>
-        <a href="#" class="fa fa-instagram"></a>
-        <a href="#" class="fa fa-reddit"></a>
-        <br><br>
-        @Copyright Bob, Narish, Timmy
+        <!-- FOOTER INFO -->
     </div>
 </div>
-
 <!--End Body-->
-
 <!--Scripts-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -451,5 +173,7 @@
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
 <script src="main.js"></script>
+<script src="header.js"></script>
+<script src="footer.js"></script>
 </body>
 </html>

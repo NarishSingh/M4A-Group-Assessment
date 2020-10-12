@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>Hero Sightings - Edit Superpower</title>
+    <title>Hero Sightings - Delete Superpower</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
-          crossorigin="anonymous">
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css">
 </head>
-<style>
-    .middle .bg-color {
-        padding: 100px;
-    }
 
-    .middle {
-        padding: 100px;
-    }
-</style>
 <body>
 <!--Begin Body-->
 <div class="container-fluid">
+    <!--Navbar-->
     <div class="row m-4 navBar">
         <div class="col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
             <a id="toggleTheme" class="btn btn-outline-info btn-lg">
@@ -33,7 +26,7 @@
             <a href="index.html" class="btn btn-outline-primary btn-lg" id="landingPage">Home</a>
         </div>
         <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villains</a>
+            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villians</a>
         </div>
         <div class="col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
             <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
@@ -42,49 +35,50 @@
             <a id="nav-about" class="btn btn-outline-primary btn-lg">About</a>
         </div>
     </div>
-    <div class="row m-4 bg-img">
-        <div class="col text-center bg-color">
-            <h1>HERO Sightings - Edit Power</h1>
+
+    <!--view superpower to be deleted-->
+    <div class="middle-deleteConfirmation bg-img">
+        <div class="row m-4 view-hero bg-color white-text">
+            <div class="column sec-1 col-sm-12 col-lg-6">
+                <div class="row">
+                    <div class="col-6 text-right"><strong>ID:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${superpower.superpowerId}">display id</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Power:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${superpower.name}">display name</span>
+                    </div>
+
+                    <div class="col-6 text-right"><strong>Description:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${superpower.description}">display description</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="middle bg-img">
-        <!--edit power form-->
-        <div class="row m-4 bg-color">
-            <div class="col-3 text-center m-3"><h3>Edit Power</h3></div>
-            <div class="col-7 text-center m-3">
-                <!--edit form error box-->
-                <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
-                    <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">Error
-                        message</p>
-                </div>
+    <div class="confirmation bg-img">
+        <div class="row m-4 edit-hero border-dark bg-color white-text">
+            <div class="column col-12 text-center m-3">
+                <span class="h3">Confirm to delete superpower?</span>
+            </div>
+            <div class="column col-12 text-center m-3">
+                <form action="performDeleteSuperpower" method="get">
+                    <!--hidden id tracking-->
+                    <input type="hidden" name="id" th:value="${superpower.superpowerId}"/>
 
-                <form action="editSuperpower" method="POST">
-                    <div class="form-group row">
-                        <label for="name" class="column col-lg-3 col-xs-12 col-form-label">Power:</label>
-                        <div class="column col-lg-9 col-xs-12">
-                            <input type="text" class="form-control text-left" name="name" id="name" th:value="${superpower.name}">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="description" class="column col-lg-3 col-xs-12 col-form-label">Description:</label>
-                        <div class="column col-lg-9 col-xs-12">
-                            <input type="text" class="form-control" name="description" id="description"
-                                   th:value="${superpower.description}">
-                        </div>
-                    </div>
-
-                    <input type="hidden" name="id" th:value="${superpower.superpowerId}">
-
-                    <button type="submit" class="btn btn-outline-primary">Edit Power</button>
+                    <button type="submit" class="btn btn-outline-success">Confirm</button>
+                    <a href="superpower" class="btn btn-outline-danger">Cancel</a>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<!--End Body-->
 <div class="bottom" id="about"></div>
+<!--End Body-->
 
 <!--Scripts-->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -99,5 +93,6 @@
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
 <script src="main.js"></script>
 <script src="footer.js"></script>
+
 </body>
 </html>
