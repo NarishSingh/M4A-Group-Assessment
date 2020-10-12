@@ -2,6 +2,7 @@ $(document).ready(function () {
     function displayWindowSize() {
         var w = document.documentElement.clientWidth;
         var h = document.documentElement.clientHeight;
+
         if (w < 1105) {
             var p = " ";
 
@@ -11,11 +12,17 @@ $(document).ready(function () {
             $("#home h5").html(p);
             $("#home h5").addClass("fas fa-home");
 
-            $("#hero h5").html(p);
-            $("#hero h5").addClass("fas fa-address-book");
+            $("#heroes h5").html(p);
+            $("#heroes h5").addClass("fas fa-address-book");
+                $("#superpower h5").html(p);
+                $("#superpower h5").addClass("fas fa-address-book");
 
             $("#sightings h5").html(p);
             $("#sightings h5").addClass("fas fa-eye");
+                $("#organization h5").html(p);
+                $("#organization h5").addClass("fas fa-eye");
+                $("#location h5").html(p);
+                $("#location h5").addClass("fas fa-eye");
 
             $("#about h5").html(p);
             $("#about h5").addClass("fas fa-align-right");
@@ -24,7 +31,10 @@ $(document).ready(function () {
             var toggle = "Theme";
             var home = "Home";
             var hero = "Heroes/Villains";
+                var power = "Powers";
             var sightings = "Sightings";
+                var organization = "Organization";
+                var location = "Location";
             var about = "About";
 
             $("#toggleTheme h5").html(toggle);
@@ -33,11 +43,17 @@ $(document).ready(function () {
             $("#home h5").html(home);
             $("#home h5").removeClass("fas fa-home");
 
-            $("#hero h5").html(hero);
-            $("#hero h5").removeClass("fas fa-address-book");
+            $("#heroes h5").html(hero);
+            $("#heroes h5").removeClass("fas fa-address-book");
+                $("#superpower h5").html(power);
+                $("#superpower h5").removeClass("fas fa-address-book");
 
             $("#sightings h5").html(sightings);
             $("#sightings h5").removeClass("fas fa-eye");
+                $("#organization h5").html(organization);
+                $("#organization h5").removeClass("fas fa-eye");
+                $("#location h5").html(location);
+                $("#location h5").removeClass("fas fa-eye");
 
             $("#about h5").html(about);
             $("#about h5").removeClass("fas fa-align-right");
@@ -47,42 +63,42 @@ $(document).ready(function () {
     window.addEventListener("resize", displayWindowSize);
     displayWindowSize();
 
-//     var tog = $(
-//     "<div class='col text-left col-lg-4 col-md-4 col-sm-2 col-xs-12'>" +
-//     "<a id='toggleTheme' class='btn btn-outline-info btn-lg'><h5 class='themeStatus' style='display:inline;color:white'>Dark</h5></a>" +
-//     "</div>");
-    
-//     var header = $(
-//         "<div class='row m-4 navBar'>" +
-//         tog +
-//         "<div class='col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12'>" +
-//         "<a href='index.html' class='btn btn-outline-primary btn-lg' id='home'><h5>Home</h5></a>" +
-//         "</div>" +
-//         "<div class='col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12'>" +
-//         "<a href='hero' class='btn btn-outline-primary btn-lg' id='hero'><h5>Heroes/Villians</h5></a>" +
-//         "</div>" +
-//         // "<div class='col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12'>" +
-//         //     "<a href='superpower' class='btn btn-outline-primary btn-lg' id='hero'>Powers</a>" +
-//         // "</div>" +
-//         "<div class='col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12'>" +
-//         "<a href='sighting' class='btn btn-outline-primary btn-lg' id='sightings'><h5>Sightings</h5></a>" +
-//         "</div>" +
-//         // "<div class='col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12'>" +
-//         //     "<a href='organization' class='btn btn-outline-primary btn-lg' id='sightings'>Organization</a>" +
-//         // "</div>" +
-//         // "<div class='col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12'>" +
-//         //     "<a href='location' class='btn btn-outline-primary btn-lg' id='sightings'>Location</a>" +
-//         // "</div>" +
-//         "<div class='col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12'>" +
-//         "<a id='about' class='btn btn-outline-primary btn-lg'><h5>About</h5></a>" +
-//         "</div>" +
-//         "</div>"
-//     );
-//     $("#toggleTheme").append(navbar);
+    //     var tog = $(
+    //     "<div class='col text-left col-lg-4 col-md-4 col-sm-2 col-xs-12'>" +
+    //     "<a id='toggleTheme' class='btn btn-outline-info btn-lg'><h5 class='themeStatus' style='display:inline;color:white'>Dark</h5></a>" +
+    //     "</div>");
 
-//     // console.log(header);
-//     // tog.on('click', function () {alert(tog) });
-// })
+    //     var header = $(
+    //         "<div class='row m-4 navBar'>" +
+    //         tog +
+    //         "<div class='col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12'>" +
+    //         "<a href='index.html' class='btn btn-outline-primary btn-lg' id='home'><h5>Home</h5></a>" +
+    //         "</div>" +
+    //         "<div class='col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12'>" +
+    //         "<a href='hero' class='btn btn-outline-primary btn-lg' id='hero'><h5>Heroes/Villians</h5></a>" +
+    //         "</div>" +
+    //         // "<div class='col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12'>" +
+    //         //     "<a href='superpower' class='btn btn-outline-primary btn-lg' id='hero'>Powers</a>" +
+    //         // "</div>" +
+    //         "<div class='col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12'>" +
+    //         "<a href='sighting' class='btn btn-outline-primary btn-lg' id='sightings'><h5>Sightings</h5></a>" +
+    //         "</div>" +
+    //         // "<div class='col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12'>" +
+    //         //     "<a href='organization' class='btn btn-outline-primary btn-lg' id='sightings'>Organization</a>" +
+    //         // "</div>" +
+    //         // "<div class='col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12'>" +
+    //         //     "<a href='location' class='btn btn-outline-primary btn-lg' id='sightings'>Location</a>" +
+    //         // "</div>" +
+    //         "<div class='col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12'>" +
+    //         "<a id='about' class='btn btn-outline-primary btn-lg'><h5>About</h5></a>" +
+    //         "</div>" +
+    //         "</div>"
+    //     );
+    //     $("#toggleTheme").append(navbar);
+
+    //     // console.log(header);
+    //     // tog.on('click', function () {alert(tog) });
+    // })
 
 
 })

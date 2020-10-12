@@ -47,67 +47,107 @@
 <body>
 <!--Begin Body-->
 <div class="bg"></div>
-<!--Heading & Navbar-->
-<div class="container-fluid">
-    <div class="header"></div>
-
-    <div class="top">
-        <div class="section-1 bg-img">
-            <div class="overlay"></div>
-        </div>
-        <div class="row m-4" style="background-color: #007aff">
-            <div class="col-12" th:each="sighting: ${sightings}">
-                <span th:text="${sighting.date + ' - ' + sighting.location.name + ' -  ' + sighting.hero.name}"></span>
-            </div>
-        </div>
-        <div class="section-2">
-            <h3>Improve your vision</h3>
-            <p>Analyzing all heroes' activity...</p>
-            <button type="button" class="btn news btn-outline-primary btn-lg" id="news">News</button>
-            <hr style="background-color:rgba(255,255,255,0.15);">
-            <p id="info">
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard
-                dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-                a
-                type specimen
-                book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
-                essentially
-                unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-                passages, and more
-                recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                <br><br>
-                You will track a hero or a fight, as well as their contact.
-            </p>
-            <div class="registerLogin">
-                <button type="button" class="btn register btn-outline-success btn-lg" id="register">Register</button>
-                <button type="button" class="btn login btn-outline-danger btn-lg" id="login">Login</button>
-            </div>
+<!--Navbar-->
+<div class="row m-4 navBar">
+    <div class="domain col text-left col-lg-4 col-md-4 col-sm-4 col-xs-12">
+        <a id="toggleTheme" class="btn btn-outline-info btn-lg">
+            <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
+        </a>
+    </div>
+    <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
+        <a href="index.html" class="domain btn btn-outline-primary btn-lg" id="home">
+            <h5>Home</h5>
+        </a>
+    </div>
+    <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
+        <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">
+            <h5>Heroes/Villians</h5>
+        </a>
+        <div class="subdomain col text-center col-12">
+            <a href="superpower" class="btn btn-outline-primary btn-lg" id="superpower">
+                <h5>Powers</h5>
+            </a>
         </div>
     </div>
-    <div class="middle col-sm-12" id="landingPageMiddle">
-        <div class="section-1 bg-img">
-            <div class="overlay" style="background-color:rgba(0,0,0,0.5);"></div>
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <img src="assets/glacier.jpg" alt="glacier">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="assets/glacier.jpg" alt="glacier">
-                    </div>
-                    <div class="swiper-slide">
-                        <img src="assets/glacier.jpg" alt="glacier">
-                    </div>
+    <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
+        <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">
+            <h5>Sightings</h5>
+        </a>
+        <div class="subdomain col text-center col-12">
+            <a href="organization" class="btn btn-outline-primary btn-lg" id="organization">
+                <h5>Organization</h5>
+            </a>
+        </div>
+        <div class="subdomain col text-center col-12">
+            <a href="location" class="btn btn-outline-primary btn-lg" id="location">
+                <h5>Location</h5>
+            </a>
+        </div>
+    </div>
+    <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
+        <a id="about" class="btn btn-outline-primary btn-lg">
+            <h5>About</h5>
+        </a>
+    </div>
+</div>
+
+<div class="top">
+    <div class="section-1 bg-img">
+        <div class="overlay"></div>
+    </div>
+    <div class="row m-4" style="background-color: #007aff">
+        <div class="col-12" th:each="sighting: ${sightings}">
+            <span th:text="${sighting.date + ' - ' + sighting.location.name + ' -  ' + sighting.hero.name}"></span>
+        </div>
+    </div>
+    <div class="section-2">
+        <h3>Improve your vision</h3>
+        <p>Analyzing all heroes' activity...</p>
+        <button type="button" class="btn news btn-outline-primary btn-lg" id="news">News</button>
+        <hr style="background-color:rgba(255,255,255,0.15);">
+        <p id="info">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+            industry's standard
+            dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+            a
+            type specimen
+            book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+            essentially
+            unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+            passages, and more
+            recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+            <br><br>
+            You will track a hero or a fight, as well as their contact.
+        </p>
+        <div class="registerLogin">
+            <button type="button" class="btn register btn-outline-success btn-lg" id="register">Register</button>
+            <button type="button" class="btn login btn-outline-danger btn-lg" id="login">Login</button>
+        </div>
+    </div>
+</div>
+<div class="middle col-sm-12" id="landingPageMiddle">
+    <div class="section-1 bg-img">
+        <div class="overlay" style="background-color:rgba(0,0,0,0.5);"></div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img src="assets/glacier.jpg" alt="glacier">
                 </div>
-                <div class="swiper-pagination"
-                     style="background-color:rgba(0,0,0,0.8);height:50px;padding-top:18px"></div>
-                <div class="swiper-scrollbar"></div>
+                <div class="swiper-slide">
+                    <img src="assets/glacier.jpg" alt="glacier">
+                </div>
+                <div class="swiper-slide">
+                    <img src="assets/glacier.jpg" alt="glacier">
+                </div>
             </div>
+            <div class="swiper-pagination"
+                 style="background-color:rgba(0,0,0,0.8);height:50px;padding-top:18px"></div>
+            <div class="swiper-scrollbar"></div>
         </div>
     </div>
+</div>
 
-    <div class="bottom" id="about"></div>
+<div class="bottom" id="about"></div>
 </div>
 
 <!--End Body-->

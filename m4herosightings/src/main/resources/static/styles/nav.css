@@ -5,6 +5,7 @@
 .navBar .subdomain {
     width: inherit;
     display: none;
+    z-index: 5;
 }
 
 .navBar .subdomain .btn {
