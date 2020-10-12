@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="plugins/swiper.min.css">
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <link rel="stylesheet" href="styles/nav.css">
     <!-- stylesheetsources/ -->
 
     <style>
@@ -50,39 +49,16 @@
 <div class="bg"></div>
 <!--Heading & Navbar-->
 <div class="container-fluid">
-    <!--Navbar-->
-    <div class="row m-4 navBar">
-        <div class="domain col text-left col-lg-4 col-md-3 col-sm-3 col-xs-12">
-            <a id="toggleTheme" class="btn btn-outline-info btn-lg">
-                <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
-            </a>
-        </div>
-        <div class="domain col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-            <a href="index.html" class="domain btn btn-outline-primary btn-lg" id="landingPage">Home</a>
-        </div>
-        <div class="domain col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">Heroes/Villians</a>
-            <div class="subdomain col text-center col-12">
-                <a href="superpower" class="btn btn-outline-primary btn-lg" id="landingPage">Powers</a>
-            </div>
-        </div>
-        <div class="domain col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-            <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">Sightings</a>
-            <div class="subdomain col text-center col-12">
-                <a href="organization" class="btn btn-outline-primary btn-lg" id="landingPage">Organization</a>
-            </div>
-            <div class="subdomain col text-center col-12">
-                <a href="location" class="btn btn-outline-primary btn-lg" id="landingPage">Location</a>
-            </div>
-        </div>
-        <div class="domain col text-center col-lg-2 col-md-3 col-sm-3 col-xs-12">
-            <a id="nav-about" class="btn btn-outline-primary btn-lg">About</a>
-        </div>
-    </div>
+    <div class="header"></div>
 
     <div class="top">
         <div class="section-1 bg-img">
             <div class="overlay"></div>
+        </div>
+        <div class="row m-4" style="background-color: #007aff">
+            <div class="col-12" th:each="sighting: ${sightings}">
+                <span th:text="${sighting.date + ' - ' + sighting.location.name + ' -  ' + sighting.hero.name}"></span>
+            </div>
         </div>
         <div class="section-2">
             <h3>Improve your vision</h3>
@@ -216,4 +192,5 @@
         },
     });
 </script>
+<link rel="stylesheet" href="styles/nav.css">
 </html>

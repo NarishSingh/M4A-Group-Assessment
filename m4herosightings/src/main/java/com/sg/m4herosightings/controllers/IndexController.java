@@ -1,4 +1,3 @@
-/*
 package com.sg.m4herosightings.controllers;
 
 import com.sg.m4herosightings.dao.HeroDao;
@@ -29,12 +28,18 @@ public class IndexController {
     @Autowired
     OrganizationDao oDao;
 
+    /**
+     * GET - load 10 latest sightings for newsfeed
+     *
+     * @param model {Model} holds sorted list of 10 latest sightings
+     * @return {String} load homepage
+     */
     @GetMapping("/")
     public String displayLatest10Sightings(Model model) {
         List<Sighting> allSi = siDao.readAllSightings();
 
         List<Sighting> sightings = allSi.stream()
-                .sorted(Comparator.comparing(Sighting::getDate))
+                .sorted(Comparator.comparing(Sighting::getDate).reversed())
                 .limit(10)
                 .collect(Collectors.toList());
 
@@ -43,4 +48,3 @@ public class IndexController {
         return "index";
     }
 }
-*/

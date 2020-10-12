@@ -165,5 +165,3 @@ function revealLocation(id) {
     sightingID.style.backgroundImage = "url('https://specials-images.forbesimg.com/imageserve/5d35eacaf1176b0008974b54/960x0.jpg?cropX1=790&cropX2=5350&cropY1=784&cropY2=3349')"; // INTENDED TO NOT BE HARD-CODED
     isHidden = false;
 }
-
- */
