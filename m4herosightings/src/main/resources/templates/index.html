@@ -184,10 +184,10 @@
             <a href="sighting" style="text-decoration:none">
                 <div class="col-lg-10 sighting-box bg-color white-text">
                     <div class="row">
-                        <h3 style="font-family:'Garamond';font-size:30px;margin:0 auto;padding:50px;color:green">Recent
-                            Sightings</h3>
+                        <h3 style="font-family:'Garamond';font-size:30px;margin:0 auto;padding:50px;color:green">
+                            Recent Sightings</h3>
                         <div class="recent-sightings col-12" th:each="sighting: ${sightings}">
-                            <span th:text="${sighting.date + ' - ' + sighting.location.name + ' -  ' + sighting.hero.name}"></span>
+                            <span th:text="${sighting.date + ' - ' + sighting.location.name + ' - ' + sighting.hero.name}"></span>
                         </div>
                     </div>
                 </div>
@@ -277,5 +277,7 @@
 </script>
 <!-- END SCRIPTS -->
 
+
 </body>
+
 </html>

@@ -109,7 +109,7 @@ public class OrganizationController {
     public String diplayOrgsForHero(Model model) {
         List<Organization> orgs = orgDao.readAllOrganizations();
         model.addAttribute("organizations", orgs);
-        
+
         return "displayOrgsForHero";
     }
 
@@ -147,10 +147,6 @@ public class OrganizationController {
     @PostMapping("editOrganization")
     public String updateOrganization(@Valid Organization org, BindingResult result,
             HttpServletRequest request, Model model) {
-        if (result.hasErrors()) {
-            return "editOrganization";
-        }
-
         String locationId = request.getParameter("locationId");
         String[] heroIds = request.getParameterValues("heroId");
 
@@ -167,10 +163,14 @@ public class OrganizationController {
         }
         org.setMembers(heroes);
 
+        Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
+        violations = validate.validate(org);
+
         if (result.hasErrors()) {
             model.addAttribute("organization", org);
             model.addAttribute("locations", locationDao.readAllLocations());
             model.addAttribute("heroes", heroDao.readAllHeroes());
+
             return "editOrganization";
         }
 

@@ -9,6 +9,22 @@ body {
     background-color: black;
 }
 
+.bg {
+    background: black url("assets/glacier.jpg") no-repeat center fixed;
+    background-size: cover;
+    filter: blur(8px);
+    position: absolute;
+    z-index: 0;
+    height: 120%;
+    width: 100%;
+    left: 0;
+    right: 0;
+    transition-property: opacity;
+    transition-duration: 1000ms;
+    opacity: 0%;
+    /* opacity: 100%; */
+}
+
 .bg-img {
     background-attachment: fixed;
     background-image: url("../assets/cover-4.jpg");
@@ -28,7 +44,25 @@ body {
     padding: 50px;
 }
 
+/* MAPS */
+iframe {
+    width: 100%;
+    height: 90%;
+}
 
+#map_wrapper {
+    height: 400px;
+}
+
+#map_canvas {
+    width: 100%;
+    height: 100%;
+}
+
+.googleMap {
+    margin-bottom: 0;
+    height: 100%;
+}
 
 /* INDEX.HTML */
 .section-1 {
@@ -70,7 +104,7 @@ body {
 
 #info {
     padding: 20px;
-    color: rgba(255, 255, 255, 0.486);
+    color: rgba(255, 255, 255, 0.801);
     font-size: 25px;
 }
 
@@ -120,7 +154,7 @@ label {
 }
 
 .revealMap {
-    background-color: rgba(255, 255, 255, 0.815);
+    /* background-color: rgba(255, 255, 255, 0.815); */
     background-size: cover;
     z-index: 5;
     position: absolute;
@@ -135,14 +169,15 @@ label {
     transition-property: opacity;
     transition-duration: 500ms;
     opacity: 100%;
-    background-image: url("https://www.bergmannpc.com/imager/contentimages/project/unc-charlotte-center-city/6658/UNC-Center-City-Campus-Exterior_20d4ef1e03a0bb7e3cb004631c67ab23.jpg");
+    /* background-image: url("https://www.bergmannpc.com/imager/contentimages/project/unc-charlotte-center-city/6658/UNC-Center-City-Campus-Exterior_20d4ef1e03a0bb7e3cb004631c67ab23.jpg"); */
     background-size: cover;
 }
 
 /* background-image on 'revealMap:hover' will change based on its sightingID */
 #sightingID {
-    background-image: url("https://images4.alphacoders.com/495/49586.jpg");
+    /* background-image: url('https://specials-images.forbesimg.com/imageserve/5d35eacaf1176b0008974b54/960x0.jpg?cropX1=790&cropX2=5350&cropY1=784&cropY2=3349'); */
 }
+
 .revealMap h3 {
     background-color: black;
     color: white;
@@ -385,7 +420,7 @@ a {
 }
 
 .bottom {
-    padding-top: 100px;
+    padding-top: 150px;
     background-color: black;
 }
 
@@ -396,14 +431,13 @@ img {
     margin-top: 50px;
 }
 
-.row {
-    /* border: 5px solid teal; */
-    /* align-items: center; */
-}
-
 p {
     font-size: 20px;
     padding: 30px;
+}
+
+.h3, h3 {
+    color: white;
 }
 
 .bottom img {
@@ -415,8 +449,11 @@ p {
 }
 
 .bottom {
-    padding-top: 100px;
     background-color: rgb(5, 5, 5);
+}
+
+.bottom .row {
+    padding-bottom: 20px;
 }
 
 .bottom h3 {

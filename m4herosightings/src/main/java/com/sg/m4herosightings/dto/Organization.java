@@ -27,8 +27,6 @@ public class Organization {
     private String email;
 
     private Location location;
-    
-    @Size(min = 1, message = "Please choose at least one member")
     private List<Hero> members = new ArrayList<>();
 
     /*ctor*/
