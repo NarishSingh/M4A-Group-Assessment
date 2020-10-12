@@ -197,5 +197,10 @@
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
 <script src="main.js"></script>
 <script src="footer.js"></script>
+<script th:inline="javascript">
+    var _location = [[${location}]];
+    console.log(_location.state);
+    $("select option[value='" + _location.state + "']").attr("selected", "selected");
+</script>
 </body>
 </html>
