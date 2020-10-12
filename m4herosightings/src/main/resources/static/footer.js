@@ -26,13 +26,13 @@ $(document).ready(function() {
             "</div>" +
         "<div class='column col-xl-6 col-md-12 col-sm-12 col-xs-12' style='padding-left: 100px'>" +
             "<ul class='row' style='list-style:none;text-align:center;color:white'>" +
-                "<a class='col-3' href='#'>" +
+                "<a class='col-3' href='/'>" +
                     "<li>Home</li>" +
                     "</a> | " +
-                "<a class='col-3' href='#'>" +
+                "<a class='col-3' href='hero'>" +
                     "<li>Heroes</li>" +
                     "</a> | " +
-                "<a class='col-3' href='#'>" +
+                "<a class='col-3' href='sighting'>" +
                     "<li>Sightings</li>" +
                     "</a>" +
                 "</ul>" +

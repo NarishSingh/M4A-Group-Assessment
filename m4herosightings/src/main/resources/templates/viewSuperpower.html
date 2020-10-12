@@ -10,93 +10,100 @@
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
           crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/nav.css">
 </head>
+
+<!-- START CSS -->
 <style>
     .middle-viewLayout .bg-color {
         padding: 100px;
     }
 </style>
-<div>
-    <!--Begin Body-->
-    <!--Navbar-->
-    <div class="container-fluid">
-        <!--Navbar-->
-        <div class="row m-4 navBar">
-            <div class="domain col text-left col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                <a id="toggleTheme" class="btn btn-outline-info btn-lg">
-                    <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
-                </a>
-            </div>
-            <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                <a href="index.html" class="domain btn btn-outline-primary btn-lg" id="home">
-                    <h5>Home</h5>
-                </a>
-            </div>
-            <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">
-                    <h5>Heroes/Villians</h5>
-                </a>
-                <div class="subdomain col text-center col-12">
-                    <a href="superpower" class="btn btn-outline-primary btn-lg" id="superpower">
-                        <h5>Powers</h5>
-                    </a>
-                </div>
-            </div>
-            <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">
-                    <h5>Sightings</h5>
-                </a>
-                <div class="subdomain col text-center col-12">
-                    <a href="organization" class="btn btn-outline-primary btn-lg" id="organization">
-                        <h5>Organization</h5>
-                    </a>
-                </div>
-                <div class="subdomain col text-center col-12">
-                    <a href="location" class="btn btn-outline-primary btn-lg" id="location">
-                        <h5>Location</h5>
-                    </a>
-                </div>
-            </div>
-            <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                <a id="about" class="btn btn-outline-primary btn-lg">
-                    <h5>About</h5>
+<!-- END CSS -->
+
+<!-- BEGIN BODY -->
+<div class="container-fluid">
+    <!-- NAVIGATION -->
+    <div class="row m-4 navBar">
+        <div class="domain col text-left col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <a id="toggleTheme" class="btn btn-outline-info btn-lg">
+                <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
+            </a>
+        </div>
+        <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <a href="/" class="domain btn btn-outline-primary btn-lg" id="home">
+                <h5>Home</h5>
+            </a>
+        </div>
+        <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">
+                <h5>Heroes/Villians</h5>
+            </a>
+            <div class="subdomain col text-center col-12">
+                <a href="superpower" class="btn btn-outline-primary btn-lg" id="superpower">
+                    <h5>Powers</h5>
                 </a>
             </div>
         </div>
-
-
-        <div class="row m-4 bg-img">
-            <div class="col text-center bg-color">
-                <h1>HERO Sightings - View Power</h1>
+        <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">
+                <h5>Sightings</h5>
+            </a>
+            <div class="subdomain col text-center col-12">
+                <a href="organization" class="btn btn-outline-primary btn-lg" id="organization">
+                    <h5>Organization</h5>
+                </a>
+            </div>
+            <div class="subdomain col text-center col-12">
+                <a href="location" class="btn btn-outline-primary btn-lg" id="location">
+                    <h5>Location</h5>
+                </a>
             </div>
         </div>
-
-        <!--view-->
-        <div class="middle-viewLayout bg-img">
-            <div class="row m-4 view bg-color white-text">
-                <div class="col-6 text-right"><strong>ID:</strong></div>
-                <div class="col-6 text-left">
-                    <span th:text="${superpower.superpowerId}">display id</span>
-                </div>
-
-                <div class="col-6 text-right"><strong>Power:</strong></div>
-                <div class="col-6 text-left">
-                    <span th:text="${superpower.name}">display name</span>
-                </div>
-
-                <div class="col-6 text-right"><strong>Description:</strong></div>
-                <div class="col-6 text-left">
-                    <span th:text="${superpower.description}">display description</span>
-                </div>
-            </div>
+        <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <a id="about" class="btn btn-outline-primary btn-lg">
+                <h5>About</h5>
+            </a>
         </div>
-
-        <div class="bottom" id="about"></div>
     </div>
-</div>
-<!--End Body-->
+    <!-- END NAVIGATION -->
 
-<!--Scripts-->
+    <!-- TITLE -->
+    <div class="row m-4 bg-img">
+        <div class="col text-center bg-color">
+            <h1>HERO Sightings - View Power</h1>
+        </div>
+    </div>
+    <!-- END TITLE -->
+
+    <!-- VIEW: POWER FORM -->
+    <div class="middle-viewLayout bg-img">
+        <div class="row m-4 view bg-color white-text">
+            <div class="col-6 text-right"><strong>ID:</strong></div>
+            <div class="col-6 text-left">
+                <span th:text="${superpower.superpowerId}">display id</span>
+            </div>
+
+            <div class="col-6 text-right"><strong>Power:</strong></div>
+            <div class="col-6 text-left">
+                <span th:text="${superpower.name}">display name</span>
+            </div>
+
+            <div class="col-6 text-right"><strong>Description:</strong></div>
+            <div class="col-6 text-left">
+                <span th:text="${superpower.description}">display description</span>
+            </div>
+        </div>
+    </div>
+    <!-- END VIEW: POWER FORM -->
+
+    <!-- FOOTER/ABOUT -->
+    <div class="bottom" id="footer-about"></div>
+    <!-- END FOOTER/ABOUT -->
+</div>
+<!-- END BODY -->
+
+<!-- SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -108,6 +115,9 @@
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
 <script src="main.js"></script>
+<script src="header.js"></script>
 <script src="footer.js"></script>
+<!-- END SCRIPTS -->
+
 </body>
 </html>

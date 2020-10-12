@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="styles/nav.css">
 </head>
 
+<!-- START CSS -->
 <style>
     .top {
         padding-bottom: 100px;
@@ -39,11 +40,12 @@
         justify-content: space-between;
     }
 </style>
+<!-- END CSS -->
 
 <body>
-<!--Begin Body-->
+<!-- BEGIN BODY -->
 <div class="container-fluid">
-    <!--Navbar-->
+    <!-- NAVIGATION -->
     <div class="row m-4 navBar">
         <div class="domain col text-left col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <a id="toggleTheme" class="btn btn-outline-info btn-lg">
@@ -51,7 +53,7 @@
             </a>
         </div>
         <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
-            <a href="index.html" class="domain btn btn-outline-primary btn-lg" id="home">
+            <a href="/" class="domain btn btn-outline-primary btn-lg" id="home">
                 <h5>Home</h5>
             </a>
         </div>
@@ -86,123 +88,123 @@
             </a>
         </div>
     </div>
+    <!-- END NAVIGATION -->
 
+    <!-- TOP -->
     <div class="top bg-img">
-        <div class="box-1">
-            <div class="separator"></div>
-            <div id="hero-search-bar" class="search">
-                <label for="search-hero-db">Name/Alias:</label>
-                <input id="search-hero-db" name="search-hero-db" type="text">
+        <div id="hero-search-bar" class="search bg-color">
+            <label for="search-hero-db">Name/Alias:</label>
+            <input id="search-hero-db" name="search-hero-db" type="text">
 
-                <button type="button" class="btn btn-success" id="search-hero-btn">Search</button>
+            <button type="button" class="btn btn-success" id="search-hero-btn">Search</button>
+        </div>
+        <hr>
+
+        <!--hero data table-->
+        <div class="choose" id="hero-data">
+            <ul>
+                <li>View Heroes</li>
+                <li>Database</li>
+            </ul>
+        </div>
+        <div class="results">
+            <table class="table table-dark table-striped" id="hero-table">
+                <thead>
+                <tr>
+                    <th>Name/Alias</th>
+                    <th>Picture</th>
+                    <th>Superpower</th>
+                    <th></th> <!--Details-->
+                    <th></th> <!--Edit-->
+                    <th></th> <!--Delete-->
+                </tr>
+                </thead>
+
+                <tbody id="hero-content-rows">
+                <tr th:each="hero: ${heroes}">
+                    <td th:text="${hero.name}">Hero Name</td>
+                    <td><img th:src="${hero.photoFileName}" style="height: 50px; padding: 0px; margin-top: 0px;"/>
+                    </td>
+                    <td th:text="${hero.superpower.name}">Superpower Name</td>
+                    <td><a href="#" th:href="@{/viewHero(id=${hero.heroId})}"><i class="far fa-eye"></i></a>
+                    </td>
+                    <td><a href="#" th:href="@{/editHero(id=${hero.heroId})}"><i class="fas fa-edit"></i></a>
+                    </td>
+                    <td><a href="#" th:href="@{/deleteHero(id=${hero.heroId})}"><i class="fas fa-trash"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!--Add hero form-->
+        <div class="hero-form bg-color">
+            <div class="row">
+                <h3 id="add-hero-heading" class="white-text" style="margin:0 auto">Add Hero</h3>
             </div>
-            <div class="separator"></div>
-
-            <hr>
-
-            <!--hero data table-->
-            <div class="choose" id="hero-data">
-                <ul>
-                    <li>View Heroes</li>
-                    <li>Database</li>
-                </ul>
-            </div>
-            <div class="results">
-                <table class="table table-dark table-striped" id="hero-table">
-                    <thead>
-                    <tr>
-                        <th>Name/Alias</th>
-                        <th>Picture</th>
-                        <th>Superpower</th>
-                        <th></th> <!--Details-->
-                        <th></th> <!--Edit-->
-                        <th></th> <!--Delete-->
-                    </tr>
-                    </thead>
-
-                    <tbody id="hero-content-rows">
-                    <tr th:each="hero: ${heroes}">
-                        <td th:text="${hero.name}">Hero Name</td>
-                        <td><img th:src="${hero.photoFileName}" style="height: 50px; padding: 0px; margin-top: 0px;"/>
-                        </td>
-                        <td th:text="${hero.superpower.name}">Superpower Name</td>
-                        <td><a href="#" th:href="@{/viewHero(id=${hero.heroId})}"><i class="far fa-eye"></i></a>
-                        </td>
-                        <td><a href="#" th:href="@{/editHero(id=${hero.heroId})}"><i class="fas fa-edit"></i></a>
-                        </td>
-                        <td><a href="#" th:href="@{/deleteHero(id=${hero.heroId})}"><i class="fas fa-trash"></i></a>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!--Add hero form-->
-            <div class="hero-form bg-color">
-                <div class="row">
-                    <h3 id="add-hero-heading" class="white-text" style="margin:0 auto">Add Hero</h3>
+            <div class="row">
+                <!--add form error box-->
+                <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
+                    <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">
+                        Error message
+                    </p>
                 </div>
-                <div class="row">
-                    <!--add form error box-->
-                    <div class="col-12 m-1 text-center" th:if="${!errors.isEmpty()}">
-                        <p class="alert alert-danger" th:each="error : ${errors}" th:text="${error.message}">
-                            Error message
-                        </p>
+
+                <form class="column col" action="addHero" method="POST" enctype="multipart/form-data"
+                      style="padding:50px">
+                    <!--name-->
+                    <div class="form-group row">
+                        <label for="name" class="column col-lg-5 col-form-label"><h5>Name/Alias:</h5></label>
+                        <div class="column col-lg-7 col-xs-12">
+                            <input type="text" name="name" class="form-control" id="name"/>
+                        </div>
                     </div>
 
-                    <form class="column col" action="addHero" method="POST" enctype="multipart/form-data"
-                          style="padding:50px">
-                        <!--name-->
-                        <div class="form-group row">
-                            <label for="name" class="column col-lg-5 col-form-label"><h5>Name/Alias:</h5></label>
-                            <div class="column col-lg-7 col-xs-12">
-                                <input type="text" name="name" class="form-control" id="name"/>
-                            </div>
+                    <!--description-->
+                    <div class="form-group row">
+                        <label for="description" class="column col-lg-5 col-form-label"><h5>Description:</h5>
+                        </label>
+                        <div class="column col-lg-7 col-xs-12">
+                            <input type="text" name="description" class="form-control" id="description">
                         </div>
+                    </div>
 
-                        <!--description-->
-                        <div class="form-group row">
-                            <label for="description" class="column col-lg-5 col-form-label"><h5>Description:</h5>
-                            </label>
-                            <div class="column col-lg-7 col-xs-12">
-                                <input type="text" name="description" class="form-control" id="description">
-                            </div>
+                    <!--superpower select-->
+                    <div class="form-group row">
+                        <label for="superpower" class="column col-lg-5 col-form-label"><h5>Superpower:</h5></label>
+                        <div class="column col-lg-7 col-xs-12">
+                            <select id="superpower" name="superpowerId" class="form-control">
+                                <option th:each="superpower: ${superpowers}" th:value="${superpower.superpowerId}"
+                                        th:text="${superpower.name}">
+                                    Superpower Name
+                                </option>
+                            </select>
                         </div>
+                    </div>
 
-                        <!--superpower select-->
-                        <div class="form-group row">
-                            <label for="superpower" class="column col-lg-5 col-form-label"><h5>Superpower:</h5></label>
-                            <div class="column col-lg-7 col-xs-12">
-                                <select id="superpower" name="superpowerId" class="form-control">
-                                    <option th:each="superpower: ${superpowers}" th:value="${superpower.superpowerId}"
-                                            th:text="${superpower.name}">
-                                        Superpower Name
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
+                    <!--image upload-->
+                    <div class="form-group row" style="padding-top:70px">
+                        <label for="file" class="column col-lg-6 col-xs-12 col-form-label"><h5>Profile Picture</h5>
+                        </label>
+                        <input type="file" name="file" id="file" class="column col-lg-6 col-xs-12 form-control-file">
+                    </div>
 
-                        <!--image upload-->
-                        <div class="form-group row">
-                            <label for="file" class="column col-form-label">Profile Picture</label>
-                            <input type="file" name="file" id="file" class="column form-control-file">
-                        </div>
-
-                        <!--submit btn-->
-                        <button type="submit" class="btn btn-outline-primary">Add Hero/Villain</button>
-                    </form>
-                </div>
+                    <!--submit btn-->
+                    <button type="submit" class="btn btn-outline-primary">Add Hero/Villain</button>
+                </form>
             </div>
         </div>
     </div>
-
-    <!-- FOOTER -->
-    <div class="bottom" id="about">
-        <!-- FOOTER INFO -->
-    </div>
 </div>
-<!--End Body-->
-<!--Scripts-->
+<!-- END TOP -->
+
+<!-- FOOTER/ABOUT -->
+<div class="bottom" id="footer-about"></div>
+<!-- END FOOTER/ABOUT -->
+</div>
+<!-- END BODY -->
+
+<!-- SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -216,5 +218,7 @@
 <script src="main.js"></script>
 <script src="header.js"></script>
 <script src="footer.js"></script>
+<!-- END SCRIPTS -->
+
 </body>
 </html>

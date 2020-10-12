@@ -9,150 +9,204 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
           crossorigin="anonymous">
-
-    <!-- Style CSS -->
     <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/nav.css">
     <link rel="stylesheet" href="plugins/swiper.min.css">
-    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-    <!-- stylesheetsources/ -->
-
-    <style>
-        @font-face {
-            font-family: 'Archivo Black';
-        }
-
-        .swiper-container {
-            background-color: rgba(0, 0, 0, 0.5);
-            height: 100%;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .swiper-container img {
-            background-color: rgba(0, 0, 0, 0.5);
-            width: 500px;
-            z-index: -5;
-        }
-
-        .swiper-slider {
-            width: 500px;
-        }
-
-        .swiper-wrapper {
-            width: 500px;
-        }
-    </style>
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 </head>
+
+<!-- START CSS -->
+<style>
+    @font-face {
+        font-family: 'Archivo Black';
+    }
+
+    .swiper-container {
+        background-color: rgba(0, 0, 0, 0.5);
+        height: 100%;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .swiper-container img {
+        background-color: rgba(0, 0, 0, 0.5);
+        width: 500px;
+        z-index: -5;
+    }
+
+    .swiper-slider {
+        width: 500px;
+    }
+
+    .swiper-wrapper {
+        width: 500px;
+    }
+
+    .recent-sightings {
+        background-color: none;
+        font-size: 15px;
+        transition-property: font-size;
+        transition-duration: 200ms;
+        align-items: center;
+    }
+
+    .recent-sightings:hover {
+        background-color: rgba(0, 255, 0, 0.089);
+        font-size: 24px;
+        transition-property: font-size;
+        transition-duration: 200ms;
+    }
+
+    .top .row {
+        padding-bottom: 80px;
+    }
+
+    hr {
+        background-color: red;
+    }
+
+    @media screen and (max-width: 1514px) {
+        #gif {
+            opacity: 0%;
+            transition-property: opacity;
+            transition-duration: 300ms;
+        }
+
+        .sighting-box {
+            height: 700px;
+            margin-left: 0px;
+            width: 100%;
+        }
+    }
+
+    @media screen and (min-width: 1514px) {
+        #gif {
+            opacity: 100%;
+            transition-property: opacity;
+            transition-duration: 300ms;
+        }
+
+        .sighting-box {
+            margin-left: 50px;
+            height: 100%;
+
+        }
+    }
+</style>
+<!-- END CSS -->
+
 <body>
-<!--Begin Body-->
+<!-- BEGIN BODY -->
 <div class="bg"></div>
-<!--Navbar-->
-<div class="row m-4 navBar">
-    <div class="domain col text-left col-lg-4 col-md-4 col-sm-4 col-xs-12">
-        <a id="toggleTheme" class="btn btn-outline-info btn-lg">
-            <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
-        </a>
-    </div>
-    <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
-        <a href="index.html" class="domain btn btn-outline-primary btn-lg" id="home">
-            <h5>Home</h5>
-        </a>
-    </div>
-    <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
-        <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">
-            <h5>Heroes/Villians</h5>
-        </a>
-        <div class="subdomain col text-center col-12">
-            <a href="superpower" class="btn btn-outline-primary btn-lg" id="superpower">
-                <h5>Powers</h5>
+<div class="container-fluid">
+    <!-- NAVIGATION -->
+    <div class="row m-4 navBar">
+        <div class="domain col text-left col-lg-4 col-md-4 col-sm-4 col-xs-12">
+            <a id="toggleTheme" class="btn btn-outline-info btn-lg">
+                <h5 class="themeStatus" style="display:inline;color:white">Dark</h5>
             </a>
         </div>
-    </div>
-    <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
-        <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">
-            <h5>Sightings</h5>
-        </a>
-        <div class="subdomain col text-center col-12">
-            <a href="organization" class="btn btn-outline-primary btn-lg" id="organization">
-                <h5>Organization</h5>
+        <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <a href="/" class="domain btn btn-outline-primary btn-lg" id="home">
+                <h5>Home</h5>
             </a>
         </div>
-        <div class="subdomain col text-center col-12">
-            <a href="location" class="btn btn-outline-primary btn-lg" id="location">
-                <h5>Location</h5>
+        <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <a href="hero" class="btn btn-outline-primary btn-lg" id="heroes">
+                <h5>Heroes/Villians</h5>
             </a>
-        </div>
-    </div>
-    <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
-        <a id="about" class="btn btn-outline-primary btn-lg">
-            <h5>About</h5>
-        </a>
-    </div>
-</div>
-
-<div class="top">
-    <div class="section-1 bg-img">
-        <div class="overlay"></div>
-    </div>
-    <div class="row m-4" style="background-color: #007aff">
-        <div class="col-12" th:each="sighting: ${sightings}">
-            <span th:text="${sighting.date + ' - ' + sighting.location.name + ' -  ' + sighting.hero.name}"></span>
-        </div>
-    </div>
-    <div class="section-2">
-        <h3>Improve your vision</h3>
-        <p>Analyzing all heroes' activity...</p>
-        <button type="button" class="btn news btn-outline-primary btn-lg" id="news">News</button>
-        <hr style="background-color:rgba(255,255,255,0.15);">
-        <p id="info">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard
-            dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
-            a
-            type specimen
-            book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
-            essentially
-            unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
-            passages, and more
-            recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            <br><br>
-            You will track a hero or a fight, as well as their contact.
-        </p>
-        <div class="registerLogin">
-            <button type="button" class="btn register btn-outline-success btn-lg" id="register">Register</button>
-            <button type="button" class="btn login btn-outline-danger btn-lg" id="login">Login</button>
-        </div>
-    </div>
-</div>
-<div class="middle col-sm-12" id="landingPageMiddle">
-    <div class="section-1 bg-img">
-        <div class="overlay" style="background-color:rgba(0,0,0,0.5);"></div>
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <img src="assets/glacier.jpg" alt="glacier">
-                </div>
-                <div class="swiper-slide">
-                    <img src="assets/glacier.jpg" alt="glacier">
-                </div>
-                <div class="swiper-slide">
-                    <img src="assets/glacier.jpg" alt="glacier">
-                </div>
+            <div class="subdomain col text-center col-12">
+                <a href="superpower" class="btn btn-outline-primary btn-lg" id="superpower">
+                    <h5>Powers</h5>
+                </a>
             </div>
-            <div class="swiper-pagination"
-                 style="background-color:rgba(0,0,0,0.8);height:50px;padding-top:18px"></div>
-            <div class="swiper-scrollbar"></div>
+        </div>
+        <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <a href="sighting" class="btn btn-outline-primary btn-lg" id="sightings">
+                <h5>Sightings</h5>
+            </a>
+            <div class="subdomain col text-center col-12">
+                <a href="organization" class="btn btn-outline-primary btn-lg" id="organization">
+                    <h5>Organization</h5>
+                </a>
+            </div>
+            <div class="subdomain col text-center col-12">
+                <a href="location" class="btn btn-outline-primary btn-lg" id="location">
+                    <h5>Location</h5>
+                </a>
+            </div>
+        </div>
+        <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
+            <a id="about" class="btn btn-outline-primary btn-lg">
+                <h5>About</h5>
+            </a>
         </div>
     </div>
+    <!-- END NAVIGATION -->
+
+    <!-- TOP -->
+    <div class="top">
+        <div class="section-1 bg-img">
+            <div class="overlay"></div>
+        </div>
+        <div class="section-2">
+            <h3>Improve your vision</h3>
+            <p>Analyzing all heroes' activity...</p>
+            <button type="button" class="btn news btn-outline-primary btn-lg" id="news">News</button>
+            <hr style="background-color:rgba(255,255,255,0.15);">
+            <p id="info">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard
+                dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make
+                a
+                type specimen
+                book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+                essentially
+                unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+                passages, and more
+                recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                <br><br>
+                You will track a hero or a fight, as well as their contact.
+            </p>
+            <div class="registerLogin">
+                <button type="button" class="btn register btn-outline-success btn-lg" id="register">Register</button>
+                <button type="button" class="btn login btn-outline-danger btn-lg" id="login">Login</button>
+            </div>
+        </div>
+    </div>
+    <!-- END TOP -->
+
+    <!-- MIDDLE -->
+    <div class="middle col-sm-12" id="landingPageMiddle">
+        <div class="section-1 row bg-img">
+            <div class="overlay" style="background-color:rgba(0,0,0,0.5);"></div>
+            <a href="sighting" style="text-decoration:none">
+                <div class="col-lg-10 sighting-box bg-color white-text">
+                    <div class="row">
+                        <h3 style="font-family:'Garamond';font-size:30px;margin:0 auto;padding:50px;color:green">Recent
+                            Sightings</h3>
+                        <div class="recent-sightings col-12" th:each="sighting: ${sightings}">
+                            <span th:text="${sighting.date + ' - ' + sighting.location.name + ' -  ' + sighting.hero.name}"></span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <div class="col-lg-2">
+                <img src="https://thumbs.gfycat.com/MeatySkinnyEarwig-size_restricted.gif" id="gif" height="200"
+                     width="500">
+            </div>
+        </div>
+    </div>
+    <!-- END MIDDLE -->
+
+    <!-- FOOTER/ABOUT -->
+    <div class="bottom" id="footer-about"></div>
+    <!-- END FOOTER/ABOUT -->
 </div>
+<!-- END BODY -->
 
-<div class="bottom" id="about"></div>
-</div>
-
-<!--End Body-->
-
-<!--Scripts-->
+<!-- SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -163,23 +217,13 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
-</body>
 
 <!-- PLUGINS + THIRD PARTY -->
 <script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
 <script src="plugins/swiper.min.js"></script>
 
-<script type="text/javascript">
-    // document.addEventListener('scroll', function () {
-    //     var x = window.scrollX;
-    //     var y = window.scrollY;
-    //     console.log(x);
-    //     console.log(y);
-    // });
-
+<script type="text/javascript" src="main.js">
     var lightTheme = false;
-
-    console.log("fdsfsf");
 
     $("#toggleTheme").on('click', function () {
         console.log("Gfdg");
@@ -213,7 +257,6 @@
 </script>
 <script src="header.js"></script>
 <script src="footer.js"></script>
-<script src="main.js"></script>
 <script>
     var swiper = new Swiper('.swiper-container', {
         effect: 'coverflow',
@@ -232,5 +275,7 @@
         },
     });
 </script>
-<link rel="stylesheet" href="styles/nav.css">
+<!-- END SCRIPTS -->
+
+</body>
 </html>

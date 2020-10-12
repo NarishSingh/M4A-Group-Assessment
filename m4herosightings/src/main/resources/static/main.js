@@ -1,21 +1,7 @@
-/*
-.html
-.text
-.value
-.append
-.hide
-.show
-.toggle
-.ready
-.remove
-.removeClass
-.addClass
-.on
-.hover
-*/
 console.log("runnning");
 
 var lightTheme = false;
+
 
 $("#toggleTheme").on('click', function (event) {
     console.log("Gfdg");
@@ -63,9 +49,10 @@ function darkMode(event) {
 
     document.getElementById("toggleTheme").className = 'btn btn-outline-info btn-lg';
 
-    $(".navBar .btn, .news, .other").addClass("btn-outline-primary").removeClass("btn-primary");
+    $(".btn, .news, .other").addClass("btn-outline-primary").removeClass("btn-primary");
     $(".registerLogin .register").addClass("btn-outline-success").removeClass("btn-success");
     $(".registerLogin .login").addClass("btn-outline-danger").removeClass("btn-danger");
+    $(".subdomain .btn").css({ 'background-color': 'rgba(0,0,0,0.75)' });
 
     $(".swiper-container img").css({ 'background-color': 'rgba(0, 0, 0, 0.5)' });
     $(".swiper-pagination-bullets").css({ 'background-color': 'rgba(0, 0, 0, 0.15)' });
@@ -107,10 +94,11 @@ function lightMode(event) {
     // REDUCE REDUNDANCY
     document.getElementById("toggleTheme").className = 'btn btn-info btn-lg';
 
-    $(".navBar .btn, .news, .other").addClass("btn-primary").removeClass("btn-outline-primary");
+    $(".btn, .news, .other").addClass("btn-primary").removeClass("btn-outline-primary");
     $(".registerLogin .register").addClass("btn-success").removeClass("btn-outline-success");
     $(".registerLogin .login").addClass("btn-danger").removeClass("btn-outline-danger");
 
+    $(".subdomain .btn").css({ 'background-color': 'rgba(0, 0, 255, 0.5)' });
     $(".swiper-container img").css({'background-color': 'rgba(255, 255, 255, 0.25)'});
     $(".swiper-pagination-bullets").css({'background-color': 'rgba(255, 255, 255, 0.05)'});
     $(".swiper-container").css({'background-color': 'rgba(255, 255, 255, 0.15)'});
@@ -122,8 +110,8 @@ function lightMode(event) {
 }
 
 
-$("#nav-about").on('click', function () {
-    var element = document.getElementById('about');
+$("#about").on('click', function () {
+    var element = document.getElementById('footer-about');
     var position = element.getBoundingClientRect();
     var x = position.left;
     var y = position.top;
@@ -144,7 +132,6 @@ $("#sightingID").on('click', function (event) { // INTENDED TO NOT BE HARD-CODED
         hideLocation(lat, long);
     }
 })
-​
  */
 
 function hideLocation(latitude, longitude) {

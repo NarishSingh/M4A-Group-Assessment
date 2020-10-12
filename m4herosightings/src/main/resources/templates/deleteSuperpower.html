@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,14 +7,16 @@
     <title>Hero Sightings - Delete Superpower</title>
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/nav.css">
 </head>
 
 <body>
-<!--Begin Body-->
+<!-- BEGIN BODY -->
 <div class="container-fluid">
-    <!--Navbar-->
+    <!-- NAVIGATION -->
     <div class="row m-4 navBar">
         <div class="domain col text-left col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <a id="toggleTheme" class="btn btn-outline-info btn-lg">
@@ -23,7 +24,7 @@
             </a>
         </div>
         <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
-            <a href="index.html" class="domain btn btn-outline-primary btn-lg" id="home">
+            <a href="/" class="domain btn btn-outline-primary btn-lg" id="home">
                 <h5>Home</h5>
             </a>
         </div>
@@ -58,8 +59,9 @@
             </a>
         </div>
     </div>
+    <!-- END NAVIGATION -->
 
-    <!--view superpower to be deleted-->
+    <!-- DELETE SUPERPOWER: VIEW SUPERHERO -->
     <div class="middle-deleteConfirmation bg-img">
         <div class="row m-4 view-hero bg-color white-text">
             <div class="column sec-1 col-sm-12 col-lg-6">
@@ -82,7 +84,9 @@
             </div>
         </div>
     </div>
+    <!-- END DELETE SUPERPOWER: VIEW SUPERHERO -->
 
+    <!-- CONFIRM TO DELETE -->
     <div class="confirmation bg-img">
         <div class="row m-4 edit-hero border-dark bg-color white-text">
             <div class="column col-12 text-center m-3">
@@ -99,11 +103,15 @@
             </div>
         </div>
     </div>
-</div>
-<div class="bottom" id="about"></div>
-<!--End Body-->
+    <!-- END CONFIRM TO DELETE -->
 
-<!--Scripts-->
+    <!-- FOOTER/ABOUT -->
+    <div class="bottom" id="footer-about"></div>
+    <!-- END FOOTER/ABOUT -->
+</div>
+<!-- END BODY -->
+
+<!-- SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -115,7 +123,9 @@
         crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/33e502fc2c.js" crossorigin="anonymous"></script>
 <script src="main.js"></script>
+<script src="header.js"></script>
 <script src="footer.js"></script>
+<!-- END SCRIPTS -->
 
 </body>
 </html>

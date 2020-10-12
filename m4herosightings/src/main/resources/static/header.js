@@ -3,7 +3,7 @@ $(document).ready(function () {
         var w = document.documentElement.clientWidth;
         var h = document.documentElement.clientHeight;
 
-        if (w < 1105) {
+        if (w < 1287) {
             var p = " ";
 
             $("#toggleTheme h5").html(p);
@@ -27,7 +27,7 @@ $(document).ready(function () {
             $("#about h5").html(p);
             $("#about h5").addClass("fas fa-align-right");
 
-        } else if (w > 1105) {
+        } else if (w > 1287) {
             var toggle = "Theme";
             var home = "Home";
             var hero = "Heroes/Villains";

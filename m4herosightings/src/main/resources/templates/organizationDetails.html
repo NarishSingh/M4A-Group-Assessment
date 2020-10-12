@@ -10,7 +10,10 @@
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
           crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/nav.css">
 </head>
+
+<!-- START CSS -->
 <style>
     .middle-viewLayout .bg-color {
         padding: 100px;
@@ -35,10 +38,12 @@
         height: 100%;
     }
 </style>
+<!-- END CSS -->
+
 <body>
-<!--Begin Body-->
+<!-- BEGIN BODY -->
 <div class="container-fluid">
-    <!--Navbar-->
+    <!-- NAVIGATION -->
     <div class="row m-4 navBar">
         <div class="domain col text-left col-lg-4 col-md-4 col-sm-4 col-xs-12">
             <a id="toggleTheme" class="btn btn-outline-info btn-lg">
@@ -46,7 +51,7 @@
             </a>
         </div>
         <div class="domain col text-center col-lg-2 col-md-2 col-sm-2 col-xs-12">
-            <a href="index.html" class="domain btn btn-outline-primary btn-lg" id="home">
+            <a href="/" class="domain btn btn-outline-primary btn-lg" id="home">
                 <h5>Home</h5>
             </a>
         </div>
@@ -81,12 +86,17 @@
             </a>
         </div>
     </div>
+    <!-- END NAVIGATION -->
 
+    <!-- TITLE -->
     <div class="row m-4 bg-img">
         <div class="col text-center bg-color">
             <h1>HERO Sightings - View Sighting</h1>
         </div>
     </div>
+    <!-- END TITLE -->
+
+    <!-- VIEW: ORGANIZATION FORM -->
     <div class="middle-viewLayout bg-img">
         <div class="row m-4 view-hero bg-color white-text">
             <div class="column sec-1 col-sm-12 col-lg-6">
@@ -118,24 +128,24 @@
 
                     <div class="col-6 text-right"><strong>Address:</strong></div>
                     <div class="col-6 text-left">
-                            <span th:text="${organization.location.street + ' ' + organization.location.city + ' '
-                            + organization.location.state + ' ' + organization.location.zipcode}">
-                                display Address
-                            </span>
+                                <span th:text="${organization.location.street + ' ' + organization.location.city + ' '
+                                + organization.location.state + ' ' + organization.location.zipcode}">
+                                    display Address
+                                </span>
                     </div>
 
                     <div class="col-6 text-right"><strong>Coordinates:</strong></div>
                     <div class="col-6 text-left">
-                            <span th:text="${organization.location.latitude + '/' + organization.location.longitude}">
-                                display Coordinates
-                            </span>
+                                <span th:text="${organization.location.latitude + '/' + organization.location.longitude}">
+                                    display Coordinates
+                                </span>
                     </div>
 
                     <div class="col-6 text-right"><strong>Members:</strong></div>
                     <div class="col-6 text-left">
-                            <span th:each="hero: ${organization.members}">
-                                <span th:text="${hero.name + ' - ' + hero.superpower.name}"></span><br>
-                            </span>
+                                <span th:each="hero: ${organization.members}">
+                                    <span th:text="${hero.name + ' - ' + hero.superpower.name}"></span><br>
+                                </span>
                     </div>
                 </div>
             </div>
@@ -146,11 +156,15 @@
             </div>
         </div>
     </div>
+    <!-- END VIEW: ORGANIZATION FORM -->
 
-    <div class="bottom" id="about"></div>
+    <!-- FOOTER/ABOUT -->
+    <div class="bottom" id="footer-about"></div>
+    <!-- END FOOTER/ABOUT -->
 </div>
+<!-- END BODY -->
 
-<!--Scripts-->
+<!-- SCRIPTS -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -183,6 +197,9 @@
     $(document).ready(loadMap);
 </script>
 <script src="main.js"></script>
+<script src="header.js"></script>
 <script src="footer.js"></script>
+<!-- END SCRIPTS -->
+
 </body>
 </html>
