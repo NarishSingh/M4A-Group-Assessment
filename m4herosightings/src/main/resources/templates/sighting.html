@@ -94,9 +94,7 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" th:each="sighting : ${sightings}">
                             <div class="revealMap" id="sightingID">
-                                <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?key=API_KEY
-                                    &q=Space+Needle,Seattle+WA" allowfullscreen>
-                                </iframe>
+                                <img th:attr="src=|https://maps.googleapis.com/maps/api/staticmap?center=${sighting.location.latitude},${sighting.location.longitude}&zoom=18&size=750x750&maptype=roadmap&markers=color:blue%7Clabel:S%7C${sighting.location.latitude},${sighting.location.longitude}&key=AIzaSyBpD442VLkwZ5_Kp795_zE-UWHy8-6EBQc|">
 
                                 <h3 th:text="${sighting.hero.name}"
                                     th:attr="data-lat=${sighting.location.latitude},data-long=${sighting.location.longitude}">
@@ -223,9 +221,86 @@
         </div>
     </div>
 
-    <div class="bottom" id="about"></div>
-
-</div>x
+    <div class="bottom" id="about">
+        <div class="row">
+            <div class="column col-xl-6 col-lg-12 col-sm-12">
+                <h3>Our Mission</h3>
+                <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem
+                    Ipsum has been the industry's
+                    standard
+                    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                    it to make
+                    a type
+                    specimen
+                    book. It has survived not only five centuries, but also the leap into electronic
+                    typesetting, remaining
+                    essentially
+                    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+                    Lorem Ipsum
+                    passages, and
+                    more
+                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+                    Ipsum.
+                </p>
+            </div>
+            <div class="column col-xl-6 col-lg-12 col-sm-12">
+                <h3>About</h3>
+                <p style="padding:50px">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    industry. Lorem
+                    Ipsum has been the industry's standard
+                    dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled
+                    it to make
+                    a type specimen
+                    book. It has survived not only five centuries, but also the leap into electronic
+                    typesetting, remaining
+                    essentially
+                    unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+                    Lorem Ipsum
+                    passages, and more
+                    recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+                    Ipsum.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group row justify-content-center align-items-center">
+                    <label for="description-input" class="col-form-label"></label>
+                    <div class="col-xl-7 col-lg-12 col-sm-12">
+                        <input type="text" name="description-input" class="form-control" id="description-input">
+                    </div>
+                    <button type="button" class="btn btn-outline-warning btn-lg" id="send">Send
+                        Feedback
+                    </button>
+                </div>
+            </div>
+            <div class="column col-xl-6 col-md-12 col-sm-12 col-xs-12" style="padding-left: 100px">
+                <ul class="row" style="list-style:none;text-align:center;color:white">
+                    <a class="col-3" href="#">
+                        <li>Home</li>
+                    </a>
+                    <a class="col-3" href="#">
+                        <li>Heroes</li>
+                    </a>
+                    <a class="col-3" href="#">
+                        <li>Sightings</li>
+                    </a>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr style="background-color:rgba(255,255,255,0.1);">
+    <div class="footer">
+        <!-- Add font awesome icons -->
+        <a href="#" class="fa fa-facebook"></a>
+        <a href="#" class="fa fa-linkedin"></a>
+        <a href="#" class="fa fa-youtube"></a>
+        <a href="#" class="fa fa-instagram"></a>
+        <a href="#" class="fa fa-reddit"></a>
+        <br><br>
+        @Copyright Bob, Narish, Timmy
+    </div>
+</div>
 
 <!-- PLUGINS + THIRD PARTY -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -261,7 +336,5 @@
         },
     });
 </script>
-<script src="header.js"></script>
-<script src="footer.js"></script>
 </body>
 </html>

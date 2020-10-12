@@ -2,7 +2,6 @@ $(document).ready(function () {
     function displayWindowSize() {
         var w = document.documentElement.clientWidth;
         var h = document.documentElement.clientHeight;
-
         if (w < 1105) {
             var p = " ";
 

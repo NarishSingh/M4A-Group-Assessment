@@ -28,56 +28,58 @@ public class OrganizationController {
 
     @Autowired
     OrganizationDao orgDao;
-
     @Autowired
     LocationDao locationDao;
-
     @Autowired
     HeroDao heroDao;
-
     Set<ConstraintViolation<Organization>> violations = new HashSet<>();
 
     /**
      * GET - load all organizations from db
      *
-     * @param model {Model}
-     * @return {String} the main subdomain
+     * @param model {Model} holds relevant data for obj
+     * @return {String} load main subdomain
      */
     @GetMapping("organization")
     public String displayOrganizations(Model model) {
         List<Organization> orgs = orgDao.readAllOrganizations();
         List<Hero> heroes = heroDao.readAllHeroes();
         List<Location> locations = locationDao.readAllLocations();
+
         model.addAttribute("organizations", orgs);
         model.addAttribute("locations", locations);
         model.addAttribute("heroes", heroes);
         model.addAttribute("errors", violations);
+
         return "organization";
     }
 
     /**
      * POST - add a new Organization to db
      *
-     * @param org
-     * @param request
+     * @param org     {Organization} a well formed obj
+     * @param request {HttpServletRequest} will retrieve form data for new
+     *                organization
      * @return {String} redirect to subdomain
      */
     @PostMapping("addOrganization")
     public String addOrganization(Organization org, HttpServletRequest request) {
         Validator validate = Validation.buildDefaultValidatorFactory().getValidator();
+        String locationId = request.getParameter("locationId");
+        String[] heroesId = request.getParameterValues("heroId");
+
+        org.setLocation(locationDao.readLocationById(Integer.parseInt(locationId)));
+
+        List<Hero> heroes = new ArrayList<>();
+        if (heroesId != null) {
+            for (String id : heroesId) {
+                heroes.add(heroDao.readHeroById(Integer.parseInt(id)));
+            }
+        }
+        org.setMembers(heroes);
+
         violations = validate.validate(org);
         if (violations.isEmpty()) {
-            String locationId = request.getParameter("locationId");
-            String[] heroesId = request.getParameterValues("heroId");
-
-            org.setLocation(locationDao.readLocationById(Integer.parseInt(locationId)));
-            List<Hero> heroes = new ArrayList<>();
-            if (heroesId != null) {
-                for (String id : heroesId) {
-                    heroes.add(heroDao.readHeroById(Integer.parseInt(id)));
-                }
-            }
-            org.setMembers(heroes);
             orgDao.createOrganization(org);
         }
 
@@ -87,53 +89,73 @@ public class OrganizationController {
     /**
      * GET - get org from db
      *
-     * @param id    organization id
-     * @param model to send org from db
-     * @return subdomain organizationDetails
+     * @param id    {Integer} a existing organization id
+     * @param model {Model} holds org from db
+     * @return {String} load subdomain organizationDetails
      */
     @GetMapping("displayOrgDetails")
     public String displayDetails(Integer id, Model model) {
         Organization org = orgDao.readOrganizationById(id);
+        Location location = org.getLocation();
+
         model.addAttribute("organization", org);
+        model.addAttribute("location", location);
+
         return "organizationDetails";
+    }
+
+    //FIXME is this used?
+    @GetMapping("displayOrgsForHero")
+    public String diplayOrgsForHero(Model model) {
+        List<Organization> orgs = orgDao.readAllOrganizations();
+        model.addAttribute("organizations", orgs);
+        
+        return "displayOrgsForHero";
     }
 
     /**
      * GET - get org from db
      *
-     * @param id    organization id
-     * @param model to send the org to form
-     * @return to editOrganization page
+     * @param id    {Integer} organization id
+     * @param model {Model} to send the org to form
+     * @return {String} to editOrganization page
      */
     @GetMapping("editOrganization")
     public String updateOrganization(Integer id, Model model) {
-
         Organization org = orgDao.readOrganizationById(id);
         List<Location> locations = locationDao.readAllLocations();
         List<Hero> heroes = heroDao.readAllHeroes();
+
         model.addAttribute("organization", org);
         model.addAttribute("locations", locations);
         model.addAttribute("heroes", heroes);
+
         return "editOrganization";
     }
 
     /**
-     * POST - add org to db
+     * POST - update org to db
      *
-     * @param org
-     * @param result
-     * @param request
-     * @param model
-     * @return
+     * @param org     {Organization} a well formed obj
+     * @param result  {BindingResult} holds validation errors
+     * @param request {HttpServletRequest} will retrieve edit form data
+     * @param model   {Model} holds obj and related data on reload for failure
+     *                to edit
+     * @return {String} redirect to home page if successful, reload with errors
+     *         if fails
      */
     @PostMapping("editOrganization")
-    public String updateOrganization(@Valid Organization org, BindingResult result, HttpServletRequest request, Model model) {
+    public String updateOrganization(@Valid Organization org, BindingResult result,
+            HttpServletRequest request, Model model) {
         if (result.hasErrors()) {
             return "editOrganization";
         }
+
         String locationId = request.getParameter("locationId");
         String[] heroIds = request.getParameterValues("heroId");
+
         org.setLocation(locationDao.readLocationById(Integer.parseInt(locationId)));
+
         List<Hero> heroes = new ArrayList<>();
         if (heroIds != null) {
             for (String id : heroIds) {
@@ -151,25 +173,43 @@ public class OrganizationController {
             model.addAttribute("heroes", heroDao.readAllHeroes());
             return "editOrganization";
         }
+
         orgDao.updateOrganization(org);
+
         return "redirect:/organization";
     }
 
+    /**
+     * GET - load delete confirmation page for a organization from db
+     *
+     * @param request {HttpServletRequest} will pull in id to retrieve obj
+     * @param model   {Model} will hold relevant data for sighting
+     * @return {String} load page with organization to be deleted
+     */
     @GetMapping("deleteOrganization")
-    public String deleteOrganization(Integer id) {
+    public String deleteOrganization(HttpServletRequest request, Model model) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Organization organization = orgDao.readOrganizationById(id);
+        List<Hero> members = orgDao.readHeroesForOrganization(organization);
+
+        model.addAttribute("organization", organization);
+        model.addAttribute("location", organization.getLocation());
+        model.addAttribute("members", members);
+
+        return "deleteOrganization";
+    }
+
+    /**
+     * GET - delete a organization from db
+     *
+     * @param request {HttpServletRequest} will pull in id for delete query
+     * @return {String} redirect to organization homepage
+     */
+    @GetMapping("performDeleteOrganization")
+    public String performDeleteOrganization(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
         orgDao.deleteOrganizationById(id);
+
         return "redirect:/organization";
     }
-
-    @GetMapping("displayOrgsForHero")
-    public String diplayOrgsForHero(Model model) {
-        List<Organization> orgs = orgDao.readAllOrganizations();
-        model.addAttribute("organizations", orgs);
-        return "displayOrgsForHero";
-    }
-
-//    @GetMapping("displayHeroesForOrg")
-//    public String displayHeroesForOrg(String orgName){
-//        
-//    }
 }

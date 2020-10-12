@@ -15,19 +15,15 @@ import java.util.List;
 import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.ConstraintViolation;
-import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 
 @Controller
 public class SightingController {
@@ -72,7 +68,8 @@ public class SightingController {
     /**
      * POST - create a new sighting in db
      *
-     * @param request {HttpServletRequest}
+     * @param request {HttpServletRequest} will retrieve form data for new
+     *                sighting
      * @return {String} reload page if errors, redirect to Sighting homepage if
      *         successful
      */
@@ -144,46 +141,13 @@ public class SightingController {
         return "editSighting";
     }
 
-    /*
-    @PostMapping("editSighting")
-    public String performEditSighting(@Valid Sighting sighting, BindingResult result, 
-//            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
-            HttpServletRequest request, Model model) {
-        String heroId = request.getParameter("heroId");
-        String locationId = request.getParameter("locationId");
-        sighting.setHero(hDao.readHeroById(Integer.parseInt(heroId)));
-        sighting.setLocation(locDao.readLocationById(Integer.parseInt(locationId)));
-        
-        String dateString = request.getParameter("date");
-        if (!dateString.isEmpty()) {
-            sighting.setDate(LocalDate.parse(dateString));
-        } else {
-            FieldError error = new FieldError("sighting", "date", "Please choose a valid date in the past");
-            result.addError(error);
-        }
-
-        if (result.hasErrors()) {
-            model.addAttribute("sighting", sighting);
-            
-            model.addAttribute("superpowers", spDao.readAllSuperpowers());
-            model.addAttribute("heroes", hDao.readAllHeroes());
-            model.addAttribute("locations", locDao.readAllLocations());
-            model.addAttribute("errors", violations);
-
-            return "editSighting";
-        }
-
-        siDao.updateSighting(sighting);
-
-        return "redirect:/sighting";
-    }
-     */
     /**
      * POST - perform an update on a sighting
      *
-     * @param request
-     * @param date
-     * @param model
+     * @param request {HttpServletRequest} retrieves form data for attempting
+     *                update
+     * @param date    {LocalDate} a formatted date from the past
+     * @param model   {Model} holds obj on reload for failure to edit
      * @return {String} redirect to home page if successful, reload with errors
      *         if fails
      */
@@ -223,13 +187,33 @@ public class SightingController {
 
     /*DELETE*/
     /**
-     * GET - delete a Sighting
+     * GET - load delete confirmation page for a sighting from db
      *
-     * @param id {Integer} a valid if for a sighting in db
-     * @return {String} redirect to sighting homepage
+     * @param request {HttpServletRequest} will pull in id to retrieve obj
+     * @param model   {Model} will hold relevant data for sighting
+     * @return {String} load page with sighting to be deleted
      */
     @GetMapping("deleteSighting")
-    public String deleteSighting(Integer id) {
+    public String deleteSighting(HttpServletRequest request, Model model) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Sighting sighting = siDao.readSightingById(id);
+
+        model.addAttribute("sighting", sighting);
+        model.addAttribute("hero", sighting.getHero());
+        model.addAttribute("location", sighting.getLocation());
+
+        return "deleteSighting";
+    }
+
+    /**
+     * GET - delete a sighting from db
+     *
+     * @param request {HttpServletRequest} will pull in id for delete query
+     * @return {String} redirect to sighting homepage
+     */
+    @GetMapping("performDeleteSighting")
+    public String performDeleteSighting(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
         siDao.deleteSightingById(id);
 
         return "redirect:/sighting";

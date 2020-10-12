@@ -14,6 +14,7 @@
 .hover
 */
 console.log("runnning");
+
 var lightTheme = false;
 
 $("#toggleTheme").on('click', function (event) {
@@ -71,7 +72,7 @@ function darkMode(event) {
     $(".swiper-container").css({ 'background-color': 'rgba(0, 0, 0, 0.5)' });
     $(".table").addClass("table-dark").removeClass("table-light");
     $(".results .border").addClass("border-dark").removeClass("border-light");
-    $(".revealMap h3").css({ 'background-color': 'rgb(0, 0, 0)', 'color': 'rgb(255, 255, 255)' });
+    $(".revealMap h3").css({'background-color': 'rgb(0, 0, 0)', 'color': 'rgb(255, 255, 255)'});
     lightTheme = false;
 }
 
@@ -110,12 +111,12 @@ function lightMode(event) {
     $(".registerLogin .register").addClass("btn-success").removeClass("btn-outline-success");
     $(".registerLogin .login").addClass("btn-danger").removeClass("btn-outline-danger");
 
-    $(".swiper-container img").css({ 'background-color': 'rgba(255, 255, 255, 0.25)' });
-    $(".swiper-pagination-bullets").css({ 'background-color': 'rgba(255, 255, 255, 0.05)' });
-    $(".swiper-container").css({ 'background-color': 'rgba(255, 255, 255, 0.15)' });
+    $(".swiper-container img").css({'background-color': 'rgba(255, 255, 255, 0.25)'});
+    $(".swiper-pagination-bullets").css({'background-color': 'rgba(255, 255, 255, 0.05)'});
+    $(".swiper-container").css({'background-color': 'rgba(255, 255, 255, 0.15)'});
     $(".table").addClass("table-light").removeClass("table-dark");
     $(".results .border").addClass("border-light").removeClass("border-dark");
-    $(".revealMap h3").css({ 'background-color': 'rgb(255, 255, 255)', 'color': 'rgb(0, 0, 0)' });
+    $(".revealMap h3").css({'background-color': 'rgb(255, 255, 255)', 'color': 'rgb(0, 0, 0)'});
 
     lightTheme = true;
 }
@@ -137,7 +138,6 @@ var isHidden = false;
 $("#sightingID").on('click', function (event) { // INTENDED TO NOT BE HARD-CODED
     let lat = $(this).data("lat");
     let long = $(this).data("long");
-​
     if (isHidden == true) {
         revealLocation();
     } else if (isHidden == false) {
@@ -165,3 +165,5 @@ function revealLocation(id) {
     sightingID.style.backgroundImage = "url('https://specials-images.forbesimg.com/imageserve/5d35eacaf1176b0008974b54/960x0.jpg?cropX1=790&cropX2=5350&cropY1=784&cropY2=3349')"; // INTENDED TO NOT BE HARD-CODED
     isHidden = false;
 }
+
+ */

@@ -28,7 +28,7 @@ public class Organization {
 
     private Location location;
     
-    @Size(min = 1, message = "Please choose al least one member")
+    @Size(min = 1, message = "Please choose at least one member")
     private List<Hero> members = new ArrayList<>();
 
     /*ctor*/
