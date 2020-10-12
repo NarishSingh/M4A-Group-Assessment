@@ -89,6 +89,13 @@ public class LocationDaoDb implements LocationDao {
     @Override
     @Transactional
     public boolean deleteLocationById(int id) {
+        //delete bridge
+        String deleteHeroOrgQuery = "DELETE ho.* FROM heroOrganization ho "
+                + "JOIN organization o ON  ho.organizationId = o.organizationId "
+                + "JOIN location l ON l.locationId = o.locationId "
+                + "WHERE l.locationId = ?";
+        jdbc.update(deleteHeroOrgQuery, id);
+        
         //delete from organization
         String deleteOrgQuery = "DELETE FROM organization "
                 + "WHERE locationId = ?;";
