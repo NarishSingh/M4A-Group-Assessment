@@ -10,7 +10,6 @@
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css">
 </head>
-
 <body>
 <!--Begin Body-->
 <div class="container-fluid">
@@ -64,7 +63,10 @@
 
                     <div class="col-6 text-right"><strong>Organizations:</strong></div>
                     <div class="col-6 text-left">
-                        <span th:each="org : ${organizations}" th:text="${org.name + ' '}">display org list</span>
+                        <span th:each="org : ${organizations}">
+                            <span th:text="${org.name}"></span>
+                            <br>
+                        </span>
                     </div>
                 </div>
             </div>

@@ -96,8 +96,10 @@ public class OrganizationController {
     @GetMapping("displayOrgDetails")
     public String displayDetails(Integer id, Model model) {
         Organization org = orgDao.readOrganizationById(id);
+        Location location = org.getLocation();
 
         model.addAttribute("organization", org);
+        model.addAttribute("location", location);
 
         return "organizationDetails";
     }
