@@ -83,7 +83,12 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide" th:each="sighting : ${sightings}">
                             <div class="revealMap" id="sightingID">
-                                <h3 th:text="${sighting.hero.name}">Hero 1</h3>
+                                <img th:attr="src=|https://maps.googleapis.com/maps/api/staticmap?center=${sighting.location.latitude},${sighting.location.longitude}&zoom=18&size=750x750&maptype=roadmap&markers=color:blue%7Clabel:S%7C${sighting.location.latitude},${sighting.location.longitude}&key=AIzaSyBpD442VLkwZ5_Kp795_zE-UWHy8-6EBQc|">
+
+                                <h3 th:text="${sighting.hero.name}"
+                                    th:attr="data-lat=${sighting.location.latitude},data-long=${sighting.location.longitude}">
+                                    Hero 1
+                                </h3>
                             </div>
                             <img src="https://www.bergmannpc.com/imager/contentimages/project/unc-charlotte-center-city/6658/UNC-Center-City-Campus-Exterior_20d4ef1e03a0bb7e3cb004631c67ab23.jpg">
                         </div>

@@ -130,26 +130,41 @@ $("#nav-about").on('click', function () {
     window.scroll(x, y);
 })
 
-
 // TOGGLES THE SIGHTINGS GALLERY
 var isHidden = false;
 
-$("#sightingID").on('click', function () { // INTENDED TO NOT BE HARD-CODED
+/*
+$("#sightingID").on('click', function (event) { // INTENDED TO NOT BE HARD-CODED
+    let lat = $(this).data("lat");
+    let long = $(this).data("long");
+
     if (isHidden == true) {
         revealLocation();
     } else if (isHidden == false) {
-        hideLocation();
+        hideLocation(lat, long);
     }
 })
 
-function hideLocation() {
+ */
+
+/*
+function hideLocation(latitude, longitude) {
     var sightingID = document.getElementById("sightingID"); // INTENDED TO NOT BE HARD-CODED
-    sightingID.style.backgroundImage = "url('https://miro.medium.com/max/4064/1*qYUvh-EtES8dtgKiBRiLsA.png')"; // INTENDED TO NOT BE HARD-CODED
+    // sightingID.style.backgroundImage = "url('https://miro.medium.com/max/4064/1*qYUvh-EtES8dtgKiBRiLsA.png')"; // INTENDED TO NOT BE HARD-CODED
+
+    const apiKey = "AIzaSyBpD442VLkwZ5_Kp795_zE-UWHy8-6EBQc";
+    var mapsrc = "https://www.google.com/maps/embed/v1/place?key=" + apiKey + "&q=" + latitude + ","
+        + longitude + "&center=" + latitude + "," + longitude + "&zoom=18";
+
+    sightingID.style.backgroundImage = "url('" + mapsrc + "')";
     isHidden = true;
 }
 
-function revealLocation() {
+function revealLocation(id) {
     var sightingID = document.getElementById("sightingID"); // INTENDED TO NOT BE HARD-CODED
-    sightingID.style.backgroundImage = "url('https://www.bergmannpc.com/imager/contentimages/project/unc-charlotte-center-city/6658/UNC-Center-City-Campus-Exterior_20d4ef1e03a0bb7e3cb004631c67ab23.jpg')"; // INTENDED TO NOT BE HARD-CODED
+    // sightingID.style.backgroundImage = "url('https://www.bergmannpc.com/imager/contentimages/project/unc-charlotte-center-city/6658/UNC-Center-City-Campus-Exterior_20d4ef1e03a0bb7e3cb004631c67ab23.jpg')"; // INTENDED TO NOT BE HARD-CODED
+    sightingID.style.backgroundImage = "url('https://specials-images.forbesimg.com/imageserve/5d35eacaf1176b0008974b54/960x0.jpg?cropX1=790&cropX2=5350&cropY1=784&cropY2=3349')"; // INTENDED TO NOT BE HARD-CODED
     isHidden = false;
 }
+
+ */
