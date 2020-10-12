@@ -13,10 +13,11 @@
 .on
 .hover
 */
-console.log("fdsfsf");
+console.log("runnning");
+
 var lightTheme = false;
 
-$("#toggleTheme").on('click', function () {
+$("#toggleTheme").on('click', function (event) {
     console.log("Gfdg");
     if (lightTheme == false) {
         console.log(lightTheme);
@@ -30,10 +31,10 @@ $("#toggleTheme").on('click', function () {
 })
 
 
-function darkMode() {
-    $("body, .container-fluid, .bottom").css({'background-color': 'black'});
-    $(".overlay").css({'background-color': 'rgba(0, 0, 0, 0.5)'});
-    $(".choose ul").css({'background-color': 'rgba(0, 0, 0, 0.75)', 'color': 'white'});
+function darkMode(event) {
+    $("body, .container-fluid, .bottom").css({ 'background-color': 'black' });
+    $(".overlay").css({ 'background-color': 'rgba(0, 0, 0, 0.5)' });
+    $(".choose ul").css({ 'background-color': 'rgba(0, 0, 0, 0.75)', 'color': 'white' });
     $(".alert").addClass("bg-danger");
 
     $(".hero-form h3").addClass("white-text").removeClass("black-text");
@@ -66,19 +67,19 @@ function darkMode() {
     $(".registerLogin .register").addClass("btn-outline-success").removeClass("btn-success");
     $(".registerLogin .login").addClass("btn-outline-danger").removeClass("btn-danger");
 
-    $(".swiper-container img").css({'background-color': 'rgba(0, 0, 0, 0.5)'});
-    $(".swiper-pagination-bullets").css({'background-color': 'rgba(0, 0, 0, 0.15)'});
-    $(".swiper-container").css({'background-color': 'rgba(0, 0, 0, 0.5)'});
+    $(".swiper-container img").css({ 'background-color': 'rgba(0, 0, 0, 0.5)' });
+    $(".swiper-pagination-bullets").css({ 'background-color': 'rgba(0, 0, 0, 0.15)' });
+    $(".swiper-container").css({ 'background-color': 'rgba(0, 0, 0, 0.5)' });
     $(".table").addClass("table-dark").removeClass("table-light");
     $(".results .border").addClass("border-dark").removeClass("border-light");
     $(".revealMap h3").css({'background-color': 'rgb(0, 0, 0)', 'color': 'rgb(255, 255, 255)'});
     lightTheme = false;
 }
 
-function lightMode() {
-    $("body, .container-fluid, .bottom, .choose ul").css({'background-color': 'white'});
-    $(".overlay").css({'background-color': 'rgba(255, 255, 255, 0.25)'});
-    $(".choose ul").css({'background-color': 'rgba(255, 255, 255, 0.75)', 'color': 'black'});
+function lightMode(event) {
+    $("body, .container-fluid, .bottom, .choose ul").css({ 'background-color': 'white' });
+    $(".overlay").css({ 'background-color': 'rgba(255, 255, 255, 0.25)' });
+    $(".choose ul").css({ 'background-color': 'rgba(255, 255, 255, 0.75)', 'color': 'black' });
     $(".alert").removeClass("bg-danger");
 
     $(".hero-form h3").addClass("black-text").removeClass("white-text");
@@ -137,17 +138,15 @@ var isHidden = false;
 $("#sightingID").on('click', function (event) { // INTENDED TO NOT BE HARD-CODED
     let lat = $(this).data("lat");
     let long = $(this).data("long");
-
     if (isHidden == true) {
         revealLocation();
     } else if (isHidden == false) {
         hideLocation(lat, long);
     }
 })
-
+​
  */
 
-/*
 function hideLocation(latitude, longitude) {
     var sightingID = document.getElementById("sightingID"); // INTENDED TO NOT BE HARD-CODED
     // sightingID.style.backgroundImage = "url('https://miro.medium.com/max/4064/1*qYUvh-EtES8dtgKiBRiLsA.png')"; // INTENDED TO NOT BE HARD-CODED

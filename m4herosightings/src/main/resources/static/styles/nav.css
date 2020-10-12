@@ -1,5 +1,18 @@
 .navBar {
-    list-style: none;
+    height: 50px;
+}
+
+.navBar .subdomain {
+    width: inherit;
+    display: none;
+}
+
+.navBar .subdomain .btn {
+    background-color: rgba(0,0,0,0.75);
+}
+
+.navBar .domain:hover .subdomain {
+    display: block;
 }
 
 .navBar h5 {

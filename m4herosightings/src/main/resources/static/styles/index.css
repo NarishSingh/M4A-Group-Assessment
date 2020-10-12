@@ -28,12 +28,12 @@ body {
     padding: 50px;
 }
 
-
 /* INDEX.HTML */
 .section-1 {
     height: 75vh;
     position: relative;
     background-position: 50% 50%;
+    z-index: 1;
 }
 
 .overlay {
@@ -138,7 +138,9 @@ label {
 }
 
 /* background-image on 'revealMap:hover' will change based on its sightingID */
-
+#sightingID {
+    background-image: url("https://images4.alphacoders.com/495/49586.jpg");
+}
 .revealMap h3 {
     background-color: black;
     color: white;
@@ -363,66 +365,6 @@ h1 a {
     color: black;
 }
 
-.nav {
-    /* border: 5px solid blue; */
-    float: right;
-    height: 8.5%;
-    color: rgba(255, 196, 0, 0.85);
-    background-color: black;
-    z-index: 3;
-}
-
-.nav a {
-    color: rgba(0, 195, 255, 0.85);
-}
-
-.nav ul, .nav ul li {
-    float: left;
-    list-style: none;
-    z-index: 3;
-}
-
-.nav ul li ul li a:hover {
-    background-color: black;
-    z-index: 3;
-}
-
-.nav ul li {
-    background-color: rgba(0, 0, 0, 0.534);
-    position: relative;
-    padding-left: 20px;
-    padding-right: 100px;
-    z-index: 3;
-}
-
-.nav ul li:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-    z-index: 3;
-}
-
-.nav a:hover {
-    text-decoration: none;
-    color: white;
-}
-
-.nav ul li a {
-    display: block;
-    padding: 23px 15px;
-}
-
-.nav ul li ul {
-    display: none;
-    position: absolute;
-    padding: 20px;
-}
-
-.nav ul li:hover ul {
-    display: block;
-    position: absolute;
-    padding: 0px;
-    left: auto;
-    margin-right: 100px;
-}
 
 a {
     z-index: 3;
