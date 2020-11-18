@@ -1,1 +1,7 @@
 /m4herosightings/nbproject/
+application.properties
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr

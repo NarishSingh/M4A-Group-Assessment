@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
+import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
 public class Sighting {
@@ -13,7 +13,7 @@ public class Sighting {
     private int sightingId;
 
     @NotNull(message = "Sighting date must be in the past")
-    @Past(message = "Future sightings cannot be confirmed")
+    @PastOrPresent(message = "Future sightings cannot be confirmed")
     private LocalDate date;
 
     @NotBlank(message = "Please describe your hero/villian encounter or sighting")

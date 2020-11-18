@@ -128,10 +128,21 @@
                     <div class="col-6 text-left">
                         <span th:text="${location.zipcode}">display Zipcode</span>
                     </div>
+
                     <div class="col-6 text-right"><strong>Coordinates:</strong></div>
                     <div class="col-6 text-left">
                         <span th:text="${location.latitude + '/' + location.longitude}">display Coordinates</span>
                     </div>
+
+                    <!--<div class="col-6 text-right"><strong>Heroes/Villains Visited:</strong></div>
+                    <div class="col-6 text-left">
+                        <span th:text="${location.zipcode}">display heroes</span>
+
+                        <span th:each="${hero : heroVisits}">
+                            <span th:text="${hero.name}"></span>
+                            <br>
+                        </span>
+                    </div>-->
                 </div>
             </div>
 
