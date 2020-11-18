@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:origin/2.0.0" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="87128481-9dd5-44a5-875c-1c524c422fe3" name="Default Changelist" comment="final touches">
+      <change afterPath="$PROJECT_DIR$/.idea/M4A-Group-Assessment.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_7_2020_2_00_PM_[Default_Changelist]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_10_7_2020_2_00_PM__Default_Changelist_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/m4herosightings/src/main/resources/static/images/uploads/Heroes/1602427450.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/m4herosightings/src/main/resources/static/images/uploads/Heroes/1602503144.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/m4herosightings/nbactions.xml" beforeDir="false" afterPath="$PROJECT_DIR$/m4herosightings/nbactions.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/m4herosightings/src/main/resources/templates/viewHero.html" beforeDir="false" afterPath="$PROJECT_DIR$/m4herosightings/src/main/resources/templates/viewHero.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="ProjectId" id="1iNaMi1blAPLdu133D9xz5pmoOX" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/m4herosightings/src/main/resources/templates" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="JavaScript.Libraries" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\M4A-Group-Assessment\m4herosightings\src\main\resources\templates" />
+      <recent name="C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\M4A-Group-Assessment\m4herosightings\src\main\resources\static" />
+      <recent name="C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\M4A-Group-Assessment\m4herosightings\src\main\resources\static\styles" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\M4A-Group-Assessment\m4herosightings\src\main\resources\templates" />
+      <recent name="C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\M4A-Group-Assessment\m4herosightings\src\main\resources\static" />
+      <recent name="C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\M4A-Group-Assessment\m4herosightings\src\main\resources\static\styles" />
+      <recent name="C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\M4A-Group-Assessment\m4herosightings\src\main\resources\static\assets" />
+      <recent name="C:\Users\naris\Documents\Work\TECHHIRE\REPOSITORY\M4A-Group-Assessment\m4herosightings\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.deleteHero.html">
+    <configuration name="deleteHero.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/M4A-Group-Assessment/m4herosightings/src/main/resources/templates/deleteHero.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="heroes.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/M4A-Group-Assessment/m4herosightings/src/main/resources/templates/heroes.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/M4A-Group-Assessment/m4herosightings/src/main/resources/templates/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.deleteHero.html" />
+        <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.heroes.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="87128481-9dd5-44a5-875c-1c524c422fe3" name="Default Changelist" comment="" />
+      <created>1601750472114</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1601750472114</updated>
+      <workItem from="1601750489636" duration="4459000" />
+      <workItem from="1601757073601" duration="3850000" />
+      <workItem from="1601849311525" duration="3998000" />
+      <workItem from="1601910567984" duration="9592000" />
+      <workItem from="1601924425500" duration="9066000" />
+      <workItem from="1601994990543" duration="1566000" />
+      <workItem from="1602004133425" duration="8834000" />
+      <workItem from="1602018391356" duration="2365000" />
+      <workItem from="1602027447306" duration="1296000" />
+      <workItem from="1602030624690" duration="802000" />
+      <workItem from="1602085312170" duration="17342000" />
+      <workItem from="1602113962742" duration="3135000" />
+      <workItem from="1602121450640" duration="3985000" />
+      <workItem from="1602170585776" duration="11002000" />
+      <workItem from="1602254784527" duration="10586000" />
+      <workItem from="1602375947666" duration="10681000" />
+      <workItem from="1602439340699" duration="22739000" />
+      <workItem from="1602473210391" duration="1478000" />
+      <workItem from="1602476750460" duration="2053000" />
+      <workItem from="1602507668377" duration="1273000" />
+      <workItem from="1602509189805" duration="7849000" />
+    </task>
+    <task id="LOCAL-00013" summary="minor formatting">
+      <created>1602006653347</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1602006653347</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fixes to head of all html's">
+      <created>1602007132185</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1602007132185</updated>
+    </task>
+    <task id="LOCAL-00015" summary="minor fixes of all html's">
+      <created>1602007318307</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1602007318307</updated>
+    </task>
+    <task id="LOCAL-00016" summary="adding viewSighting template">
+      <created>1602008065202</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1602008065202</updated>
+    </task>
+    <task id="LOCAL-00017" summary="debugging sighting templates">
+      <created>1602011592980</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1602011592980</updated>
+    </task>
+    <task id="LOCAL-00018" summary="editSighting template is pulling in the original data, but not persisting the update">
+      <created>1602013736283</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1602013736283</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Closer to solving the edit sighting problem">
+      <created>1602085846773</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1602085846773</updated>
+    </task>
+    <task id="LOCAL-00020" summary="deleting stray files">
+      <created>1602086694219</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1602086694219</updated>
+    </task>
+    <task id="LOCAL-00021" summary="sighting returned to normal">
+      <created>1602089390219</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1602089390219</updated>
+    </task>
+    <task id="LOCAL-00022" summary="sighting templates more or less restored">
+      <created>1602090229167</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1602090229168</updated>
+    </task>
+    <task id="LOCAL-00023" summary="static and template folder cleanup">
+      <created>1602090634115</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1602090634115</updated>
+    </task>
+    <task id="LOCAL-00024" summary="hero and sighting template cleanup">
+      <created>1602093664983</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1602093664983</updated>
+    </task>
+    <task id="LOCAL-00025" summary="deleting">
+      <created>1602094060267</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1602094060267</updated>
+    </task>
+    <task id="LOCAL-00026" summary="hero template work">
+      <created>1602095322476</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1602095322476</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Uploading Tim's static folder work">
+      <created>1602170845354</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1602170845354</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Uploading Tim's template folder work">
+      <created>1602173183007</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1602173183007</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Uploading Tim's template folder work">
+      <created>1602173230444</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1602173230444</updated>
+    </task>
+    <task id="LOCAL-00030" summary="merging styles with new image upload function">
+      <created>1602179565427</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1602179565427</updated>
+    </task>
+    <task id="LOCAL-00031" summary="navbar and spelling fixes">
+      <created>1602256196816</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1602256196816</updated>
+    </task>
+    <task id="LOCAL-00032" summary="implementations of org list in viewHero.html">
+      <created>1602256242677</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1602256242677</updated>
+    </task>
+    <task id="LOCAL-00033" summary="starting superpower crud implementations">
+      <created>1602257833041</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1602257833041</updated>
+    </task>
+    <task id="LOCAL-00034" summary="pushing Bob's maps api implementations">
+      <created>1602257864877</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1602257864877</updated>
+    </task>
+    <task id="LOCAL-00035" summary="view hero org list fixed">
+      <created>1602258596426</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1602258596426</updated>
+    </task>
+    <task id="LOCAL-00036" summary="maps API fix">
+      <created>1602259480058</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1602259480058</updated>
+    </task>
+    <task id="LOCAL-00037" summary="create and delete implemented for powers">
+      <created>1602265377447</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1602265377447</updated>
+    </task>
+    <task id="LOCAL-00038" summary="linking style sheet">
+      <created>1602265429399</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1602265429399</updated>
+    </task>
+    <task id="LOCAL-00039" summary="superpower crud functionality and input validation all implemented">
+      <created>1602268814425</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1602268814425</updated>
+    </task>
+    <task id="LOCAL-00040" summary="uploading Tim's static folder updates">
+      <created>1602376502613</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1602376502613</updated>
+    </task>
+    <task id="LOCAL-00041" summary="uploading Tim's template folder updates">
+      <created>1602378629334</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1602378629334</updated>
+    </task>
+    <task id="LOCAL-00042" summary="delete confirmation page deployed for hero template set">
+      <created>1602380871533</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1602380871533</updated>
+    </task>
+    <task id="LOCAL-00043" summary="delete confirmation page deployed for superpower template set">
+      <created>1602381488029</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1602381488029</updated>
+    </task>
+    <task id="LOCAL-00044" summary="minor fixes">
+      <created>1602381500184</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1602381500184</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Working on location delete templates">
+      <created>1602382272585</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1602382272585</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Location delete templates working, except the google map api isn't loading">
+      <created>1602384853657</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1602384853657</updated>
+    </task>
+    <task id="LOCAL-00047" summary="fixes and sighting delete template deployed, minus map and hero view">
+      <created>1602386605935</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1602386605935</updated>
+    </task>
+    <task id="LOCAL-00048" summary="All delete templates done, need fixes to map API">
+      <created>1602390355622</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1602390355622</updated>
+    </task>
+    <task id="LOCAL-00049" summary="pushing Tim's static folder work">
+      <created>1602439784335</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1602439784335</updated>
+    </task>
+    <task id="LOCAL-00050" summary="pushing Tim's template folder work with minor fixes">
+      <created>1602444006174</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1602444006174</updated>
+    </task>
+    <task id="LOCAL-00051" summary="added select to edit location">
+      <created>1602445608825</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1602445608825</updated>
+    </task>
+    <task id="LOCAL-00052" summary="javadoc fixes, working on maps api script">
+      <created>1602455145449</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1602455145449</updated>
+    </task>
+    <task id="LOCAL-00053" summary="swiper fixed">
+      <created>1602459074362</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1602459074362</updated>
+    </task>
+    <task id="LOCAL-00054" summary="swiper maps finally working">
+      <created>1602466816360</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1602466816360</updated>
+    </task>
+    <task id="LOCAL-00055" summary="map views deployed for all view and delete templates">
+      <created>1602469267155</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1602469267156</updated>
+    </task>
+    <task id="LOCAL-00056" summary="index template implemented">
+      <created>1602477078602</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1602477078603</updated>
+    </task>
+    <task id="LOCAL-00057" summary="location selects fixed">
+      <created>1602477206731</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1602477206731</updated>
+    </task>
+    <task id="LOCAL-00058" summary="navbar fixes">
+      <created>1602478298992</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1602478298992</updated>
+    </task>
+    <task id="LOCAL-00059" summary="final static and template updates">
+      <created>1602508633385</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1602508633386</updated>
+    </task>
+    <task id="LOCAL-00060" summary="fix to edit org and index css">
+      <created>1602512983107</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1602512983108</updated>
+    </task>
+    <task id="LOCAL-00061" summary="final touches">
+      <created>1602515493115</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1602515493116</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/2.0.0" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="create and delete implemented for powers" />
+    <MESSAGE value="linking style sheet" />
+    <MESSAGE value="superpower crud functionality and input validation all implemented" />
+    <MESSAGE value="uploading Tim's static folder updates" />
+    <MESSAGE value="uploading Tim's template folder updates" />
+    <MESSAGE value="delete confirmation page deployed for hero template set" />
+    <MESSAGE value="delete confirmation page deployed for superpower template set" />
+    <MESSAGE value="minor fixes" />
+    <MESSAGE value="Working on location delete templates" />
+    <MESSAGE value="Location delete templates working, except the google map api isn't loading" />
+    <MESSAGE value="fixes and sighting delete template deployed, minus map and hero view" />
+    <MESSAGE value="All delete templates done, need fixes to map API" />
+    <MESSAGE value="pushing Tim's static folder work" />
+    <MESSAGE value="pushing Tim's template folder work with minor fixes" />
+    <MESSAGE value="added select to edit location" />
+    <MESSAGE value="javadoc fixes, working on maps api script" />
+    <MESSAGE value="swiper fixed" />
+    <MESSAGE value="swiper maps finally working" />
+    <MESSAGE value="map views deployed for all view and delete templates" />
+    <MESSAGE value="index template implemented" />
+    <MESSAGE value="location selects fixed" />
+    <MESSAGE value="navbar fixes" />
+    <MESSAGE value="final static and template updates" />
+    <MESSAGE value="fix to edit org and index css" />
+    <MESSAGE value="final touches" />
+    <option name="LAST_COMMIT_MESSAGE" value="final touches" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1601911811410">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="18" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728@0.0.1366.728" timestamp="1601911811410" />
+    <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1602091246528">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="413" y="110" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1366.728@0.0.1366.728" timestamp="1602091246528" />
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog" timestamp="1602086682390">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="92" y="92" width="1182" height="544" key="DiffContextDialog/0.0.1366.728@0.0.1366.728" timestamp="1602086682390" />
+    <state x="463" y="118" key="FileChooserDialogImpl" timestamp="1602459578464">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="463" y="118" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1602459578464" />
+    <state width="1345" height="223" key="GridCell.Tab.0.bottom" timestamp="1602256528838">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1602256528838" />
+    <state width="1345" height="223" key="GridCell.Tab.0.center" timestamp="1602256528838">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1602256528838" />
+    <state width="1345" height="223" key="GridCell.Tab.0.left" timestamp="1602256528838">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1602256528838" />
+    <state width="1345" height="223" key="GridCell.Tab.0.right" timestamp="1602256528838">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1602256528838" />
+    <state width="1345" height="223" key="GridCell.Tab.1.bottom" timestamp="1602256528838">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1602256528838" />
+    <state width="1345" height="223" key="GridCell.Tab.1.center" timestamp="1602256528838">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1602256528838" />
+    <state width="1345" height="223" key="GridCell.Tab.1.left" timestamp="1602256528838">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1602256528838" />
+    <state width="1345" height="223" key="GridCell.Tab.1.right" timestamp="1602256528838">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1602256528838" />
+    <state width="1345" height="223" key="GridCell.Tab.2.bottom" timestamp="1602256528838">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1602256528838" />
+    <state width="1345" height="223" key="GridCell.Tab.2.center" timestamp="1602256528838">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1602256528838" />
+    <state width="1345" height="223" key="GridCell.Tab.2.left" timestamp="1602256528838">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1602256528838" />
+    <state width="1345" height="223" key="GridCell.Tab.2.right" timestamp="1602256528838">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1345" height="223" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1602256528838" />
+    <state x="373" y="66" key="RollbackChangesDialog" timestamp="1602473563928">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="373" y="66" key="RollbackChangesDialog/0.0.1366.728@0.0.1366.728" timestamp="1602473563928" />
+    <state x="184" y="8" key="SettingsEditor" timestamp="1601752884068">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="8" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1601752884068" />
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2" timestamp="1602515495263">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="96" key="Vcs.Push.Dialog.v2/0.0.1366.728@0.0.1366.728" timestamp="1602515495263" />
+    <state x="288" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1602096094554">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="288" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1602096094554" />
+    <state x="500" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1602473364022">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="500" y="277" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1366.728@0.0.1366.728" timestamp="1602473364022" />
+    <state x="368" y="258" key="git4idea.ui.GitResetDialog" timestamp="1602473453519">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="368" y="258" key="git4idea.ui.GitResetDialog/0.0.1366.728@0.0.1366.728" timestamp="1602473453519" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1601920715901">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1601920715901" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1602455178000">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1602455178000" />
+  </component>
+</project>
